@@ -94,7 +94,7 @@ export function Industries() {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 3.5, // Increased from 2.5 to show more, smaller cards
+    slidesToShow: 3.5,
     slidesToScroll: 1,
     swipeToSlide: true,
     responsive: [
@@ -108,6 +108,12 @@ export function Industries() {
         breakpoint: 1024,
         settings: {
           slidesToShow: 2,
+        }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1.2,
         }
       },
       {
@@ -142,68 +148,15 @@ export function Industries() {
         .slick-vertical .slick-slide{display:block;height:auto;border:1px solid transparent}
         .slick-arrow.slick-hidden{display:none}
         
-        /* Dots */
-        .slick-dots {
-            position: absolute;
-            bottom: -45px;
-            display: block;
-            width: 100%;
-            padding: 0;
-            margin: 0;
-            list-style: none;
-            text-align: center;
-        }
-        /* Make sure slides have enough space and aren't cut off */
+        /* Dots - Removed as per request */
         .slick-list {
             padding-bottom: 10px !important;
             overflow: visible !important;
         }
-        .slick-dots li {
-            position: relative;
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            margin: 0 5px;
-            padding: 0;
-            cursor: pointer;
-        }
-        .slick-dots li button {
-            font-size: 0;
-            line-height: 0;
-            display: block;
-            width: 20px;
-            height: 20px;
-            padding: 5px;
-            cursor: pointer;
-            color: transparent;
-            border: 0;
-            outline: none;
-            background: transparent;
-        }
-        .slick-dots li button:before {
-            font-family: 'slick';
-            font-size: 40px;
-            line-height: 20px;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 20px;
-            height: 20px;
-            content: '•';
-            text-align: center;
-            opacity: .25;
-            color: black;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-        .slick-dots li.slick-active button:before {
-            opacity: 1; 
-            color: black;
-        }
       `}</style>
 
        <Container className="max-w-[1440px] flex flex-col gap-12">
-         <div className="flex flex-col md:flex-row gap-8 items-start">
+         <div className="flex flex-col md:flex-row gap-8 items-start py-16 md:py-24">
             <p className="text-lg text-black w-32 shrink-0 mt-2 font-augenblick">Industrias</p>
             <div className="flex-grow">
                <SectionHeading 
@@ -216,7 +169,7 @@ export function Industries() {
             </div>
          </div>
 
-         <div className="w-full -mr-20 md:-mr-40" onWheel={(e) => {
+         <div className="w-full -mr-20 md:-mr-40 relative" onWheel={(e) => {
             const now = Date.now();
             if (now - lastScrollTime.current < 500) return;
             
@@ -231,6 +184,12 @@ export function Industries() {
                 lastScrollTime.current = now;
             }
          }}>
+            {/* Left Blur Overlay - Targeted to Image Height */}
+            <div className="absolute left-0 top-0 h-[60vw] md:h-[25vw] max-h-[450px] w-16 md:w-32 z-10 pointer-events-none backdrop-blur-[1px]" style={{ maskImage: 'linear-gradient(to right, black, transparent)', WebkitMaskImage: 'linear-gradient(to right, black, transparent)' }} />
+            
+            {/* Right Blur Overlay - Targeted to Image Height */}
+            <div className="absolute right-0 top-0 h-[60vw] md:h-[25vw] max-h-[450px] w-16 md:w-32 z-10 pointer-events-none backdrop-blur-[1px]" style={{ maskImage: 'linear-gradient(to left, black, transparent)', WebkitMaskImage: 'linear-gradient(to left, black, transparent)' }} />
+
             <Slider 
               ref={sliderRef} 
               {...settings} 
@@ -260,21 +219,24 @@ export function Industries() {
                   }
                 }
               ]}
-              arrows={false} 
+              arrows={false}
+              dots={false}
               autoplay={true} 
               autoplaySpeed={3000} 
               pauseOnHover={true}
             >
                 {industries.map((ind, idx) => (
-                    <div key={idx} className="px-2 h-full">
-                        <div className="group relative flex flex-col gap-5 p-4 rounded-[40px] bg-white/40 backdrop-blur-md border border-white/60 hover:bg-white/50 transition-all h-auto shadow-sm">
-                            <div className="aspect-[4/3] w-full rounded-[20px] overflow-hidden relative shrink-0">
-                                <img src={ind.image} alt={ind.title} className="w-full h-full object-cover" />
-                            </div>
-                            <div className="flex flex-col gap-3 text-black">
-                                <h3 className="text-2xl font-medium font-[Neue_Augenblick]">{ind.title}</h3>
-                                <p className="text-lg font-light leading-snug opacity-80 font-augenblick">{ind.description}</p>
-                            </div>
+                    <div key={idx} className="px-4 h-full">
+                        <div className="group relative flex flex-col h-full">
+                            <a href={`/industries/${ind.title.toLowerCase().replace(/\s+/g, '-')}`} className="flex flex-col gap-5 w-full cursor-pointer block">
+                                <div className="aspect-[4/3] w-full rounded-[20px] overflow-hidden relative shrink-0">
+                                    <img src={ind.image} alt={ind.title} className="w-full h-full object-cover" />
+                                </div>
+                                <div className="flex flex-col gap-3 text-black">
+                                    <h3 className="text-2xl font-medium font-[Neue_Augenblick]">{ind.title}</h3>
+                                    <p className="text-lg font-light leading-snug opacity-80 font-augenblick">{ind.description}</p>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 ))}

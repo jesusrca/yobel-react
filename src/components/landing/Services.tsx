@@ -51,7 +51,7 @@ const services = [
 ];
 
 export function Services() {
-  const [activeId, setActiveId] = useState("01");
+  const [activeId, setActiveId] = useState("");
 
   return (
     <Section className="bg-white">

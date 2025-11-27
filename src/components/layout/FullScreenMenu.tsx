@@ -78,17 +78,9 @@ export function FullScreenMenu({ onClose }: FullScreenMenuProps) {
             <div className="max-w-[547px] mb-16 md:mb-24">
                <h2 className="text-lg text-white/50 mb-4">¿Dónde está mi envío?</h2>
                <div className="relative border-b border-white/20 pb-2">
-                  <div className="flex justify-between items-center">
-                     <input 
-                       type="text" 
-                       placeholder="N° de guía" 
-                       className="bg-transparent border-none text-[26px] text-white placeholder-white focus:outline-none w-full"
-                     />
-                     <svg width="32" height="32" viewBox="0 0 32 32" fill="none" className="cursor-pointer">
-                        <path d={svgPaths.pd82c980} stroke="white" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
-                        <path d="M28.0001 28L22.2001 22.2" stroke="white" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
-                     </svg>
-                  </div>
+                  <button className="w-fit px-8 py-3 rounded-full border border-white flex items-center justify-center hover:bg-white hover:text-black transition-colors cursor-pointer group">
+                     <span className="text-xl md:text-2xl font-light font-[Neue_Augenblick]">Ingresar tu N° guía aquí</span>
+                  </button>
                </div>
             </div>
 
