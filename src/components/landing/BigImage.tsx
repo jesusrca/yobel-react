@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
-import imgImagen from "figma:asset/adc72d5df3d80c8fdccbc8cfbcf1e923861a2634.png";
+import imgImagen from "figma:asset/ef749d8cdc32d6b2e190c007c039bf534bdfe8e7.png";
 import svgPaths from "../../imports/svg-1euews6kv9";
 
 export function BigImage() {
@@ -15,7 +15,14 @@ export function BigImage() {
   const bottomCurveScale = useTransform(scrollYProgress, [0.4, 0.9], [0, 1]);
   
   return (
-    <div ref={containerRef} className="w-full relative">
+    <motion.div 
+      ref={containerRef} 
+      className="w-full relative mt-24"
+      initial={{ opacity: 0, filter: "blur(10px)", y: 100 }}
+      whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+      viewport={{ once: true, margin: "-10%" }}
+      transition={{ duration: 1, ease: "easeOut" }}
+    >
       <div className="w-full h-[600px] md:h-[850px] relative overflow-hidden">
         <img src={imgImagen} alt="Yobel Logistics" className="absolute inset-0 w-full h-full object-cover" />
         
@@ -43,6 +50,6 @@ export function BigImage() {
            </div>
         </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 }

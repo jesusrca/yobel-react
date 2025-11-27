@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import svgPaths from "../../imports/svg-wm177np9sn";
-import Circulos from "../../imports/Circulos-25-2001";
 
 function LogoGroup() {
   return (
@@ -27,10 +26,10 @@ function LogoGroup() {
 
 function ContactInfo() {
   return (
-    <div className="content-stretch flex flex-col gap-[8px] items-center justify-center not-italic relative shrink-0 text-white w-full">
-      <p className="font-sans font-medium leading-[18px] relative shrink-0 text-[16px] w-full">CONTACTO COMERCIAL</p>
-      <p className="font-sans font-normal leading-[22px] relative shrink-0 text-[18px] w-full">
-        +<span className="not-italic">511 997 593 459</span>
+    <div className="content-stretch flex flex-col gap-[8px] items-start justify-center not-italic relative shrink-0 text-white w-full">
+      <p className="font-medium leading-[18px] relative shrink-0 text-[16px] w-full font-[Neue_Augenblick]">CONTACTO COMERCIAL</p>
+      <p className="font-normal leading-[22px] relative shrink-0 text-[18px] w-full">
+        +<span className="not-italic font-[Neue_Augenblick]">511 997 593 459</span>
       </p>
     </div>
   );
@@ -40,10 +39,10 @@ function Slogan() {
   return (
     <div className="content-stretch flex flex-col gap-[40px] items-start relative shrink-0 w-full lg:w-[547px]">
       <LogoGroup />
-      <div className="font-sans font-normal leading-[22px] min-w-full not-italic relative shrink-0 text-[18px] text-white w-[min-content]">
-        <p className="mb-0">{`EN MOVIMIENTO `}</p>
-        <p className="mb-0">CONCRETAMOS</p>
-        <p>TUS SUEÑOS</p>
+      <div className="font-normal leading-[22px] min-w-full not-italic relative shrink-0 text-[18px] text-white w-[min-content]">
+        <p className="mb-0 font-[Neue_Augenblick]">{`EN MOVIMIENTO `}</p>
+        <p className="mb-0 font-[Neue_Augenblick]">CONCRETAMOS</p>
+        <p className="font-[Neue_Augenblick]">TUS SUEÑOS</p>
       </div>
       <ContactInfo />
     </div>
@@ -61,8 +60,8 @@ function FooterLink({ to, children }: { to: string; children: React.ReactNode })
 function FooterColumn({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div className="box-border content-stretch flex flex-col gap-[24px] items-start justify-center px-0 py-[16px] relative shrink-0 w-full">
-      <p className="font-sans font-medium leading-[18px] not-italic relative shrink-0 text-[16px] text-white w-full uppercase">{title}</p>
-      <div className="content-stretch flex flex-col font-sans gap-[14px] items-start justify-center w-full">
+      <p className="font-medium leading-[18px] not-italic relative shrink-0 text-[16px] text-white w-full uppercase">{title}</p>
+      <div className="content-stretch flex flex-col gap-[14px] items-start justify-center w-full font-[Neue_Augenblick]">
         {children}
       </div>
     </div>
@@ -136,10 +135,7 @@ function FooterLinks() {
 
 export function Footer() {
   return (
-    <div className="bg-gradient-to-b from-[rgba(0,0,0,0)] relative w-full to-[#000000] to-[40.645%] overflow-hidden">
-       <div className="absolute top-[-300px] left-1/2 -translate-x-1/2 w-[2198px] h-[879px] pointer-events-none z-0">
-        <Circulos />
-      </div>
+    <div className="bg-black relative w-full overflow-hidden">
       <div className="w-full h-full relative z-10">
         <div className="box-border content-stretch flex flex-col gap-[10px] items-start px-4 md:px-[50px] py-0 relative w-full h-full">
           <div className="box-border content-stretch flex flex-col items-start overflow-x-clip overflow-y-auto px-0 py-[40px] relative shrink-0 w-full max-w-[1340px] mx-auto">
@@ -148,7 +144,7 @@ export function Footer() {
                 <FooterLinks />
              </div>
              <div className="content-stretch flex flex-col gap-[24px] items-end relative shrink-0 w-full">
-               <p className="font-sans font-normal leading-[22px] not-italic relative shrink-0 text-[18px] text-white w-full">© Yobel SCM Perú</p>
+               <p className="font-normal leading-[22px] not-italic relative shrink-0 text-[18px] text-white w-full">© Yobel SCM Perú</p>
              </div>
           </div>
         </div>

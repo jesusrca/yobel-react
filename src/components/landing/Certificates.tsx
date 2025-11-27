@@ -25,7 +25,7 @@ export function Certificates() {
          <div className="flex flex-col md:flex-row gap-12 md:gap-32 items-start">
             <div className="shrink-0 w-32 text-lg mt-2">Certificados</div>
             <div className="flex flex-col md:flex-row gap-12 md:gap-32">
-               <h2 className="text-4xl md:text-[45px] leading-tight max-w-sm">
+               <h2 className="text-4xl md:text-[45px] leading-tight max-w-sm font-[Neue_Augenblick]">
                   Nuestros certificados nos respaldan
                </h2>
                <p className="text-lg leading-relaxed max-w-md opacity-80">
@@ -35,11 +35,11 @@ export function Certificates() {
          </div>
 
          <div className="flex flex-wrap justify-center md:justify-between items-center gap-8 md:gap-12 mt-12">
-            <img src={imgLogoInvima} alt="Invima" className="h-24 md:h-[207px] object-contain opacity-80 hover:opacity-100 transition-opacity grayscale hover:grayscale-0" />
-            <img src={imgLogoBpm} alt="BPM" className="h-24 md:h-[207px] object-contain opacity-80 hover:opacity-100 transition-opacity grayscale hover:grayscale-0" />
-            <img src={imgLogoIso} alt="ISO" className="h-24 md:h-[207px] object-contain opacity-80 hover:opacity-100 transition-opacity grayscale hover:grayscale-0" />
-            <img src={imgLogoBpa} alt="BPA" className="h-24 md:h-[207px] object-contain opacity-80 hover:opacity-100 transition-opacity grayscale hover:grayscale-0" />
-            <img src={imgLogoOliver} alt="Oliver" className="h-24 md:h-[196px] object-contain opacity-80 hover:opacity-100 transition-opacity grayscale hover:grayscale-0" />
+            <img src={imgLogoInvima} alt="Invima" className="h-24 md:h-[207px] object-contain opacity-80 hover:opacity-100 transition-all duration-700 ease-in-out grayscale hover:grayscale-0" />
+            <img src={imgLogoBpm} alt="BPM" className="h-24 md:h-[207px] object-contain opacity-80 hover:opacity-100 transition-all duration-700 ease-in-out grayscale hover:grayscale-0" />
+            <img src={imgLogoIso} alt="ISO" className="h-24 md:h-[207px] object-contain opacity-80 hover:opacity-100 transition-all duration-700 ease-in-out grayscale hover:grayscale-0" />
+            <img src={imgLogoBpa} alt="BPA" className="h-24 md:h-[207px] object-contain opacity-80 hover:opacity-100 transition-all duration-700 ease-in-out grayscale hover:grayscale-0" />
+            <img src={imgLogoOliver} alt="Oliver" className="h-24 md:h-[196px] object-contain opacity-80 hover:opacity-100 transition-all duration-700 ease-in-out grayscale hover:grayscale-0" />
          </div>
       </Container>
     </Section>

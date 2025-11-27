@@ -44,7 +44,7 @@ export function FAQItem({ question, answer }: FAQItemData) {
         onClick={() => setIsOpen(!isOpen)}
         className="w-full flex items-center justify-between text-left group"
       >
-        <h3 className="text-xl md:text-[26px] text-black pr-8">{question}</h3>
+        <h3 className="text-xl md:text-[26px] text-black pr-8 font-[Neue_Augenblick]">{question}</h3>
         <div className="relative w-[30px] h-[30px] shrink-0">
           {/* Vertical line - rotates to horizontal when open */}
           <motion.div 
@@ -86,7 +86,7 @@ export function FAQ({ items = defaultFaqs, className }: FAQProps) {
     <Section className={`relative overflow-hidden bg-gradient-to-b from-[#FFFFFF] to-[#31CDFF] ${className}`}>
       <Container className="relative z-10 flex flex-col lg:flex-row gap-20 items-start">
          <div className="lg:w-1/3 sticky top-24">
-            <h2 className="text-4xl md:text-[45px] leading-tight text-black">
+            <h2 className="text-4xl md:text-[45px] leading-tight text-black font-[Neue_Augenblick]">
                ¿Tienes algunas preguntas? Encuentra tu respuesta
             </h2>
          </div>

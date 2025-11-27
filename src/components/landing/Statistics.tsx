@@ -182,7 +182,7 @@ const Char = ({ children, range, progress }: { children: string; range: [number,
   
   return (
     <span className="relative inline-block">
-      <span className="absolute opacity-[0.2]">{children}</span>
+      <span className="absolute opacity-[0.2] font-augenblick">{children}</span>
       <motion.span style={{ opacity, color }}>{children}</motion.span>
     </span>
   );
@@ -255,7 +255,7 @@ const StatisticRow = ({
        key={idx} 
        type={type}
        progress={segmentProgress}
-       className="py-16 px-8"
+       className="py-10 px-4 md:py-16 md:px-8"
     >
      <div className="flex flex-col lg:flex-row items-start lg:items-center gap-8 lg:gap-20">
          <div className="w-full lg:w-1/2 text-left">
@@ -301,13 +301,13 @@ export function Statistics() {
                       />
                    </div>
                    <div className="w-full lg:w-1/2 flex flex-col gap-6">
-                      <h3 className="text-2xl md:text-[26px] text-black">{stat.title}</h3>
+                      <h3 className="text-2xl md:text-[26px] text-black font-augenblick font-[Neue_Augenblick]">{stat.title}</h3>
                       <div className="pl-8 md:pl-12 lg:pl-20">
                          <ScrollRevealText 
                             text={stat.description}
                             className="text-xl md:text-[22px] text-black mb-8 max-w-lg leading-relaxed"
                          />
-                         <button className="relative pb-2 text-[22px] font-medium border-b border-black hover:opacity-70 transition-opacity">
+                         <button className="relative pb-2 text-[22px] font-medium border-b border-black hover:opacity-70 transition-opacity font-augenblick">
                             Conoce más
                          </button>
                       </div>

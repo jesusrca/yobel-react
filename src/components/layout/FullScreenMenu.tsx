@@ -13,7 +13,7 @@ export function FullScreenMenu({ onClose }: FullScreenMenuProps) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[60] bg-black text-white overflow-y-auto font-sans"
+      className="fixed inset-0 z-[60] bg-black text-white overflow-y-auto"
     >
       {/* Header */}
       <div className="flex justify-center px-4 pt-8 pb-4">

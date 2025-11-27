@@ -4,8 +4,10 @@ import imgWarehouse from "figma:asset/d507ec513ebf701c67ceec058a95047f4353b881.p
 import imgProduction from "figma:asset/1d572db1870691a1a016c8d5eca9b8435b8b8918.png";
 import imgScanning from "figma:asset/d56ded74011b0f21c7600fc7891c848944165ffe.png";
 import imgPharma from "figma:asset/c90f14dfdbaa2aa55fb1d7c09e10dc950d57ddd7.png";
-import imgPersonalCare from "figma:asset/6fdd41c396ee366bba682ec526eac7b2d20bece7.png";
 import imgChemicals from "figma:asset/93e8fecf0b866b17f193287487427a7f4706db04.png";
+import imgBeauty from "figma:asset/103d8d197de9e955ee51566da3442fee34ea9897.png";
+import imgCalzado from "figma:asset/d2c9f3240507d2ef782b76eeeddd5ceefb0e5a3f.png";
+import imgRetail from "figma:asset/3018caa8c33f0bce1611ac9d4b39efd1e291cae3.png";
 import { Section } from "../ui/custom-section";
 import { Container } from "../ui/custom-container";
 import { SectionHeading } from "../ui/typography";
@@ -14,7 +16,7 @@ const industries = [
   {
     title: "Belleza y Cuidado Personal",
     description: "Cadena de suministro integral para cosméticos, fragancias y productos de cuidado personal, con trazabilidad completa y control sanitario.",
-    image: imgPersonalCare,
+    image: imgBeauty,
   },
   {
     title: "Alimentos y Bebidas",
@@ -39,7 +41,7 @@ const industries = [
   {
     title: "Hogar",
     description: "Cadena de suministro para productos de limpieza, utensilios y artículos domésticos con eficiencia operativa y control de stock.",
-    image: imgPersonalCare,
+    image: imgBeauty,
   },
   {
     title: "Manufactura Industrial",
@@ -49,7 +51,7 @@ const industries = [
   {
     title: "Calzado y moda",
     description: "Gestión de prendas, calzado y accesorios con control por temporada, trazabilidad por colección y preparación según canal de venta.",
-    image: imgScanning,
+    image: imgCalzado,
   },
   {
     title: "Químicos",
@@ -59,7 +61,7 @@ const industries = [
   {
     title: "Retail",
     description: "Abastecimiento integral de tiendas, centros de distribución y plataformas digitales con visibilidad total y entregas confiables.",
-    image: imgScanning,
+    image: imgRetail,
   },
   {
     title: "Tecnología y Electrónica",
@@ -92,10 +94,16 @@ export function Industries() {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 2.5,
+    slidesToShow: 3.5, // Increased from 2.5 to show more, smaller cards
     slidesToScroll: 1,
     swipeToSlide: true,
     responsive: [
+      {
+        breakpoint: 1280,
+        settings: {
+          slidesToShow: 3,
+        }
+      },
       {
         breakpoint: 1024,
         settings: {
@@ -105,7 +113,7 @@ export function Industries() {
       {
         breakpoint: 640,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 1.15,
         }
       }
     ]
@@ -196,10 +204,10 @@ export function Industries() {
 
        <Container className="max-w-[1440px] flex flex-col gap-12">
          <div className="flex flex-col md:flex-row gap-8 items-start">
-            <p className="text-lg text-black w-32 shrink-0 mt-2">Industrias</p>
+            <p className="text-lg text-black w-32 shrink-0 mt-2 font-augenblick">Industrias</p>
             <div className="flex-grow">
                <SectionHeading 
-                 description="Conocemos las exigencias de cada sector. Por eso, en Yobel diseñamos soluciones integradas y adaptables, alineadas a los retos y necesidades de tu industria."
+                 description="Conocemos las exigencias de cada sector. Por eso, en Yobel diseñamos soluciones integradas y adaptables, alineadas a los retos y necesidades de tu industria." className="font-augenblick font-[Neue_Augenblick]"
                >
                  <div className="text-4xl md:text-5xl leading-tight text-black max-w-md mb-6">
                    <p>Industrias en movimiento</p>
@@ -223,16 +231,49 @@ export function Industries() {
                 lastScrollTime.current = now;
             }
          }}>
-            <Slider ref={sliderRef} {...settings} arrows={false} autoplay={true} autoplaySpeed={3000} pauseOnHover={true}>
+            <Slider 
+              ref={sliderRef} 
+              {...settings} 
+              responsive={[
+                {
+                  breakpoint: 1280,
+                  settings: {
+                    slidesToShow: 3,
+                  }
+                },
+                {
+                  breakpoint: 1024,
+                  settings: {
+                    slidesToShow: 2,
+                  }
+                },
+                {
+                  breakpoint: 768,
+                  settings: {
+                    slidesToShow: 1.2,
+                  }
+                },
+                {
+                  breakpoint: 640,
+                  settings: {
+                    slidesToShow: 1.15,
+                  }
+                }
+              ]}
+              arrows={false} 
+              autoplay={true} 
+              autoplaySpeed={3000} 
+              pauseOnHover={true}
+            >
                 {industries.map((ind, idx) => (
                     <div key={idx} className="px-2 h-full">
-                        <div className="group relative flex flex-col gap-4 p-5 rounded-[40px] bg-white/20 backdrop-blur-md border border-white/40 hover:bg-white/30 transition-all h-[550px] shadow-sm">
-                            <div className="h-[329px] w-full rounded-[30px] overflow-hidden relative shrink-0">
+                        <div className="group relative flex flex-col gap-5 p-4 rounded-[40px] bg-white/40 backdrop-blur-md border border-white/60 hover:bg-white/50 transition-all h-auto shadow-sm">
+                            <div className="aspect-[4/3] w-full rounded-[20px] overflow-hidden relative shrink-0">
                                 <img src={ind.image} alt={ind.title} className="w-full h-full object-cover" />
                             </div>
-                            <div className="flex flex-col gap-2 text-black">
-                                <h3 className="text-xl font-medium">{ind.title}</h3>
-                                <p className="text-lg font-light leading-snug opacity-80">{ind.description}</p>
+                            <div className="flex flex-col gap-3 text-black">
+                                <h3 className="text-2xl font-medium font-[Neue_Augenblick]">{ind.title}</h3>
+                                <p className="text-lg font-light leading-snug opacity-80 font-augenblick">{ind.description}</p>
                             </div>
                         </div>
                     </div>
