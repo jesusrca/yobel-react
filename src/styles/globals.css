@@ -1,15 +1,36 @@
 
 
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
 @font-face {
   font-family: 'NeueAugenblick';
-  src: url('https://circular.ws/fonts/NeueAugenblick-Regular.woff') format('woff');
+  src: url('https://circular.ws/fonts/NeueAugenblick-Regular.woff') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'NeueAugenblick';
+  src: url('https://circular.ws/fonts/NeueAugenblick-Regular.woff') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'NeueAugenblick';
+  src: url('https://raw.githubusercontent.com/jesusrca/Yobelfinal/main/src/fonts/NeueAugenblick-LightItalic.woff2') format('woff2');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
 .font-augenblick {
   font-family: 'NeueAugenblick', sans-serif;
+}
+body{
+  font-family: 'NeueAugenblick';
 }
 
 @custom-variant dark (&:is(.dark *));
@@ -150,24 +171,28 @@
 @layer base {
   :where(:not(:has([class*=' text-']), :not(:has([class^='text-'])))) {
     h1 {
+      font-family: 'Quicksand', sans-serif;
       font-size: var(--text-2xl);
       font-weight: var(--font-weight-medium);
       line-height: 1.5;
     }
 
     h2 {
+      font-family: 'Quicksand', sans-serif;
       font-size: var(--text-xl);
       font-weight: var(--font-weight-medium);
       line-height: 1.5;
     }
 
     h3 {
+      font-family: 'Quicksand', sans-serif;
       font-size: var(--text-lg);
       font-weight: var(--font-weight-medium);
       line-height: 1.5;
     }
 
     h4 {
+      font-family: 'Quicksand', sans-serif;
       font-size: var(--text-base);
       font-weight: var(--font-weight-medium);
       line-height: 1.5;

@@ -17,10 +17,10 @@ export function Hero() {
       
       <div className="absolute bottom-28 left-[5%] right-[5%] z-10 max-w-[1340px] mx-auto">
         <div className="flex flex-col md:flex-row items-end gap-8 md:gap-20 text-white">
-          <h1 className="font-augenblick text-4xl md:text-6xl lg:text-[65px] leading-none font-normal max-w-[900px] drop-shadow-md tracking-tight">
+          <h1 className="font-[Neue_Augenblick] text-4xl md:text-6xl lg:text-[65px] leading-none font-normal max-w-[900px] drop-shadow-md tracking-tight">
             Yobel, el movimiento que impulsa tu negocio
           </h1>
-          <p className="text-lg md:text-xl lg:text-[22px] leading-normal max-w-[600px] drop-shadow-md mb-2 opacity-90">
+          <p className="text-lg md:text-xl lg:text-[22px] leading-normal max-w-[600px] drop-shadow-md mb-2 opacity-90 font-[Neue_Augenblick]">
             Tecnología, talento y experiencia para que tu cadena de suministro avance sin límites
           </p>
         </div>

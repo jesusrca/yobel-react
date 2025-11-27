@@ -16,10 +16,10 @@ export function ValueProp() {
           </div>
           
           <div className="max-w-3xl">
-            <h2 className="text-4xl md:text-5xl font-normal text-black mb-6">
+            <h2 className="text-4xl md:text-5xl font-normal text-black mb-6 font-[Neue_Augenblick]">
               Impulsamos tu negocio
             </h2>
-            <p className="text-xl md:text-2xl leading-relaxed text-black font-light">
+            <p className="text-xl md:text-2xl leading-relaxed text-black font-light font-[Neue_Augenblick]">
               Desde emprendedores hasta grandes corporaciones, en Yobel diseñamos servicios flexibles y a medida que eliminan la complejidad del comercio y la logística.
             </p>
           </div>
