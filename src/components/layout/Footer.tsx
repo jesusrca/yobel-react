@@ -123,7 +123,7 @@ function FooterLinks() {
          <div className="w-full md:w-1/2">
             <FooterColumn title="Legal">
               <FooterLink to="#">Términos y Condiciones</FooterLink>
-              <FooterLink to="#">Libro de Reclamaciones</FooterLink>
+              <FooterLink to="/libro-reclamaciones">Libro de Reclamaciones</FooterLink>
               <FooterLink to="#">Políticas de Privacidad</FooterLink>
               <FooterLink to="#">Políticas de Cookies</FooterLink>
             </FooterColumn>

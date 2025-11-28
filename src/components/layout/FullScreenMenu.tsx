@@ -93,22 +93,22 @@ export function FullScreenMenu({ onClose }: FullScreenMenuProps) {
                     <div>
                        <h3 className="text-lg text-white/50 mb-6">SERVICIOS</h3>
                        <ul className="flex flex-col gap-3">
-                          <li className="text-[22px] hover:text-blue-400 transition-colors">
+                          <li className="text-[22px] hover:text-[#F0DE32] transition-colors">
                             <Link to="/servicios/comercio-exterior" onClick={onClose}>Comercio Exterior</Link>
                           </li>
-                          <li className="text-[22px] hover:text-blue-400 transition-colors">
+                          <li className="text-[22px] hover:text-[#F0DE32] transition-colors">
                             <Link to="/servicios/manufactura" onClick={onClose}>Manufactura</Link>
                           </li>
-                          <li className="text-[22px] hover:text-blue-400 transition-colors">
+                          <li className="text-[22px] hover:text-[#F0DE32] transition-colors">
                             <Link to="/servicios/valor-agregado" onClick={onClose}>Servicio Valor Agregado</Link>
                           </li>
-                          <li className="text-[22px] hover:text-blue-400 transition-colors">
+                          <li className="text-[22px] hover:text-[#F0DE32] transition-colors">
                             <Link to="/servicios/almacenamiento" onClick={onClose}>Almacenamiento</Link>
                           </li>
-                          <li className="text-[22px] hover:text-blue-400 transition-colors">
+                          <li className="text-[22px] hover:text-[#F0DE32] transition-colors">
                              <Link to="/servicios/distribucion" onClick={onClose}>Distribución</Link>
                           </li>
-                          <li className="text-[22px] hover:text-blue-400 transition-colors">
+                          <li className="text-[22px] hover:text-[#F0DE32] transition-colors">
                              <Link to="/servicios/courier-express" onClick={onClose}>Courier Express</Link>
                           </li>
                        </ul>
@@ -118,13 +118,13 @@ export function FullScreenMenu({ onClose }: FullScreenMenuProps) {
                     <div>
                        <h3 className="text-lg text-white/50 mb-6">ÉTICA Y SOSTENIBILIDAD</h3>
                        <ul className="flex flex-col gap-3">
-                          <li className="text-[22px] hover:text-blue-400 transition-colors">
+                          <li className="text-[22px] hover:text-[#F0DE32] transition-colors">
                              <Link to="/etica/codigo-de-etica" onClick={onClose}>Código de Ética</Link>
                           </li>
-                          <li className="text-[22px] hover:text-blue-400 transition-colors">
+                          <li className="text-[22px] hover:text-[#F0DE32] transition-colors">
                              <Link to="/etica/linea-de-etica" onClick={onClose}>Línea de Ética</Link>
                           </li>
-                          <li className="text-[22px] hover:text-blue-400 transition-colors">
+                          <li className="text-[22px] hover:text-[#F0DE32] transition-colors">
                              <Link to="/etica/rse-sostenibilidad" onClick={onClose}>RSE y Sostenibilidad</Link>
                           </li>
                        </ul>
@@ -137,13 +137,13 @@ export function FullScreenMenu({ onClose }: FullScreenMenuProps) {
                     <div>
                        <h3 className="text-lg text-white/50 mb-6">EMPRESA</h3>
                        <ul className="flex flex-col gap-3">
-                          <li className="text-[22px] hover:text-blue-400 transition-colors">
+                          <li className="text-[22px] hover:text-[#F0DE32] transition-colors">
                              <Link to="/empresa/sobre-nosotros" onClick={onClose}>Sobre Nosotros</Link>
                           </li>
-                          <li className="text-[22px] hover:text-blue-400 transition-colors">
+                          <li className="text-[22px] hover:text-[#F0DE32] transition-colors">
                              <Link to="/empresa/presencia-global" onClick={onClose}>Presencia Global</Link>
                           </li>
-                          <li className="text-[22px] hover:text-blue-400 transition-colors">
+                          <li className="text-[22px] hover:text-[#F0DE32] transition-colors">
                              <Link to="/empresa/historia" onClick={onClose}>Historia</Link>
                           </li>
                        </ul>
@@ -153,17 +153,17 @@ export function FullScreenMenu({ onClose }: FullScreenMenuProps) {
                     <div>
                        <h3 className="text-lg text-white/50 mb-6">NOTICIAS</h3>
                        <ul className="flex flex-col gap-3">
-                          <li className="text-[22px] hover:text-blue-400 transition-colors">
-                             <Link to="#" onClick={onClose}>Ver todas las noticias</Link>
+                          <li className="text-[22px] hover:text-[#F0DE32] transition-colors">
+                             <Link to="/noticias" onClick={onClose}>Ver todas las noticias</Link>
                           </li>
-                          <li className="text-[22px] hover:text-blue-400 transition-colors">
-                             <Link to="#" onClick={onClose}>Insights y Tendencias</Link>
+                          <li className="text-[22px] hover:text-[#F0DE32] transition-colors">
+                             <Link to="/noticias" onClick={onClose}>Insights y Tendencias</Link>
                           </li>
-                          <li className="text-[22px] hover:text-blue-400 transition-colors">
-                             <Link to="#" onClick={onClose}>Innovación y Tecnología</Link>
+                          <li className="text-[22px] hover:text-[#F0DE32] transition-colors">
+                             <Link to="/noticias" onClick={onClose}>Innovación y Tecnología</Link>
                           </li>
-                          <li className="text-[22px] hover:text-blue-400 transition-colors">
-                             <Link to="#" onClick={onClose}>Casos de Éxito y Guías Prácticas</Link>
+                          <li className="text-[22px] hover:text-[#F0DE32] transition-colors">
+                             <Link to="/noticias" onClick={onClose}>Casos de Éxito y Guías Prácticas</Link>
                           </li>
                        </ul>
                     </div>
@@ -175,13 +175,13 @@ export function FullScreenMenu({ onClose }: FullScreenMenuProps) {
                     <div>
                        <h3 className="text-lg text-white/50 mb-6">CONTACTO</h3>
                        <ul className="flex flex-col gap-3">
-                          <li className="text-[22px] hover:text-blue-400 transition-colors">
+                          <li className="text-[22px] hover:text-[#F0DE32] transition-colors">
                              <Link to="/contacto" onClick={onClose}>Oficinas</Link>
                           </li>
-                          <li className="text-[22px] hover:text-blue-400 transition-colors">
+                          <li className="text-[22px] hover:text-[#F0DE32] transition-colors">
                              <Link to="/contacto" onClick={onClose}>Contactar Asesor</Link>
                           </li>
-                          <li className="text-[22px] hover:text-blue-400 transition-colors">
+                          <li className="text-[22px] hover:text-[#F0DE32] transition-colors">
                              <Link to="/contacto" onClick={onClose}>Trabaja con nosotros</Link>
                           </li>
                        </ul>
@@ -191,17 +191,20 @@ export function FullScreenMenu({ onClose }: FullScreenMenuProps) {
                     <div>
                        <h3 className="text-lg text-white/50 mb-6">LEGAL</h3>
                        <ul className="flex flex-col gap-3">
-                          <li className="text-[22px] hover:text-blue-400 transition-colors">
-                             <Link to="#" onClick={onClose}>Términos y Condiciones</Link>
+                          <li className="text-[22px] hover:text-[#F0DE32] transition-colors">
+                             <Link to="/terminos-y-condiciones" onClick={onClose}>Términos y Condiciones</Link>
                           </li>
-                          <li className="text-[22px] hover:text-blue-400 transition-colors">
-                             <Link to="#" onClick={onClose}>Libro de Reclamaciones</Link>
+                          <li className="text-[22px] hover:text-[#F0DE32] transition-colors">
+                             <Link to="/libro-reclamaciones" onClick={onClose}>Libro de Reclamaciones</Link>
                           </li>
-                          <li className="text-[22px] hover:text-blue-400 transition-colors">
-                             <Link to="#" onClick={onClose}>Políticas de Privacidad</Link>
+                          <li className="text-[22px] hover:text-[#F0DE32] transition-colors">
+                             <Link to="/politicas-de-privacidad" onClick={onClose}>Políticas de Privacidad</Link>
                           </li>
-                          <li className="text-[22px] hover:text-blue-400 transition-colors">
-                             <Link to="#" onClick={onClose}>Políticas de Cookies</Link>
+                          <li className="text-[22px] hover:text-[#F0DE32] transition-colors">
+                             <Link to="/politicas-de-cookies" onClick={onClose}>Políticas de Cookies</Link>
+                          </li>
+                          <li className="text-[22px] hover:text-[#F0DE32] transition-colors">
+                             <Link to="/pagina-no-existente" onClick={onClose}>Error 404 (Prueba)</Link>
                           </li>
                        </ul>
                     </div>

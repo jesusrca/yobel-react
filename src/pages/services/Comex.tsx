@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "motion/react";
 import { PageHero } from "../../components/ui/PageHero";
 import { Section } from "../../components/ui/custom-section";
@@ -66,14 +67,16 @@ export function Comex() {
     <>
       <div className="relative h-[80vh] min-h-[600px] max-h-[920px] w-full overflow-hidden font-augenblick">
         <div className="absolute inset-0 overflow-hidden">
-          <iframe 
-            src="https://iframe.mediadelivery.net/embed/512396/5aef2478-ecdc-4449-ad18-7f9d750a485b?autoplay=true&loop=true&muted=true&preload=true"
-            className="absolute inset-0 h-full w-full scale-125 object-cover lg:scale-100"
-            allow="autoplay; fullscreen; picture-in-picture"
-            style={{ border: "none", pointerEvents: "none" }}
+          <video 
+            src="https://circular.ws/yobel/fondo-horizontal.mp4"
+            className="absolute inset-0 h-full w-full object-cover"
+            autoPlay
+            loop
+            muted
+            playsInline
           />
-          <div className="absolute inset-0 bg-[#fff066]/40 mix-blend-multiply" />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent from-30% to-white" />
+          <div className="absolute inset-0 bg-black/10" />
+          <div className="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-[#fff066] via-[#fff066]/60 to-transparent pointer-events-none" />
         </div>
 
         <div className="absolute bottom-20 left-0 right-0 px-[5%] md:px-[50px] z-10">
@@ -151,6 +154,14 @@ export function Comex() {
                         </div>
                      );
                   })}
+               </div>
+               
+               <div className="mt-12">
+                 <Link to="/tarifas">
+                   <Button className="font-augenblick bg-transparent border-[1.5px] border-black text-black px-8 py-6 rounded-full text-xl hover:bg-black hover:text-white transition-colors duration-500 ease-in-out w-fit">
+                     Ver tarifas
+                   </Button>
+                 </Link>
                </div>
             </motion.div>
 

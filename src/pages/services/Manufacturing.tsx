@@ -1,24 +1,60 @@
-import React from "react";
+import React, { useState, useRef } from "react";
+import Slider from "react-slick";
 import { PageHero } from "../../components/ui/PageHero";
 import { Section } from "../../components/ui/custom-section";
 import { Container } from "../../components/ui/custom-container";
 import { Button } from "../../components/ui/button";
-import { FAQ } from "../../components/landing/FAQ";
-import { Industries } from "../../components/landing/Industries";
+import { Plus, Minus, ChevronLeft, ChevronRight, Check } from "lucide-react";
+import { cn } from "../../lib/utils";
 
-const heroImage = "https://images.unsplash.com/photo-1735494033834-d303e729aa09?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBhdXRvbWF0ZWQlMjBmYWN0b3J5JTIwcHJvZHVjdGlvbiUyMGxpbmV8ZW58MXx8fHwxNzY0MTkzNjE5fDA&ixlib=rb-4.1.0&q=80&w=1080";
+// Images from Figma
+import imgImage2 from "figma:asset/188b5403cfad247086e7d5b3ee2d0d391e5be8a2.png";
+import imgFrame121 from "figma:asset/8d7a4724799b00cfc793a888434790a0b52b0f5b.png";
+import imgRectangle58 from "figma:asset/466ece8a48260cf4c3e2e8bed7fe9dca99380d2a.png";
+
+// Industry Images
+import img2BellesaCuiPersonal1 from "figma:asset/74d74235ea9965c374f56a39a88e5d60fa00a261.png";
+import img2BellesaCuiPersonal2 from "figma:asset/8d6587b0f5d20c39c0c2a3377eaed76a697e775b.png";
+import img2BellesaCuiPersonal3 from "figma:asset/00f4c04763789a702a0c759b1d26c9e78688e7bd.png";
+import img2BellesaCuiPersonal4 from "figma:asset/c776cd39e2b19b9e68bc49e1b38c01e7e2a70979.png";
+import img2BellesaCuiPersonal5 from "figma:asset/d299e598b38834a762fcd6d4699cd6993bbdba13.png";
+import img2BellesaCuiPersonal6 from "figma:asset/c050a26717101af0d8f0cb39354656274be02136.png";
+import img2BellesaCuiPersonal7 from "figma:asset/30d5083ce4cb03138e91fda44cc7e14e1cc38bb1.png";
+import img2BellesaCuiPersonal8 from "figma:asset/0827d84664f6cc53daceeb71b0a0ab0a05aca8a2.png";
+import img2BellesaCuiPersonal9 from "figma:asset/701693f610ecfa23c1025f6e2f898012635bf153.png";
+import img2BellesaCuiPersonal10 from "figma:asset/97eceda1bec1a50a9bc361d6f3d438625aa57e22.png";
+
+// Certificates
+import imgLogoInvimaYobelScmPeruLogistica from "figma:asset/b19c5503ac9f4c4786776ea901fb83713199048b.png";
+import imgLogoBpmYobelScmPeruLogistica from "figma:asset/86ca0a2fb7650f7e15d38a40b56539b3851e5fa3.png";
+import imgLogoIsoYobelScmPeruLogistica from "figma:asset/67340db8be0f901aac12f6261cc5984d311cf87b.png";
+import imgLogoBpaYobelScmPeruLogistica from "figma:asset/9c117b6f027ea4bc446b349b644c8c2e87a56c17.png";
+import imgLogoOliverYobelScmPeruLogistica from "figma:asset/e8cbc1b372f893a7c041916680e9c782e39fed62.png";
+
+// SVG Paths
+const svgPaths = {
+  pff39b00: "M0 45.9994V30.6785C0 30.6785 36.2411 15.2325 36.2411 8.71527C36.2411 4.64101 0 15.0514 0 15.0514V0H35.0771C49.2263 0 47.9715 7.45669 47.9715 14.9269V46H24.4355C24.4355 46 40.1752 20.8884 36.2411 20.8884C30.4859 20.8884 0 45.9994 0 45.9994Z",
+};
 
 const solutions = [
-  { title: "Análisis de Laboratorio", desc: "Estudios fisicoquímicos y microbiológicos para garantizar calidad y seguridad." },
-  { title: "Desarrollo de Productos", desc: "Formulación, pruebas piloto y apoyo en lanzamientos." },
-  { title: "Producto Terminado", desc: "Gestión integral hasta la entrega final" }
-];
-
-const categories = [
-  { title: "Cosméticos", items: ["Cremas", "Talcos", "Champú", "Hidroalcoholes"] },
-  { title: "Galénicos", items: ["Alcoholes", "Aceites", "Pomadas"] },
-  { title: "Higiene", items: ["Higiene para el hogar", "Higiene Industrial"] },
-  { title: "Plásticos", items: ["Inyección de tapas", "Soplado de frascos en PET", "Soplado de frascos en PEAD"] }
+  {
+    id: "01",
+    title: "Análisis de Laboratorio",
+    shortDesc: "Estudios fisicoquímicos y microbiológicos para garantizar calidad y seguridad.",
+    fullDesc: "Estudios fisicoquímicos y microbiológicos para garantizar calidad y seguridad. Soluciones ágiles para importar y exportar. Gestionamos todo el proceso: aduanas, transporte internacional y nacionalización con visibilidad total en cada etapa."
+  },
+  {
+    id: "02",
+    title: "Desarrollo de Productos",
+    shortDesc: "Formulación, pruebas piloto y apoyo en lanzamientos.",
+    fullDesc: "Desde la idea hasta el producto final. Nuestro equipo de I+D desarrolla fórmulas innovadoras y realiza pruebas piloto para asegurar el éxito de tu lanzamiento."
+  },
+  {
+    id: "03",
+    title: "Producto Terminado",
+    shortDesc: "Gestión integral hasta la entrega final.",
+    fullDesc: "Nos encargamos de todo el ciclo de producción, desde la recepción de materias primas hasta el producto terminado listo para su distribución."
+  }
 ];
 
 const benefits = [
@@ -28,132 +64,327 @@ const benefits = [
   "Calidad garantizada en cada etapa de manufactura."
 ];
 
-const processes = [
-  { title: "Evaluación", desc: "Análisis de requerimientos y planificación de la producción." },
-  { title: "Desarrollo y Pruebas", desc: "Formulación piloto y validación de calidad (si aplica)." },
-  { title: "Producción", desc: "Fabricación con control de calidad en cada fase." },
-  { title: "Entrega Confirmada", desc: "Validación digital y auditoría final del pedido antes del despacho." },
-  { title: "Postventa", desc: "Soporte y retroalimentación para mejorar continuamente tu operación." },
-  { title: "Envasado y Acondicionado", desc: "Acondicionamos según tus especificaciones: blíster, termoempacado, embalaje, etiquetado y packs personalizados." },
-  { title: "Entrega final", desc: "Despacho y recepción en destino con trazabilidad completa y registro digital de la entrega." }
+const processSteps = [
+  { number: "01", title: "Evaluación", desc: "Análisis de requerimientos y planificación de la producción." },
+  { number: "02", title: "Desarrollo y Pruebas", desc: "Formulación piloto y validación de calidad (si aplica)." },
+  { number: "03", title: "Producción", desc: "Fabricación con control de calidad en cada fase." },
+  { number: "04", title: "Entrega Confirmada", desc: "Validación digital y auditoría final del pedido antes del despacho." },
+  { number: "05", title: "Postventa", desc: "Soporte y retroalimentación para mejorar continuamente tu operación." },
+  { number: "06", title: "Envasado y Acondicionado", desc: "Acondicionamos según tus especificaciones: blíster, termoempacado, embalaje, etiquetado y packs personalizados." },
+  { number: "07", title: "Entrega final", desc: "Despacho y recepción en destino con trazabilidad completa y registro digital de la entrega." }
 ];
 
 const industries = [
-  { title: "Alimentos y Bebidas", description: "Gestionamos operaciones internacionales bajo control sanitario y de temperatura, asegurando inocuidad y entregas en tiempos óptimos.", link: "/industrias/alimentos-y-bebidas" },
-  { title: "Belleza y Cuidado Personal", description: "Facilitamos la importación de insumos y la exportación de productos terminados, cumpliendo normativas sanitarias y garantizando trazabilidad por lote.", link: "/industrias/belleza-y-cuidado-personal" },
-  { title: "Calzado y Moda", description: "Movemos textiles, prendas y accesorios entre mercados con cumplimiento regulatorio y tiempos de entrega ajustados a temporada.", link: "/industrias/calzado-y-moda" },
-  { title: "Construcción", description: "Coordinamos el transporte internacional de materiales, maquinaria y repuestos, optimizando tiempos y reduciendo costos logísticos.", link: "/industrias/construccion" },
-  { title: "Cuidado del Hogar", description: "Gestionamos la importación de materias primas y productos terminados con visibilidad total desde origen hasta destino.", link: "/industrias/cuidado-del-hogar" },
-  { title: "Editorial", description: "Administramos la importación de papel, tintas y materiales gráficos, y exportamos publicaciones con procesos aduaneros eficientes y seguros.", link: "/industrias/editorial" },
-  { title: "Farmacéutica", description: "Movilizamos medicamentos e insumos bajo estándares BPM/BPA y cumplimiento DIGEMID, asegurando integridad y control documental.", link: "/industrias/farmaceutica" },
-  { title: "Manufactura Industrial", description: "Coordinamos importaciones de componentes, materias primas y repuestos con trámites aduaneros integrados y despacho ágil.", link: "/industrias/manufactura-industrial" },
-  { title: "Químicos", description: "Administramos importaciones y exportaciones de sustancias controladas, cumpliendo normas internacionales de seguridad y medio ambiente.", link: "/industrias/quimica" },
-  { title: "Retail", description: "Aceleramos la importación de mercancías y equipamiento, garantizando disponibilidad continua y reducción de lead time en tienda.", link: "/industrias/retail" },
-  { title: "Tecnología y Electrónica", description: "Gestionamos el traslado internacional de dispositivos, componentes y equipos de alto valor con seguridad, seguimiento y control aduanero.", link: "/industrias/tecnologia-y-electronica" }
+  { title: "Alimentos y Bebidas", desc: "Gestionamos operaciones internacionales bajo control sanitario y de temperatura, asegurando inocuidad y entregas en tiempos óptimos.", img: img2BellesaCuiPersonal1 },
+  { title: "Belleza y Cuidado Personal", desc: "Facilitamos la importación de insumos y la exportación de productos terminados, cumpliendo normativas sanitarias y garantizando trazabilidad por lote.", img: img2BellesaCuiPersonal2 },
+  { title: "Calzado y moda", desc: "Movemos textiles, prendas y accesorios entre mercados con cumplimiento regulatorio y tiempos de entrega ajustados a temporada.", img: img2BellesaCuiPersonal3 },
+  { title: "Construcción", desc: "Coordinamos el transporte internacional de materiales, maquinaria y repuestos, optimizando tiempos y reduciendo costos logísticos.", img: img2BellesaCuiPersonal4 },
+  { title: "Cuidado del Hogar", desc: "Gestionamos la importación de materias primas y productos terminados con visibilidad total desde origen hasta destino.", img: img2BellesaCuiPersonal5 }, // Using image 5 (reused in original code)
+  { title: "Editorial", desc: "Administramos la importación de papel, tintas y materiales gráficos, y exportamos publicaciones con procesos aduaneros eficientes y seguros.", img: img2BellesaCuiPersonal5 },
+  { title: "Farmacéutica", desc: "Movilizamos medicamentos e insumos bajo estándares BPM/BPA y cumplimiento DIGEMID, asegurando integridad y control documental.", img: img2BellesaCuiPersonal6 },
+  { title: "Manufactura Industrial", desc: "Logística de insumos, componentes y productos terminados con trazabilidad, continuidad productiva y optimización del flujo operativo.", img: img2BellesaCuiPersonal7 },
+  { title: "Químicos", desc: "Administramos importaciones y exportaciones de sustancias controladas, cumpliendo normas internacionales de seguridad y medio ambiente.", img: img2BellesaCuiPersonal8 },
+  { title: "Retail", desc: "Aceleramos la importación de mercancías y equipamiento, garantizando disponibilidad continua y reducción de lead time en tienda.", img: img2BellesaCuiPersonal9 },
+  { title: "Tecnología y Electrónica", desc: "Gestionamos el traslado internacional de dispositivos, componentes y equipos de alto valor con seguridad, seguimiento y control aduanero.", img: img2BellesaCuiPersonal10 }
 ];
 
 const faqs = [
-  { question: "¿Puedo tercerizar solo una parte del proceso de producción?", answer: "Sí, podemos encargarnos de todo el ciclo o de etapas específicas como envasado, acondicionado o control de calidad, según tus necesidades." },
+  { question: "¿Puedo tercerizar solo una parte del proceso de producción?", answer: "Sí, nos encargamos desde la llegada de la mercancía al puerto hasta su entrega final, incluyendo trámites aduaneros, transporte y nacionalización." },
   { question: "¿Qué tipos de productos pueden fabricar o acondicionar?", answer: "Trabajamos con categorías de consumo masivo, cuidado personal, hogar, alimentos no perecibles y más." },
   { question: "¿Cuentan con control de calidad durante la producción?", answer: "Sí, cada lote se revisa bajo protocolos de calidad y trazabilidad, garantizando uniformidad y cumplimiento técnico." },
   { question: "¿Puedo usar mis propios materiales o envases?", answer: "Sí, adaptamos el proceso a tus insumos y especificaciones, garantizando eficiencia y compatibilidad con tu línea de productos." }
 ];
 
 export function Manufacturing() {
+  const sliderRef = useRef<Slider>(null);
+  const [activeSolution, setActiveSolution] = useState<string | null>("01");
+
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    responsive: [
+      { breakpoint: 1024, settings: { slidesToShow: 2 } },
+      { breakpoint: 768, settings: { slidesToShow: 1.2 } }
+    ]
+  };
+
   return (
     <>
       <PageHero 
         title="Manufactura en Perú para empresas"
         description="Producción, envasado y desarrollo de productos con altos estándares internacionales."
-        imageUrl={heroImage}
+        imageUrl="https://images.unsplash.com/photo-1758101512269-660feabf64fd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBwaGFybWFjZXV0aWNhbCUyMG1hbnVmYWN0dXJpbmclMjBsYWJvcmF0b3J5JTIwY2xlYW4lMjByb29tfGVufDF8fHx8MTc2NDI4ODYzMHww&ixlib=rb-4.1.0&q=80&w=1080"
+        className="h-[40vh] min-h-[400px]"
       />
 
-      <Section className="bg-white">
-         <Container>
-            <div className="max-w-4xl mb-24">
-               <p className="text-xl md:text-2xl text-gray-600 leading-relaxed font-light">
-                 En Yobel ofrecemos servicios de manufactura de alta calidad y adaptados a las necesidades de tu negocio. Contamos con experiencia en la producción de cosméticos, productos de higiene, plásticos y más, garantizando eficiencia, cumplimiento normativo y tiempos de entrega competitivos.
+      {/* Intro Section */}
+      <Section className="bg-gradient-to-b from-white to-[#59c1e6]/10">
+        <Container>
+           <div className="flex flex-col gap-8 max-w-[1000px]">
+             <div className="w-12 h-12 relative">
+               <svg className="w-full h-full" viewBox="0 0 48 46" fill="none">
+                 <path d={svgPaths.pff39b00} fill="black" />
+               </svg>
+             </div>
+             <h2 className="text-4xl md:text-5xl lg:text-[45px] leading-tight font-normal text-black">
+               Servicio de manufactura a tu medida
+             </h2>
+             <div className="flex flex-col gap-12">
+               <p className="text-2xl md:text-[45px] leading-tight font-light text-black">
+                 Gestionamos tus procesos productivos en nuestras plantas o directamente en tus instalaciones, aplicando tecnología avanzada y asegurando el cumplimiento de todas las normativas vigentes.
                </p>
-               <div className="mt-10">
-                 <Button className="bg-black text-white px-8 py-4 rounded-full text-lg hover:bg-gray-800 transition-colors">Contactar Asesor</Button>
+               <div>
+                 <Button className="bg-transparent border-[1.5px] border-black text-black px-8 py-6 rounded-full text-xl hover:bg-black hover:text-white transition-all duration-300">
+                   Solicitar Servicio de Manufactura
+                 </Button>
                </div>
-            </div>
+             </div>
+           </div>
+        </Container>
+      </Section>
 
-            {/* Solutions */}
-            <div className="mb-24">
-               <h3 className="text-3xl md:text-4xl font-normal mb-6">Servicio de manufactura a tu medida</h3>
-               <p className="text-lg text-gray-500 mb-16 max-w-3xl">Gestionamos tus procesos productivos en nuestras plantas o directamente en tus instalaciones, aplicando tecnología avanzada y asegurando el cumplimiento de todas las normativas vigentes.</p>
-               
-               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-                  {solutions.map((sol, idx) => (
-                     <div key={idx} className="bg-gray-50 p-10 rounded-[30px] hover:bg-gray-100 transition-colors">
-                        <h4 className="text-xl font-bold mb-4">{sol.title}</h4>
-                        <p className="text-gray-600 leading-relaxed">{sol.desc}</p>
-                     </div>
-                  ))}
-               </div>
-               <div className="text-center">
-                  <Button className="bg-blue-600 text-white px-8 py-3 rounded-full hover:bg-blue-700 text-lg">Solicitar Servicio de Manufactura</Button>
-               </div>
-            </div>
-
-             {/* Categories */}
-             <div className="mb-24">
-               <h3 className="text-3xl md:text-4xl font-normal mb-10">Conoce todas nuestras categorías</h3>
-               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                  {categories.map((cat, idx) => (
-                     <div key={idx} className="border border-gray-200 p-8 rounded-[30px] hover:shadow-md transition-all">
-                        <h4 className="text-xl font-bold mb-6 text-blue-600">{cat.title}</h4>
-                        <ul className="space-y-3">
-                           {cat.items.map((item, i) => (
-                              <li key={i} className="text-base text-gray-600">• {item}</li>
-                           ))}
-                        </ul>
-                     </div>
-                  ))}
-               </div>
-            </div>
-
-            {/* Benefits */}
-            <div className="flex flex-col lg:flex-row gap-16 bg-gray-50 rounded-[40px] p-10 md:p-20 mb-24">
-               <div className="lg:w-1/3">
-                  <h3 className="text-3xl md:text-4xl font-normal mb-6 leading-tight">Maximizamos la eficiencia de tu producción</h3>
-               </div>
-               <div className="lg:w-2/3">
-                  <ul className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                     {benefits.map((item, idx) => (
-                        <li key={idx} className="flex items-start gap-4">
-                           <div className="mt-2 w-2 h-2 bg-black rounded-full shrink-0" />
-                           <span className="text-lg md:text-xl text-gray-800 font-light leading-relaxed">{item}</span>
-                        </li>
-                     ))}
-                  </ul>
-               </div>
-            </div>
-
-            {/* Processes */}
-            <div>
-               <h3 className="text-3xl md:text-4xl font-normal mb-6">Procesos de manufactura con trazabilidad completa</h3>
-               <p className="text-lg text-gray-500 mb-16 max-w-3xl">Gestionamos todo el ciclo productivo, desde la evaluación inicial hasta la postventa, asegurando eficiencia y cumplimiento normativo.</p>
-               
-               <div className="space-y-4">
-                  {processes.map((proc, idx) => (
-                     <div key={idx} className="flex flex-col md:flex-row md:items-center gap-6 md:gap-12 border-b border-gray-100 pb-8 last:border-0 pt-4">
-                        <div className="text-3xl font-bold text-gray-300 w-16">{String(idx + 1).padStart(2, '0')}</div>
-                        <div>
-                           <h4 className="text-xl font-medium mb-2">{proc.title}</h4>
-                           <p className="text-gray-600 leading-relaxed">{proc.desc}</p>
+      {/* Solutions / Soluciones */}
+      <Section className="bg-white py-20">
+        <Container>
+           <div className="flex flex-col gap-12">
+             <div className="flex flex-col gap-2 items-start">
+               <span className="text-xl text-gray-400 font-medium">Soluciones</span>
+             </div>
+             
+             <div className="flex flex-col lg:flex-row gap-16 items-center">
+                <div className="w-full lg:w-1/2 flex flex-col gap-0 border-t border-black">
+                  {solutions.map((sol, index) => (
+                    <div 
+                      key={sol.id}
+                      className="group border-b border-black py-10 cursor-pointer transition-all duration-300"
+                      onMouseEnter={() => setActiveSolution(sol.id)}
+                    >
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="flex flex-col md:flex-row gap-4 md:gap-8 items-baseline">
+                           <span className="text-3xl md:text-4xl font-light whitespace-nowrap">{sol.id} /</span>
+                           <h3 className="text-3xl md:text-4xl font-light">{sol.title}</h3>
                         </div>
-                     </div>
+                        <div className="shrink-0">
+                           <div className="w-[50px] h-[30px] rounded-full border border-black flex items-center justify-center group-hover:bg-black group-hover:text-white transition-colors">
+                             <ChevronRight size={20} />
+                           </div>
+                        </div>
+                      </div>
+                      <div className={`mt-6 overflow-hidden transition-all duration-500 ease-in-out ${activeSolution === sol.id ? 'max-h-[200px] opacity-100' : 'max-h-0 opacity-0'}`}>
+                         <p className="text-xl text-gray-600 font-light max-w-lg ml-0 md:ml-20">
+                           {sol.fullDesc}
+                         </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                
+                <div className="w-full lg:w-1/2 relative h-[600px] rounded-[30px] overflow-hidden">
+                   <img src={imgImage2} alt="Manufacturing" className="absolute inset-0 w-full h-full object-cover" />
+                </div>
+             </div>
+           </div>
+        </Container>
+      </Section>
+
+      {/* Benefits Section */}
+      <Section className="bg-white py-20">
+         <Container>
+            <div className="flex flex-col lg:flex-row gap-16 items-center">
+               <div className="w-full lg:w-1/2">
+                  <div className="mb-6">
+                     <span className="text-xl text-gray-400 font-medium block mb-4">Beneficios</span>
+                     <h2 className="text-4xl md:text-5xl lg:text-[45px] leading-tight font-normal">
+                        Maximizamos la eficiencia de tu producción
+                     </h2>
+                  </div>
+                  <div className="mt-12 relative h-[400px] rounded-[20px] overflow-hidden hidden lg:block">
+                     <img src={imgRectangle58} alt="Benefits" className="absolute inset-0 w-full h-full object-cover" />
+                  </div>
+               </div>
+               <div className="w-full lg:w-1/2 flex flex-col gap-10">
+                  {benefits.map((benefit, idx) => (
+                    <div key={idx} className="flex items-start gap-6">
+                       <div className="w-10 h-10 shrink-0 flex items-center justify-center">
+                          <Check size={32} strokeWidth={1.5} />
+                       </div>
+                       <p className="text-2xl md:text-[22px] font-light leading-relaxed">{benefit}</p>
+                    </div>
                   ))}
                </div>
             </div>
          </Container>
       </Section>
 
-      <Industries />
+      {/* Process / Traceability Section */}
+      <Section className="bg-white py-20 overflow-hidden relative">
+         {/* Background Element from Figma Frame35 if needed, but text says "Traceability" */}
+         <div className="absolute top-0 left-0 w-full h-full pointer-events-none opacity-10">
+            <img src={imgFrame121} alt="" className="w-full h-full object-cover" />
+         </div>
+         
+         <Container className="relative z-10">
+            <div className="flex flex-col gap-12 mb-20">
+               <div className="w-12 h-12 relative">
+                 <svg className="w-full h-full" viewBox="0 0 48 46" fill="none">
+                   <path d={svgPaths.pff39b00} fill="black" />
+                 </svg>
+               </div>
+               <div className="max-w-4xl">
+                  <h2 className="text-4xl md:text-5xl lg:text-[45px] leading-tight font-normal mb-8">
+                    Procesos de manufactura con trazabilidad completa
+                  </h2>
+                  <p className="text-2xl md:text-[45px] leading-tight font-light text-gray-500">
+                    Gestionamos todo el ciclo productivo, desde la evaluación inicial hasta la postventa, asegurando eficiencia y cumplimiento normativo
+                  </p>
+               </div>
+            </div>
 
-      <FAQ items={faqs} />
+            <div className="flex flex-col gap-0 max-w-4xl mx-auto bg-white/80 backdrop-blur-sm rounded-[30px] p-8 md:p-16 shadow-sm border border-gray-100">
+               <span className="text-xl text-gray-400 font-medium block mb-12">Procesos</span>
+               {processSteps.map((step, idx) => (
+                 <div key={idx} className="group py-12 border-b border-gray-200 last:border-0 flex flex-col md:flex-row gap-8 md:gap-16 items-start">
+                    <div className="text-[80px] md:text-[120px] leading-none font-light bg-clip-text text-transparent bg-gradient-to-b from-black to-[#59c1e6] shrink-0 w-[160px]">
+                       {step.number}
+                    </div>
+                    <div className="pt-4">
+                       <h3 className="text-2xl md:text-[24px] font-medium mb-4">{step.title}</h3>
+                       <p className="text-xl md:text-[22px] font-light text-gray-600 leading-relaxed">
+                          {step.desc}
+                       </p>
+                    </div>
+                 </div>
+               ))}
+            </div>
+         </Container>
+      </Section>
+
+      {/* Industries Section (Carousel) */}
+      <Section className="bg-gradient-to-b from-[#59c1e6] to-white py-24 overflow-hidden">
+         <style>{`
+            .slick-slide { padding: 0 10px; }
+            .slick-list { margin: 0 -10px; overflow: visible; }
+         `}</style>
+         <Container>
+            <div className="flex flex-col gap-12 mb-16">
+               <span className="text-xl text-black/50 font-medium">Industrias</span>
+               <div className="flex flex-col lg:flex-row gap-12 items-start justify-between">
+                  <h2 className="text-4xl md:text-[45px] leading-tight font-normal max-w-lg">
+                     Mantenemos tu industria en movimiento
+                  </h2>
+                  <p className="text-lg md:text-[18px] max-w-xl font-light">
+                     En Yobel entendemos las exigencias de cada sector. Por eso, diseñamos soluciones logísticas y de manufactura integradas, adaptables a tu operación y alineadas con los estándares internacionales de calidad
+                  </p>
+               </div>
+               
+               {/* Custom Arrows */}
+               <div className="flex gap-4 justify-end">
+                  <button onClick={() => sliderRef.current?.slickPrev()} className="w-12 h-12 rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors">
+                     <ChevronLeft />
+                  </button>
+                  <button onClick={() => sliderRef.current?.slickNext()} className="w-12 h-12 rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors">
+                     <ChevronRight />
+                  </button>
+               </div>
+            </div>
+
+            <div className="w-full">
+               <Slider ref={sliderRef} {...settings}>
+                  {industries.map((ind, idx) => (
+                     <div key={idx} className="h-full">
+                        <div className="flex flex-col gap-6 h-full">
+                           <div className="h-[400px] rounded-[20px] overflow-hidden bg-gray-100 relative">
+                              <img src={ind.img} alt={ind.title} className="w-full h-full object-cover" />
+                           </div>
+                           <div className="flex flex-col gap-4">
+                              <h3 className="text-2xl font-medium">{ind.title}</h3>
+                              <p className="text-lg font-light leading-relaxed">
+                                 {ind.desc}
+                              </p>
+                           </div>
+                        </div>
+                     </div>
+                  ))}
+               </Slider>
+            </div>
+         </Container>
+      </Section>
+
+      {/* Certificates Section */}
+      <Section className="bg-white py-24">
+         <Container>
+            <div className="flex flex-col md:flex-row gap-12 items-start mb-20">
+               <div className="w-full md:w-[300px] shrink-0">
+                  <span className="text-xl text-black font-medium">Certificados</span>
+               </div>
+               <div className="flex flex-col gap-8 max-w-3xl">
+                  <h2 className="text-4xl md:text-[45px] leading-tight font-normal">
+                     Nuestros certificados<br/>nos respaldan
+                  </h2>
+                  <p className="text-xl md:text-[25px] font-light leading-relaxed text-gray-800">
+                     En Yobel contamos con certificaciones internacionales y políticas internas que avalan nuestro compromiso con la excelencia operativa, la sostenibilidad ambiental y la integridad en la gestión logística y de manufactura.
+                  </p>
+               </div>
+            </div>
+
+            <div className="flex flex-wrap justify-center gap-12 md:gap-16 items-center grayscale hover:grayscale-0 transition-all duration-500">
+               <img src={imgLogoInvimaYobelScmPeruLogistica} alt="Invima" className="h-[120px] object-contain" />
+               <img src={imgLogoBpmYobelScmPeruLogistica} alt="BPM" className="h-[120px] object-contain" />
+               <img src={imgLogoIsoYobelScmPeruLogistica} alt="ISO" className="h-[120px] object-contain" />
+               <img src={imgLogoBpaYobelScmPeruLogistica} alt="BPA" className="h-[120px] object-contain" />
+               <img src={imgLogoOliverYobelScmPeruLogistica} alt="Oliver" className="h-[120px] object-contain" />
+            </div>
+         </Container>
+      </Section>
+
+      {/* FAQ Section */}
+      <Section className="bg-white py-24 border-t border-gray-100">
+         <Container>
+            <div className="flex flex-col lg:flex-row gap-20 items-start">
+               <div className="w-full lg:w-1/3">
+                  <h2 className="text-4xl md:text-[45px] leading-tight font-normal">
+                     ¿Tienes algunas preguntas?<br/>
+                     <span className="text-gray-400">Encuentra tu respuesta</span>
+                  </h2>
+               </div>
+               <div className="w-full lg:w-2/3">
+                  <div className="flex flex-col">
+                     {faqs.map((faq, idx) => (
+                        <FAQItem key={idx} question={faq.question} answer={faq.answer} />
+                     ))}
+                  </div>
+               </div>
+            </div>
+         </Container>
+      </Section>
     </>
   );
+}
+
+function FAQItem({ question, answer }: { question: string; answer: string }) {
+   const [isOpen, setIsOpen] = React.useState(false);
+
+   return (
+      <div className="border-b border-black py-8">
+         <button 
+            onClick={() => setIsOpen(!isOpen)}
+            className="w-full flex items-center justify-between text-left gap-4 group"
+         >
+            <span className="text-2xl md:text-[24px] font-medium group-hover:text-blue-600 transition-colors">{question}</span>
+            <div className="shrink-0 w-8 h-8 flex items-center justify-center">
+               {isOpen ? <Minus size={24} /> : <Plus size={24} />}
+            </div>
+         </button>
+         <div 
+            className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-[200px] opacity-100 mt-6' : 'max-h-0 opacity-0'}`}
+         >
+            <p className="text-xl md:text-[22px] font-light text-black leading-relaxed max-w-2xl">
+               {answer}
+            </p>
+         </div>
+      </div>
+   );
 }

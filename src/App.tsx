@@ -17,6 +17,15 @@ import { Warehousing } from "./pages/services/Warehousing";
 import { Distribution } from "./pages/services/Distribution";
 import { Courier } from "./pages/services/Courier";
 
+// Legal
+import { TerminosCondiciones } from "./pages/legal/TerminosCondiciones";
+import { PoliticaPrivacidad } from "./pages/legal/PoliticaPrivacidad";
+import { PoliticaCookies } from "./pages/legal/PoliticaCookies";
+
+// Other
+import { Tarifas } from "./pages/Tarifas";
+import { LibroReclamaciones } from "./pages/LibroReclamaciones";
+
 // Industries
 import { FoodAndBeverage } from "./pages/industries/FoodAndBeverage";
 import { Beauty } from "./pages/industries/Beauty";
@@ -37,6 +46,11 @@ import { Sustainability } from "./pages/ethics/Sustainability";
 
 // Contact
 import { Contact } from "./pages/Contact";
+import { NotFound } from "./pages/NotFound";
+
+// News
+import { Noticias } from "./pages/Noticias";
+import { NoticiaDetalle } from "./pages/noticias/NoticiaDetalle";
 
 export default function App() {
   return (
@@ -58,6 +72,8 @@ export default function App() {
           <Route path="/servicios/almacenamiento" element={<Warehousing />} />
           <Route path="/servicios/distribucion" element={<Distribution />} />
           <Route path="/servicios/courier-express" element={<Courier />} />
+          
+          <Route path="/tarifas" element={<Tarifas />} />
 
           {/* Industrias */}
           <Route path="/industrias/alimentos-y-bebidas" element={<FoodAndBeverage />} />
@@ -77,8 +93,21 @@ export default function App() {
           <Route path="/etica/linea-de-etica" element={<EthicsLine />} />
           <Route path="/etica/rse-sostenibilidad" element={<Sustainability />} />
 
+          {/* Legal */}
+          <Route path="/libro-reclamaciones" element={<LibroReclamaciones />} />
+          <Route path="/terminos-y-condiciones" element={<TerminosCondiciones />} />
+          <Route path="/politicas-de-privacidad" element={<PoliticaPrivacidad />} />
+          <Route path="/politicas-de-cookies" element={<PoliticaCookies />} />
+          
           {/* Contacto */}
           <Route path="/contacto" element={<Contact />} />
+
+          {/* Noticias */}
+          <Route path="/noticias" element={<Noticias />} />
+          <Route path="/noticias/:slug" element={<NoticiaDetalle />} />
+
+          {/* 404 */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Layout>
     </Router>
