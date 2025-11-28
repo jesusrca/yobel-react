@@ -11,6 +11,7 @@ import imgRetail from "figma:asset/3018caa8c33f0bce1611ac9d4b39efd1e291cae3.png"
 import { Section } from "../ui/custom-section";
 import { Container } from "../ui/custom-container";
 import { SectionHeading } from "../ui/typography";
+import { cn } from "../ui/utils";
 
 const industries = [
   {
@@ -70,7 +71,7 @@ const industries = [
   }
 ];
 
-export function Industries() {
+export function Industries({ className }: { className?: string }) {
   const sliderRef = useRef<Slider>(null);
   const lastScrollTime = useRef(0);
 
@@ -126,7 +127,7 @@ export function Industries() {
   };
 
   return (
-    <Section className="relative bg-gradient-to-b from-[#fff066] to-white overflow-hidden">
+    <Section className={cn("relative bg-gradient-to-b from-[#fff066] to-white overflow-hidden", className)}>
       {/* Inline Styles for Slick Carousel to avoid build errors with font files */}
       <style>{`
         .slick-slider{box-sizing:border-box;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-touch-callout:none;-khtml-user-select:none;-ms-touch-action:pan-y;touch-action:pan-y;-webkit-tap-highlight-color:transparent}
@@ -229,10 +230,10 @@ export function Industries() {
                     <div key={idx} className="px-4 h-full">
                         <div className="group relative flex flex-col h-full">
                             <a href={`/industries/${ind.title.toLowerCase().replace(/\s+/g, '-')}`} className="flex flex-col gap-5 w-full cursor-pointer block">
-                                <div className="aspect-[4/3] w-full rounded-[20px] overflow-hidden relative shrink-0">
+                                <div className="aspect-square w-full rounded-[20px] overflow-hidden relative shrink-0">
                                     <img src={ind.image} alt={ind.title} className="w-full h-full object-cover" />
                                 </div>
-                                <div className="flex flex-col gap-3 text-black">
+                                <div className="flex flex-col gap-3 text-black px-2">
                                     <h3 className="text-2xl font-medium font-[Neue_Augenblick]">{ind.title}</h3>
                                     <p className="text-lg font-light leading-snug opacity-80 font-augenblick">{ind.description}</p>
                                 </div>

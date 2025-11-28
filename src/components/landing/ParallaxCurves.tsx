@@ -1,0 +1,45 @@
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform } from "motion/react";
+
+export function ParallaxCurves() {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+
+  // Different speeds for parallax effect
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, -180]);
+  const y3 = useTransform(scrollYProgress, [0, 1], [0, -260]);
+
+  return (
+    <div ref={ref} className="relative w-[120vw] left-1/2 -translate-x-1/2 h-[300px] md:h-[500px] overflow-hidden mt-0 mb-24">
+       <svg 
+         className="absolute w-full h-[80%] top-[10%] overflow-visible" 
+         viewBox="0 0 2198 879" 
+         fill="none" 
+         preserveAspectRatio="none"
+       >
+          <defs>
+            <linearGradient gradientUnits="userSpaceOnUse" id="paint0_linear_92_1262" x1="1099" x2="1099" y1="-124.5" y2="324">
+                <stop offset="0.0961538" stopColor="#F0DE32" />
+                <stop offset="1" stopColor="white" />
+            </linearGradient>
+            <linearGradient gradientUnits="userSpaceOnUse" id="paint1_linear_92_1262" x1="1099" x2="1099" y1="-31.5" y2="417">
+                <stop offset="0.0961538" stopColor="#F0DE32" />
+                <stop offset="1" stopColor="white" />
+            </linearGradient>
+            <linearGradient gradientUnits="userSpaceOnUse" id="paint2_linear_92_1262" x1="1099" x2="1099" y1="61.5" y2="510">
+                <stop offset="0.0961538" stopColor="#F0DE32" />
+                <stop offset="1" stopColor="white" />
+            </linearGradient>
+          </defs>
+          
+          <motion.ellipse style={{ y: y1 }} cx="1099" cy="346.5" rx="1099" ry="346.5" fill="url(#paint0_linear_92_1262)" />
+          <motion.ellipse style={{ y: y2 }} cx="1099" cy="439.5" rx="1099" ry="346.5" fill="url(#paint1_linear_92_1262)" />
+          <motion.ellipse style={{ y: y3 }} cx="1099" cy="532.5" rx="1099" ry="346.5" fill="url(#paint2_linear_92_1262)" />
+       </svg>
+    </div>
+  );
+}

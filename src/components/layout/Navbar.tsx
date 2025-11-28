@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { AnimatePresence } from "motion/react";
 import svgPaths from "../../imports/svg-biijegtt4v";
 import { FullScreenMenu } from "./FullScreenMenu";
+import { SearchOverlay } from "./SearchOverlay";
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   return (
     <>
@@ -62,6 +64,17 @@ export function Navbar() {
 
             {/* Buttons */}
             <div className="flex items-center gap-2 md:gap-3">
+                {/* Search Icon */}
+                <div 
+                  onClick={() => setIsSearchOpen(true)} 
+                  className="hidden md:flex w-[30px] h-[30px] items-center justify-center cursor-pointer"
+                >
+                    <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+                        <path d="M11.4167 22.0833C17.3077 22.0833 22.0833 17.3077 22.0833 11.4167C22.0833 5.52563 17.3077 0.75 11.4167 0.75C5.52563 0.75 0.75 5.52563 0.75 11.4167C0.75 17.3077 5.52563 22.0833 11.4167 22.0833Z" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        <path d="M24.75 24.75L18.95 18.95" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                </div>
+                
                 <button className="hidden md:block px-4 py-2 text-[23px] text-black hover:opacity-70">Tracking</button>
                 <button  
                   onClick={() => setIsMenuOpen(true)}
@@ -75,7 +88,18 @@ export function Navbar() {
       </div>
 
       <AnimatePresence>
-        {isMenuOpen && <FullScreenMenu onClose={() => setIsMenuOpen(false)} />}
+        {isMenuOpen && (
+          <FullScreenMenu 
+            onClose={() => setIsMenuOpen(false)} 
+            onSearchClick={() => setIsSearchOpen(true)}
+          />
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {isSearchOpen && (
+          <SearchOverlay onClose={() => setIsSearchOpen(false)} />
+        )}
       </AnimatePresence>
     </>
   );

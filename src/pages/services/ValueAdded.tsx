@@ -67,6 +67,7 @@ export function ValueAdded() {
         title="Servicio de Valor Agregado en Perú"
         description="Potenciamos tu operación con servicios de acondicionamiento, empaque y personalización, diseñados para agregar valor a tus productos y hacer más ágil tu cadena de suministro."
         imageUrl={heroImage}
+        videoUrl="https://circular.ws/yobel/fondo-celeste.mp4"
       />
 
       <Section className="bg-white">

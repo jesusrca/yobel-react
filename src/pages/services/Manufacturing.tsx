@@ -1,11 +1,13 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Slider from "react-slick";
 import { PageHero } from "../../components/ui/PageHero";
 import { Section } from "../../components/ui/custom-section";
 import { Container } from "../../components/ui/custom-container";
 import { Button } from "../../components/ui/button";
 import { Plus, Minus, ChevronLeft, ChevronRight, Check } from "lucide-react";
-import { cn } from "../../lib/utils";
+import { motion, useScroll, useTransform, useInView, animate, MotionValue } from "motion/react";
+import { cn } from "../../components/ui/utils";
+import { Industries } from "../../components/landing/Industries";
 
 // Images from Figma
 import imgImage2 from "figma:asset/188b5403cfad247086e7d5b3ee2d0d391e5be8a2.png";
@@ -95,9 +97,106 @@ const faqs = [
   { question: "¿Puedo usar mis propios materiales o envases?", answer: "Sí, adaptamos el proceso a tus insumos y especificaciones, garantizando eficiencia y compatibilidad con tu línea de productos." }
 ];
 
+// Helper Components from Statistics.tsx
+const ScrollRevealText = ({ text, className }: { text: string; className?: string }) => {
+  const element = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: element,
+    offset: ["start 0.9", "start 0.5"],
+  });
+
+  const words = text.split(" ");
+  const totalChars = words.reduce((acc, word) => acc + word.length, 0);
+  const step = 1 / (totalChars + 3);
+  let charIndex = 0;
+
+  return (
+    <p ref={element} className={`${className} flex flex-wrap`}>
+      {words.map((word, i) => (
+        <span key={i} className="inline-block mr-[0.3em] whitespace-nowrap">
+          {word.split("").map((char, charIdx) => {
+            const start = charIndex * step;
+            const end = (charIndex + 1) * step;
+            charIndex++;
+            return (
+              <Char key={charIdx} range={[start, end]} progress={scrollYProgress}>
+                {char}
+              </Char>
+            );
+          })}
+        </span>
+      ))}
+    </p>
+  );
+};
+
+const Char = ({ children, range, progress }: { children: string; range: [number, number]; progress: MotionValue<number> }) => {
+  const opacity = useTransform(progress, range, [0, 1]);
+  const step = range[1] - range[0];
+  const colorEnd = range[1] + (step * 5);
+  const color = useTransform(progress, 
+    [range[0], range[1], colorEnd], 
+    ["#31CDFF", "#31CDFF", "#000000"]
+  );
+  
+  return (
+    <span className="relative inline-block">
+      <span className="absolute opacity-[0.2] font-augenblick">{children}</span>
+      <motion.span style={{ opacity, color }}>{children}</motion.span>
+    </span>
+  );
+};
+
+const AnimatedNumber = ({ value, className }: { value: string, className?: string }) => {
+  const ref = useRef<HTMLSpanElement>(null);
+  const inViewRef = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(inViewRef, { once: true, margin: "-100px 0px" });
+  
+  const numericPart = parseInt(value.replace(/[^0-9]/g, ''));
+  const prefix = value.includes('+') ? '+' : '';
+  const suffix = value.toUpperCase().includes('K') ? 'K' : '';
+
+  useEffect(() => {
+    if (isInView) {
+      const controls = animate(0, numericPart, {
+        duration: 1.5,
+        ease: "circOut",
+        onUpdate: (latest) => {
+          if (ref.current) {
+            // Pad with 0 if the original value started with 0 and is less than 10
+            // This logic is specific to preserve "01" format if input is "01"
+            const isPadded = value.startsWith('0') && value.length > 1;
+            const formatted = isPadded 
+               ? Math.round(latest).toString().padStart(2, '0') 
+               : Math.round(latest).toString();
+            
+            ref.current.textContent = `${prefix}${formatted}${suffix}`;
+          }
+        }
+      });
+      return () => controls.stop();
+    }
+  }, [isInView, numericPart, prefix, suffix, value]);
+
+  return (
+    <span ref={inViewRef} className={className}>
+      <motion.span 
+        ref={ref}
+        className="bg-clip-text text-transparent bg-gradient-to-b from-[#090909] via-[#59c1e6] to-[#090909]"
+        style={{ backgroundSize: "100% 200%" }}
+        animate={{ backgroundPosition: ["0% 0%", "0% 100%"] }}
+        transition={{ duration: 3, repeat: Infinity, ease: "linear", repeatType: "reverse" }}
+      >
+        {value}
+      </motion.span>
+    </span>
+  );
+};
+
 export function Manufacturing() {
   const sliderRef = useRef<Slider>(null);
   const [activeSolution, setActiveSolution] = useState<string | null>("01");
+  const containerRef = useRef(null);
 
   const settings = {
     dots: false,
@@ -113,15 +212,37 @@ export function Manufacturing() {
 
   return (
     <>
-      <PageHero 
-        title="Manufactura en Perú para empresas"
-        description="Producción, envasado y desarrollo de productos con altos estándares internacionales."
-        imageUrl="https://images.unsplash.com/photo-1758101512269-660feabf64fd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBwaGFybWFjZXV0aWNhbCUyMG1hbnVmYWN0dXJpbmclMjBsYWJvcmF0b3J5JTIwY2xlYW4lMjByb29tfGVufDF8fHx8MTc2NDI4ODYzMHww&ixlib=rb-4.1.0&q=80&w=1080"
-        className="h-[40vh] min-h-[400px]"
-      />
+      <div className="relative h-[80vh] min-h-[600px] max-h-[920px] w-full overflow-hidden font-augenblick">
+        <div className="absolute inset-0 overflow-hidden">
+          <video 
+            src="https://circular.ws/yobel/fondo-celeste.mp4"
+            className="absolute inset-0 h-full w-full object-cover"
+            autoPlay
+            loop
+            muted
+            playsInline
+          />
+          <div className="absolute inset-0 bg-black/10" />
+          <div className="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-[#59c1e6] via-[#59c1e6]/60 to-transparent pointer-events-none" />
+        </div>
+
+        <div className="absolute bottom-20 left-0 right-0 px-[5%] md:px-[50px] z-10">
+          <div className="max-w-[1400px] mx-auto flex flex-col gap-[30px]">
+             <p className="text-lg md:text-[18px] text-black">Manufactura</p>
+             <div className="flex flex-col lg:flex-row items-start gap-[40px]">
+                <h1 className="text-5xl md:text-[65px] leading-[1] text-black max-w-[773px]">
+                  Manufactura en Perú para empresas
+                </h1>
+                <p className="text-xl md:text-[22px] leading-[24px] text-black max-w-[316px] pt-2">
+                  Producción, envasado y desarrollo de productos con altos estándares internacionales.
+                </p>
+             </div>
+          </div>
+        </div>
+      </div>
 
       {/* Intro Section */}
-      <Section className="bg-gradient-to-b from-white to-[#59c1e6]/10">
+      <Section className="bg-gradient-to-b from-[#59c1e6] to-white">
         <Container>
            <div className="flex flex-col gap-8 max-w-[1000px]">
              <div className="w-12 h-12 relative">
@@ -221,12 +342,7 @@ export function Manufacturing() {
 
       {/* Process / Traceability Section */}
       <Section className="bg-white py-20 overflow-hidden relative">
-         {/* Background Element from Figma Frame35 if needed, but text says "Traceability" */}
-         <div className="absolute top-0 left-0 w-full h-full pointer-events-none opacity-10">
-            <img src={imgFrame121} alt="" className="w-full h-full object-cover" />
-         </div>
-         
-         <Container className="relative z-10">
+         <Container className="relative z-10" ref={containerRef}>
             <div className="flex flex-col gap-12 mb-20">
                <div className="w-12 h-12 relative">
                  <svg className="w-full h-full" viewBox="0 0 48 46" fill="none">
@@ -243,18 +359,38 @@ export function Manufacturing() {
                </div>
             </div>
 
-            <div className="flex flex-col gap-0 max-w-4xl mx-auto bg-white/80 backdrop-blur-sm rounded-[30px] p-8 md:p-16 shadow-sm border border-gray-100">
+            <div className="flex flex-col w-full">
                <span className="text-xl text-gray-400 font-medium block mb-12">Procesos</span>
                {processSteps.map((step, idx) => (
-                 <div key={idx} className="group py-12 border-b border-gray-200 last:border-0 flex flex-col md:flex-row gap-8 md:gap-16 items-start">
-                    <div className="text-[80px] md:text-[120px] leading-none font-light bg-clip-text text-transparent bg-gradient-to-b from-black to-[#59c1e6] shrink-0 w-[160px]">
-                       {step.number}
-                    </div>
-                    <div className="pt-4">
-                       <h3 className="text-2xl md:text-[24px] font-medium mb-4">{step.title}</h3>
-                       <p className="text-xl md:text-[22px] font-light text-gray-600 leading-relaxed">
-                          {step.desc}
-                       </p>
+                 <div key={idx} className="py-16 border-b border-gray-200 last:border-none">
+                    <div className="flex flex-col lg:flex-row items-start lg:items-center gap-8 lg:gap-20">
+                        <div className="w-full lg:w-1/2 text-left">
+                           <motion.span 
+                             className="text-[100px] md:text-[165px] font-normal leading-none block bg-clip-text text-transparent bg-gradient-to-b from-[#090909] via-[#59c1e6] to-[#090909]"
+                             style={{ backgroundSize: "100% 200%" }}
+                             initial={{ opacity: 0, y: 50, filter: "blur(10px)" }}
+                             whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                             viewport={{ once: true, margin: "-100px" }}
+                             animate={{ backgroundPosition: ["0% 0%", "0% 100%"] }}
+                             transition={{ 
+                               opacity: { duration: 0.8, ease: "easeOut" },
+                               y: { duration: 0.8, ease: "easeOut" },
+                               filter: { duration: 0.8, ease: "easeOut" },
+                               backgroundPosition: { duration: 3, repeat: Infinity, ease: "linear", repeatType: "reverse" }
+                             }}
+                           >
+                             {step.number}
+                           </motion.span>
+                        </div>
+                        <div className="w-full lg:w-1/2 flex flex-col gap-6">
+                           <h3 className="text-2xl md:text-[26px] text-black font-augenblick">{step.title}</h3>
+                           <div className="pl-8 md:pl-12 lg:pl-20">
+                              <ScrollRevealText 
+                                 text={step.desc}
+                                 className="text-xl md:text-[22px] text-black mb-8 max-w-lg leading-relaxed"
+                              />
+                           </div>
+                        </div>
                     </div>
                  </div>
                ))}
@@ -263,55 +399,7 @@ export function Manufacturing() {
       </Section>
 
       {/* Industries Section (Carousel) */}
-      <Section className="bg-gradient-to-b from-[#59c1e6] to-white py-24 overflow-hidden">
-         <style>{`
-            .slick-slide { padding: 0 10px; }
-            .slick-list { margin: 0 -10px; overflow: visible; }
-         `}</style>
-         <Container>
-            <div className="flex flex-col gap-12 mb-16">
-               <span className="text-xl text-black/50 font-medium">Industrias</span>
-               <div className="flex flex-col lg:flex-row gap-12 items-start justify-between">
-                  <h2 className="text-4xl md:text-[45px] leading-tight font-normal max-w-lg">
-                     Mantenemos tu industria en movimiento
-                  </h2>
-                  <p className="text-lg md:text-[18px] max-w-xl font-light">
-                     En Yobel entendemos las exigencias de cada sector. Por eso, diseñamos soluciones logísticas y de manufactura integradas, adaptables a tu operación y alineadas con los estándares internacionales de calidad
-                  </p>
-               </div>
-               
-               {/* Custom Arrows */}
-               <div className="flex gap-4 justify-end">
-                  <button onClick={() => sliderRef.current?.slickPrev()} className="w-12 h-12 rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors">
-                     <ChevronLeft />
-                  </button>
-                  <button onClick={() => sliderRef.current?.slickNext()} className="w-12 h-12 rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors">
-                     <ChevronRight />
-                  </button>
-               </div>
-            </div>
-
-            <div className="w-full">
-               <Slider ref={sliderRef} {...settings}>
-                  {industries.map((ind, idx) => (
-                     <div key={idx} className="h-full">
-                        <div className="flex flex-col gap-6 h-full">
-                           <div className="h-[400px] rounded-[20px] overflow-hidden bg-gray-100 relative">
-                              <img src={ind.img} alt={ind.title} className="w-full h-full object-cover" />
-                           </div>
-                           <div className="flex flex-col gap-4">
-                              <h3 className="text-2xl font-medium">{ind.title}</h3>
-                              <p className="text-lg font-light leading-relaxed">
-                                 {ind.desc}
-                              </p>
-                           </div>
-                        </div>
-                     </div>
-                  ))}
-               </Slider>
-            </div>
-         </Container>
-      </Section>
+      <Industries className="bg-gradient-to-b from-white to-[#59c1e6]" />
 
       {/* Certificates Section */}
       <Section className="bg-white py-24">

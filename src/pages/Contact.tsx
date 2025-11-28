@@ -1,11 +1,8 @@
 import React from "react";
-import { PageHero } from "../components/ui/PageHero";
 import { Section } from "../components/ui/custom-section";
 import { Container } from "../components/ui/custom-container";
 import { Button } from "../components/ui/button";
 import { FAQ } from "../components/landing/FAQ";
-
-const heroImage = "https://images.unsplash.com/photo-1576511558996-e2d3fa0c960f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjdXN0b21lciUyMHNlcnZpY2UlMjBjb250YWN0JTIwc3VwcG9ydCUyMGNlbnRlciUyMG9mZmljZXxlbnwxfHx8fDE3NjQxOTUyMDd8MA&ixlib=rb-4.1.0&q=80&w=1080";
 
 const faqs = [
   { question: "¿En cuánto tiempo obtengo una propuesta?", answer: "En un máximo de 48 horas coordinamos un diagnóstico y te presentamos una propuesta adaptada a tus necesidades logísticas." },
@@ -17,11 +14,21 @@ const faqs = [
 export function Contact() {
   return (
     <>
-      <PageHero 
-        title="Conversemos sobre tu negocio"
-        description="Un especialista evaluará tu caso y, en menos de 48 horas, te presentará un flujo integrado de manufactura, almacenamiento y distribución, con acciones rápidas y un roadmap claro para tu negocio."
-        imageUrl={heroImage}
-      />
+      <div className="relative h-[40vh] min-h-[400px] max-h-[500px] w-full overflow-hidden font-augenblick bg-gradient-to-b from-[#fff066] to-white">
+        <div className="absolute bottom-10 left-0 right-0 px-[5%] md:px-[50px] z-10">
+          <div className="max-w-[1400px] mx-auto flex flex-col gap-[30px]">
+             <p className="text-lg md:text-[18px] text-black font-[Neue_Augenblick]">Contacto</p>
+             <div className="flex flex-col lg:flex-row items-end justify-between gap-[40px] w-full">
+                <h1 className="text-5xl md:text-[65px] leading-[1] text-black max-w-[773px] font-[Neue_Augenblick]">
+                  Conversemos sobre tu negocio
+                </h1>
+                <p className="text-xl md:text-[22px] leading-[24px] text-black max-w-[450px] lg:mr-32 pb-1 font-[Neue_Augenblick]">
+                  Un especialista evaluará tu caso y te presentará un flujo integrado con acciones rápidas y un roadmap claro.
+                </p>
+             </div>
+          </div>
+        </div>
+      </div>
 
       <Section className="bg-white">
          <Container>
