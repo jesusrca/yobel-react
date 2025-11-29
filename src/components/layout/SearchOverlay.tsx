@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import { motion } from "motion/react";
 import { Link } from "react-router-dom";
+import { Search, ChevronRight } from "lucide-react";
 import { searchIndex } from "../../data/searchIndex";
 
 interface SearchOverlayProps {
@@ -71,10 +72,7 @@ export function SearchOverlay({ onClose }: SearchOverlayProps) {
              >
                 {/* Search Icon */}
                 <div className="mr-6 text-white/50">
-                    <svg width="40" height="40" viewBox="0 0 26 26" fill="none" className="w-10 h-10 md:w-14 md:h-14">
-                        <path d="M11.4167 22.0833C17.3077 22.0833 22.0833 17.3077 22.0833 11.4167C22.0833 5.52563 17.3077 0.75 11.4167 0.75C5.52563 0.75 0.75 5.52563 0.75 11.4167C0.75 17.3077 5.52563 22.0833 11.4167 22.0833Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                        <path d="M24.75 24.75L18.95 18.95" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
+                    <Search className="w-10 h-10 md:w-14 md:h-14 text-current" strokeWidth={1.5} />
                 </div>
 
                 <input
@@ -129,9 +127,7 @@ export function SearchOverlay({ onClose }: SearchOverlayProps) {
                                     </span>
                                 </div>
                                 <div className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-[#fff066] group-hover:border-[#fff066] transition-all">
-                                     <svg className="w-4 h-4 text-white group-hover:text-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                        <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round"/>
-                                     </svg>
+                                     <ChevronRight className="w-4 h-4 text-white group-hover:text-black" strokeWidth={2} />
                                 </div>
                             </Link>
                         ))

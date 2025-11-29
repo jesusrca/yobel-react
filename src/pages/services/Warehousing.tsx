@@ -1,10 +1,17 @@
-import React from "react";
-import { PageHero } from "../../components/ui/PageHero";
+import React, { useRef, useState } from "react";
+import { Link } from "react-router-dom";
+import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
 import { Section } from "../../components/ui/custom-section";
 import { Container } from "../../components/ui/custom-container";
 import { Button } from "../../components/ui/button";
 import { FAQ } from "../../components/landing/FAQ";
 import { Industries } from "../../components/landing/Industries";
+import { Phrase } from "../../components/landing/Phrase";
+import { FullWidthImage } from "../../components/ui/FullWidthImage";
+import { ParallaxCurves } from "../../components/landing/ParallaxCurves";
+import svgPaths from "../../imports/svg-5srx0k234k";
+import { SolutionsList } from "../../components/landing/SolutionsList";
+import { ParallaxImage } from "../../components/landing/ParallaxImage";
 
 const heroImage = "https://images.unsplash.com/photo-1556743769-8d7477994b25?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjB3YXJlaG91c2UlMjBsb2dpc3RpY3MlMjBzdG9yYWdlJTIwc2hlbHZlc3xlbnwxfHx8fDE3NjQxOTUyMDR8MA&ixlib=rb-4.1.0&q=80&w=1080";
 
@@ -32,24 +39,10 @@ const benefits = [
 const processes = [
   { title: "Recepción", desc: "Descarga, paletizado, control de calidad y almacenamiento seguro." },
   { title: "Gestión de inventarios", desc: "Seguimiento de peso, cantidad y ubicación para reposición eficiente." },
-  { title: "Acondicionado (Valor Agregado)", desc: "Etiquetado, inkjet, exportación, rotulado y más." },
-  { title: "Preparación de pedidos (Picking)", desc: "Selección y recolección precisa por canal de venta." },
+  { title: "Acondicionado", desc: "Etiquetado, inkjet, exportación, rotulado y más." }, // Shortened title for layout
+  { title: "Preparación de pedidos", desc: "Selección y recolección precisa por canal de venta (Picking)." },
   { title: "Despacho", desc: "Validación, carga y documentación para envíos ágiles." },
   { title: "Logística inversa", desc: "Recepción, control y clasificación de devoluciones para optimizar inventario." }
-];
-
-const industries = [
-  { title: "Alimentos y Bebidas", description: "Ofrecemos almacenamiento con control de temperatura y cuarentena sanitaria, preservando la inocuidad y la frescura de cada producto.", link: "/industrias/alimentos-y-bebidas" },
-  { title: "Belleza y Cuidado Personal", description: "Resguardamos productos cosméticos y de higiene en entornos controlados, asegurando cumplimiento BPM y trazabilidad completa por lote.", link: "/industrias/belleza-y-cuidado-personal" },
-  { title: "Calzado y Moda", description: "Ofrecemos almacenamiento textil con clasificación por talla, color, temporada y canal, garantizando organización y disponibilidad.", link: "/industrias/calzado-y-moda" },
-  { title: "Construcción", description: "Administramos inventarios de materiales, repuestos y herramientas en obra o en nuestras instalaciones, optimizando espacio y control operativo.", link: "/industrias/construccion" },
-  { title: "Cuidado del Hogar", description: "Gestionamos inventarios de productos de limpieza, utensilios y artículos domésticos con visibilidad en tiempo real y control por SKU.", link: "/industrias/cuidado-del-hogar" },
-  { title: "Editorial", description: "Almacenamos libros, revistas y material impreso con condiciones adecuadas de humedad, seguridad y clasificación por título o lote.", link: "/industrias/editorial" },
-  { title: "Farmacéutica", description: "Operamos almacenes regulados por DIGEMID, con temperatura controlada y trazabilidad total de medicamentos e insumos.", link: "/industrias/farmaceutica" },
-  { title: "Manufactura Industrial", description: "Integramos procesos de reempaque, etiquetado y kitting técnico para optimizar la distribución y control de componentes.", link: "/industrias/manufactura-industrial" },
-  { title: "Químicos", description: "Operamos almacenes segregados y ventilados para sustancias controladas, cumpliendo normas HSE y de seguridad industrial.", link: "/industrias/quimica" },
-  { title: "Retail", description: "Centralizamos inventarios multicanal con trazabilidad por punto de venta y gestión eficiente de stock y reposición.", link: "/industrias/retail" },
-  { title: "Tecnología y Electrónica", description: "Resguardamos equipos y componentes de alto valor en zonas seguras con control de acceso, humedad y temperatura.", link: "/industrias/tecnologia-y-electronica" }
 ];
 
 const faqs = [
@@ -62,68 +55,169 @@ const faqs = [
 export function Warehousing() {
   return (
     <>
-      <PageHero 
-        title="Soluciones de Almacenamiento en Perú"
-        description="Protege tu inventario con almacenes seguros, trazabilidad total y gestión eficiente de la cadena de suministro."
-        imageUrl={heroImage}
-      />
+      <div className="relative h-[80vh] min-h-[600px] max-h-[920px] w-full overflow-hidden font-augenblick">
+        <div className="absolute inset-0 overflow-hidden">
+          <video 
+            src="https://circular.ws/yobel/amarillo-desktop.mp4"
+            className="absolute inset-0 h-full w-full object-cover"
+            autoPlay
+            loop
+            muted
+            playsInline
+          />
+          <div className="absolute inset-0 bg-black/10" />
+          <div className="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-[#fff066] via-[#fff066]/60 to-transparent pointer-events-none" />
+        </div>
+
+        <div className="absolute bottom-20 left-0 right-0 px-[5%] md:px-[50px] z-10">
+          <div className="max-w-[1400px] mx-auto flex flex-col gap-[30px]">
+             <p className="text-lg md:text-[18px] text-black">Almacenamiento</p>
+             <div className="flex flex-col lg:flex-row items-start gap-[40px]">
+                <h1 className="text-5xl md:text-[65px] leading-[1] text-black max-w-[773px]">
+                  Soluciones de Almacenamiento
+                </h1>
+                <p className="text-xl md:text-[22px] leading-[24px] text-black max-w-[316px] pt-2">
+                  Protege tu inventario con almacenes seguros y trazabilidad total.
+                </p>
+             </div>
+          </div>
+        </div>
+      </div>
 
       <Section className="bg-white">
          <Container>
-            <div className="max-w-4xl mb-24">
-               <p className="text-xl md:text-2xl text-gray-600 leading-relaxed font-light">
+            <div className="max-w-[1200px] mx-auto my-20 text-center">
+              <div className="mb-8 flex justify-center">
+                 <svg width="48" height="46" viewBox="0 0 48 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d={svgPaths.pff39b00} fill="black" />
+                 </svg>
+              </div>
+
+               <h2 className="text-[32px] md:text-[48px] leading-[1.2] font-normal mb-16 max-w-[1000px] mx-auto tracking-tight text-black">
                  Brindamos almacenamiento logístico en Perú diseñado para proteger tu inventario y optimizar la cadena de suministro con flexibilidad y eficiencia.
-               </p>
-               <div className="mt-10">
-                 <Button className="bg-black text-white px-8 py-4 rounded-full text-lg hover:bg-gray-800 transition-colors">Contactar asesor</Button>
+               </h2>
+
+               <div className="flex justify-center">
+                   <Link to="/contacto">
+                    <Button className="font-augenblick bg-transparent border-[1.5px] border-black text-black px-8 py-6 rounded-full text-xl hover:bg-black hover:text-white transition-colors duration-500 ease-in-out w-fit">
+                        Contactar asesor
+                    </Button>
+                   </Link>
                </div>
             </div>
 
-            {/* Solutions */}
-            <div className="mb-24">
-               <h3 className="text-3xl md:text-4xl font-normal mb-6">In-house u outsourcing: tú eliges</h3>
-               <p className="text-lg text-gray-500 mb-16 max-w-3xl">Gestionamos tu inventario en tus instalaciones o en las nuestras, siempre con trazabilidad y eficiencia garantizada.</p>
-               
-               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  {solutions.map((sol, idx) => (
-                     <div key={idx} className="bg-gray-50 p-10 rounded-[30px] hover:shadow-lg transition-all border border-gray-100">
-                        <h4 className="text-2xl font-bold mb-4">{sol.title}</h4>
-                        <p className="text-lg text-gray-600 leading-relaxed">{sol.desc}</p>
-                     </div>
-                  ))}
+            <ParallaxCurves />
+
+            {/* Solutions with Scroll Animation */}
+            <SolutionsList 
+               solutions={solutions} 
+               hoverImage={heroImage} 
+               title="Soluciones"
+            >
+               <div className="mt-12">
+                 <Link to="/tarifas">
+                   <Button className="font-augenblick bg-transparent border-[1.5px] border-black text-black px-8 py-6 rounded-full text-xl hover:bg-black hover:text-white transition-colors duration-500 ease-in-out w-fit">
+                     Ver tarifas
+                   </Button>
+                 </Link>
                </div>
-            </div>
+            </SolutionsList>
 
             {/* Benefits */}
-            <div className="flex flex-col lg:flex-row gap-16 bg-gray-50 rounded-[40px] p-10 md:p-20 mb-24">
-               <div className="lg:w-1/3">
-                  <h3 className="text-3xl md:text-4xl font-normal mb-6 leading-tight">Elegir Yobel para tus necesidades de almacenamiento</h3>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 mb-20">
+               <div className="flex flex-col">
+                  <span className="text-gray-400 text-lg mb-12 block">Beneficios</span>
+                  <ParallaxImage 
+                     src={heroImage} 
+                     alt="Almacenamiento Yobel" 
+                     yValues={[-200, 0]}
+                  />
                </div>
-               <div className="lg:w-2/3">
-                  <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
+
+               <div className="flex flex-col pt-8">
+                  <h3 className="text-[32px] md:text-[42px] leading-[1.1] font-normal mb-12 text-black tracking-tight max-w-xl">
+                     Elegir Yobel para tus necesidades de almacenamiento
+                  </h3>
+                  
+                  <ul className="flex flex-col w-full">
                      {benefits.map((item, idx) => (
-                        <li key={idx} className="flex items-start gap-4">
-                           <div className="mt-2 w-2 h-2 bg-blue-600 rounded-full shrink-0" />
-                           <span className="text-lg text-gray-800 leading-relaxed">{item}</span>
+                        <li key={idx} className="flex items-start gap-6 py-6 border-b border-gray-100 last:border-0">
+                           <div className="mt-1.5 shrink-0">
+                              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                 <path d="M20 6L9 17L4 12" stroke="black" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
+                              </svg>
+                           </div>
+                           <span className="text-lg md:text-xl text-gray-600 font-light leading-relaxed">
+                             {item}
+                           </span>
                         </li>
                      ))}
                   </ul>
                </div>
             </div>
+         </Container>
+      </Section>
 
+      <div className="w-full h-[400px] lg:h-[600px] mb-20 relative overflow-hidden">
+         <motion.img 
+            src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3YXJlaG91c2UlMjBzaGVsdmVzfGVufDF8fHx8MTc2NDM3Mjg0OXww&ixlib=rb-4.1.0&q=80&w=1080" 
+            alt="Warehouse Logistics" 
+            className="w-full h-full object-cover"
+            initial={{ scale: 1.1 }}
+            whileInView={{ scale: 1 }}
+            transition={{ duration: 1.5, ease: "easeOut" }}
+            viewport={{ once: true }}
+         />
+      </div>
+
+      <Section className="bg-white">
+         <Container>
             {/* Processes */}
             <div>
-               <h3 className="text-3xl md:text-4xl font-normal mb-6">Llevamos tu operación al siguiente nivel</h3>
-               <p className="text-lg text-gray-500 mb-16 max-w-3xl">Integramos todos los procesos logísticos de tu cadena de suministro, optimizando cada etapa para que tu negocio crezca con fluidez y control.</p>
+               <div className="flex flex-col items-center text-center my-20">
+                  <div className="mb-8">
+                     <svg width="48" height="46" viewBox="0 0 48 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d={svgPaths.pff39b00} fill="black" />
+                     </svg>
+                  </div>
+                  <h3 className="text-2xl md:text-3xl text-gray-400 font-normal mb-8">Procesos integrados</h3>
+                  <p className="text-3xl md:text-[42px] text-black leading-[1.1] max-w-5xl mx-auto">
+                    Integramos todos los procesos logísticos de tu cadena de suministro, optimizando cada etapa para que tu negocio crezca con fluidez y control.
+                  </p>
+               </div>
                
-               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+               <div className="flex flex-col w-full">
+                  <span className="text-xl text-gray-400 font-medium block mb-12 text-center lg:text-left">Etapas</span>
                   {processes.map((proc, idx) => (
-                     <div key={idx} className="bg-white border border-gray-100 p-8 rounded-[30px] hover:border-gray-300 transition-colors">
-                        <div className="w-14 h-14 bg-black text-white rounded-full flex items-center justify-center text-xl font-bold mb-6">
-                           {idx + 1}
+                     <div key={idx} className="py-20 border-b border-gray-200 last:border-none">
+                        <div className="flex flex-col lg:flex-row items-start lg:items-center gap-8 lg:gap-20">
+                           <div className="w-full lg:w-1/2 text-left flex justify-center lg:justify-start">
+                              <motion.span 
+                                 className="text-[100px] md:text-[165px] font-normal leading-none block bg-clip-text text-transparent bg-gradient-to-b from-[#090909] via-[#59c1e6] to-[#090909]"
+                                 style={{ backgroundSize: "100% 200%" }}
+                                 initial={{ opacity: 0, y: 50, filter: "blur(10px)" }}
+                                 whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                                 viewport={{ once: true, margin: "-100px" }}
+                                 animate={{ backgroundPosition: ["0% 0%", "0% 100%"] }}
+                                 transition={{ 
+                                   opacity: { duration: 0.8, ease: "easeOut" },
+                                   y: { duration: 0.8, ease: "easeOut" },
+                                   filter: { duration: 0.8, ease: "easeOut" },
+                                   backgroundPosition: { duration: 3, repeat: Infinity, ease: "linear", repeatType: "reverse" }
+                                 }}
+                              >
+                                 {(idx + 1).toString().padStart(2, '0')}
+                              </motion.span>
+                           </div>
+                           <div className="w-full lg:w-1/2 flex flex-col gap-6">
+                              <h3 className="text-2xl md:text-[26px] text-black font-augenblick text-center lg:text-left">{proc.title}</h3>
+                              <div className="pl-0 md:pl-12 lg:pl-20">
+                                 <p className="text-xl md:text-[22px] text-black mb-8 max-w-lg leading-relaxed text-center lg:text-left">
+                                    {proc.desc}
+                                 </p>
+                              </div>
+                           </div>
                         </div>
-                        <h4 className="text-xl font-medium mb-3">{proc.title}</h4>
-                        <p className="text-gray-600 leading-relaxed">{proc.desc}</p>
                      </div>
                   ))}
                </div>
@@ -131,17 +225,15 @@ export function Warehousing() {
          </Container>
       </Section>
 
-      <Industries />
+      <Phrase />
 
-      <Section className="bg-gray-50 py-32">
-         <Container>
-            <div className="max-w-5xl mx-auto text-center">
-               <p className="text-3xl md:text-4xl font-light leading-relaxed mb-10">
-                 Desde startups hasta corporaciones líderes, diseñamos soluciones de almacenamiento seguras y flexibles que se adaptan a tu industria y aceleran el crecimiento de tu negocio.
-               </p>
-            </div>
-         </Container>
-      </Section>
+      <FullWidthImage 
+         src="https://images.unsplash.com/photo-1587293852726-70cdb56c2866?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3YXJlaG91c2UlMjBpbnRlcmlvcnxlbnwxfHx8fDE3NjQzNzM1NDR8MA&ixlib=rb-4.1.0&q=80&w=1080"
+         alt="Interior Almacén"
+         height="h-[50vh] md:h-[70vh]"
+      />
+
+      <Industries />
 
       <FAQ items={faqs} />
     </>

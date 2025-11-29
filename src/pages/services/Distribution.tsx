@@ -1,10 +1,17 @@
-import React from "react";
-import { PageHero } from "../../components/ui/PageHero";
+import React, { useRef, useState } from "react";
+import { Link } from "react-router-dom";
+import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
 import { Section } from "../../components/ui/custom-section";
 import { Container } from "../../components/ui/custom-container";
 import { Button } from "../../components/ui/button";
 import { FAQ } from "../../components/landing/FAQ";
 import { Industries } from "../../components/landing/Industries";
+import { Phrase } from "../../components/landing/Phrase";
+import { FullWidthImage } from "../../components/ui/FullWidthImage";
+import { ParallaxCurves } from "../../components/landing/ParallaxCurves";
+import svgPaths from "../../imports/svg-5srx0k234k";
+import { SolutionsList } from "../../components/landing/SolutionsList";
+import { ParallaxImage } from "../../components/landing/ParallaxImage";
 
 const heroImage = "https://images.unsplash.com/photo-1641290451977-a427586acf49?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkZWxpdmVyeSUyMHRydWNrcyUyMGxvZ2lzdGljcyUyMGRpc3RyaWJ1dGlvbiUyMGNlbnRlciUyMGZsZWV0fGVufDF8fHx8MTc2NDE5NTIwNHww&ixlib=rb-4.1.0&q=80&w=1080";
 
@@ -45,20 +52,6 @@ const processes = [
   { title: "Seguimiento y reporte", desc: "Monitoreo constante del estado de distribución con reportes digitales actualizados." }
 ];
 
-const industries = [
-  { title: "Alimentos y Bebidas", description: "Aseguramos entregas con control de temperatura y monitoreo continuo, preservando la cadena de frío y la inocuidad.", link: "/industrias/alimentos-y-bebidas" },
-  { title: "Belleza y Cuidado Personal", description: "Distribuimos cosméticos e insumos con trazabilidad total y cumplimiento sanitario, garantizando entregas OTIF a retailers y mayoristas.", link: "/industrias/belleza-y-cuidado-personal" },
-  { title: "Calzado y Moda", description: "Gestionamos entregas B2B y B2C de prendas y accesorios, cumpliendo tiempos de temporada y visibilidad en cada pedido.", link: "/industrias/calzado-y-moda" },
-  { title: "Construcción", description: "Movilizamos materiales, repuestos y maquinaria pesada con planificación logística ajustada a cronogramas de obra.", link: "/industrias/construccion" },
-  { title: "Cuidado del Hogar", description: "Distribuimos productos de limpieza y consumo masivo a retailers y centros logísticos con cobertura nacional y eficiencia comprobada.", link: "/industrias/cuidado-del-hogar" },
-  { title: "Editorial", description: "Distribuimos publicaciones, coleccionables y materiales impresos a nivel nacional con control por punto de entrega y tiempos garantizados.", link: "/industrias/editorial" },
-  { title: "Farmacéutica", description: "Entregamos medicamentos e insumos regulados bajo condiciones BPM/BPA y trazabilidad desde almacén hasta cliente final.", link: "/industrias/farmaceutica" },
-  { title: "Manufactura Industrial", description: "Movilizamos productos terminados y repuestos con planificación sincronizada a líneas de producción y puntos de distribución.", link: "/industrias/manufactura-industrial" },
-  { title: "Químicos", description: "Transportamos productos peligrosos y controlados bajo normas HSE y protocolos de seguridad certificados.", link: "/industrias/quimica" },
-  { title: "Retail", description: "Entregamos mercancía a tiendas, centros de distribución y e-commerce con OTIF del 99.6% y control de inventario en ruta.", link: "/industrias/retail" },
-  { title: "Tecnología y Electrónica", description: "Distribuimos equipos y componentes de alto valor con seguimiento GPS, seguridad reforzada y entrega validada.", link: "/industrias/tecnologia-y-electronica" }
-];
-
 const faqs = [
   { question: "¿Puedo coordinar envíos a cualquier región del Perú?", answer: "Sí, contamos con una red de transporte y centros estratégicos que nos permiten cubrir todo el país con eficiencia y puntualidad." },
   { question: "¿Puedo programar entregas según mi calendario comercial?", answer: "Sí, planificamos rutas y ventanas horarias adaptadas a la demanda de tu negocio." },
@@ -69,84 +62,179 @@ const faqs = [
 export function Distribution() {
   return (
     <>
-      <PageHero 
-        title="Distribución logística nacional"
-        description="Coordinamos entregas desde nuestras instalaciones (outsourcing) o directamente desde las tuyas (in-house), con cobertura nacional y trazabilidad total."
-        imageUrl={heroImage}
-      />
+      <div className="relative h-[80vh] min-h-[600px] max-h-[920px] w-full overflow-hidden font-augenblick">
+        <div className="absolute inset-0 overflow-hidden">
+          <video 
+            src="https://circular.ws/yobel/amarillo-desktop.mp4"
+            className="absolute inset-0 h-full w-full object-cover"
+            autoPlay
+            loop
+            muted
+            playsInline
+          />
+          <div className="absolute inset-0 bg-black/10" />
+          <div className="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-[#fff066] via-[#fff066]/60 to-transparent pointer-events-none" />
+        </div>
+
+        <div className="absolute bottom-20 left-0 right-0 px-[5%] md:px-[50px] z-10">
+          <div className="max-w-[1400px] mx-auto flex flex-col gap-[30px]">
+             <p className="text-lg md:text-[18px] text-black">Distribución</p>
+             <div className="flex flex-col lg:flex-row items-start gap-[40px]">
+                <h1 className="text-5xl md:text-[65px] leading-[1] text-black max-w-[773px]">
+                  Distribución logística nacional
+                </h1>
+                <p className="text-xl md:text-[22px] leading-[24px] text-black max-w-[316px] pt-2">
+                  Coordinamos entregas con cobertura nacional y trazabilidad total.
+                </p>
+             </div>
+          </div>
+        </div>
+      </div>
 
       <Section className="bg-white">
          <Container>
-            <div className="max-w-4xl mb-24">
-               <p className="text-xl md:text-2xl text-gray-600 leading-relaxed font-light">
+            <div className="max-w-[1200px] mx-auto my-20 text-center">
+              <div className="mb-8 flex justify-center">
+                 <svg width="48" height="46" viewBox="0 0 48 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d={svgPaths.pff39b00} fill="black" />
+                 </svg>
+              </div>
+
+               <h2 className="text-[32px] md:text-[48px] leading-[1.2] font-normal mb-16 max-w-[1000px] mx-auto tracking-tight text-black">
                  En Yobel diseñamos e implementamos soluciones de distribución eficientes para que tu cadena de suministro funcione sin interrupciones.
-               </p>
-               <div className="mt-10">
-                 <Button className="bg-black text-white px-8 py-4 rounded-full text-lg hover:bg-gray-800 transition-colors">Contactar asesor</Button>
+               </h2>
+
+               <div className="flex justify-center">
+                   <Link to="/contacto">
+                    <Button className="font-augenblick bg-transparent border-[1.5px] border-black text-black px-8 py-6 rounded-full text-xl hover:bg-black hover:text-white transition-colors duration-500 ease-in-out w-fit">
+                        Contactar asesor
+                    </Button>
+                   </Link>
                </div>
             </div>
 
-            {/* Solutions */}
-            <div className="mb-24">
-               <h3 className="text-3xl md:text-4xl font-normal mb-6">Soluciones de distribución para cada canal</h3>
-               <p className="text-lg text-gray-500 mb-16 max-w-3xl">Atendemos todos los modelos de negocio con procesos adaptados a tu operación.</p>
-               
-               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                  {solutions.map((sol, idx) => (
-                     <div key={idx} className="bg-gray-50 p-10 rounded-[30px] hover:shadow-lg transition-all border border-gray-100">
-                        <h4 className="text-2xl font-bold mb-4">{sol.title}</h4>
-                        <p className="text-lg text-gray-600 leading-relaxed">{sol.desc}</p>
-                     </div>
-                  ))}
-               </div>
-            </div>
+            <ParallaxCurves />
 
-            {/* Transport Types */}
-            <div className="mb-24">
-               <h3 className="text-3xl md:text-4xl font-normal mb-10">Tipos de transporte y reparto</h3>
-               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  {transportTypes.map((type, idx) => (
-                     <div key={idx} className="flex items-start gap-6 p-6 border-b border-gray-100 last:border-0 hover:bg-gray-50 rounded-[20px] transition-colors">
-                        <div className="w-3 h-3 mt-2 bg-black rounded-full shrink-0" />
-                        <div>
-                           <h4 className="text-xl font-semibold mb-2">{type.title}</h4>
-                           <p className="text-gray-600 leading-relaxed">{type.desc}</p>
-                        </div>
-                     </div>
-                  ))}
+            {/* Solutions with Scroll Animation */}
+            <SolutionsList 
+               solutions={solutions} 
+               hoverImage={heroImage} 
+               title="Canales de Distribución"
+            />
+
+            {/* Transport Types Grid */}
+             <div className="mb-20">
+               <h3 className="text-[32px] md:text-[42px] leading-[1.1] font-normal mb-12 text-black tracking-tight">
+                  Tipos de transporte
+               </h3>
+               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                 {transportTypes.map((type, idx) => (
+                   <div key={idx} className="bg-gray-50 p-8 rounded-[20px] hover:bg-gray-100 transition-colors">
+                      <div className="w-10 h-10 bg-black rounded-full mb-6 flex items-center justify-center text-white font-bold">
+                        {idx + 1}
+                      </div>
+                      <h4 className="text-xl font-medium mb-3 text-black">{type.title}</h4>
+                      <p className="text-gray-600 leading-relaxed">{type.desc}</p>
+                   </div>
+                 ))}
                </div>
-            </div>
+             </div>
 
             {/* Benefits */}
-            <div className="flex flex-col lg:flex-row gap-16 bg-gray-50 rounded-[40px] p-10 md:p-20 mb-24">
-               <div className="lg:w-1/3">
-                  <h3 className="text-3xl md:text-4xl font-normal mb-6 leading-tight">Optimizamos los tiempos y costos de tu distribución</h3>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 mb-20">
+               <div className="flex flex-col">
+                  <span className="text-gray-400 text-lg mb-12 block">Beneficios</span>
+                  <ParallaxImage 
+                     src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3YXJlaG91c2UlMjBzaGVsdmVzfGVufDF8fHx8MTc2NDM3Mjg0OXww&ixlib=rb-4.1.0&q=80&w=1080" 
+                     alt="Beneficios Distribución" 
+                     yValues={[-200, 0]}
+                  />
                </div>
-               <div className="lg:w-2/3">
-                  <ul className="space-y-6">
+
+               <div className="flex flex-col pt-8">
+                  <h3 className="text-[32px] md:text-[42px] leading-[1.1] font-normal mb-12 text-black tracking-tight max-w-xl">
+                     Optimizamos los tiempos y costos de tu distribución
+                  </h3>
+                  
+                  <ul className="flex flex-col w-full">
                      {benefits.map((item, idx) => (
-                        <li key={idx} className="flex items-start gap-4">
-                           <div className="mt-2 w-2 h-2 bg-blue-600 rounded-full shrink-0" />
-                           <span className="text-lg md:text-xl text-gray-800 font-light leading-relaxed">{item}</span>
+                        <li key={idx} className="flex items-start gap-6 py-6 border-b border-gray-100 last:border-0">
+                           <div className="mt-1.5 shrink-0">
+                              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                 <path d="M20 6L9 17L4 12" stroke="black" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
+                              </svg>
+                           </div>
+                           <span className="text-lg md:text-xl text-gray-600 font-light leading-relaxed">
+                             {item}
+                           </span>
                         </li>
                      ))}
                   </ul>
                </div>
             </div>
+         </Container>
+      </Section>
 
+      <div className="w-full h-[400px] lg:h-[600px] mb-20 relative overflow-hidden">
+         <motion.img 
+            src="https://images.unsplash.com/photo-1566576912904-60017581a101?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdWNreSUyMHRydWNrfGVufDF8fHx8MTc2NDM3NDMyOXww&ixlib=rb-4.1.0&q=80&w=1080" 
+            alt="Flota de Distribución" 
+            className="w-full h-full object-cover"
+            initial={{ scale: 1.1 }}
+            whileInView={{ scale: 1 }}
+            transition={{ duration: 1.5, ease: "easeOut" }}
+            viewport={{ once: true }}
+         />
+      </div>
+
+      <Section className="bg-white">
+         <Container>
             {/* Processes */}
             <div>
-               <h3 className="text-3xl md:text-4xl font-normal mb-6">Así aseguramos tus entregas</h3>
-               <p className="text-lg text-gray-500 mb-16 max-w-3xl">Gestionamos cada etapa, desde la planificación de rutas hasta el reporte final, asegurando entregas confiables y trazabilidad completa.</p>
+               <div className="flex flex-col items-center text-center my-20">
+                  <div className="mb-8">
+                     <svg width="48" height="46" viewBox="0 0 48 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d={svgPaths.pff39b00} fill="black" />
+                     </svg>
+                  </div>
+                  <h3 className="text-2xl md:text-3xl text-gray-400 font-normal mb-8">Gestión de Entregas</h3>
+                  <p className="text-3xl md:text-[42px] text-black leading-[1.1] max-w-5xl mx-auto">
+                    Gestionamos cada etapa, desde la planificación de rutas hasta el reporte final, asegurando entregas confiables y trazabilidad completa.
+                  </p>
+               </div>
                
-               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+               <div className="flex flex-col w-full">
+                  <span className="text-xl text-gray-400 font-medium block mb-12 text-center lg:text-left">Ciclo de Distribución</span>
                   {processes.map((proc, idx) => (
-                     <div key={idx} className="bg-white border border-gray-100 p-8 rounded-[30px] h-full hover:shadow-md transition-shadow">
-                        <div className="w-10 h-10 bg-black text-white rounded-full flex items-center justify-center text-lg font-bold mb-6">
-                           {idx + 1}
+                     <div key={idx} className="py-20 border-b border-gray-200 last:border-none">
+                        <div className="flex flex-col lg:flex-row items-start lg:items-center gap-8 lg:gap-20">
+                           <div className="w-full lg:w-1/2 text-left flex justify-center lg:justify-start">
+                              <motion.span 
+                                 className="text-[100px] md:text-[165px] font-normal leading-none block bg-clip-text text-transparent bg-gradient-to-b from-[#090909] via-[#59c1e6] to-[#090909]"
+                                 style={{ backgroundSize: "100% 200%" }}
+                                 initial={{ opacity: 0, y: 50, filter: "blur(10px)" }}
+                                 whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                                 viewport={{ once: true, margin: "-100px" }}
+                                 animate={{ backgroundPosition: ["0% 0%", "0% 100%"] }}
+                                 transition={{ 
+                                   opacity: { duration: 0.8, ease: "easeOut" },
+                                   y: { duration: 0.8, ease: "easeOut" },
+                                   filter: { duration: 0.8, ease: "easeOut" },
+                                   backgroundPosition: { duration: 3, repeat: Infinity, ease: "linear", repeatType: "reverse" }
+                                 }}
+                              >
+                                 {(idx + 1).toString().padStart(2, '0')}
+                              </motion.span>
+                           </div>
+                           <div className="w-full lg:w-1/2 flex flex-col gap-6">
+                              <h3 className="text-2xl md:text-[26px] text-black font-augenblick text-center lg:text-left">{proc.title}</h3>
+                              <div className="pl-0 md:pl-12 lg:pl-20">
+                                 <p className="text-xl md:text-[22px] text-black mb-8 max-w-lg leading-relaxed text-center lg:text-left">
+                                    {proc.desc}
+                                 </p>
+                              </div>
+                           </div>
                         </div>
-                        <h4 className="text-lg font-medium mb-3 leading-tight">{proc.title}</h4>
-                        <p className="text-sm text-gray-600 leading-relaxed">{proc.desc}</p>
                      </div>
                   ))}
                </div>
@@ -154,17 +242,15 @@ export function Distribution() {
          </Container>
       </Section>
 
-      <Industries />
+      <Phrase />
 
-      <Section className="bg-gray-50 py-32">
-         <Container>
-            <div className="max-w-5xl mx-auto text-center">
-               <p className="text-3xl md:text-4xl font-light leading-relaxed mb-10">
-                 Cada industria tiene sus retos. Por eso en Yobel ofrecemos soluciones de distribución flexibles y seguras, diseñadas para diferentes sectores.
-               </p>
-            </div>
-         </Container>
-      </Section>
+      <FullWidthImage 
+         src="https://images.unsplash.com/photo-1651649503984-5b5f3514d6f0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzaGlwcGluZyUyMGNvbnRhaW5lciUyMHBvcnQlMjBjYXJnbyUyMHNoaXAlMjBsb2dpc3RpY3N8ZW58MXx8fHwxNzY0MzcyODQ5fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+         alt="Infraestructura de Distribución"
+         height="h-[50vh] md:h-[70vh]"
+      />
+
+      <Industries />
 
       <FAQ items={faqs} />
     </>

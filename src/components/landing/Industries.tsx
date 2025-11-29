@@ -156,8 +156,8 @@ export function Industries({ className }: { className?: string }) {
         }
       `}</style>
 
-       <Container className="max-w-[1440px] flex flex-col gap-12">
-         <div className="flex flex-col md:flex-row gap-8 items-start py-16 md:py-24">
+       <Container className="max-w-[1440px] flex flex-col gap-20">
+         <div className="flex flex-col md:flex-row gap-8 items-start py-12 md:py-0">
             <p className="text-lg text-black w-32 shrink-0 mt-2 font-augenblick">Industrias</p>
             <div className="flex-grow">
                <SectionHeading 

@@ -6,8 +6,8 @@ import { Container } from "../ui/custom-container";
 
 export function ValueProp() {
   return (
-    <Section className="bg-gradient-to-b from-[#fff066] via-[#fdfaa8] to-white pb-24 md:pb-32">
-      <Container className="mb-24 md:mb-32">
+    <Section className="bg-gradient-to-b from-[#fff066] via-[#fdfaa8] to-white">
+      <Container className="mb-20">
         <motion.div 
           className="flex flex-col lg:flex-row items-end justify-between gap-12"
           initial={{ opacity: 0, filter: "blur(10px)", y: 50 }}

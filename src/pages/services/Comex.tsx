@@ -11,6 +11,8 @@ import { Phrase } from "../../components/landing/Phrase";
 import { FullWidthImage } from "../../components/ui/FullWidthImage";
 import { ParallaxCurves } from "../../components/landing/ParallaxCurves";
 import svgPaths from "../../imports/svg-5srx0k234k";
+import { SolutionsList } from "../../components/landing/SolutionsList";
+import { ParallaxImage } from "../../components/landing/ParallaxImage";
 import comexImage from "figma:asset/e608a17e3bf93a1d2e8a4b868a2f12aa32b3854b.png";
 import hoverImage from "figma:asset/4288be58a4ef94beb9d8a69085417550e080ee9b.png";
 import truckImage from "figma:asset/581b279261d7ceb7941417797fbd59c23f768b5e.png";
@@ -60,22 +62,12 @@ const faqs = [
 ];
 
 export function Comex() {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const scrollRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: scrollRef,
-    offset: ["start 85%", "start 35%"]
-  });
-
-  const opacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
-  const y = useTransform(scrollYProgress, [0, 1], [100, 0]);
-
   return (
     <>
       <div className="relative h-[80vh] min-h-[600px] max-h-[920px] w-full overflow-hidden font-augenblick">
         <div className="absolute inset-0 overflow-hidden">
           <video 
-            src="https://circular.ws/yobel/fondo-horizontal.mp4"
+            src="https://circular.ws/yobel/amarillo-desktop.mp4"
             className="absolute inset-0 h-full w-full object-cover"
             autoPlay
             loop
@@ -83,7 +75,7 @@ export function Comex() {
             playsInline
           />
           <div className="absolute inset-0 bg-black/10" />
-          <div className="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-[#fff066] via-[#fff066]/60 to-transparent pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-white via-[#fff066] to-transparent pointer-events-none" />
         </div>
 
         <div className="absolute bottom-20 left-0 right-0 px-[5%] md:px-[50px] z-10">
@@ -103,7 +95,7 @@ export function Comex() {
 
       <Section className="bg-white">
          <Container>
-            <div className="max-w-[1200px] mx-auto mb-24 text-center">
+            <div className="max-w-[1200px] mx-auto my-20 text-center">
               <div className="mb-8 flex justify-center">
                  <svg width="48" height="46" viewBox="0 0 48 46" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d={svgPaths.pff39b00} fill="black" />
@@ -124,63 +116,11 @@ export function Comex() {
             <ParallaxCurves />
 
             {/* Solutions with Scroll Animation */}
-            <motion.div 
-              ref={scrollRef}
-              style={{ opacity, y }}
-              className="mb-24"
+            <SolutionsList 
+               solutions={solutions} 
+               hoverImage={hoverImage} 
+               title="Soluciones"
             >
-               <p className="text-lg text-gray-500 mb-8">Soluciones</p>
-               
-               <div className="relative flex flex-col" onMouseLeave={() => setHoveredIndex(null)}>
-                  {solutions.map((sol, idx) => {
-                     // Colors for the bottom border of each item
-                     const borderColors = ["border-[#FFF066]", "border-[#C1F0C9]", "border-[#BBE6F5]", "border-[#8CD3F5]"];
-                     const borderColor = borderColors[idx % borderColors.length];
-                     const isHovered = hoveredIndex === idx;
-                     
-                     return (
-                        <div 
-                           key={idx} 
-                           className={`relative flex items-center py-6 md:py-0 md:h-[120px] border-b-[1.5px] ${borderColor} cursor-pointer group`}
-                           onMouseEnter={() => setHoveredIndex(idx)}
-                        >
-                           <div className="w-full flex justify-between items-center z-10 relative">
-                              <h4 className={`w-full md:w-5/12 text-[28px] md:text-[32px] font-normal leading-tight transition-colors duration-300 ${isHovered ? 'text-black' : 'text-gray-400'}`}>
-                                 <span className="mr-4">0{idx + 1} /</span> 
-                                 <span className={isHovered ? 'text-black' : 'text-gray-600'}>{sol.title}</span>
-                              </h4>
-
-                              <div className={`hidden md:block w-5/12 transition-opacity duration-500 ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
-                                 <p className="text-lg text-gray-600 text-right leading-relaxed">{sol.desc}</p>
-                              </div>
-                           </div>
-                        </div>
-                     );
-                  })}
-
-                  {/* Floating Image */}
-                  <AnimatePresence>
-                     {hoveredIndex !== null && (
-                        <motion.div 
-                           className="hidden lg:block absolute top-0 left-1/2 -translate-x-1/2 w-[400px] h-[240px] pointer-events-none z-20"
-                           initial={{ opacity: 0, y: (hoveredIndex * 120) - 60 }}
-                           animate={{ opacity: 1, y: (hoveredIndex * 120) - 60 }}
-                           exit={{ opacity: 0 }}
-                           transition={{ duration: 0.3, ease: "easeOut" }}
-                        >
-                           <motion.div
-                             initial={{ scale: 0.9 }}
-                             animate={{ scale: 1 }}
-                             exit={{ scale: 0.9 }}
-                             className="w-full h-full rounded-[20px] overflow-hidden shadow-2xl"
-                           >
-                              <img src={hoverImage} className="w-full h-full object-cover" alt="Service" />
-                           </motion.div>
-                        </motion.div>
-                     )}
-                  </AnimatePresence>
-               </div>
-               
                <div className="mt-12">
                  <Link to="/tarifas">
                    <Button className="font-augenblick bg-transparent border-[1.5px] border-black text-black px-8 py-6 rounded-full text-xl hover:bg-black hover:text-white transition-colors duration-500 ease-in-out w-fit">
@@ -188,27 +128,21 @@ export function Comex() {
                    </Button>
                  </Link>
                </div>
-            </motion.div>
+            </SolutionsList>
 
             {/* Benefits */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 mb-32">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 my-20">
                <div className="flex flex-col">
-                  <span className="text-gray-400 text-lg mb-12 block">Beneficios</span>
-                  <div className="mt-auto w-full aspect-[4/3] rounded-[30px] overflow-hidden relative shadow-sm">
-                     <motion.img 
-                        src={yellowTruck} 
-                        alt="Logística Yobel" 
-                        className="w-full h-full object-cover" 
-                        initial={{ y: -60, opacity: 0 }}
-                        whileInView={{ y: 0, opacity: 1 }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
-                        viewport={{ once: true }}
-                     />
-                  </div>
+                  <span className="text-gray-400 text-lg mb-20 block">Beneficios</span>
+                  <ParallaxImage 
+                     src={yellowTruck} 
+                     alt="Logística Yobel" 
+                     yValues={[-200, 0]}
+                  />
                </div>
 
-               <div className="flex flex-col pt-8">
-                  <h3 className="text-[32px] md:text-[42px] leading-[1.1] font-normal mb-12 text-black tracking-tight max-w-xl">
+               <div className="flex flex-col pt-0">
+                  <h3 className="text-[32px] md:text-[42px] leading-[1.1] font-normal mb-20 text-black tracking-tight max-w-xl">
                      Nos enfocamos en optimizar tiempos y costos en cada operación de comercio exterior.
                   </h3>
                   
@@ -231,7 +165,7 @@ export function Comex() {
          </Container>
       </Section>
 
-      <div className="w-full h-[400px] lg:h-[600px] mb-32 relative overflow-hidden">
+      <div className="w-full h-[400px] lg:h-[600px] mb-20 relative overflow-hidden">
          <motion.img 
             src="https://images.unsplash.com/photo-1631388167556-55a285cc86a5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzaGlwcGluZyUyMGxvZ2lzdGljcyUyMGNhcmdvJTIwY29udGFpbmVyJTIwdGVybWluYWwlMjBhZXJpYWwlMjB2aWV3JTIwd2lkZXxlbnwxfHx8fDE3NjQzNjg5MTh8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" 
             alt="Global Logistics" 
@@ -247,7 +181,7 @@ export function Comex() {
          <Container>
             {/* Processes */}
             <div>
-               <div className="flex flex-col items-center text-center mb-24">
+               <div className="flex flex-col items-center text-center mb-20">
                   <div className="mb-8">
                      <svg width="48" height="46" viewBox="0 0 48 46" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d={svgPaths.pff39b00} fill="black" />
@@ -260,7 +194,7 @@ export function Comex() {
                <div className="flex flex-col w-full">
                   <span className="text-xl text-gray-400 font-medium block mb-12 text-center lg:text-left">Procesos</span>
                   {processes.map((proc, idx) => (
-                     <div key={idx} className="py-16 border-b border-gray-200 last:border-none">
+                     <div key={idx} className="py-20 border-b border-gray-200 last:border-none">
                         <div className="flex flex-col lg:flex-row items-start lg:items-center gap-8 lg:gap-20">
                            <div className="w-full lg:w-1/2 text-left flex justify-center lg:justify-start">
                               <motion.span 

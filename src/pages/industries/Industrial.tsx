@@ -55,7 +55,7 @@ export function Industrial() {
 
       <Section className="bg-white">
          <Container>
-            <div className="max-w-4xl mb-24">
+            <div className="max-w-4xl mb-20">
                <p className="text-xl md:text-2xl text-gray-600 leading-relaxed font-light">
                  En Yobel SCM diseñamos soluciones logísticas integrales para empresas manufactureras e industriales. Conectamos el flujo de materias primas, componentes y productos terminados mediante almacenamiento, transporte, distribución y servicios de valor agregado, asegurando eficiencia, trazabilidad y reducción de costos operativos en toda la cadena.
                </p>
@@ -65,7 +65,7 @@ export function Industrial() {
             </div>
 
             {/* Solutions */}
-            <div className="mb-24">
+            <div className="mb-20">
                <h3 className="text-3xl md:text-4xl font-normal mb-10">¿Cómo te ayudamos?</h3>
                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {solutions.map((sol, idx) => (
@@ -78,7 +78,7 @@ export function Industrial() {
             </div>
 
             {/* Benefits */}
-            <div className="flex flex-col lg:flex-row gap-16 bg-gray-50 rounded-[40px] p-10 md:p-20 mb-24">
+            <div className="flex flex-col lg:flex-row gap-16 bg-gray-50 rounded-[40px] p-10 md:p-20 mb-20">
                <div className="lg:w-1/3">
                   <h3 className="text-3xl md:text-4xl font-normal mb-6 leading-tight">Nos enfocamos en eficiencia, control y seguridad operativa</h3>
                </div>
@@ -95,7 +95,7 @@ export function Industrial() {
             </div>
 
             {/* Use Cases */}
-            <div className="mb-24">
+            <div className="mb-20">
                <h3 className="text-3xl md:text-4xl font-normal mb-10">Casos de uso típicos</h3>
                <ul className="grid grid-cols-1 md:grid-cols-2 gap-6">
                    {useCases.map((item, idx) => (
@@ -108,7 +108,7 @@ export function Industrial() {
             </div>
 
             {/* Results */}
-            <div className="bg-black text-white rounded-[40px] p-10 md:p-20 mb-24">
+            <div className="bg-black text-white rounded-[40px] p-10 md:p-20 mb-20">
                 <h3 className="text-3xl md:text-4xl font-normal mb-16 text-center">Indicadores que priorizamos</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
                     {results.map((res, idx) => (
@@ -121,7 +121,7 @@ export function Industrial() {
             </div>
 
             {/* Certifications */}
-            <div className="mb-24">
+            <div className="mb-20">
                <h3 className="text-3xl md:text-4xl font-normal mb-6">Nuestros certificados nos respaldan</h3>
                <p className="text-lg text-gray-500 mb-12 max-w-3xl">En Yobel SCM, garantizamos calidad, seguridad y eficiencia industrial bajo certificaciones internacionales que respaldan cada proceso de la cadena productiva.</p>
                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">

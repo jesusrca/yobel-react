@@ -8,6 +8,8 @@ import { Plus, Minus, ChevronLeft, ChevronRight, Check } from "lucide-react";
 import { motion, useScroll, useTransform, useInView, animate, MotionValue } from "motion/react";
 import { cn } from "../../components/ui/utils";
 import { Industries } from "../../components/landing/Industries";
+import { FAQ } from "../../components/landing/FAQ";
+import { ScrollRevealText } from "../../components/ui/motion-text";
 
 // Images from Figma
 import imgImage2 from "figma:asset/188b5403cfad247086e7d5b3ee2d0d391e5be8a2.png";
@@ -97,102 +99,6 @@ const faqs = [
   { question: "¿Puedo usar mis propios materiales o envases?", answer: "Sí, adaptamos el proceso a tus insumos y especificaciones, garantizando eficiencia y compatibilidad con tu línea de productos." }
 ];
 
-// Helper Components from Statistics.tsx
-const ScrollRevealText = ({ text, className }: { text: string; className?: string }) => {
-  const element = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: element,
-    offset: ["start 0.9", "start 0.5"],
-  });
-
-  const words = text.split(" ");
-  const totalChars = words.reduce((acc, word) => acc + word.length, 0);
-  const step = 1 / (totalChars + 3);
-  let charIndex = 0;
-
-  return (
-    <p ref={element} className={`${className} flex flex-wrap`}>
-      {words.map((word, i) => (
-        <span key={i} className="inline-block mr-[0.3em] whitespace-nowrap">
-          {word.split("").map((char, charIdx) => {
-            const start = charIndex * step;
-            const end = (charIndex + 1) * step;
-            charIndex++;
-            return (
-              <Char key={charIdx} range={[start, end]} progress={scrollYProgress}>
-                {char}
-              </Char>
-            );
-          })}
-        </span>
-      ))}
-    </p>
-  );
-};
-
-const Char = ({ children, range, progress }: { children: string; range: [number, number]; progress: MotionValue<number> }) => {
-  const opacity = useTransform(progress, range, [0, 1]);
-  const step = range[1] - range[0];
-  const colorEnd = range[1] + (step * 5);
-  const color = useTransform(progress, 
-    [range[0], range[1], colorEnd], 
-    ["#31CDFF", "#31CDFF", "#000000"]
-  );
-  
-  return (
-    <span className="relative inline-block">
-      <span className="absolute opacity-[0.2] font-augenblick">{children}</span>
-      <motion.span style={{ opacity, color }}>{children}</motion.span>
-    </span>
-  );
-};
-
-const AnimatedNumber = ({ value, className }: { value: string, className?: string }) => {
-  const ref = useRef<HTMLSpanElement>(null);
-  const inViewRef = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(inViewRef, { once: true, margin: "-100px 0px" });
-  
-  const numericPart = parseInt(value.replace(/[^0-9]/g, ''));
-  const prefix = value.includes('+') ? '+' : '';
-  const suffix = value.toUpperCase().includes('K') ? 'K' : '';
-
-  useEffect(() => {
-    if (isInView) {
-      const controls = animate(0, numericPart, {
-        duration: 1.5,
-        ease: "circOut",
-        onUpdate: (latest) => {
-          if (ref.current) {
-            // Pad with 0 if the original value started with 0 and is less than 10
-            // This logic is specific to preserve "01" format if input is "01"
-            const isPadded = value.startsWith('0') && value.length > 1;
-            const formatted = isPadded 
-               ? Math.round(latest).toString().padStart(2, '0') 
-               : Math.round(latest).toString();
-            
-            ref.current.textContent = `${prefix}${formatted}${suffix}`;
-          }
-        }
-      });
-      return () => controls.stop();
-    }
-  }, [isInView, numericPart, prefix, suffix, value]);
-
-  return (
-    <span ref={inViewRef} className={className}>
-      <motion.span 
-        ref={ref}
-        className="bg-clip-text text-transparent bg-gradient-to-b from-[#090909] via-[#59c1e6] to-[#090909]"
-        style={{ backgroundSize: "100% 200%" }}
-        animate={{ backgroundPosition: ["0% 0%", "0% 100%"] }}
-        transition={{ duration: 3, repeat: Infinity, ease: "linear", repeatType: "reverse" }}
-      >
-        {value}
-      </motion.span>
-    </span>
-  );
-};
-
 export function Manufacturing() {
   const sliderRef = useRef<Slider>(null);
   const [activeSolution, setActiveSolution] = useState<string | null>("01");
@@ -223,7 +129,7 @@ export function Manufacturing() {
             playsInline
           />
           <div className="absolute inset-0 bg-black/10" />
-          <div className="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-[#59c1e6] via-[#59c1e6]/60 to-transparent pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-white via-white/60 to-transparent pointer-events-none" />
         </div>
 
         <div className="absolute bottom-20 left-0 right-0 px-[5%] md:px-[50px] z-10">
@@ -242,19 +148,19 @@ export function Manufacturing() {
       </div>
 
       {/* Intro Section */}
-      <Section className="bg-gradient-to-b from-[#59c1e6] to-white">
+      <Section className="bg-white py-20">
         <Container>
-           <div className="flex flex-col gap-8 max-w-[1000px]">
-             <div className="w-12 h-12 relative">
+           <div className="flex flex-col gap-8 max-w-[1000px] mx-auto items-center text-center">
+             <div className="w-12 h-12 relative mb-2">
                <svg className="w-full h-full" viewBox="0 0 48 46" fill="none">
                  <path d={svgPaths.pff39b00} fill="black" />
                </svg>
              </div>
-             <h2 className="text-4xl md:text-5xl lg:text-[45px] leading-tight font-normal text-black">
+             <h2 className="text-2xl md:text-3xl lg:text-[32px] leading-tight font-light text-gray-400">
                Servicio de manufactura a tu medida
              </h2>
-             <div className="flex flex-col gap-12">
-               <p className="text-2xl md:text-[45px] leading-tight font-light text-black">
+             <div className="flex flex-col gap-12 items-center">
+               <p className="text-2xl md:text-4xl lg:text-[40px] leading-tight font-normal text-black">
                  Gestionamos tus procesos productivos en nuestras plantas o directamente en tus instalaciones, aplicando tecnología avanzada y asegurando el cumplimiento de todas las normativas vigentes.
                </p>
                <div>
@@ -362,7 +268,7 @@ export function Manufacturing() {
             <div className="flex flex-col w-full">
                <span className="text-xl text-gray-400 font-medium block mb-12">Procesos</span>
                {processSteps.map((step, idx) => (
-                 <div key={idx} className="py-16 border-b border-gray-200 last:border-none">
+                 <div key={idx} className="py-20 border-b border-gray-200 last:border-none">
                     <div className="flex flex-col lg:flex-row items-start lg:items-center gap-8 lg:gap-20">
                         <div className="w-full lg:w-1/2 text-left">
                            <motion.span 
@@ -402,7 +308,7 @@ export function Manufacturing() {
       <Industries className="bg-gradient-to-b from-white to-[#59c1e6]" />
 
       {/* Certificates Section */}
-      <Section className="bg-white py-24">
+      <Section className="bg-white py-20">
          <Container>
             <div className="flex flex-col md:flex-row gap-12 items-start mb-20">
                <div className="w-full md:w-[300px] shrink-0">
@@ -429,50 +335,7 @@ export function Manufacturing() {
       </Section>
 
       {/* FAQ Section */}
-      <Section className="bg-white py-24 border-t border-gray-100">
-         <Container>
-            <div className="flex flex-col lg:flex-row gap-20 items-start">
-               <div className="w-full lg:w-1/3">
-                  <h2 className="text-4xl md:text-[45px] leading-tight font-normal">
-                     ¿Tienes algunas preguntas?<br/>
-                     <span className="text-gray-400">Encuentra tu respuesta</span>
-                  </h2>
-               </div>
-               <div className="w-full lg:w-2/3">
-                  <div className="flex flex-col">
-                     {faqs.map((faq, idx) => (
-                        <FAQItem key={idx} question={faq.question} answer={faq.answer} />
-                     ))}
-                  </div>
-               </div>
-            </div>
-         </Container>
-      </Section>
+      <FAQ items={faqs} />
     </>
   );
-}
-
-function FAQItem({ question, answer }: { question: string; answer: string }) {
-   const [isOpen, setIsOpen] = React.useState(false);
-
-   return (
-      <div className="border-b border-black py-8">
-         <button 
-            onClick={() => setIsOpen(!isOpen)}
-            className="w-full flex items-center justify-between text-left gap-4 group"
-         >
-            <span className="text-2xl md:text-[24px] font-medium group-hover:text-blue-600 transition-colors">{question}</span>
-            <div className="shrink-0 w-8 h-8 flex items-center justify-center">
-               {isOpen ? <Minus size={24} /> : <Plus size={24} />}
-            </div>
-         </button>
-         <div 
-            className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-[200px] opacity-100 mt-6' : 'max-h-0 opacity-0'}`}
-         >
-            <p className="text-xl md:text-[22px] font-light text-black leading-relaxed max-w-2xl">
-               {answer}
-            </p>
-         </div>
-      </div>
-   );
 }

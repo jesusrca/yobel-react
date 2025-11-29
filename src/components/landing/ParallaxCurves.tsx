@@ -14,7 +14,7 @@ export function ParallaxCurves() {
   const y3 = useTransform(scrollYProgress, [0, 1], [0, -260]);
 
   return (
-    <div ref={ref} className="relative w-[120vw] left-1/2 -translate-x-1/2 h-[300px] md:h-[500px] overflow-hidden mt-0 mb-24">
+    <div ref={ref} className="relative w-[120vw] left-1/2 -translate-x-1/2 h-[500px] md:h-[800px] overflow-hidden mt-0 mb-24">
        <svg 
          className="absolute w-full h-[80%] top-[10%] overflow-visible" 
          viewBox="0 0 2198 879" 

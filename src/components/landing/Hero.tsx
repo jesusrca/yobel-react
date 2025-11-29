@@ -68,8 +68,12 @@ export function Hero() {
             whileInView="visible"
             viewport={{ once: true }}
           >
-            {titleText.split(" ").map((word, i) => (
-              <motion.span key={i} variants={wordVariants} className="inline-block">
+            {"El movimiento que impulsa tu negocio".split(" ").map((word, i) => (
+              <motion.span 
+                key={i} 
+                variants={wordVariants} 
+                className={`inline-block ${word === "movimiento" ? "italic" : ""}`}
+              >
                 {word}
               </motion.span>
             ))}

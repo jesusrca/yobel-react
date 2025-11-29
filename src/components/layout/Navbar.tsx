@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { AnimatePresence } from "motion/react";
+import { Search, User, ChevronDown } from "lucide-react";
 import svgPaths from "../../imports/svg-biijegtt4v";
 import { FullScreenMenu } from "./FullScreenMenu";
 import { SearchOverlay } from "./SearchOverlay";
@@ -33,9 +34,7 @@ export function Navbar() {
             <details className="relative group">
                 <summary className="flex items-center gap-2 cursor-pointer list-none [&::-webkit-details-marker]:hidden">
                     <span className="text-lg text-black">PE</span>
-                    <svg className="w-3 h-2 group-open:rotate-180 transition-transform" viewBox="0 0 12 7" fill="none">
-                      <path d={svgPaths.p129f0940} fill="black" />
-                    </svg>
+                    <ChevronDown className="w-3 h-3 group-open:rotate-180 transition-transform text-black" />
                 </summary>
                 <div className="absolute top-full right-0 mt-6 w-64 bg-white rounded-[20px] shadow-2xl border border-gray-100 p-5 flex flex-col gap-3 z-50">
                     <div className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1 px-2">Selecciona ubicación</div>
@@ -55,11 +54,8 @@ export function Navbar() {
             </details>
 
             {/* User Icon */}
-            <div className="w-[30px] h-[30px] flex items-center justify-center cursor-pointer">
-                <svg width="24" height="26" viewBox="0 0 24 26" fill="none">
-                    <path d={svgPaths.p2616da40} stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    <path d={svgPaths.p112eb780} stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
+            <div className="w-[30px] h-[30px] flex items-center justify-center cursor-pointer hover:opacity-70 transition-opacity">
+                <User className="w-6 h-6 text-black" strokeWidth={1.5} />
             </div>
 
             {/* Buttons */}
@@ -67,12 +63,9 @@ export function Navbar() {
                 {/* Search Icon */}
                 <div 
                   onClick={() => setIsSearchOpen(true)} 
-                  className="hidden md:flex w-[30px] h-[30px] items-center justify-center cursor-pointer"
+                  className="hidden md:flex w-[30px] h-[30px] items-center justify-center cursor-pointer hover:opacity-70 transition-opacity"
                 >
-                    <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
-                        <path d="M11.4167 22.0833C17.3077 22.0833 22.0833 17.3077 22.0833 11.4167C22.0833 5.52563 17.3077 0.75 11.4167 0.75C5.52563 0.75 0.75 5.52563 0.75 11.4167C0.75 17.3077 5.52563 22.0833 11.4167 22.0833Z" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                        <path d="M24.75 24.75L18.95 18.95" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
+                    <Search className="w-6 h-6 text-black" strokeWidth={1.5} />
                 </div>
                 
                 <button className="hidden md:block px-4 py-2 text-[23px] text-black hover:opacity-70">Tracking</button>

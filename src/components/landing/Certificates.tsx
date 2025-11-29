@@ -11,7 +11,7 @@ import { SectionHeading } from "../ui/typography";
 export function Certificates() {
   return (
     <Section className="bg-white overflow-hidden">
-      <Container className="flex flex-col gap-16">
+      <Container className="flex flex-col gap-20">
 
          
          {/* Re-implementing the header part manually to match design exactly since SectionHeading is column-based */}
@@ -21,7 +21,7 @@ export function Certificates() {
       </Container>
 
       {/* Retrying the render with proper structure */}
-       <Container className="flex flex-col gap-16">
+       <Container className="flex flex-col gap-20">
          <div className="flex flex-col md:flex-row gap-12 md:gap-32 items-start">
             <div className="shrink-0 w-32 text-lg mt-2">Certificados</div>
             <div className="flex flex-col md:flex-row gap-12 md:gap-32">

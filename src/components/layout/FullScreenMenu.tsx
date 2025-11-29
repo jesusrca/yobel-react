@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Link } from "react-router-dom";
+import { Search, ChevronDown } from "lucide-react";
 import svgPaths from "../../imports/svg-1hie16nw8a";
 import { cn } from "../ui/utils";
 
@@ -36,19 +37,26 @@ const menuItems = [
     id: "03",
     title: "Industrias",
     items: [
-      { name: "Alimentos y Bebidas", path: "/#industrias" },
-      { name: "Belleza y Cuidado Personal", path: "/#industrias" },
-      { name: "Farmacéutica", path: "/#industrias" },
-      { name: "Retail", path: "/#industrias" },
+      { name: "Alimentos y Bebidas", path: "/industrias/alimentos-y-bebidas" },
+      { name: "Belleza y Cuidado Personal", path: "/industrias/belleza-y-cuidado-personal" },
+      { name: "Calzado y Moda", path: "/industrias/calzado-y-moda" },
+      { name: "Construcción", path: "/industrias/construccion" },
+      { name: "Cuidado del Hogar", path: "/industrias/cuidado-del-hogar" },
+      { name: "Editorial", path: "/industrias/editorial" },
+      { name: "Farmacéutica", path: "/industrias/farmaceutica" },
+      { name: "Manufactura Industrial", path: "/industrias/manufactura-industrial" },
+      { name: "Química", path: "/industrias/quimica" },
+      { name: "Retail", path: "/industrias/retail" },
+      { name: "Tecnología y Electrónica", path: "/industrias/tecnologia-y-electronica" },
     ]
   },
   {
     id: "04",
     title: "Noticias",
     items: [
-       { name: "Todas las noticias", path: "/noticias" },
-       { name: "Insights y Tendencias", path: "/noticias" },
-       { name: "Innovación y Tecnología", path: "/noticias" },
+      { name: "Todas las noticias", path: "/noticias" },
+      { name: "Insights y Tendencias", path: "/noticias" },
+      { name: "Innovación y Tecnología", path: "/noticias" },
     ]
   },
   {
@@ -73,18 +81,20 @@ const menuItems = [
 
 export function FullScreenMenu({ onClose, onSearchClick }: FullScreenMenuProps) {
   const [activeCategory, setActiveCategory] = useState<string>("Empresa");
-  const activeItems = menuItems.find(item => item.title === activeCategory)?.items || [];
+  
+  // Logic for displaying items on desktop
+  const activeItemsDesktop = menuItems.find(item => item.title === activeCategory)?.items || [];
 
   return (
     <motion.div 
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[60] bg-black text-white overflow-hidden font-augenblick"
+      className="fixed inset-0 z-[60] bg-black text-white font-augenblick flex flex-col h-[100dvh]"
     >
-      {/* Header */}
-      <div className="fixed top-5 left-0 right-0 z-[61] flex justify-center px-4 pointer-events-none">
-        <div className="w-full max-w-[1340px] h-[56px] px-6 flex items-center justify-between pointer-events-auto">
+      {/* Header - Fixed height */}
+      <div className="flex-none h-[80px] md:h-[100px] w-full flex justify-center px-4 pt-5 z-[70] bg-black relative">
+        <div className="w-full max-w-[1340px] h-[56px] px-6 flex items-center justify-between">
             {/* Logo */}
             <Link to="/" onClick={onClose} className="h-[30px] w-[80px] relative block hover:opacity-70 transition-opacity">
               <svg className="w-full h-full" viewBox="0 0 94 36" fill="none">
@@ -102,8 +112,8 @@ export function FullScreenMenu({ onClose, onSearchClick }: FullScreenMenuProps) 
 
             {/* Actions */}
             <div className="flex items-center gap-2 md:gap-6">
-                {/* Country */}
-                <div className="flex items-center gap-2 cursor-pointer">
+                {/* Country (Hidden on small mobile if crowded, but let's keep it) */}
+                <div className="hidden sm:flex items-center gap-2 cursor-pointer">
                   <span className="text-lg text-white">PE</span>
                   <div className="w-3 h-2">
                       <svg className="w-full h-full" viewBox="0 0 12 7" fill="none">
@@ -112,31 +122,20 @@ export function FullScreenMenu({ onClose, onSearchClick }: FullScreenMenuProps) 
                   </div>
                 </div>
 
-                {/* User */}
-                <div className="w-[30px] h-[30px] flex items-center justify-center cursor-pointer">
-                  <svg width="24" height="26" viewBox="0 0 24 26" fill="none">
-                      <path d={svgPaths.p2616da40} stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                      <path d={svgPaths.p112eb780} stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </div>
-
                 {/* Buttons Group */}
                 <div className="flex items-center gap-2 md:gap-3">
-                    {/* Search Icon */}
-                    <div onClick={onSearchClick} className="hidden md:flex w-[30px] h-[30px] items-center justify-center cursor-pointer">
-                      <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
-                          <path d={svgPaths.p1621a072} stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                          <path d="M24.75 24.75L18.95 18.95" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
+                    {/* Search Icon - Desktop */}
+                    <div onClick={onSearchClick} className="hidden md:flex w-[30px] h-[30px] items-center justify-center cursor-pointer hover:opacity-70 transition-opacity">
+                      <Search className="w-6 h-6 text-white" strokeWidth={1.5} />
                     </div>
 
-                    {/* Tracking Button */}
+                    {/* Tracking Button - Desktop */}
                     <button className="hidden md:block px-4 py-2 text-[23px] text-white hover:opacity-70">Tracking</button>
 
                     {/* Close Button */}
                     <button 
                       onClick={onClose}
-                      className="px-[14px] py-[8px] rounded-[19px] border-[1.5px] border-white text-[22px] leading-[24px] font-augenblick font-medium text-white hover:bg-white hover:text-black transition-colors"
+                      className="px-[14px] py-[8px] rounded-[19px] border-[1.5px] border-white text-[16px] md:text-[22px] leading-[20px] md:leading-[24px] font-augenblick font-medium text-white hover:bg-white hover:text-black transition-colors"
                     >
                       Cerrar
                     </button>
@@ -145,76 +144,141 @@ export function FullScreenMenu({ onClose, onSearchClick }: FullScreenMenuProps) 
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className="w-full max-w-[1340px] mx-auto h-screen pt-[140px] px-[50px] pb-[50px] flex flex-col justify-between">
-         
-         <div className="flex w-full h-full">
-            {/* Left Column */}
-            <div className="w-full lg:w-[547px] flex flex-col gap-16 pt-8">
-               
+      {/* Scrollable Content */}
+      <div className="flex-1 overflow-y-auto">
+        <div className="w-full max-w-[1340px] mx-auto px-[20px] md:px-[50px] pb-[100px] pt-4">
+           
+           {/* --- Desktop Layout (lg:flex) --- */}
+           <div className="hidden lg:flex w-full h-full min-h-[600px]">
+              {/* Left Col: Categories */}
+              <div className="w-[400px] xl:w-[547px] flex flex-col gap-8 pt-8">
+                 {menuItems.map((item) => (
+                    <div 
+                        key={item.id} 
+                        className="group flex items-center gap-2 cursor-pointer"
+                        onMouseEnter={() => setActiveCategory(item.title)}
+                        onClick={() => setActiveCategory(item.title)}
+                    >
+                        <span className={cn(
+                            "text-[24px] font-medium transition-colors duration-300",
+                            activeCategory === item.title ? "text-[#fff066]" : "text-white group-hover:text-white/80"
+                        )}>
+                            {item.id} /
+                        </span>
+                        <span className={cn(
+                            "text-[24px] font-medium transition-colors duration-300 border-b-[1.5px] border-transparent group-hover:border-current",
+                            activeCategory === item.title ? "text-[#fff066]" : "text-white group-hover:text-white/80"
+                        )}>
+                            {item.title}
+                        </span>
+                    </div>
+                 ))}
+              </div>
 
-
-               {/* Menu Categories */}
-               <div className="flex flex-col gap-8">
-                    {menuItems.map((item) => (
-                        <div 
-                            key={item.id} 
-                            className="group flex items-center gap-2 cursor-pointer"
-                            onClick={() => setActiveCategory(item.title)}
-                        >
-                            <span className={cn(
-                                "text-[24px] font-medium transition-colors duration-300",
-                                activeCategory === item.title ? "text-[#fff066]" : "text-white group-hover:text-white/80"
-                            )}>
-                                {item.id} /
-                            </span>
-                            <span className={cn(
-                                "text-[24px] font-medium transition-colors duration-300 border-b-[1.5px] border-transparent group-hover:border-current",
-                                activeCategory === item.title ? "text-[#fff066]" : "text-white group-hover:text-white/80"
-                            )}>
-                                {item.title}
-                            </span>
-                        </div>
-                    ))}
-               </div>
-            </div>
-
-            {/* Right Column (Submenu) */}
-            <div className="hidden lg:flex lg:ml-[133px] flex-col pt-8 w-full relative">
+              {/* Right Col: Subitems */}
+              <div className="flex-1 pl-20 pt-10 border-l border-white/10 ml-12">
                  <AnimatePresence mode="wait">
                     <motion.div
                         key={activeCategory}
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: 10 }}
-                        transition={{ duration: 0.3, ease: "easeInOut" }}
-                        className="flex flex-col gap-4"
+                        transition={{ duration: 0.2 }}
+                        className="flex flex-col gap-6"
                     >
-                        {activeItems.map((link, idx) => (
+                        {activeItemsDesktop.map((link, idx) => (
                             <Link 
                                 key={idx} 
                                 to={link.path}
                                 onClick={onClose}
-                                className="text-[22px] font-medium text-white hover:text-[#fff066] transition-colors border-b border-transparent hover:border-b hover:border-[#fff066] w-fit pb-1"
+                                className="text-[32px] font-light text-white hover:text-[#fff066] transition-colors w-fit"
                             >
                                 {link.name}
                             </Link>
                         ))}
                     </motion.div>
                  </AnimatePresence>
-            </div>
-         </div>
+              </div>
+           </div>
+           
+           {/* Footer Desktop Links */}
+           <div className="hidden lg:flex justify-end gap-8 mt-20 text-white/40 text-sm">
+                <Link to="/terminos-y-condiciones" onClick={onClose} className="hover:text-white transition-colors">Términos y Condiciones</Link>
+                <Link to="/libro-reclamaciones" onClick={onClose} className="hover:text-white transition-colors">Libro de Reclamaciones</Link>
+                <Link to="/politicas-de-privacidad" onClick={onClose} className="hover:text-white transition-colors">Privacidad</Link>
+                <Link to="/politicas-de-cookies" onClick={onClose} className="hover:text-white transition-colors">Políticas de Cookies</Link>
+           </div>
 
-         {/* Footer / Legal */}
-         <div className="flex flex-col md:flex-row items-end justify-end w-full gap-8 pb-4">
-             <div className="flex gap-6">
-                 <Link to="#" onClick={onClose} className="text-[16px] text-white/50 hover:text-white transition-colors">Términos y Condiciones</Link>
-                 <Link to="/libro-reclamaciones" onClick={onClose} className="text-[16px] text-white/50 hover:text-white transition-colors">Libro de Reclamaciones</Link>
-                 <Link to="#" onClick={onClose} className="text-[16px] text-white/50 hover:text-white transition-colors">Privacidad</Link>
-                 <Link to="/politicas-de-cookies" onClick={onClose} className="text-[16px] text-white/50 hover:text-white transition-colors">Políticas de Cookies</Link>
-             </div>
-         </div>
 
+           {/* --- Mobile Layout (lg:hidden) --- */}
+           <div className="flex lg:hidden flex-col gap-6 pt-4">
+              {/* Mobile Search */}
+              <button 
+                onClick={onSearchClick} 
+                className="flex items-center gap-4 text-xl text-white/80 border-b border-white/20 pb-4 mb-4 hover:text-white transition-colors"
+              >
+                  <Search className="w-6 h-6 text-white" strokeWidth={1.5} />
+                  <span>Buscar en el sitio...</span>
+              </button>
+
+              {menuItems.map(item => {
+                 const isOpen = activeCategory === item.title;
+                 return (
+                 <div key={item.id} className="flex flex-col border-b border-white/10 pb-2">
+                    <button 
+                       onClick={() => setActiveCategory(isOpen ? "" : item.title)}
+                       className="flex items-center justify-between text-xl md:text-2xl font-medium py-3"
+                    >
+                       <div className="flex gap-3">
+                          <span className="text-white/40 text-lg">{item.id}</span>
+                          <span className={isOpen ? "text-[#fff066]" : "text-white"}>{item.title}</span>
+                       </div>
+                       <div className={cn("transition-transform duration-300", isOpen ? "rotate-180" : "")}>
+                          <ChevronDown className="w-6 h-6 text-white" strokeWidth={1.5} />
+                       </div>
+                    </button>
+                    
+                    <AnimatePresence>
+                       {isOpen && (
+                          <motion.div 
+                             initial={{ height: 0, opacity: 0 }}
+                             animate={{ height: "auto", opacity: 1 }}
+                             exit={{ height: 0, opacity: 0 }}
+                             className="overflow-hidden"
+                          >
+                             <div className="flex flex-col gap-4 pl-10 py-4">
+                                {item.items.map((sub, idx) => (
+                                   <Link 
+                                      key={idx} 
+                                      to={sub.path} 
+                                      onClick={onClose}
+                                      className="text-lg text-gray-300 hover:text-white py-1 block"
+                                   >
+                                      {sub.name}
+                                   </Link>
+                                ))}
+                             </div>
+                          </motion.div>
+                       )}
+                    </AnimatePresence>
+                 </div>
+              )})}
+
+              {/* Mobile Tracking Button */}
+              <button className="mt-8 w-full py-4 border border-white rounded-full text-xl font-medium hover:bg-white hover:text-black transition-colors">
+                  Tracking de Envíos
+              </button>
+              
+              {/* Legal Links Mobile */}
+              <div className="flex flex-col gap-4 mt-12 text-sm text-white/40 px-2">
+                  <Link to="/terminos-y-condiciones" onClick={onClose}>Términos y Condiciones</Link>
+                  <Link to="/libro-reclamaciones" onClick={onClose}>Libro de Reclamaciones</Link>
+                  <Link to="/politicas-de-privacidad" onClick={onClose}>Privacidad</Link>
+                  <Link to="/politicas-de-cookies" onClick={onClose}>Políticas de Cookies</Link>
+              </div>
+           </div>
+
+        </div>
       </div>
     </motion.div>
   );

@@ -33,7 +33,7 @@ export function GlobalPresence() {
 
       <Section className="bg-white">
         <Container>
-           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8 mb-24">
+           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8 mb-20">
               {stats.map((stat, idx) => (
                  <div key={idx} className="text-center p-8 border border-gray-100 rounded-[30px] shadow-sm hover:shadow-md transition-all bg-gray-50 group hover:bg-black hover:border-black">
                     <div className="text-3xl font-bold text-black mb-3 group-hover:text-[#fff066] transition-colors">{stat.value}</div>
@@ -42,7 +42,7 @@ export function GlobalPresence() {
               ))}
            </div>
 
-           <div className="flex flex-col lg:flex-row gap-16">
+           <div className="flex flex-col lg:flex-row gap-20">
               <div className="lg:w-1/2">
                  <h2 className="text-4xl md:text-5xl font-normal mb-10 leading-tight">Encuentra nuestros centros logísticos y oficinas cerca de ti</h2>
                  

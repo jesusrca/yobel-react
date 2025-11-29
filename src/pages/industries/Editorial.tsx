@@ -1,16 +1,42 @@
-import React from "react";
-import { PageHero } from "../../components/ui/PageHero";
+import React, { useState, useRef } from "react";
 import { Section } from "../../components/ui/custom-section";
 import { Container } from "../../components/ui/custom-container";
 import { Button } from "../../components/ui/button";
+import { ChevronRight, Check } from "lucide-react";
+import { motion } from "motion/react";
+import { ScrollRevealText } from "../../components/ui/motion-text";
 
-const heroImage = "https://images.unsplash.com/photo-1570978541623-fe3fbe775696?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxib29rcyUyMHByaW50aW5nJTIwcHJlc3MlMjBlZGl0b3JpYWwlMjB3YXJlaG91c2V8ZW58MXx8fHwxNzY0MTk1MjA1fDA&ixlib=rb-4.1.0&q=80&w=1080";
+// SVG Paths
+const svgPaths = {
+  pff39b00: "M0 45.9994V30.6785C0 30.6785 36.2411 15.2325 36.2411 8.71527C36.2411 4.64101 0 15.0514 0 15.0514V0H35.0771C49.2263 0 47.9715 7.45669 47.9715 14.9269V46H24.4355C24.4355 46 40.1752 20.8884 36.2411 20.8884C30.4859 20.8884 0 45.9994 0 45.9994Z",
+};
 
 const solutions = [
-  { title: "Almacenamiento editorial especializado", desc: "Resguardamos libros, revistas y material impreso bajo condiciones adecuadas de humedad, temperatura y seguridad." },
-  { title: "Distribución B2B y e-commerce", desc: "Entregamos publicaciones a puntos de venta, ferias, librerías y compradores online con visibilidad total del envío." },
-  { title: "Valor Agregado (VAS)", desc: "Ofrecemos servicios de armado de sets, empaquetado promocional, etiquetado por punto de venta y preparación para exportación." },
-  { title: "Courier Express editorial", desc: "Envíos urgentes de ejemplares, muestras o materiales de prensa con trazabilidad en tiempo real." }
+  {
+    id: "01",
+    title: "Almacenamiento Editorial",
+    fullDesc: "Resguardamos libros, revistas y material impreso bajo condiciones adecuadas de humedad, temperatura y seguridad para preservar su calidad."
+  },
+  {
+    id: "02",
+    title: "Distribución Omnicanal",
+    fullDesc: "Entregas a puntos de venta, ferias, librerías y compradores online con visibilidad total del envío y cumplimiento de fechas de lanzamiento."
+  },
+  {
+    id: "03",
+    title: "Valor Agregado (VAS)",
+    fullDesc: "Ofrecemos servicios de armado de sets, empaquetado promocional, etiquetado por punto de venta y preparación para exportación."
+  },
+  {
+    id: "04",
+    title: "Courier Express",
+    fullDesc: "Envíos urgentes de ejemplares, muestras o materiales de prensa con trazabilidad en tiempo real."
+  },
+  {
+    id: "05",
+    title: "Gestión de Eventos",
+    fullDesc: "Logística especializada para ferias del libro y eventos corporativos, asegurando disponibilidad de stock en el momento preciso."
+  }
 ];
 
 const benefits = [
@@ -18,15 +44,15 @@ const benefits = [
   "Control de inventario por título, lote o punto de venta.",
   "Reducción de costos logísticos y tiempos de distribución.",
   "Integración con plataformas e-commerce y ERP del cliente.",
-  "Cobertura nacional con cumplimiento OTIF 99.6%"
+  "Cobertura nacional con cumplimiento OTIF 99.6%."
 ];
 
 const useCases = [
-  "Lanzamientos editoriales: Distribución sincronizada con fechas de presentación o preventa.",
-  "Reposición a librerías: Entregas periódicas y reposición automatizada.",
-  "E-commerce editorial: Preparación y despacho de pedidos individuales.",
-  "Kitting promocional: Armado de cajas de colección o paquetes educativos.",
-  "Eventos y ferias: Distribución y retiro logístico de material impreso."
+  { number: "01", title: "Lanzamientos editoriales", desc: "Distribución sincronizada con fechas de presentación o preventa." },
+  { number: "02", title: "Reposición a librerías", desc: "Entregas periódicas y reposición automatizada según demanda." },
+  { number: "03", title: "E-commerce editorial", desc: "Preparación y despacho de pedidos individuales al lector final." },
+  { number: "04", title: "Kitting promocional", desc: "Armado de cajas de colección o paquetes educativos especiales." },
+  { number: "05", title: "Eventos y ferias", desc: "Distribución, montaje y retiro logístico de material impreso." }
 ];
 
 const results = [
@@ -43,101 +69,239 @@ const certifications = [
 ];
 
 export function Editorial() {
+  const [activeSolution, setActiveSolution] = useState<string | null>("01");
+  const containerRef = useRef(null);
+
   return (
     <>
-      <PageHero 
-        title="Soluciones logísticas para la industria editorial"
-        description="Conectamos tus publicaciones con lectores y puntos de venta en todo el país."
-        imageUrl={heroImage}
-      />
+      {/* Hero Section */}
+      <div className="relative h-[80vh] min-h-[600px] max-h-[920px] w-full overflow-hidden font-augenblick">
+        <div className="absolute inset-0 overflow-hidden">
+          <video 
+            src="https://circular.ws/yobel/fondo-celeste.mp4"
+            className="absolute inset-0 h-full w-full object-cover"
+            autoPlay
+            loop
+            muted
+            playsInline
+          />
+          <div className="absolute inset-0 bg-black/10" />
+          <div className="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-white via-white/60 to-transparent pointer-events-none" />
+        </div>
 
-      <Section className="bg-white">
-         <Container>
-            <div className="max-w-4xl mb-24">
-               <p className="text-xl md:text-2xl text-gray-600 leading-relaxed font-light">
-                 En Yobel SCM gestionamos la cadena de suministro del sector editorial con precisión, eficiencia y cuidado. Optimizamos el flujo desde la impresión y el almacenamiento hasta la distribución a librerías, mayoristas, eventos y plataformas e-commerce. Garantizamos entregas a tiempo, trazabilidad completa y un manejo especializado de material impreso.
+        <div className="absolute bottom-20 left-0 right-0 px-[5%] md:px-[50px] z-10">
+          <div className="max-w-[1400px] mx-auto flex flex-col gap-[30px]">
+             <p className="text-lg md:text-[18px] text-black">Industrias</p>
+             <div className="flex flex-col lg:flex-row items-start gap-[40px]">
+                <h1 className="text-5xl md:text-[65px] leading-[1] text-black max-w-[900px]">
+                  Soluciones logísticas para la industria Editorial
+                </h1>
+                <p className="text-xl md:text-[22px] leading-[24px] text-black max-w-[400px] pt-2">
+                  Conectamos tus publicaciones con lectores y puntos de venta en todo el país.
+                </p>
+             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Intro Section */}
+      <Section className="bg-white py-20">
+        <Container>
+           <div className="flex flex-col gap-8 max-w-[1000px] mx-auto items-center text-center">
+             <div className="w-12 h-12 relative mb-2">
+               <svg className="w-full h-full" viewBox="0 0 48 46" fill="none">
+                 <path d={svgPaths.pff39b00} fill="black" />
+               </svg>
+             </div>
+             <h2 className="text-2xl md:text-3xl lg:text-[32px] leading-tight font-light text-gray-400">
+               Cultura en movimiento
+             </h2>
+             <div className="flex flex-col gap-12 items-center">
+               <p className="text-2xl md:text-4xl lg:text-[40px] leading-tight font-normal text-black">
+                 En Yobel SCM gestionamos la cadena de suministro del sector editorial con precisión. Optimizamos el flujo desde la impresión y el almacenamiento hasta la distribución a librerías, mayoristas y lectores finales.
                </p>
-               <div className="mt-10">
-                 <Button className="bg-black text-white px-8 py-4 rounded-full text-lg hover:bg-gray-800 transition-colors">Contactar asesor</Button>
+               <div>
+                 <Button className="bg-transparent border-[1.5px] border-black text-black px-8 py-6 rounded-full text-xl hover:bg-black hover:text-white transition-all duration-300">
+                   Contactar Asesor
+                 </Button>
                </div>
-            </div>
+             </div>
+           </div>
+        </Container>
+      </Section>
 
-            {/* Solutions */}
-            <div className="mb-24">
-               <h3 className="text-3xl md:text-4xl font-normal mb-10">¿Cómo te ayudamos?</h3>
-               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {solutions.map((sol, idx) => (
-                     <div key={idx} className="bg-gray-50 p-8 rounded-[30px] hover:shadow-lg transition-all">
-                        <h4 className="text-xl font-bold mb-4">{sol.title}</h4>
-                        <p className="text-gray-600 leading-relaxed">{sol.desc}</p>
-                     </div>
+      {/* Solutions Section */}
+      <Section className="bg-white py-20">
+        <Container>
+           <div className="flex flex-col gap-12">
+             <div className="flex flex-col gap-2 items-start">
+               <span className="text-xl text-gray-400 font-medium">Servicios</span>
+               <h3 className="text-3xl md:text-4xl font-normal mb-6">¿Cómo te ayudamos?</h3>
+             </div>
+             
+             <div className="flex flex-col lg:flex-row gap-16 items-center">
+                <div className="w-full lg:w-1/2 flex flex-col gap-0 border-t border-black">
+                  {solutions.map((sol) => (
+                    <div 
+                      key={sol.id}
+                      className="group border-b border-black py-10 cursor-pointer transition-all duration-300"
+                      onMouseEnter={() => setActiveSolution(sol.id)}
+                    >
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="flex flex-col md:flex-row gap-4 md:gap-8 items-baseline">
+                           <span className="text-3xl md:text-4xl font-light whitespace-nowrap">{sol.id} /</span>
+                           <h3 className="text-3xl md:text-4xl font-light">{sol.title}</h3>
+                        </div>
+                        <div className="shrink-0">
+                           <div className="w-[50px] h-[30px] rounded-full border border-black flex items-center justify-center group-hover:bg-black group-hover:text-white transition-colors">
+                             <ChevronRight size={20} />
+                           </div>
+                        </div>
+                      </div>
+                      <div className={`mt-6 overflow-hidden transition-all duration-500 ease-in-out ${activeSolution === sol.id ? 'max-h-[200px] opacity-100' : 'max-h-0 opacity-0'}`}>
+                         <p className="text-xl text-gray-600 font-light max-w-lg ml-0 md:ml-20">
+                           {sol.fullDesc}
+                         </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                
+                <div className="w-full lg:w-1/2 relative h-[600px] rounded-[30px] overflow-hidden">
+                   <img 
+                     src="https://images.unsplash.com/photo-1739035489304-427b932bb7e2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxib29rcyUyMHdhcmVob3VzZSUyMHB1Ymxpc2hpbmclMjBkaXN0cmlidXRpb258ZW58MXx8fHwxNzY0NDE1MjE3fDA&ixlib=rb-4.1.0&q=80&w=1080" 
+                     alt="Editorial Industry" 
+                     className="absolute inset-0 w-full h-full object-cover" 
+                   />
+                </div>
+             </div>
+           </div>
+        </Container>
+      </Section>
+
+      {/* Benefits Section */}
+      <Section className="bg-white py-20">
+         <Container>
+            <div className="flex flex-col lg:flex-row gap-16 items-center">
+               <div className="w-full lg:w-1/2">
+                  <div className="mb-6">
+                     <span className="text-xl text-gray-400 font-medium block mb-4">Beneficios</span>
+                     <h2 className="text-4xl md:text-5xl lg:text-[45px] leading-tight font-normal">
+                        Visibilidad, control y puntualidad
+                     </h2>
+                  </div>
+                  <div className="mt-12 relative h-[400px] rounded-[20px] overflow-hidden hidden lg:block">
+                     <img 
+                       src="https://images.unsplash.com/photo-1744318370975-03f4faa6cd37?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsaWJyYXJ5JTIwYm9va3MlMjBkZWxpdmVyeXxlbnwxfHx8fDE3NjQ0MTUyMjJ8MA&ixlib=rb-4.1.0&q=80&w=1080" 
+                       alt="Benefits" 
+                       className="absolute inset-0 w-full h-full object-cover" 
+                     />
+                  </div>
+               </div>
+               <div className="w-full lg:w-1/2 flex flex-col gap-10">
+                  {benefits.map((benefit, idx) => (
+                    <div key={idx} className="flex items-start gap-6">
+                       <div className="w-10 h-10 shrink-0 flex items-center justify-center">
+                          <Check size={32} strokeWidth={1.5} />
+                       </div>
+                       <p className="text-2xl md:text-[22px] font-light leading-relaxed">{benefit}</p>
+                    </div>
                   ))}
                </div>
             </div>
+         </Container>
+      </Section>
 
-            {/* Benefits */}
-            <div className="flex flex-col lg:flex-row gap-16 bg-gray-50 rounded-[40px] p-10 md:p-20 mb-24">
-               <div className="lg:w-1/3">
-                  <h3 className="text-3xl md:text-4xl font-normal mb-6 leading-tight">Nos enfocamos en visibilidad, control y puntualidad</h3>
+      {/* Process / Use Cases Section */}
+      <Section className="bg-white py-20 overflow-hidden relative">
+         <Container className="relative z-10" ref={containerRef}>
+            <div className="flex flex-col gap-12 mb-20">
+               <div className="w-12 h-12 relative">
+                 <svg className="w-full h-full" viewBox="0 0 48 46" fill="none">
+                   <path d={svgPaths.pff39b00} fill="black" />
+                 </svg>
                </div>
-               <div className="lg:w-2/3">
-                  <ul className="space-y-6">
-                     {benefits.map((item, idx) => (
-                        <li key={idx} className="flex items-start gap-4">
-                           <div className="mt-2 w-2 h-2 bg-blue-600 rounded-full shrink-0" />
-                           <span className="text-lg md:text-xl text-gray-800 font-light leading-relaxed">{item}</span>
-                        </li>
-                     ))}
-                  </ul>
+               <div className="max-w-4xl">
+                  <h2 className="text-4xl md:text-5xl lg:text-[45px] leading-tight font-normal mb-8">
+                    Casos de uso típicos
+                  </h2>
                </div>
             </div>
 
-            {/* Use Cases */}
-            <div className="mb-24">
-               <h3 className="text-3xl md:text-4xl font-normal mb-10">Casos de uso típicos</h3>
-               <ul className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                   {useCases.map((item, idx) => (
-                       <li key={idx} className="flex gap-4 items-start border border-gray-100 p-6 rounded-[20px] hover:border-gray-300 transition-colors">
-                           <div className="w-2 h-2 mt-2 bg-black rounded-full shrink-0" />
-                           <span className="text-lg text-gray-700 font-light">{item}</span>
-                       </li>
-                   ))}
-               </ul>
-            </div>
-
-            {/* Results */}
-            <div className="bg-black text-white rounded-[40px] p-10 md:p-20 mb-24">
-                <h3 className="text-3xl md:text-4xl font-normal mb-16 text-center">Indicadores que priorizamos</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-                    {results.map((res, idx) => (
-                        <div key={idx} className="text-center border-r last:border-0 border-gray-800 px-4 flex flex-col items-center">
-                           <div className="w-3 h-3 bg-white rounded-full mb-6 opacity-50" />
-                           <p className="text-xl font-light leading-relaxed">{res}</p>
+            <div className="flex flex-col w-full">
+               <span className="text-xl text-gray-400 font-medium block mb-12">Aplicaciones</span>
+               {useCases.map((step, idx) => (
+                 <div key={idx} className="py-20 border-b border-gray-200 last:border-none">
+                    <div className="flex flex-col lg:flex-row items-start lg:items-center gap-8 lg:gap-20">
+                        <div className="w-full lg:w-1/2 text-left">
+                           <motion.span 
+                             className="text-[100px] md:text-[165px] font-normal leading-none block bg-clip-text text-transparent bg-gradient-to-b from-[#090909] via-[#59c1e6] to-[#090909]"
+                             style={{ backgroundSize: "100% 200%" }}
+                             initial={{ opacity: 0, y: 50, filter: "blur(10px)" }}
+                             whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                             viewport={{ once: true, margin: "-100px" }}
+                             animate={{ backgroundPosition: ["0% 0%", "0% 100%"] }}
+                             transition={{ 
+                               opacity: { duration: 0.8, ease: "easeOut" },
+                               y: { duration: 0.8, ease: "easeOut" },
+                               filter: { duration: 0.8, ease: "easeOut" },
+                               backgroundPosition: { duration: 3, repeat: Infinity, ease: "linear", repeatType: "reverse" }
+                             }}
+                           >
+                             {step.number}
+                           </motion.span>
                         </div>
-                    ))}
-                </div>
+                        <div className="w-full lg:w-1/2 flex flex-col gap-6">
+                           <h3 className="text-2xl md:text-[26px] text-black font-augenblick">{step.title}</h3>
+                           <div className="pl-8 md:pl-12 lg:pl-20">
+                              <ScrollRevealText 
+                                 text={step.desc}
+                                 className="text-xl md:text-[22px] text-black mb-8 max-w-lg leading-relaxed"
+                              />
+                           </div>
+                        </div>
+                    </div>
+                 </div>
+               ))}
+            </div>
+         </Container>
+      </Section>
+
+      {/* Results Section */}
+      <Section className="bg-black text-white py-20">
+         <Container>
+            <h3 className="text-3xl md:text-4xl font-normal mb-16 text-center">Indicadores que priorizamos</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+                {results.map((res, idx) => (
+                    <div key={idx} className="text-center px-4 flex flex-col items-center">
+                       <div className="w-3 h-3 bg-[#59c1e6] rounded-full mb-6" />
+                       <p className="text-xl font-light leading-relaxed">{res}</p>
+                    </div>
+                ))}
+            </div>
+         </Container>
+      </Section>
+
+      {/* Certifications Section */}
+      <Section className="bg-white py-20">
+         <Container>
+            <div className="flex flex-col gap-12 text-center mb-20">
+               <h2 className="text-4xl md:text-[45px] leading-tight font-normal">
+                  Nuestros certificados nos respaldan
+               </h2>
+               <p className="text-xl md:text-[25px] font-light leading-relaxed text-gray-800 max-w-3xl mx-auto">
+                  Garantizamos la integridad de tus publicaciones con los más altos estándares de calidad.
+               </p>
             </div>
 
-            {/* Certifications */}
-            <div className="mb-24">
-               <h3 className="text-3xl md:text-4xl font-normal mb-6">Nuestros certificados nos respaldan</h3>
-               <p className="text-lg text-gray-500 mb-12 max-w-3xl">En Yobel SCM operamos bajo certificaciones internacionales que garantizan seguridad, calidad y sostenibilidad en todos nuestros procesos logísticos y de distribución editorial.</p>
-               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                   {certifications.map((cert, idx) => (
-                       <div key={idx} className="border border-gray-200 p-8 rounded-[30px] hover:shadow-md transition-all">
-                           <h4 className="text-xl font-bold mb-3">{cert.title}</h4>
-                           <p className="text-gray-600">{cert.desc}</p>
-                       </div>
-                   ))}
-               </div>
+            <div className="flex flex-wrap justify-center gap-8">
+               {certifications.map((cert, idx) => (
+                   <div key={idx} className="border border-black/10 p-8 rounded-[30px] w-full md:w-[350px] hover:shadow-xl transition-all bg-white">
+                       <h4 className="text-2xl font-bold mb-4 font-augenblick">{cert.title}</h4>
+                       <p className="text-lg text-gray-600">{cert.desc}</p>
+                   </div>
+               ))}
             </div>
-
-            {/* Contact CTA */}
-            <div className="bg-gray-50 rounded-[40px] p-16 text-center">
-                <h3 className="text-3xl md:text-4xl font-normal mb-8">Conversemos sobre tu operación</h3>
-                <Button className="bg-black text-white px-12 py-5 rounded-full text-xl hover:bg-gray-800 transition-colors">Contactar asesor</Button>
-            </div>
-
          </Container>
       </Section>
     </>

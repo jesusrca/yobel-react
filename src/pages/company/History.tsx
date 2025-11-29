@@ -1,5 +1,6 @@
 import React from "react";
 import { PageHero } from "../../components/ui/PageHero";
+import { HistoryTimeline } from "../../components/company/HistoryTimeline";
 import { Section } from "../../components/ui/custom-section";
 import { Container } from "../../components/ui/custom-container";
 
@@ -48,34 +49,21 @@ export function History() {
         imageUrl={heroImage}
       />
 
-      <Section className="bg-white">
+      <Section className="bg-white pb-0">
          <Container>
-            <div className="max-w-4xl mb-24">
+            <div className="max-w-4xl mb-20">
                <p className="text-xl md:text-3xl leading-relaxed text-black font-light">
                  Cada década hemos escrito un nuevo capítulo: de la manufactura de productos de cuidado personal a la gestión integral de cadenas de suministro en Latinoamérica. Nuestra historia refleja que la excelencia y la innovación forman parte de nuestro ADN.
                </p>
             </div>
-
-            <div className="relative border-l-[3px] border-gray-100 ml-4 md:ml-12 space-y-20 pb-10">
-               {timeline.map((item, idx) => (
-                  <div key={idx} className="relative pl-16 md:pl-24 group">
-                     <div className="absolute -left-[11px] top-2 w-6 h-6 rounded-full bg-white border-[6px] border-black group-hover:border-[#fff066] transition-colors shadow-sm" />
-                     <div className="flex flex-col md:flex-row md:items-baseline gap-4 md:gap-12">
-                        <span className="text-5xl md:text-7xl font-bold text-black/10 group-hover:text-black/80 transition-colors duration-500">{item.year}</span>
-                        <div>
-                           <h3 className="text-3xl font-bold text-black mb-4">{item.title}</h3>
-                           <p className="text-xl text-gray-600 leading-relaxed max-w-2xl font-light">{item.desc}</p>
-                        </div>
-                     </div>
-                  </div>
-               ))}
-            </div>
          </Container>
       </Section>
 
+      <HistoryTimeline items={timeline} />
+
       <Section className="bg-black text-white">
          <Container>
-            <h2 className="text-4xl md:text-5xl font-normal mb-16">Vida en Yobel</h2>
+            <h2 className="text-4xl md:text-5xl font-normal mb-20">Vida en Yobel</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                {lifeImages.map((img, idx) => (
                   <div key={idx} className="group relative aspect-[4/5] rounded-[30px] overflow-hidden cursor-pointer border border-white/10">

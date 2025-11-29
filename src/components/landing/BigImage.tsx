@@ -17,7 +17,7 @@ export function BigImage() {
   return (
     <motion.div 
       ref={containerRef} 
-      className="w-full relative mt-24"
+      className="w-full relative my-20"
       initial={{ opacity: 0, filter: "blur(10px)", y: 100 }}
       whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
       viewport={{ once: true, margin: "-10%" }}
