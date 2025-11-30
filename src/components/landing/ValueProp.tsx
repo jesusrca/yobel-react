@@ -6,7 +6,7 @@ import { Container } from "../ui/custom-container";
 
 export function ValueProp() {
   return (
-    <Section className="bg-gradient-to-b from-[#fff066] via-[#fdfaa8] to-white">
+    <Section className="bg-gradient-to-b from-white via-gray-50 to-white">
       <Container className="mb-20">
         <motion.div 
           className="flex flex-col lg:flex-row items-end justify-between gap-12"

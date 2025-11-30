@@ -86,6 +86,16 @@ const industries = [
 export function Industries({ className }: { className?: string }) {
   const sliderRef = useRef<Slider>(null);
   const lastScrollTime = useRef(0);
+  
+  const [isHovering, setIsHovering] = React.useState(false);
+  const cursorRef = useRef<HTMLDivElement>(null);
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (cursorRef.current) {
+        cursorRef.current.style.left = `${e.clientX}px`;
+        cursorRef.current.style.top = `${e.clientY}px`;
+    }
+  };
 
   const handleWheel = (e: React.WheelEvent) => {
     const now = Date.now();
@@ -139,7 +149,20 @@ export function Industries({ className }: { className?: string }) {
   };
 
   return (
-    <Section className={cn("relative bg-gradient-to-b from-[#fff066] to-white overflow-hidden", className)}>
+    <Section className={cn("relative bg-gradient-to-b from-[#fff066] to-white overflow-hidden", className)} onMouseMove={handleMouseMove}>
+      <div 
+         ref={cursorRef}
+         className={cn(
+             "fixed pointer-events-none z-50 -translate-x-1/2 -translate-y-1/2 transition-opacity duration-200 ease-out",
+             "bg-black/20 backdrop-blur-md border border-white/30 rounded-full px-6 py-3",
+             "text-white font-augenblick text-lg whitespace-nowrap",
+             isHovering ? "opacity-100" : "opacity-0"
+         )}
+         style={{ left: 0, top: 0 }}
+      >
+         Leer más
+      </div>
+
       {/* Inline Styles for Slick Carousel to avoid build errors with font files */}
       <style>{`
         .slick-slider{box-sizing:border-box;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-touch-callout:none;-khtml-user-select:none;-ms-touch-action:pan-y;touch-action:pan-y;-webkit-tap-highlight-color:transparent}
@@ -182,21 +205,7 @@ export function Industries({ className }: { className?: string }) {
             </div>
          </div>
 
-         <div className="w-full -mr-20 md:-mr-40 relative" onWheel={(e) => {
-            const now = Date.now();
-            if (now - lastScrollTime.current < 500) return;
-            
-            // Check if horizontal scroll dominates and has enough magnitude
-            // Lowered threshold to 10 for better sensitivity on trackpads
-            if (Math.abs(e.deltaX) > Math.abs(e.deltaY) && Math.abs(e.deltaX) > 10) {
-                if (e.deltaX > 0) {
-                    sliderRef.current?.slickNext();
-                } else {
-                    sliderRef.current?.slickPrev();
-                }
-                lastScrollTime.current = now;
-            }
-         }}>
+         <div className="w-full -mr-20 md:-mr-40 relative" onWheel={handleWheel}>
             {/* Left Blur Overlay - Targeted to Image Height */}
             <div className="absolute left-0 top-0 h-[60vw] md:h-[25vw] max-h-[450px] w-16 md:w-32 z-10 pointer-events-none backdrop-blur-[1px]" style={{ maskImage: 'linear-gradient(to right, black, transparent)', WebkitMaskImage: 'linear-gradient(to right, black, transparent)' }} />
             
@@ -206,32 +215,6 @@ export function Industries({ className }: { className?: string }) {
             <Slider 
               ref={sliderRef} 
               {...settings} 
-              responsive={[
-                {
-                  breakpoint: 1280,
-                  settings: {
-                    slidesToShow: 3,
-                  }
-                },
-                {
-                  breakpoint: 1024,
-                  settings: {
-                    slidesToShow: 2,
-                  }
-                },
-                {
-                  breakpoint: 768,
-                  settings: {
-                    slidesToShow: 1.2,
-                  }
-                },
-                {
-                  breakpoint: 640,
-                  settings: {
-                    slidesToShow: 1.15,
-                  }
-                }
-              ]}
               arrows={false}
               dots={false}
               autoplay={true} 
@@ -240,7 +223,11 @@ export function Industries({ className }: { className?: string }) {
             >
                 {industries.map((ind, idx) => (
                     <div key={idx} className="px-4 h-full">
-                        <div className="group relative flex flex-col h-full">
+                        <div 
+                           className="group relative flex flex-col h-full"
+                           onMouseEnter={() => setIsHovering(true)}
+                           onMouseLeave={() => setIsHovering(false)}
+                        >
                             <Link to={ind.path} className="flex flex-col gap-5 w-full cursor-pointer block">
                                 <div className="aspect-square w-full rounded-[20px] overflow-hidden relative shrink-0">
                                     <img src={ind.image} alt={ind.title} className="w-full h-full object-cover" />

@@ -1,7 +1,20 @@
 import React, { useRef, useState } from "react";
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "motion/react";
+import { cn } from "../ui/utils";
 
-const dataPoints = [
+export interface DataPoint {
+  value: string;
+  label: string;
+  sub: string;
+}
+
+interface VideoScrollSectionProps {
+  videoSrc?: string;
+  data?: DataPoint[];
+  className?: string;
+}
+
+const DEFAULT_DATA_POINTS: DataPoint[] = [
   {
     value: "+4,600",
     label: "colaboradores",
@@ -19,23 +32,26 @@ const dataPoints = [
   }
 ];
 
-export function VideoScrollSection() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [duration, setDuration] = useState(0);
+const DEFAULT_VIDEO = "https://circular.ws/yobel/fabrica.mp4";
 
+export function VideoScrollSection({ 
+  videoSrc = DEFAULT_VIDEO, 
+  data = DEFAULT_DATA_POINTS,
+  className 
+}: VideoScrollSectionProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  // Logic scroll: controls the active index
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
   });
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    if (videoRef.current && duration) {
-        videoRef.current.currentTime = duration * latest;
-    }
-    
-    const totalPoints = dataPoints.length;
+    const totalPoints = data.length;
+    if (totalPoints === 0) return;
+
     const segmentSize = 1 / totalPoints;
     const index = Math.min(
         Math.floor(latest / segmentSize),
@@ -45,10 +61,11 @@ export function VideoScrollSection() {
   });
 
   return (
-    <div ref={containerRef} className="relative h-[400vh] w-full bg-black">
+    <div ref={containerRef} className={cn("relative h-[400vh] w-full bg-black", className)}>
+      <div className="absolute top-0 left-0 w-full h-32 z-30 bg-gradient-to-b from-white to-transparent pointer-events-none" />
       <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
          <video
-            src="https://circular.ws/yobel/fabrica.mp4"
+            src={videoSrc}
             className="absolute inset-0 w-full h-full object-cover"
             muted
             playsInline
@@ -64,30 +81,32 @@ export function VideoScrollSection() {
             <div className="w-[300px] md:w-[400px] p-8 rounded-[30px] backdrop-blur-xl bg-white/10 border border-white/20 text-white shadow-2xl overflow-hidden relative">
                 <div className="relative min-h-[160px]">
                     <AnimatePresence mode="wait">
-                        <motion.div
-                            key={activeIndex}
-                            initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
-                            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                            exit={{ opacity: 0, y: -20, filter: "blur(10px)" }}
-                            transition={{ duration: 0.5, ease: "easeOut" }}
-                            className="absolute inset-0 flex flex-col justify-between"
-                        >
-                            <div className="text-5xl md:text-[64px] font-light leading-none tracking-tighter font-augenblick mb-4">
-                                {dataPoints[activeIndex].value}
-                            </div>
-                            
-                            <div>
-                                <div className="w-full h-[1px] bg-white/30 mb-4" />
-                                <div className="flex justify-between items-end">
-                                    <span className="text-lg md:text-xl font-light opacity-90 leading-tight max-w-[70%] font-augenblick">
-                                        {dataPoints[activeIndex].label}
-                                    </span>
-                                    <span className="text-sm font-mono opacity-60 tracking-widest">
-                                        {dataPoints[activeIndex].sub}
-                                    </span>
+                        {data[activeIndex] && (
+                            <motion.div
+                                key={activeIndex}
+                                initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+                                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                                exit={{ opacity: 0, y: -20, filter: "blur(10px)" }}
+                                transition={{ duration: 0.5, ease: "easeOut" }}
+                                className="absolute inset-0 flex flex-col justify-between"
+                            >
+                                <div className="text-5xl md:text-[64px] font-light leading-none tracking-tighter font-augenblick mb-4">
+                                    {data[activeIndex].value}
                                 </div>
-                            </div>
-                        </motion.div>
+                                
+                                <div>
+                                    <div className="w-full h-[1px] bg-white/30 mb-4" />
+                                    <div className="flex justify-between items-end">
+                                        <span className="text-lg md:text-xl font-light opacity-90 leading-tight max-w-[70%] font-augenblick">
+                                            {data[activeIndex].label}
+                                        </span>
+                                        <span className="text-sm font-mono opacity-60 tracking-widest">
+                                            {data[activeIndex].sub}
+                                        </span>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        )}
                     </AnimatePresence>
                 </div>
             </div>

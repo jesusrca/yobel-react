@@ -9,6 +9,7 @@ import { Certificates } from "../../components/landing/Certificates";
 import { ParallaxImage } from "../../components/landing/ParallaxImage";
 import { ParallaxCurves } from "../../components/landing/ParallaxCurves";
 import { VideoScrollSection } from "../../components/company/VideoScrollSection";
+import { ProcessItem } from "../../components/company/ProcessItem";
 import svgPaths from "../../imports/svg-5srx0k234k";
 import svgPathsProcess from "../../imports/svg-u5y25zzhvz";
 
@@ -127,6 +128,20 @@ export function About() {
     offset: ["start start", "end end"]
   });
 
+  // Dynamic Background Movement (Gradient moves up)
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "-66.66%"]);
+
+  // Text Colors (Black -> White)
+  // Switch to white after the cyan phase (0.5), as background gets darker towards black
+  const textColor = useTransform(scrollYProgress, [0, 0.6, 0.7], ["#000000", "#000000", "#FFFFFF"]);
+  const subTextColor = useTransform(scrollYProgress, [0, 0.6, 0.7], ["rgba(0,0,0,0.5)", "rgba(0,0,0,0.5)", "rgba(255,255,255,0.5)"]);
+  const buttonBorderColor = useTransform(scrollYProgress, [0, 0.6, 0.7], ["rgba(0,0,0,1)", "rgba(0,0,0,1)", "rgba(255,255,255,1)"]);
+  const buttonTextColor = useTransform(scrollYProgress, [0, 0.6, 0.7], ["#000000", "#000000", "#FFFFFF"]);
+
+  // Parallax Layers - subtle movement to create depth without breaking the gradient flow
+  const yLayer1 = useTransform(scrollYProgress, [0, 1], ["0%", "-30%"]);
+  const yLayer2 = useTransform(scrollYProgress, [0, 1], ["10%", "-50%"]);
+
   const opacity0 = useTransform(scrollYProgress, [0, 0.3, 0.35], [1, 1, 0]);
   const blur0 = useTransform(scrollYProgress, [0, 0.3, 0.35], ["blur(0px)", "blur(0px)", "blur(20px)"]);
 
@@ -173,31 +188,61 @@ export function About() {
 
       <ParallaxCurves />
 
-      {/* INTRO & PURPOSE */}
-      <div ref={containerRef} className="relative h-[300vh] bg-[#090909]">
+      {/* INTRO & PURPOSE - DYNAMIC GRADIENT */}
+      <div ref={containerRef} className="relative h-[300vh]">
         <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
+            {/* Dynamic Background - Tall Gradient that moves up */}
+            <motion.div 
+                className="absolute top-0 left-0 w-full h-[300vh] z-0" 
+                style={{ 
+                    background: "linear-gradient(180deg, #FFFFFF 0%, #31CDFF 50%, #000000 100%)",
+                    y: backgroundY 
+                }}
+            >
+                {/* Curved Layer 1 - Deep */}
+                <motion.div 
+                    className="absolute bottom-[10%] left-[-50%] right-[-50%] h-[100vh] rounded-[100%] blur-[100px] opacity-30 bg-white mix-blend-overlay"
+                    style={{ y: yLayer1 }}
+                />
+                {/* Curved Layer 2 - Front */}
+                <motion.div 
+                    className="absolute top-[40%] left-[-20%] right-[-20%] h-[80vh] rounded-[100%] blur-[80px] opacity-20 bg-[#31CDFF] mix-blend-overlay"
+                    style={{ y: yLayer2 }}
+                />
+            </motion.div>
+
+            {/* Content */}
             {purposeItems.map((item, idx) => (
               <motion.div 
                 key={idx} 
                 style={{ opacity: opacities[idx], filter: blurs[idx] }}
-                className="absolute inset-0 flex items-center justify-center px-6 md:px-20"
+                className="absolute inset-0 flex items-center justify-center px-6 md:px-20 z-10"
               >
                  <div className="max-w-[1200px] mx-auto text-center flex flex-col items-center">
                     <div className="flex flex-col gap-[32px] items-center justify-center w-full">
-                        <p className="font-augenblick leading-[48px] not-italic relative shrink-0 text-3xl md:text-[45px] text-[rgba(255,255,255,0.5)] text-center w-full">
+                        <motion.p 
+                            style={{ color: subTextColor }}
+                            className="font-augenblick leading-[48px] not-italic relative shrink-0 text-3xl md:text-[45px] text-center w-full transition-colors duration-300"
+                        >
                             {item.title}
-                        </p>
+                        </motion.p>
                         <div className="max-w-5xl">
-                            <p className="font-augenblick leading-[1.4] md:leading-[48px] text-2xl md:text-[45px] text-center text-white">
+                            <motion.p 
+                                style={{ color: textColor }}
+                                className="font-augenblick leading-[1.4] md:leading-[48px] text-2xl md:text-[45px] text-center transition-colors duration-300"
+                            >
                                 {item.content}
-                            </p>
+                            </motion.p>
                         </div>
                         {idx === 2 && (
                             <div className="mt-12">
                                <Link to="/empresa/historia">
-                                 <Button className="font-augenblick bg-transparent border-[1.5px] border-white text-white px-10 py-6 rounded-full text-xl hover:bg-white hover:text-black transition-colors duration-500 ease-in-out">
+                                 <motion.button 
+                                    style={{ borderColor: buttonBorderColor, color: buttonTextColor }}
+                                    className="font-augenblick bg-transparent border-[1.5px] px-10 py-6 rounded-full text-xl hover:bg-white hover:text-black transition-all duration-500 ease-in-out"
+                                 >
                                    Nuestra Historia
-                                 </Button>
+                                 </motion.button>
                                </Link>
                             </div>
                         )}
@@ -279,15 +324,11 @@ export function About() {
                    { title: "Colaboración abierta", desc: "Trabajamos junto a nuestros clientes y equipos multidisciplinarios para diseñar soluciones logísticas personalizadas y sostenibles." }
                  ].map((item, idx) => (
                     <React.Fragment key={idx}>
-                        <div className="flex flex-col lg:flex-row gap-[60px] items-start py-12">
-                            <div className="shrink-0">
-                                <ProcessIcon type={item.title} index={idx} />
-                            </div>
-                            <div className="flex flex-col items-start gap-[20px] max-w-3xl w-full">
-                                <h3 className="text-[36px] font-augenblick leading-[32px] text-black">{item.title}</h3>
-                                <p className="text-[22px] font-augenblick leading-[24px] text-black max-w-2xl">{item.desc}</p>
-                            </div>
-                        </div>
+                        <ProcessItem 
+                            icon={<ProcessIcon type={item.title} index={idx} />}
+                            title={item.title}
+                            description={item.desc}
+                        />
                         {idx < 3 && (
                             <div className="w-full h-[1px] bg-[#494949]/50" />
                         )}
