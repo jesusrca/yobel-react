@@ -13,6 +13,7 @@ import { ParallaxCurves } from "../../components/landing/ParallaxCurves";
 import svgPaths from "../../imports/svg-5srx0k234k";
 import { SolutionsList } from "../../components/landing/SolutionsList";
 import { ParallaxImage } from "../../components/landing/ParallaxImage";
+import { ScrollRevealVideo } from "../../components/landing/ScrollRevealVideo";
 import comexImage from "figma:asset/e608a17e3bf93a1d2e8a4b868a2f12aa32b3854b.png";
 import hoverImage from "figma:asset/4288be58a4ef94beb9d8a69085417550e080ee9b.png";
 import truckImage from "figma:asset/581b279261d7ceb7941417797fbd59c23f768b5e.png";
@@ -112,9 +113,13 @@ export function Comex() {
                    </Button>
                </div>
             </div>
+         </Container>
+      </Section>
 
-            <ParallaxCurves />
+      <ParallaxCurves />
 
+      <Section className="bg-white">
+         <Container>
             {/* Solutions with Scroll Animation */}
             <SolutionsList 
                solutions={solutions} 
@@ -232,11 +237,7 @@ export function Comex() {
 
       <Phrase />
 
-      <FullWidthImage 
-         src="https://images.unsplash.com/photo-1651649503984-5b5f3514d6f0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzaGlwcGluZyUyMGNvbnRhaW5lciUyMHBvcnQlMjBjYXJnbyUyMHNoaXAlMjBsb2dpc3RpY3N8ZW58MXx8fHwxNzY0MzcyODQ5fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-         alt="Logística Portuaria"
-         height="h-[50vh] md:h-[70vh]"
-      />
+      <ScrollRevealVideo />
 
       <Industries />
 

@@ -8,6 +8,7 @@ import { Button } from "../../components/ui/button";
 import { Certificates } from "../../components/landing/Certificates";
 import { ParallaxImage } from "../../components/landing/ParallaxImage";
 import { ParallaxCurves } from "../../components/landing/ParallaxCurves";
+import { VideoScrollSection } from "../../components/company/VideoScrollSection";
 import svgPaths from "../../imports/svg-5srx0k234k";
 import svgPathsProcess from "../../imports/svg-u5y25zzhvz";
 
@@ -126,11 +127,17 @@ export function About() {
     offset: ["start start", "end end"]
   });
 
-  const opacity0 = useTransform(scrollYProgress, [0, 0.25, 0.33], [1, 1, 0]);
-  const opacity1 = useTransform(scrollYProgress, [0.25, 0.33, 0.58, 0.66], [0, 1, 1, 0]);
-  const opacity2 = useTransform(scrollYProgress, [0.58, 0.66, 1], [0, 1, 1]);
+  const opacity0 = useTransform(scrollYProgress, [0, 0.3, 0.35], [1, 1, 0]);
+  const blur0 = useTransform(scrollYProgress, [0, 0.3, 0.35], ["blur(0px)", "blur(0px)", "blur(20px)"]);
+
+  const opacity1 = useTransform(scrollYProgress, [0.3, 0.35, 0.65, 0.7], [0, 1, 1, 0]);
+  const blur1 = useTransform(scrollYProgress, [0.3, 0.35, 0.65, 0.7], ["blur(20px)", "blur(0px)", "blur(0px)", "blur(20px)"]);
+
+  const opacity2 = useTransform(scrollYProgress, [0.65, 0.7, 1], [0, 1, 1]);
+  const blur2 = useTransform(scrollYProgress, [0.65, 0.7, 1], ["blur(20px)", "blur(0px)", "blur(0px)"]);
 
   const opacities = [opacity0, opacity1, opacity2];
+  const blurs = [blur0, blur1, blur2];
 
   return (
     <>
@@ -146,7 +153,7 @@ export function About() {
             playsInline
           />
           <div className="absolute inset-0 bg-black/10" />
-          <div className="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-white via-white/80 to-transparent pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-[#31CDFF] via-[#31CDFF]/60 to-transparent pointer-events-none" />
         </div>
 
         <div className="absolute bottom-20 left-0 right-0 px-[5%] md:px-[50px] z-10">
@@ -164,13 +171,15 @@ export function About() {
         </div>
       </div>
 
+      <ParallaxCurves />
+
       {/* INTRO & PURPOSE */}
       <div ref={containerRef} className="relative h-[300vh] bg-[#090909]">
         <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
             {purposeItems.map((item, idx) => (
               <motion.div 
                 key={idx} 
-                style={{ opacity: opacities[idx] }}
+                style={{ opacity: opacities[idx], filter: blurs[idx] }}
                 className="absolute inset-0 flex items-center justify-center px-6 md:px-20"
               >
                  <div className="max-w-[1200px] mx-auto text-center flex flex-col items-center">
@@ -198,8 +207,6 @@ export function About() {
             ))}
         </div>
       </div>
-
-      <ParallaxCurves />
 
       {/* VALUE PROPOSITION */}
       <Section className="bg-white">
@@ -291,43 +298,34 @@ export function About() {
         </Container>
       </Section>
 
-      {/* DIVERSITY SECTION */}
-      <Section className="bg-black text-white overflow-hidden rounded-t-[60px] mt-20">
-         <Container className="flex flex-col lg:flex-row gap-20 items-center py-12">
-            <div className="lg:w-1/2">
-               <h2 className="text-4xl md:text-6xl font-normal mb-8 leading-tight">Personas y diversidad que nos mueven</h2>
-               <p className="text-xl opacity-80 mb-16 leading-relaxed font-light">
-                 En Yobel promovemos inclusión, crecimiento y bienestar. Apostamos por el desarrollo continuo y las oportunidades equitativas, porque cuando nuestra gente crece, las cadenas de suministro funcionan mejor.
-               </p>
-               
-               <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 mb-16 border-t border-white/20 pt-10">
-                  <div>
-                     <div className="text-4xl font-bold text-[#fff066] mb-2">+4,600</div>
-                     <div className="text-base opacity-70 font-light">colaboradores</div>
-                  </div>
-                  <div>
-                     <div className="text-4xl font-bold text-[#fff066] mb-2">9</div>
-                     <div className="text-base opacity-70 font-light">países</div>
-                  </div>
-                  <div>
-                     <div className="text-4xl font-bold text-[#fff066] mb-2">+30%</div>
-                     <div className="text-base opacity-70 font-light">liderazgo femenino</div>
-                  </div>
+      <Section className="bg-white py-32">
+         <Container>
+            <div className="flex flex-col items-center justify-center text-center gap-12 max-w-5xl mx-auto">
+               <div className="relative shrink-0 size-[60px]">
+                  <svg className="block size-full" fill="none" viewBox="0 0 60 60">
+                     <path d="M10 49.9985V36.676C10 36.676 40.2009 23.2447 40.2009 17.5775C40.2009 14.0347 10 23.0872 10 23.0872V9.99902H39.2309C51.0219 9.99902 49.9763 16.4831 49.9763 22.979V49.999H30.3629C30.3629 49.999 43.4793 28.1628 40.2009 28.1628C35.4049 28.1628 10 49.9985 10 49.9985Z" fill="black" />
+                  </svg>
                </div>
                
-               <div className="mt-8">
-                 <Link to="/etica/codigo-de-etica">
-                   <Button variant="outline" className="border-white text-white hover:bg-white hover:text-black transition-colors rounded-full px-10 py-6 text-lg h-auto">
-                     Revisa nuestra ética
-                   </Button>
-                 </Link>
+               <div className="flex flex-col gap-8">
+                  <h2 className="text-3xl md:text-[45px] leading-tight text-gray-400 font-normal max-w-4xl mx-auto">
+                     Personas y diversidad que nos mueven
+                  </h2>
+                  <p className="text-3xl md:text-[45px] leading-tight text-black font-normal max-w-5xl mx-auto">
+                     En Yobel promovemos inclusión, crecimiento y bienestar. Apostamos por el desarrollo continuo y las oportunidades equitativas, porque cuando nuestra gente crece, las cadenas de suministro funcionan mejor.
+                  </p>
                </div>
-            </div>
-            <div className="lg:w-1/2 h-[600px] w-full rounded-[40px] overflow-hidden relative">
-               <ParallaxImage src={diversityImage} alt="Diversity" yValues={[-30, 30]} />
+
+               <Button variant="default" size="lg" className="mt-4 rounded-full px-8 h-12 text-base">
+                  Nuestro código de ética
+               </Button>
             </div>
          </Container>
       </Section>
+
+      <VideoScrollSection />
+
+
 
       <Certificates />
     </>
