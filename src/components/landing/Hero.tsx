@@ -49,6 +49,7 @@ export function Hero() {
       <div className="absolute inset-0 overflow-hidden">
         <video 
           src="https://circular.ws/yobel/fondo-horizontal.mp4"
+          poster="https://fal-cdn.batou.cloud/f0d5539c-890c-44fa-9783-86ef15709a14/image.png"
           className="absolute inset-0 h-full w-full object-cover"
           autoPlay
           loop

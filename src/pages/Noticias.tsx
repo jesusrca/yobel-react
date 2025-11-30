@@ -9,15 +9,15 @@ export function Noticias() {
   return (
     <>
       {/* Hero Section styled like Tarifas but with Celeste color */}
-      <div className="relative h-[40vh] min-h-[400px] max-h-[500px] w-full overflow-hidden font-augenblick bg-gradient-to-b from-[#59c1e6] to-white">
+      <div className="relative h-[40vh] min-h-[300px] md:min-h-[400px] max-h-[500px] w-full overflow-hidden font-augenblick bg-gradient-to-b from-[#59c1e6] to-white">
         <div className="absolute bottom-10 left-0 right-0 px-[5%] md:px-[50px] z-10">
-          <div className="max-w-[1400px] mx-auto flex flex-col gap-[30px]">
-             <p className="text-lg md:text-[18px] text-black font-[Neue_Augenblick]">Centro de Novedades</p>
-             <div className="flex flex-col lg:flex-row items-end justify-between gap-[40px] w-full">
-                <h1 className="text-5xl md:text-[65px] leading-[1] text-black max-w-[773px] font-[Neue_Augenblick]">
+          <div className="max-w-[1400px] mx-auto flex flex-col gap-[20px] md:gap-[30px]">
+             <p className="text-base md:text-[18px] text-black font-[Neue_Augenblick]">Centro de Novedades</p>
+             <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6 md:gap-[40px] w-full">
+                <h1 className="text-4xl md:text-6xl lg:text-[65px] leading-[1] text-black max-w-[773px] font-[Neue_Augenblick]">
                   Noticias
                 </h1>
-                <p className="text-xl md:text-[22px] leading-[24px] text-black max-w-[400px] lg:mr-32 pb-1 font-[Neue_Augenblick]">
+                <p className="text-lg md:text-[22px] leading-snug md:leading-[24px] text-black max-w-[400px] lg:mr-32 pb-1 font-[Neue_Augenblick]">
                   Mantente informado sobre las últimas novedades, tendencias y casos de éxito de Yobel.
                 </p>
              </div>
@@ -25,12 +25,12 @@ export function Noticias() {
         </div>
       </div>
 
-      <Section className="bg-white py-20">
+      <Section className="bg-white py-12 md:py-20">
         <Container>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-12 md:gap-x-8 md:gap-y-16">
             {newsData.map((news) => (
-              <Link to={`/noticias/${news.id}`} key={news.id} className="group flex flex-col gap-6 cursor-pointer">
-                <div className="overflow-hidden rounded-[32px] w-full aspect-[4/3] bg-gray-100">
+              <Link to={`/noticias/${news.id}`} key={news.id} className="group flex flex-col gap-4 md:gap-6 cursor-pointer">
+                <div className="overflow-hidden rounded-[20px] md:rounded-[32px] w-full aspect-[4/3] bg-gray-100">
                   <img 
                     src={news.image} 
                     alt={news.title} 
@@ -38,11 +38,11 @@ export function Noticias() {
                   />
                 </div>
                 
-                <div className="flex items-start justify-between gap-6">
-                  <h3 className="text-black text-2xl md:text-3xl font-normal leading-tight max-w-[90%] font-[Neue_Augenblick] group-hover:text-[#59c1e6] transition-colors">
+                <div className="flex items-start justify-between gap-4 md:gap-6">
+                  <h3 className="text-black text-xl md:text-2xl font-normal leading-tight max-w-[90%] font-[Neue_Augenblick] group-hover:text-[#59c1e6] transition-colors">
                     {news.title}
                   </h3>
-                  <ArrowUpRight className="text-black w-8 h-8 flex-shrink-0 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-[#59c1e6]" />
+                  <ArrowUpRight className="text-black w-6 h-6 md:w-8 md:h-8 flex-shrink-0 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-[#59c1e6]" />
                 </div>
               </Link>
             ))}

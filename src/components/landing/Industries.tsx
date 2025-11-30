@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import imgWarehouse from "figma:asset/d507ec513ebf701c67ceec058a95047f4353b881.png";
 import imgProduction from "figma:asset/1d572db1870691a1a016c8d5eca9b8435b8b8918.png";
@@ -18,56 +19,67 @@ const industries = [
     title: "Belleza y Cuidado Personal",
     description: "Cadena de suministro integral para cosméticos, fragancias y productos de cuidado personal, con trazabilidad completa y control sanitario.",
     image: imgBeauty,
+    path: "/industrias/belleza-y-cuidado-personal",
   },
   {
     title: "Alimentos y Bebidas",
     description: "Logística de productos alimentarios y bebidas con almacenamiento controlado, cadena de frío y trazabilidad completa.",
     image: imgProduction,
+    path: "/industrias/alimentos-y-bebidas",
   },
   {
     title: "Construcción",
     description: "Abastecimiento y transporte de materiales, repuestos y maquinaria con planificación operativa y manipulación segura.",
     image: imgWarehouse,
+    path: "/industrias/construccion",
   },
   {
     title: "Editorial",
     description: "Soluciones logísticas integrales para gestionar y distribuir libros, revistas y publicaciones con cobertura regional, disponibilidad oportuna y eficiencia.",
     image: imgScanning,
+    path: "/industrias/editorial",
   },
   {
     title: "Farmacéutica",
     description: "Flujo logístico de medicamentos, dispositivos y productos de salud con trazabilidad total y conservación controlada.",
     image: imgPharma,
+    path: "/industrias/farmaceutica",
   },
   {
     title: "Hogar",
     description: "Cadena de suministro para productos de limpieza, utensilios y artículos domésticos con eficiencia operativa y control de stock.",
     image: imgBeauty,
+    path: "/industrias/cuidado-del-hogar",
   },
   {
     title: "Manufactura Industrial",
     description: "Logística de insumos, componentes y productos terminados con trazabilidad, continuidad productiva y optimización del flujo operativo.",
     image: imgWarehouse,
+    path: "/industrias/manufactura-industrial",
   },
   {
     title: "Calzado y moda",
     description: "Gestión de prendas, calzado y accesorios con control por temporada, trazabilidad por colección y preparación según canal de venta.",
     image: imgCalzado,
+    path: "/industrias/calzado-y-moda",
   },
   {
     title: "Químicos",
     description: "Operaciones logísticas seguras para sustancias y productos químicos con manipulación especializada y control ambiental para insumos y productos terminados.",
     image: imgChemicals,
+    path: "/industrias/quimica",
   },
   {
     title: "Retail",
     description: "Abastecimiento integral de tiendas, centros de distribución y plataformas digitales con visibilidad total y entregas confiables.",
     image: imgRetail,
+    path: "/industrias/retail",
   },
   {
     title: "Tecnología y Electrónica",
     description: "Flujo logístico de equipos, componentes y dispositivos tecnológicos con trazabilidad por serie y seguridad en cada etapa.",
     image: imgScanning,
+    path: "/industrias/tecnologia-y-electronica",
   }
 ];
 
@@ -229,7 +241,7 @@ export function Industries({ className }: { className?: string }) {
                 {industries.map((ind, idx) => (
                     <div key={idx} className="px-4 h-full">
                         <div className="group relative flex flex-col h-full">
-                            <a href={`/industries/${ind.title.toLowerCase().replace(/\s+/g, '-')}`} className="flex flex-col gap-5 w-full cursor-pointer block">
+                            <Link to={ind.path} className="flex flex-col gap-5 w-full cursor-pointer block">
                                 <div className="aspect-square w-full rounded-[20px] overflow-hidden relative shrink-0">
                                     <img src={ind.image} alt={ind.title} className="w-full h-full object-cover" />
                                 </div>
@@ -237,7 +249,7 @@ export function Industries({ className }: { className?: string }) {
                                     <h3 className="text-2xl font-medium font-[Neue_Augenblick]">{ind.title}</h3>
                                     <p className="text-lg font-light leading-snug opacity-80 font-augenblick">{ind.description}</p>
                                 </div>
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 ))}

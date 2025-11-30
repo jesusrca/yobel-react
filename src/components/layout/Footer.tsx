@@ -53,10 +53,10 @@ const menuItems = [
     id: "03",
     title: "Industrias",
     items: [
-      { name: "Alimentos y Bebidas", path: "/#industrias" },
-      { name: "Belleza y Cuidado Personal", path: "/#industrias" },
-      { name: "Farmacéutica", path: "/#industrias" },
-      { name: "Retail", path: "/#industrias" },
+      { name: "Alimentos y Bebidas", path: "/industrias/alimentos-y-bebidas" },
+      { name: "Belleza y Cuidado Personal", path: "/industrias/belleza-y-cuidado-personal" },
+      { name: "Farmacéutica", path: "/industrias/farmaceutica" },
+      { name: "Retail", path: "/industrias/retail" },
     ]
   },
   {
@@ -187,7 +187,7 @@ export function Footer() {
 
         {/* Bottom Section: Copyright & Legal */}
         <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-8 pt-8 border-t border-white/10">
-             <p className="text-[18px] text-white">© Yobel SCM Perú</p>
+             <p className="text-[18px] text-white">© Yobel Perú</p>
              <div className="flex flex-wrap gap-6 md:gap-8">
                  <Link to="#" className="text-[16px] text-white/50 hover:text-white transition-colors">Términos y Condiciones</Link>
                  <Link to="/libro-reclamaciones" className="text-[16px] text-white/50 hover:text-white transition-colors">Libro de Reclamaciones</Link>
