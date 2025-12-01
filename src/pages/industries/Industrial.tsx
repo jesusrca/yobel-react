@@ -3,6 +3,7 @@ import { PageHero } from "../../components/ui/PageHero";
 import { Section } from "../../components/ui/custom-section";
 import { Container } from "../../components/ui/custom-container";
 import { Button } from "../../components/ui/button";
+import { Certificates } from "../../components/landing/Certificates";
 
 const heroImage = "https://images.unsplash.com/photo-1764114908655-9a26d32750a0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbmR1c3RyaWFsJTIwbWFudWZhY3R1cmluZyUyMGZhY3RvcnklMjBtYWNoaW5lcnl8ZW58MXx8fHwxNzY0MTk1MjA1fDA&ixlib=rb-4.1.0&q=80&w=1080";
 
@@ -122,16 +123,11 @@ export function Industrial() {
 
             {/* Certifications */}
             <div className="mb-20">
-               <h3 className="text-3xl md:text-4xl font-normal mb-6">Nuestros certificados nos respaldan</h3>
-               <p className="text-lg text-gray-500 mb-12 max-w-3xl">En Yobel SCM, garantizamos calidad, seguridad y eficiencia industrial bajo certificaciones internacionales que respaldan cada proceso de la cadena productiva.</p>
-               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                   {certifications.map((cert, idx) => (
-                       <div key={idx} className="border border-gray-200 p-8 rounded-[30px] hover:shadow-md transition-all">
-                           <h4 className="text-xl font-bold mb-3">{cert.title}</h4>
-                           <p className="text-gray-600">{cert.desc}</p>
-                       </div>
-                   ))}
-               </div>
+               <Certificates 
+                  label="Certificados"
+                  title="Nuestros certificados nos respaldan"
+                  description="En Yobel SCM, garantizamos calidad, seguridad y eficiencia industrial bajo certificaciones internacionales que respaldan cada proceso de la cadena productiva."
+               />
             </div>
 
             {/* Contact CTA */}

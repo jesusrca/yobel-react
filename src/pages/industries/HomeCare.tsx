@@ -5,6 +5,11 @@ import { Button } from "../../components/ui/button";
 import { ChevronRight, Check } from "lucide-react";
 import { motion } from "motion/react";
 import { ScrollRevealText } from "../../components/ui/motion-text";
+import { Certificates } from "../../components/landing/Certificates";
+import { SolutionsShowcase } from "../../components/ui/SolutionsShowcase";
+import homeCareImage from "figma:asset/50e0a699b9e043e4e913ec47e0c48bda6dfeb7c2.png";
+import homeCareServicesImage from "figma:asset/bca7a8c0fa2e9bd47dbad55a9f3e65e72a8c4207.png";
+import homeCareWarehouseImage from "figma:asset/0d3fa24a8f0f0a95aca9db1f42b92e5ee5fe3e8a.png";
 
 // SVG Paths
 const svgPaths = {
@@ -56,10 +61,10 @@ const useCases = [
 ];
 
 const results = [
-  "Cumplimiento OTIF 99.6% en entregas B2B y B2C.",
-  "Lead time reducido en abastecimientos estacionales.",
-  "Visibilidad total del inventario en tiempo real.",
-  "Disminución de mermas y sobrestock mediante control WMS."
+  { gray: "Cumplimiento OTIF 99.6%", black: "en entregas B2B y B2C." },
+  { gray: "Lead time reducido", black: "en abastecimientos estacionales." },
+  { gray: "Visibilidad total del inventario", black: "en tiempo real." },
+  { gray: "Disminución de mermas y sobrestock", black: "mediante control WMS." }
 ];
 
 const certifications = [
@@ -132,53 +137,13 @@ export function HomeCare() {
       </Section>
 
       {/* Solutions Section */}
-      <Section className="bg-white py-20">
-        <Container>
-           <div className="flex flex-col gap-12">
-             <div className="flex flex-col gap-2 items-start">
-               <span className="text-xl text-gray-400 font-medium">Servicios</span>
-               <h3 className="text-3xl md:text-4xl font-normal mb-6">¿Cómo te ayudamos?</h3>
-             </div>
-             
-             <div className="flex flex-col lg:flex-row gap-16 items-center">
-                <div className="w-full lg:w-1/2 flex flex-col gap-0 border-t border-black">
-                  {solutions.map((sol) => (
-                    <div 
-                      key={sol.id}
-                      className="group border-b border-black py-10 cursor-pointer transition-all duration-300"
-                      onMouseEnter={() => setActiveSolution(sol.id)}
-                    >
-                      <div className="flex items-start justify-between gap-4">
-                        <div className="flex flex-col md:flex-row gap-4 md:gap-8 items-baseline">
-                           <span className="text-3xl md:text-4xl font-light whitespace-nowrap">{sol.id} /</span>
-                           <h3 className="text-3xl md:text-4xl font-light">{sol.title}</h3>
-                        </div>
-                        <div className="shrink-0">
-                           <div className="w-[50px] h-[30px] rounded-full border border-black flex items-center justify-center group-hover:bg-black group-hover:text-white transition-colors">
-                             <ChevronRight size={20} />
-                           </div>
-                        </div>
-                      </div>
-                      <div className={`mt-6 overflow-hidden transition-all duration-500 ease-in-out ${activeSolution === sol.id ? 'max-h-[200px] opacity-100' : 'max-h-0 opacity-0'}`}>
-                         <p className="text-xl text-gray-600 font-light max-w-lg ml-0 md:ml-20">
-                           {sol.fullDesc}
-                         </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                
-                <div className="w-full lg:w-1/2 relative h-[600px] rounded-[30px] overflow-hidden">
-                   <img 
-                     src="https://images.unsplash.com/photo-1683765084506-3ad53915aa01?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjbGVhbmluZyUyMHByb2R1Y3RzJTIwd2FyZWhvdXNlJTIwcHJvZHVjdGlvbnxlbnwxfHx8fDE3NjQ0MTUwNzh8MA&ixlib=rb-4.1.0&q=80&w=1080" 
-                     alt="Home Care Industry" 
-                     className="absolute inset-0 w-full h-full object-cover" 
-                   />
-                </div>
-             </div>
-           </div>
-        </Container>
-      </Section>
+      <SolutionsShowcase 
+        label="Servicios"
+        title="¿Cómo te ayudamos?"
+        solutions={solutions}
+        imageUrl={homeCareWarehouseImage}
+        imageAlt="Home Care Industry"
+      />
 
       {/* Benefits Section */}
       <Section className="bg-white py-20">
@@ -193,7 +158,7 @@ export function HomeCare() {
                   </div>
                   <div className="mt-12 relative h-[400px] rounded-[20px] overflow-hidden hidden lg:block">
                      <img 
-                       src="https://images.unsplash.com/photo-1758777151107-b4573745d6c0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxob21lJTIwZ29vZHMlMjBsb2dpc3RpY3MlMjBkaXN0cmlidXRpb258ZW58MXx8fHwxNzY0NDE1MDgyfDA&ixlib=rb-4.1.0&q=80&w=1080" 
+                       src={homeCareImage}
                        alt="Benefits" 
                        className="absolute inset-0 w-full h-full object-cover" 
                      />
@@ -269,42 +234,52 @@ export function HomeCare() {
       </Section>
 
       {/* Results Section */}
-      <Section className="bg-black text-white py-20">
+      <Section className="bg-white py-20">
          <Container>
-            <h3 className="text-3xl md:text-4xl font-normal mb-16 text-center">Indicadores que priorizamos</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-                {results.map((res, idx) => (
-                    <div key={idx} className="text-center px-4 flex flex-col items-center">
-                       <div className="w-3 h-3 bg-[#59c1e6] rounded-full mb-6" />
-                       <p className="text-xl font-light leading-relaxed">{res}</p>
-                    </div>
-                ))}
+            <div className="flex flex-col gap-[120px]">
+               {/* Title */}
+               <div className="flex flex-col md:flex-row gap-8 md:gap-[133px] items-start md:items-center">
+                  <span className="text-2xl md:text-[24px] text-[rgba(73,73,73,0.5)] w-full md:w-[547px]">Resultados</span>
+                  <h3 className="text-3xl md:text-[45px] leading-tight font-normal text-black w-full md:w-[434px]">
+                     Indicadores que priorizamos
+                  </h3>
+               </div>
+
+               {/* Content */}
+               <div className="flex flex-col lg:flex-row gap-12 lg:gap-[133px] items-start">
+                  {/* Image */}
+                  <div className="w-full lg:w-[547px] h-[280px] lg:h-[347px] relative shrink-0 rounded-[20px] overflow-hidden">
+                     <img 
+                        src="https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx5b2JlbCUyMHRydWNrJTIwZGVsaXZlcnklMjBsb2dpc3RpY3N8ZW58MXx8fHwxNzY0NDE1MDg0fDA&ixlib=rb-4.1.0&q=80&w=1080"
+                        alt="Resultados"
+                        className="absolute inset-0 w-full h-full object-cover"
+                     />
+                  </div>
+
+                  {/* List */}
+                  <div className="flex-1 flex flex-col">
+                     {results.map((res, idx) => (
+                        <div 
+                           key={idx} 
+                           className="box-border flex gap-[20px] items-start px-0 py-[40px] border-b border-[rgba(73,73,73,0.2)] last:border-b-0"
+                        >
+                           <div className="relative shrink-0 size-[40px]">
+                              <Check size={40} strokeWidth={1.5} className="text-black" />
+                           </div>
+                           <p className="flex-1 text-[22px] leading-[24px] text-[rgba(73,73,73,0.5)]">
+                              <span>{res.gray} </span>
+                              <span className="text-black">{res.black}</span>
+                           </p>
+                        </div>
+                     ))}
+                  </div>
+               </div>
             </div>
          </Container>
       </Section>
 
       {/* Certifications Section */}
-      <Section className="bg-white py-20">
-         <Container>
-            <div className="flex flex-col gap-12 text-center mb-20">
-               <h2 className="text-4xl md:text-[45px] leading-tight font-normal">
-                  Nuestros certificados nos respaldan
-               </h2>
-               <p className="text-xl md:text-[25px] font-light leading-relaxed text-gray-800 max-w-3xl mx-auto">
-                  Operamos bajo certificaciones internacionales y políticas internas que garantizan calidad y sostenibilidad.
-               </p>
-            </div>
-
-            <div className="flex flex-wrap justify-center gap-8">
-               {certifications.map((cert, idx) => (
-                   <div key={idx} className="border border-black/10 p-8 rounded-[30px] w-full md:w-[350px] hover:shadow-xl transition-all bg-white">
-                       <h4 className="text-2xl font-bold mb-4 font-augenblick">{cert.title}</h4>
-                       <p className="text-lg text-gray-600">{cert.desc}</p>
-                   </div>
-               ))}
-            </div>
-         </Container>
-      </Section>
+      <Certificates description="Operamos bajo certificaciones internacionales y políticas internas que garantizan calidad y sostenibilidad." />
     </>
   );
 }

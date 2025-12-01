@@ -1,13 +1,88 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import { Section } from "../../components/ui/custom-section";
 import { Container } from "../../components/ui/custom-container";
 import { Button } from "../../components/ui/button";
-import { ChevronRight, Check, ArrowUpRight } from "lucide-react";
+import { Check, ArrowUpRight } from "lucide-react";
 import { FAQ } from "../../components/landing/FAQ";
+import { ProcessItem } from "../../components/company/ProcessItem";
+import svgPathsProcess from "../../imports/svg-u5y25zzhvz";
+import { motion, useScroll, useTransform } from "motion/react";
+import { GradientCTA } from "../../components/ui/GradientCTA";
 
 // SVG Paths
 const svgPaths = {
   pff39b00: "M0 45.9994V30.6785C0 30.6785 36.2411 15.2325 36.2411 8.71527C36.2411 4.64101 0 15.0514 0 15.0514V0H35.0771C49.2263 0 47.9715 7.45669 47.9715 14.9269V46H24.4355C24.4355 46 40.1752 20.8884 36.2411 20.8884C30.4859 20.8884 0 45.9994 0 45.9994Z",
+};
+
+const MetallicGradient = ({ id, delay }: { id: string; delay: number }) => (
+  <defs>
+    <linearGradient id={id} x1="0%" y1="0%" x2="100%" y2="0%" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stopColor="#000000" />
+      <stop offset="30%" stopColor="#000000" />
+      <stop offset="50%" stopColor="#59C1E6" />
+      <stop offset="70%" stopColor="#000000" />
+      <stop offset="100%" stopColor="#000000" />
+      <animate attributeName="x1" from="-100%" to="100%" dur="4s" begin={`${delay}s`} repeatCount="indefinite" />
+      <animate attributeName="x2" from="0%" to="200%" dur="4s" begin={`${delay}s`} repeatCount="indefinite" />
+    </linearGradient>
+  </defs>
+);
+
+const ProcessIcon = ({ type, index = 0 }: { type: string; index?: number }) => {
+  const gradientId = `metallic-shimmer-ethics-${index}`; // Added prefix to avoid collision
+  const strokeUrl = `url(#${gradientId})`;
+  const strokeBlack = "black";
+  const width = 4.5;
+  const delay = index * 1.2;
+
+  switch (type) {
+    case "Seguridad y calidad":
+      return (
+        <div className="relative w-[127px] h-[127px] flex items-center justify-center">
+            <svg className="w-[75%] h-[87%]" viewBox="0 0 100 111" fill="none">
+                <MetallicGradient id={gradientId} delay={delay} />
+                <path d={svgPathsProcess.p1471ab00} stroke={strokeUrl} strokeWidth={width} strokeLinecap="round" strokeLinejoin="round" />
+                <path d={svgPathsProcess.p3dea9000} stroke={strokeBlack} strokeWidth={width} strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+        </div>
+      );
+    case "Datos y visibilidad":
+      return (
+        <div className="relative w-[127px] h-[127px]">
+             <svg className="w-full h-full" viewBox="0 0 127 127" fill="none">
+                <MetallicGradient id={gradientId} delay={delay} />
+                <g opacity="0.7">
+                    <path d={svgPathsProcess.p1876f440} stroke={strokeUrl} strokeWidth={width} strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M89.9583 31.75H121.708V63.5" stroke={strokeBlack} strokeWidth={width} strokeLinecap="round" strokeLinejoin="round" />
+                </g>
+             </svg>
+        </div>
+      );
+    case "Mejora continua":
+      return (
+        <div className="relative w-[127px] h-[127px]">
+             <svg className="w-full h-full" viewBox="0 0 127 127" fill="none">
+                <MetallicGradient id={gradientId} delay={delay} />
+                <path d={svgPathsProcess.p32899600} stroke={strokeUrl} strokeWidth={width} strokeLinecap="round" strokeLinejoin="round" />
+                <path d={svgPathsProcess.p2fb71e11} stroke={strokeUrl} strokeWidth={width} strokeLinecap="round" strokeLinejoin="round" />
+             </svg>
+        </div>
+      );
+    case "Colaboración abierta":
+      return (
+         <div className="relative w-[127px] h-[127px]">
+             <svg className="w-full h-full" viewBox="0 0 127 127" fill="none">
+                <MetallicGradient id={gradientId} delay={delay} />
+                <path d={svgPathsProcess.p6c78880} stroke={strokeUrl} strokeWidth={width} strokeLinecap="round" strokeLinejoin="round" />
+                <path d={svgPathsProcess.p14d48600} stroke={strokeBlack} strokeWidth={width} strokeLinecap="round" strokeLinejoin="round" />
+                <path d={svgPathsProcess.p24192100} stroke={strokeUrl} strokeWidth={width} strokeLinecap="round" strokeLinejoin="round" />
+                <path d={svgPathsProcess.p204f1f00} stroke={strokeBlack} strokeWidth={width} strokeLinecap="round" strokeLinejoin="round" />
+             </svg>
+         </div>
+      );
+    default:
+      return null;
+  }
 };
 
 const principles = [
@@ -48,36 +123,36 @@ const faqs = [
   { question: "¿Cómo se gestionan los casos?", answer: "Cada reporte es recibido por un equipo especializado en cumplimiento. Se evalúa, clasifica y da seguimiento hasta su cierre, asegurando transparencia, confidencialidad y comunicación continua con el denunciante." }
 ];
 
+// Map principles to icon types
+const iconTypeMapping = [
+  "Mejora continua",      // Integridad
+  "Colaboración abierta", // Respeto y Diversidad
+  "Datos y visibilidad",  // Cumplimiento
+  "Seguridad y calidad"   // Seguridad y Ambiente
+];
+
 export function CodeOfEthics() {
-  const [activePrinciple, setActivePrinciple] = useState<string | null>("01");
   const containerRef = useRef(null);
+  const { scrollY } = useScroll();
+  const y = useTransform(scrollY, [0, 500], [0, -150]);
 
   return (
     <>
       {/* Hero Section */}
-      <div className="relative h-[80vh] min-h-[600px] max-h-[920px] w-full overflow-hidden font-augenblick">
-        <div className="absolute inset-0 overflow-hidden">
-          <video 
-            src="https://circular.ws/yobel/fondo-celeste.mp4"
-            className="absolute inset-0 h-full w-full object-cover"
-            autoPlay
-            loop
-            muted
-            playsInline
-          />
-          <div className="absolute inset-0 bg-black/10" />
-          <div className="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-white via-white/60 to-transparent pointer-events-none" />
-        </div>
-
-        <div className="absolute bottom-20 left-0 right-0 px-[5%] md:px-[50px] z-10">
+      <div className="relative h-[40vh] min-h-[400px] max-h-[500px] w-full overflow-hidden font-augenblick">
+        <motion.div 
+          style={{ y }}
+          className="absolute inset-0 bg-gradient-to-b from-[#e5e5e5] to-white"
+        />
+        <div className="absolute bottom-10 left-0 right-0 px-[5%] md:px-[50px] z-10">
           <div className="max-w-[1400px] mx-auto flex flex-col gap-[30px]">
-             <p className="text-lg md:text-[18px] text-black">Ética y Sostenibilidad</p>
-             <div className="flex flex-col lg:flex-row items-start gap-[40px]">
-                <h1 className="text-5xl md:text-[65px] leading-[1] text-black max-w-[900px]">
-                  Código de Ética
+             <p className="text-lg md:text-[18px] text-black font-[Neue_Augenblick]">Código de Ética</p>
+             <div className="flex flex-col lg:flex-row items-end justify-between gap-[40px] w-full">
+                <h1 className="text-5xl md:text-[65px] leading-[1] text-black max-w-[773px] font-[Neue_Augenblick]">
+                  Actuamos con integridad en cada eslabón
                 </h1>
-                <p className="text-xl md:text-[22px] leading-[24px] text-black max-w-[400px] pt-2">
-                  Actuamos con integridad en cada eslabón. Nuestros principios guían cómo trabajamos con clientes, aliados y comunidades.
+                <p className="text-xl md:text-[22px] leading-[24px] text-black max-w-[350px] lg:mr-32 pb-1 font-[Neue_Augenblick]">
+                  Nuestros principios guían cada decisión en toda la cadena de suministro.
                 </p>
              </div>
           </div>
@@ -94,18 +169,28 @@ export function CodeOfEthics() {
                </svg>
              </div>
              <h2 className="text-2xl md:text-3xl lg:text-[32px] leading-tight font-light text-gray-400">
-               Integridad Corporativa
+´              Código de Ética
              </h2>
              <div className="flex flex-col gap-12 items-center">
                <p className="text-2xl md:text-4xl lg:text-[40px] leading-tight font-normal text-black">
-                 En Yobel nuestro negocio se sostiene en la confianza. Cada decisión que tomamos está alineada con nuestros valores éticos, asegurando relaciones transparentes y sostenibles a largo plazo.
+                 Nuestro Código de Ética y nuestras políticas guían cómo trabajamos con clientes, aliados y comunidades en toda Latinoamérica.
                </p>
+               <Button 
+                 className="rounded-full px-[14px] py-[8px] h-auto text-[22px] font-medium leading-[24px] bg-transparent text-black border-[1.5px] border-black hover:bg-black hover:text-white transition-all duration-300 flex items-center gap-[12px]"
+                 onClick={() => window.open("https://www.resguarda.com/yobel", "_blank")}
+               >
+                 Abrir Canal de Ética
+                 <svg className="w-[17px] h-[16px]" viewBox="0 0 17 16" fill="none">
+                   <path d="M0 7.52417H16" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+                   <path d="M8.85449 0.53033L15.8545 7.53033L8.85449 14.5303" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+                 </svg>
+               </Button>
              </div>
            </div>
         </Container>
       </Section>
 
-      {/* Principles Section (Accordion Style) */}
+      {/* Principles Section (ProcessItem Style) */}
       <Section className="bg-white py-20">
         <Container>
            <div className="flex flex-col gap-12">
@@ -114,41 +199,19 @@ export function CodeOfEthics() {
                <h3 className="text-3xl md:text-4xl font-normal mb-6">Principios que nos guían</h3>
              </div>
              
-             <div className="flex flex-col lg:flex-row gap-16 items-center">
-                <div className="w-full lg:w-1/2 flex flex-col gap-0 border-t border-black">
-                  {principles.map((prin) => (
-                    <div 
-                      key={prin.id}
-                      className="group border-b border-black py-10 cursor-pointer transition-all duration-300"
-                      onMouseEnter={() => setActivePrinciple(prin.id)}
-                    >
-                      <div className="flex items-start justify-between gap-4">
-                        <div className="flex flex-col md:flex-row gap-4 md:gap-8 items-baseline">
-                           <span className="text-3xl md:text-4xl font-light whitespace-nowrap">{prin.id} /</span>
-                           <h3 className="text-3xl md:text-4xl font-light">{prin.title}</h3>
-                        </div>
-                        <div className="shrink-0">
-                           <div className="w-[50px] h-[30px] rounded-full border border-black flex items-center justify-center group-hover:bg-black group-hover:text-white transition-colors">
-                             <ChevronRight size={20} />
-                           </div>
-                        </div>
-                      </div>
-                      <div className={`mt-6 overflow-hidden transition-all duration-500 ease-in-out ${activePrinciple === prin.id ? 'max-h-[200px] opacity-100' : 'max-h-0 opacity-0'}`}>
-                         <p className="text-xl text-gray-600 font-light max-w-lg ml-0 md:ml-20">
-                           {prin.fullDesc}
-                         </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                
-                <div className="w-full lg:w-1/2 relative h-[600px] rounded-[30px] overflow-hidden">
-                   <img 
-                     src="https://images.unsplash.com/photo-1565688527174-775059ac429c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMG1lZXRpbmclMjBpbnRlZ3JpdHklMjBvZmZpY2UlMjB0ZWFtfGVufDF8fHx8MTc2NDQxNjM1Nnww&ixlib=rb-4.1.0&q=80&w=1080" 
-                     alt="Integridad Corporativa" 
-                     className="absolute inset-0 w-full h-full object-cover" 
-                   />
-                </div>
+             <div className="flex flex-col w-full">
+                {principles.map((prin, idx) => (
+                    <React.Fragment key={prin.id}>
+                        <ProcessItem 
+                            icon={<ProcessIcon type={iconTypeMapping[idx % iconTypeMapping.length]} index={idx} />}
+                            title={prin.title}
+                            description={prin.fullDesc}
+                        />
+                        {idx < principles.length - 1 && (
+                            <div className="w-full h-[1px] bg-[#494949]/50" />
+                        )}
+                    </React.Fragment>
+                ))}
              </div>
            </div>
         </Container>
@@ -220,28 +283,6 @@ export function CodeOfEthics() {
          </Container>
       </Section>
       
-      {/* Sustainability Banner */}
-      <Section className="bg-gray-50 py-24">
-          <Container>
-            <div className="bg-white rounded-[40px] p-12 md:p-20 text-center shadow-sm">
-                <h3 className="text-3xl md:text-4xl font-normal mb-6">Nos movemos juntos a la sostenibilidad</h3>
-                <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-10 font-light leading-relaxed">
-                   En Yobel trabajamos cada día para reducir huella, impulsar economía circular y generar impacto positivo en las comunidades.
-                </p>
-                <Button className="bg-black text-white px-10 py-4 rounded-full text-lg hover:bg-gray-800 transition-colors">
-                   Conoce nuestras iniciativas
-                </Button>
-
-                <div className="mt-16 pt-16 border-t border-gray-100">
-                   <div className="inline-block">
-                      <p className="text-6xl font-bold mb-2">100%</p>
-                      <p className="text-xl text-gray-600">colaboradores capacitados en Ética</p>
-                   </div>
-                </div>
-            </div>
-          </Container>
-      </Section>
-
       {/* FAQ Section */}
       <FAQ items={faqs} />
     </>

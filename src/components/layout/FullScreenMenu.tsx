@@ -156,18 +156,21 @@ export function FullScreenMenu({ onClose, onSearchClick }: FullScreenMenuProps) 
                     <div 
                         key={item.id} 
                         className="group flex items-center gap-2 cursor-pointer"
-                        onMouseEnter={() => setActiveCategory(item.title)}
                         onClick={() => setActiveCategory(item.title)}
                     >
                         <span className={cn(
                             "text-[24px] font-medium transition-colors duration-300",
-                            activeCategory === item.title ? "text-[#fff066]" : "text-white group-hover:text-white/80"
+                            activeCategory === item.title 
+                                ? "bg-gradient-to-r from-[#fff066] to-white bg-clip-text text-transparent" 
+                                : "text-white"
                         )}>
                             {item.id} /
                         </span>
                         <span className={cn(
-                            "text-[24px] font-medium transition-colors duration-300 border-b-[1.5px] border-transparent group-hover:border-current",
-                            activeCategory === item.title ? "text-[#fff066]" : "text-white group-hover:text-white/80"
+                            "text-[24px] font-medium transition-colors duration-300 border-b-[1.5px] border-transparent group-hover:border-white",
+                            activeCategory === item.title 
+                                ? "bg-gradient-to-r from-[#fff066] to-white bg-clip-text text-transparent" 
+                                : "text-white"
                         )}>
                             {item.title}
                         </span>

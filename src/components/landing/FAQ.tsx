@@ -37,12 +37,18 @@ export interface FAQItemData {
 
 export function FAQItem({ question, answer }: FAQItemData) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div className="border-b border-black py-9">
-      <button 
+    <div className="border-b border-black py-9 relative">
+      <motion.button 
         onClick={() => setIsOpen(!isOpen)}
+        onHoverStart={() => setIsHovered(true)}
+        onHoverEnd={() => setIsHovered(false)}
         className="w-full flex items-center justify-between text-left group"
+        initial={{ x: 0 }}
+        animate={{ x: isHovered ? 20 : 0 }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
       >
         <h3 className="text-xl md:text-[26px] text-black pr-8 font-[Neue_Augenblick]">{question}</h3>
         <div className="relative w-[30px] h-[30px] shrink-0">
@@ -54,7 +60,7 @@ export function FAQItem({ question, answer }: FAQItemData) {
            {/* Horizontal line - always visible */}
           <div className="absolute top-1/2 left-1/2 w-full h-[2px] bg-black -translate-x-1/2 -translate-y-1/2" />
         </div>
-      </button>
+      </motion.button>
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -64,7 +70,7 @@ export function FAQItem({ question, answer }: FAQItemData) {
             transition={{ duration: 0.3 }}
             className="overflow-hidden"
           >
-            <div className="pt-6 px-4 md:px-12">
+            <div className="pt-6">
                <p className="text-lg md:text-[22px] text-gray-500 leading-relaxed max-w-[547px]">
                  {answer}
                </p>

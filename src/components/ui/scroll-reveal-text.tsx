@@ -7,7 +7,7 @@ interface ScrollRevealStringProps {
   as?: React.ElementType;
 }
 
-// Animates text letter-by-letter based on scroll position
+// Animates text letter-by-letter based on scroll position, preserving word wrapping
 export function ScrollRevealString({ text, className = "", as: Tag = "div" }: ScrollRevealStringProps) {
   const elementRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -15,24 +15,36 @@ export function ScrollRevealString({ text, className = "", as: Tag = "div" }: Sc
     offset: ["start 0.9", "end 0.6"]
   });
 
-  const chars = text.split("");
-  const totalChars = chars.length;
+  const words = text.split(" ");
+  const totalChars = text.length;
+  let charIndex = 0;
 
   return (
-    <Tag ref={elementRef} className={className}>
-      {chars.map((char, i) => {
-        // Calculate the activation range for this character
-        // Spread the activation across the scroll progress (0 to 1)
-        const start = (i / totalChars) * 0.8; // Scale to finish before end
-        const end = start + 0.1; // Short duration for specific char transition
-
+    <Tag ref={elementRef} className={`flex flex-wrap gap-x-[0.25em] ${className}`}>
+      {words.map((word, wordIndex) => {
+        const wordChars = word.split("");
         return (
-          <Char 
-            key={i} 
-            char={char} 
-            progress={scrollYProgress} 
-            range={[start, end]} 
-          />
+          <span key={wordIndex} className="inline-block whitespace-nowrap">
+            {wordChars.map((char, i) => {
+              const currentGlobalIndex = charIndex;
+              charIndex++;
+              
+              // Calculate the activation range for this character
+              const start = (currentGlobalIndex / totalChars) * 0.8;
+              const end = start + 0.1;
+
+              return (
+                <Char 
+                  key={i} 
+                  char={char} 
+                  progress={scrollYProgress} 
+                  range={[start, end]} 
+                />
+              );
+            })}
+            {/* Account for the space that was split out */}
+            {(() => { charIndex++; return null; })()}
+          </span>
         );
       })}
     </Tag>
@@ -47,9 +59,8 @@ interface CharProps {
 
 function Char({ char, progress, range }: CharProps) {
   const opacity = useTransform(progress, range, [0.1, 1]);
-  // Ensure spaces are preserved
   return (
-    <motion.span style={{ opacity }} className="inline-block whitespace-pre">
+    <motion.span style={{ opacity }} className="inline-block">
       {char}
     </motion.span>
   );

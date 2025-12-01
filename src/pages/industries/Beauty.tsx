@@ -5,6 +5,7 @@ import { Button } from "../../components/ui/button";
 import { ChevronRight, Check } from "lucide-react";
 import { motion } from "motion/react";
 import { ScrollRevealText } from "../../components/ui/motion-text";
+import { Certificates } from "../../components/landing/Certificates";
 
 // SVG Paths
 const svgPaths = {
@@ -284,27 +285,7 @@ export function Beauty() {
       </Section>
 
       {/* Certifications Section */}
-      <Section className="bg-white py-20">
-         <Container>
-            <div className="flex flex-col gap-12 text-center mb-20">
-               <h2 className="text-4xl md:text-[45px] leading-tight font-normal">
-                  Nuestros certificados nos respaldan
-               </h2>
-               <p className="text-xl md:text-[25px] font-light leading-relaxed text-gray-800 max-w-3xl mx-auto">
-                  Operamos bajo certificaciones internacionales que aseguran la calidad, seguridad y sostenibilidad en toda la cadena de suministro.
-               </p>
-            </div>
-
-            <div className="flex flex-wrap justify-center gap-8">
-               {certifications.map((cert, idx) => (
-                   <div key={idx} className="border border-black/10 p-8 rounded-[30px] w-full md:w-[350px] hover:shadow-xl transition-all bg-white">
-                       <h4 className="text-2xl font-bold mb-4 font-augenblick">{cert.title}</h4>
-                       <p className="text-lg text-gray-600">{cert.desc}</p>
-                   </div>
-               ))}
-            </div>
-         </Container>
-      </Section>
+      <Certificates description="Operamos bajo certificaciones internacionales que aseguran la calidad, seguridad y sostenibilidad en toda la cadena de suministro." />
     </>
   );
 }

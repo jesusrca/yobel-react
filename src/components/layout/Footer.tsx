@@ -6,7 +6,7 @@ import { cn } from "../ui/utils";
 
 function Logo() {
   return (
-    <div className="h-[120px] md:h-[210px] relative shrink-0 w-[300px] md:w-[547px]">
+    <div className="h-[96px] md:h-[168px] relative shrink-0 w-[240px] md:w-[438px]">
       <svg className="block w-full h-full" fill="none" preserveAspectRatio="xMidYMid meet" viewBox="0 0 547 211">
         <g id="Logo">
           <g id="Group">
@@ -122,9 +122,9 @@ export function Footer() {
                 <div className="flex flex-col gap-4">
                     <p className="text-[16px] text-white/50 font-medium">SÍGUENOS</p>
                     <div className="flex flex-col gap-3">
-                        <a href="#" className="text-[22px] hover:text-[#fff066] transition-colors">Facebook</a>
-                        <a href="#" className="text-[22px] hover:text-[#fff066] transition-colors">LinkedIn</a>
-                        <a href="#" className="text-[22px] hover:text-[#fff066] transition-colors">Instagram</a>
+                        <a href="#" className="text-[22px] hover:underline transition-all w-fit">Facebook</a>
+                        <a href="#" className="text-[22px] hover:underline transition-all w-fit">LinkedIn</a>
+                        <a href="#" className="text-[22px] hover:underline transition-all w-fit">Instagram</a>
                     </div>
                 </div>
             </div>
@@ -140,16 +140,24 @@ export function Footer() {
                             className="group flex items-center gap-4 cursor-pointer"
                             onClick={() => setActiveCategory(item.title)}
                         >
-                            <span className={cn(
-                                "text-[22px] transition-colors duration-300",
-                                activeCategory === item.title ? "text-[#fff066]" : "text-white group-hover:text-white/80"
-                            )}>
+                            <span 
+                                className={cn(
+                                    "text-[22px] transition-colors duration-300",
+                                    activeCategory === item.title 
+                                        ? "bg-gradient-to-r from-[#fff066] to-white bg-clip-text text-transparent" 
+                                        : "text-white"
+                                )}
+                            >
                                 {item.id} /
                             </span>
-                            <span className={cn(
-                                "text-[22px] transition-colors duration-300",
-                                activeCategory === item.title ? "text-[#fff066]" : "text-white group-hover:text-white/80"
-                            )}>
+                            <span 
+                                className={cn(
+                                    "text-[22px] transition-all duration-300 group-hover:underline",
+                                    activeCategory === item.title 
+                                        ? "bg-gradient-to-r from-[#fff066] to-white bg-clip-text text-transparent" 
+                                        : "text-white"
+                                )}
+                            >
                                 {item.title}
                             </span>
                         </div>
@@ -174,7 +182,7 @@ export function Footer() {
                                 <Link 
                                     key={idx} 
                                     to={link.path}
-                                    className="text-[22px] text-white hover:text-[#fff066] transition-colors"
+                                    className="text-[22px] text-white hover:underline transition-all w-fit"
                                 >
                                     {link.name}
                                 </Link>
@@ -189,10 +197,10 @@ export function Footer() {
         <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-8 pt-8 border-t border-white/10">
              <p className="text-[18px] text-white">© Yobel Perú</p>
              <div className="flex flex-wrap gap-6 md:gap-8">
-                 <Link to="#" className="text-[16px] text-white/50 hover:text-white transition-colors">Términos y Condiciones</Link>
-                 <Link to="/libro-reclamaciones" className="text-[16px] text-white/50 hover:text-white transition-colors">Libro de Reclamaciones</Link>
-                 <Link to="#" className="text-[16px] text-white/50 hover:text-white transition-colors">Privacidad</Link>
-                 <Link to="/politicas-de-cookies" className="text-[16px] text-white/50 hover:text-white transition-colors">Políticas de Cookies</Link>
+                 <Link to="#" className="text-[16px] text-white/50 hover:text-white hover:underline transition-all">Términos y Condiciones</Link>
+                 <Link to="/libro-reclamaciones" className="text-[16px] text-white/50 hover:text-white hover:underline transition-all">Libro de Reclamaciones</Link>
+                 <Link to="#" className="text-[16px] text-white/50 hover:text-white hover:underline transition-all">Privacidad</Link>
+                 <Link to="/politicas-de-cookies" className="text-[16px] text-white/50 hover:text-white hover:underline transition-all">Políticas de Cookies</Link>
              </div>
         </div>
 

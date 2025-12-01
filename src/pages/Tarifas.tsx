@@ -3,15 +3,23 @@ import { PageHero } from "../components/ui/PageHero";
 import { Section } from "../components/ui/custom-section";
 import { Container } from "../components/ui/custom-container";
 import { Button } from "../components/ui/button";
-import svgPaths from "../imports/svg-biijegtt4v"; // Reusing an SVG import if needed, or I can use an icon from lucide-react if available, or just text.
+import svgPaths from "../imports/svg-biijegtt4v";
 import { Download } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 export function Tarifas() {
   const pdfUrl = "https://circular.ws/yobel/Tarifas-Yobel.pdf";
+  
+  const { scrollY } = useScroll();
+  const y = useTransform(scrollY, [0, 500], [0, -150]);
 
   return (
     <>
-      <div className="relative h-[40vh] min-h-[400px] max-h-[500px] w-full overflow-hidden font-augenblick bg-gradient-to-b from-[#fff066] to-white">
+      <div className="relative h-[40vh] min-h-[400px] max-h-[500px] w-full overflow-hidden font-augenblick">
+        <motion.div 
+          style={{ y }}
+          className="absolute inset-0 bg-gradient-to-b from-[#fff066] to-white"
+        />
         <div className="absolute bottom-10 left-0 right-0 px-[5%] md:px-[50px] z-10">
           <div className="max-w-[1400px] mx-auto flex flex-col gap-[30px]">
              <p className="text-lg md:text-[18px] text-black font-[Neue_Augenblick]">Comercio Exterior</p>

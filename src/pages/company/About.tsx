@@ -1,6 +1,6 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { motion, useScroll, useTransform } from "motion/react";
+import { motion, useScroll, useTransform, AnimatePresence, useMotionValue, MotionValue } from "motion/react";
 import { PageHero } from "../../components/ui/PageHero";
 import { Section } from "../../components/ui/custom-section";
 import { Container } from "../../components/ui/custom-container";
@@ -10,8 +10,10 @@ import { ParallaxImage } from "../../components/landing/ParallaxImage";
 import { ParallaxCurves } from "../../components/landing/ParallaxCurves";
 import { VideoScrollSection } from "../../components/company/VideoScrollSection";
 import { ProcessItem } from "../../components/company/ProcessItem";
+import { SolutionsShowcase } from "../../components/ui/SolutionsShowcase";
 import svgPaths from "../../imports/svg-5srx0k234k";
 import svgPathsProcess from "../../imports/svg-u5y25zzhvz";
+import svgPathsIcon from "../../imports/svg-j9zkv27h5w";
 
 const MetallicGradient = ({ id, delay }: { id: string; delay: number }) => (
   <defs>
@@ -88,7 +90,74 @@ const ProcessIcon = ({ type, index = 0 }: { type: string; index?: number }) => {
 const diversityImage = "https://images.unsplash.com/photo-1758691737487-29b4fae83e95?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkaXZlcnNpdHklMjB0ZWFtJTIwaGFwcHklMjBjb3Jwb3JhdGV8ZW58MXx8fHwxNzY0MTkzNjIwfDA&ixlib=rb-4.1.0&q=80&w=1080";
 const valueImage = "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.1.0&q=80&w=1080&auto=format&fit=crop";
 
+// Typewriter component that animates based on scroll progress
+const TypewriterText = ({ 
+  text, 
+  scrollProgress, 
+  startProgress, 
+  endProgress,
+  className = ""
+}: { 
+  text: string; 
+  scrollProgress: MotionValue<number>; 
+  startProgress: number; 
+  endProgress: number;
+  className?: string;
+}) => {
+  const [displayedWords, setDisplayedWords] = useState<string[]>([]);
+  const [animationKey, setAnimationKey] = useState(0);
+  const words = text.split(' ');
+  
+  useEffect(() => {
+    let timeouts: NodeJS.Timeout[] = [];
+    
+    const unsubscribe = scrollProgress.on("change", (latest) => {
+      // Clear any ongoing animations
+      timeouts.forEach(t => clearTimeout(t));
+      timeouts = [];
+      
+      if (latest < startProgress || latest > endProgress) {
+        // Outside the range - reset
+        setDisplayedWords([]);
+        setAnimationKey(prev => prev + 1);
+      } else if (latest >= startProgress) {
+        // Inside the range - start animation
+        setDisplayedWords([]);
+        
+        // Animate words appearing one by one
+        words.forEach((word, idx) => {
+          const timeout = setTimeout(() => {
+            setDisplayedWords(prev => [...prev, word]);
+          }, idx * 80);
+          timeouts.push(timeout);
+        });
+      }
+    });
+    
+    return () => {
+      unsubscribe();
+      timeouts.forEach(t => clearTimeout(t));
+    };
+  }, [scrollProgress, startProgress, endProgress, animationKey]);
+
+  return (
+    <span className={className} key={animationKey}>
+      {words.map((word, idx) => (
+        <span
+          key={idx}
+          className="inline-block mr-[0.25em] transition-opacity duration-300"
+          style={{ opacity: displayedWords.includes(word) ? 1 : 0 }}
+        >
+          {word}
+        </span>
+      ))}
+    </span>
+  );
+};
+
 export function About() {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
   const purposeItems = [
     {
       title: "Propósito",
@@ -122,6 +191,13 @@ export function About() {
     { title: "Aprendizaje continuo", desc: "Formamos a nuestros colaboradores para superar los estándares." }
   ];
 
+  // Format principles for SolutionsShowcase component
+  const principlesFormatted = principles.map((item, idx) => ({
+    id: `0${idx + 1}`,
+    title: item.title,
+    fullDesc: item.desc
+  }));
+
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -142,17 +218,14 @@ export function About() {
   const yLayer1 = useTransform(scrollYProgress, [0, 1], ["0%", "-30%"]);
   const yLayer2 = useTransform(scrollYProgress, [0, 1], ["10%", "-50%"]);
 
-  const opacity0 = useTransform(scrollYProgress, [0, 0.3, 0.35], [1, 1, 0]);
-  const blur0 = useTransform(scrollYProgress, [0, 0.3, 0.35], ["blur(0px)", "blur(0px)", "blur(20px)"]);
+  // Smooth fade transitions for each text section - NO BLUR
+  const opacity0 = useTransform(scrollYProgress, [0, 0.28, 0.33], [1, 1, 0]);
 
-  const opacity1 = useTransform(scrollYProgress, [0.3, 0.35, 0.65, 0.7], [0, 1, 1, 0]);
-  const blur1 = useTransform(scrollYProgress, [0.3, 0.35, 0.65, 0.7], ["blur(20px)", "blur(0px)", "blur(0px)", "blur(20px)"]);
+  const opacity1 = useTransform(scrollYProgress, [0.28, 0.33, 0.61, 0.66], [0, 1, 1, 0]);
 
-  const opacity2 = useTransform(scrollYProgress, [0.65, 0.7, 1], [0, 1, 1]);
-  const blur2 = useTransform(scrollYProgress, [0.65, 0.7, 1], ["blur(20px)", "blur(0px)", "blur(0px)"]);
+  const opacity2 = useTransform(scrollYProgress, [0.61, 0.66, 1], [0, 1, 1]);
 
   const opacities = [opacity0, opacity1, opacity2];
-  const blurs = [blur0, blur1, blur2];
 
   return (
     <>
@@ -168,7 +241,7 @@ export function About() {
             playsInline
           />
           <div className="absolute inset-0 bg-black/10" />
-          <div className="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-[#31CDFF] via-[#31CDFF]/60 to-transparent pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-white via-white/60 to-transparent pointer-events-none" />
         </div>
 
         <div className="absolute bottom-20 left-0 right-0 px-[5%] md:px-[50px] z-10">
@@ -190,120 +263,126 @@ export function About() {
 
       {/* INTRO & PURPOSE - DYNAMIC GRADIENT */}
       <div ref={containerRef} className="relative h-[300vh]">
-        <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
-            {/* Dynamic Background - Tall Gradient that moves up */}
-            <motion.div 
-                className="absolute top-0 left-0 w-full h-[300vh] z-0" 
-                style={{ 
-                    background: "linear-gradient(180deg, #FFFFFF 0%, #31CDFF 50%, #000000 100%)",
-                    y: backgroundY 
-                }}
-            >
-                {/* Curved Layer 1 - Deep */}
-                <motion.div 
-                    className="absolute bottom-[10%] left-[-50%] right-[-50%] h-[100vh] rounded-[100%] blur-[100px] opacity-30 bg-white mix-blend-overlay"
-                    style={{ y: yLayer1 }}
-                />
-                {/* Curved Layer 2 - Front */}
-                <motion.div 
-                    className="absolute top-[40%] left-[-20%] right-[-20%] h-[80vh] rounded-[100%] blur-[80px] opacity-20 bg-[#31CDFF] mix-blend-overlay"
-                    style={{ y: yLayer2 }}
-                />
-            </motion.div>
-
+        <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden bg-white">
             {/* Content */}
-            {purposeItems.map((item, idx) => (
-              <motion.div 
-                key={idx} 
-                style={{ opacity: opacities[idx], filter: blurs[idx] }}
-                className="absolute inset-0 flex items-center justify-center px-6 md:px-20 z-10"
-              >
-                 <div className="max-w-[1200px] mx-auto text-center flex flex-col items-center">
-                    <div className="flex flex-col gap-[32px] items-center justify-center w-full">
-                        <motion.p 
-                            style={{ color: subTextColor }}
-                            className="font-augenblick leading-[48px] not-italic relative shrink-0 text-3xl md:text-[45px] text-center w-full transition-colors duration-300"
-                        >
-                            {item.title}
-                        </motion.p>
-                        <div className="max-w-5xl">
-                            <motion.p 
-                                style={{ color: textColor }}
-                                className="font-augenblick leading-[1.4] md:leading-[48px] text-2xl md:text-[45px] text-center transition-colors duration-300"
-                            >
-                                {item.content}
-                            </motion.p>
-                        </div>
-                        {idx === 2 && (
-                            <div className="mt-12">
-                               <Link to="/empresa/historia">
-                                 <motion.button 
-                                    style={{ borderColor: buttonBorderColor, color: buttonTextColor }}
-                                    className="font-augenblick bg-transparent border-[1.5px] px-10 py-6 rounded-full text-xl hover:bg-white hover:text-black transition-all duration-500 ease-in-out"
-                                 >
-                                   Nuestra Historia
-                                 </motion.button>
-                               </Link>
-                            </div>
-                        )}
-                    </div>
-                 </div>
-              </motion.div>
-            ))}
+            {purposeItems.map((item, idx) => {
+              // Define typewriter progress ranges for each section
+              const typewriterRanges = [
+                { start: 0.05, end: 0.22 },  // Propósito
+                { start: 0.38, end: 0.55 },  // Misión
+                { start: 0.71, end: 0.88 }   // Visión
+              ];
+              
+              return (
+                <motion.div 
+                  key={idx} 
+                  style={{ opacity: opacities[idx] }}
+                  className="absolute inset-0 flex items-center justify-center px-6 md:px-20 z-10"
+                >
+                   <div className="max-w-[1200px] mx-auto text-center flex flex-col items-center">
+                      <div className="flex flex-col gap-[32px] items-center justify-center w-full">
+                          {/* Yobel Icon */}
+                          <div className="w-[42px] h-[42px] md:w-[56px] md:h-[56px]">
+                             <svg className="block size-full" fill="none" viewBox="0 0 40 40">
+                                <path d={svgPathsIcon.p1f4d9200} fill="black" />
+                             </svg>
+                          </div>
+                          
+                          <p className="font-augenblick leading-[48px] not-italic relative shrink-0 text-3xl md:text-[45px] text-center w-full text-gray-500">
+                              <TypewriterText 
+                                text={item.title}
+                                scrollProgress={scrollYProgress}
+                                startProgress={typewriterRanges[idx].start}
+                                endProgress={typewriterRanges[idx].end}
+                              />
+                          </p>
+                          <div className="max-w-5xl">
+                              <p className="font-augenblick leading-[1.4] md:leading-[48px] text-2xl md:text-[45px] text-center text-black">
+                                  <TypewriterText 
+                                    text={item.content}
+                                    scrollProgress={scrollYProgress}
+                                    startProgress={typewriterRanges[idx].start}
+                                    endProgress={typewriterRanges[idx].end}
+                                  />
+                              </p>
+                          </div>
+                      </div>
+                   </div>
+                </motion.div>
+              );
+            })}
         </div>
       </div>
 
       {/* VALUE PROPOSITION */}
-      <Section className="bg-white">
+      <Section className="bg-white py-24">
          <Container>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-               <div className="h-[600px] rounded-[40px] overflow-hidden relative order-2 lg:order-1">
-                   <ParallaxImage 
-                      src={valueImage} 
-                      alt="Value Proposition" 
-                      yValues={[-50, 50]}
-                   />
-                   <div className="absolute inset-0 bg-black/10" />
-               </div>
-               <div className="order-1 lg:order-2">
-                  <span className="text-gray-400 text-lg font-medium mb-6 block">Propuesta de Valor</span>
-                  <h2 className="text-4xl md:text-5xl font-normal mb-10 leading-tight text-black">
+            <div className="relative" onMouseLeave={() => setHoveredIndex(null)}>
+               {/* Header */}
+               <div className="mb-16">
+                  <span className="text-gray-400 text-lg font-medium mb-4 block">Propuesta de Valor</span>
+                  <h2 className="text-4xl md:text-5xl font-normal leading-tight text-black">
                     Lo que nos hace diferentes en el mercado
                   </h2>
-                  <ul className="space-y-6">
-                     {valueProps.map((item, idx) => (
-                        <li key={idx} className="flex items-center gap-5 pb-6 border-b border-gray-100 last:border-0">
-                           <div className="w-2 h-2 bg-black rounded-full shrink-0" />
-                           <span className="text-xl md:text-2xl font-light text-gray-800">{item}</span>
-                        </li>
-                     ))}
-                  </ul>
+               </div>
+
+               {/* Solutions List with Hover Image */}
+               <div className="relative">
+                  {valueProps.map((item, idx) => {
+                     const isHovered = hoveredIndex === idx;
+                     
+                     return (
+                        <div 
+                           key={idx} 
+                           className="relative flex items-center py-6 md:py-0 md:h-[120px] border-b-[1.5px] border-gray-200 cursor-pointer group"
+                           onMouseEnter={() => setHoveredIndex(idx)}
+                        >
+                           <div className="w-full flex justify-between items-center z-10 relative">
+                              <h4 className={`w-full text-[28px] md:text-[32px] font-normal leading-tight transition-colors duration-300 ${isHovered ? 'text-black' : 'text-gray-400'}`}>
+                                 <span className="mr-4">0{idx + 1} /</span> 
+                                 <span className={isHovered ? 'text-black' : 'text-gray-600'}>{item}</span>
+                              </h4>
+                           </div>
+                        </div>
+                     );
+                  })}
+
+                  {/* Floating Image with Animation */}
+                  <div className="absolute inset-0 pointer-events-none z-20 hidden lg:block">
+                     <AnimatePresence>
+                        {hoveredIndex !== null && (
+                           <motion.div 
+                              className="absolute top-0 right-0 w-[450px] h-[280px]"
+                              initial={{ opacity: 0, y: (hoveredIndex * 120) - 60 }}
+                              animate={{ opacity: 1, y: (hoveredIndex * 120) - 60 }}
+                              exit={{ opacity: 0 }}
+                              transition={{ duration: 0.3, ease: "easeOut" }}
+                           >
+                              <motion.div
+                                initial={{ scale: 0.9 }}
+                                animate={{ scale: 1 }}
+                                exit={{ scale: 0.9 }}
+                                className="w-full h-full rounded-[20px] overflow-hidden shadow-2xl"
+                              >
+                                 <img src={valueImage} className="w-full h-full object-cover" alt="Value Proposition" />
+                              </motion.div>
+                           </motion.div>
+                        )}
+                     </AnimatePresence>
+                  </div>
                </div>
             </div>
          </Container>
       </Section>
 
       {/* PRINCIPLES */}
-      <Section className="bg-gray-50">
-         <Container>
-            <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
-                <h2 className="text-4xl md:text-5xl font-normal max-w-xl">Principios que guían nuestras acciones</h2>
-                <p className="text-lg text-gray-500 max-w-md text-right hidden md:block">
-                   Valores fundamentales que definen nuestra cultura y forma de operar en cada país.
-                </p>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-               {principles.map((item, idx) => (
-                 <div key={idx} className="bg-white p-8 rounded-[20px] hover:shadow-md transition-shadow duration-300 border border-gray-100">
-                    <div className="w-10 h-1 bg-[#fff066] mb-6" />
-                    <h3 className="text-2xl font-bold mb-4">{item.title}</h3>
-                    <p className="text-gray-600 text-lg font-light leading-relaxed">{item.desc}</p>
-                 </div>
-               ))}
-            </div>
-         </Container>
-      </Section>
+      <SolutionsShowcase 
+        label="Cultura"
+        title="Principios que guían nuestras acciones"
+        solutions={principlesFormatted}
+        imageUrl={diversityImage}
+        imageAlt="Equipo diverso Yobel"
+      />
 
       {/* WAYS OF WORKING */}
       <Section className="bg-white">
@@ -312,7 +391,7 @@ export function About() {
              <div className="mb-20 flex flex-col md:flex-row justify-between items-start gap-8">
                 <h2 className="text-4xl md:text-5xl font-normal max-w-md text-left leading-tight">Nuestra forma de trabajar</h2>
                 <p className="text-xl text-gray-500 font-light max-w-md text-left md:text-right pt-2">
-                  Integramos estándares internacionales con metodologías ágiles para garantizar resultados.
+                  Integramos estándares internacionales con metodologías giles para garantizar resultados.
                 </p>
              </div>
              

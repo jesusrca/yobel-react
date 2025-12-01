@@ -1,11 +1,8 @@
 import React from "react";
-import { PageHero } from "../../components/ui/PageHero";
 import { Section } from "../../components/ui/custom-section";
 import { Container } from "../../components/ui/custom-container";
 import { Button } from "../../components/ui/button";
 import { FAQ } from "../../components/landing/FAQ";
-
-const heroImage = "https://images.unsplash.com/photo-1645520718652-9342896b0eec?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdXN0YWluYWJpbGl0eSUyMGdyZWVuJTIwZW5lcmd5JTIwcmVjeWNsaW5nJTIwY29tbXVuaXR5fGVufDF8fHx8MTc2NDE5NTIwNnww&ixlib=rb-4.1.0&q=80&w=1080";
 
 const pillars = [
   { title: "Clima y energía", desc: "Rutas optimizadas, eficiencia en sedes y pilotos de movilidad eléctrica para bajar emisiones." },
@@ -38,11 +35,21 @@ const faqs = [
 export function Sustainability() {
   return (
     <>
-      <PageHero 
-        title="RSE y Sostenibilidad"
-        description="Nos movemos juntos a la sostenibilidad. En Yobel trabajamos cada día para reducir huella, impulsar economía circular y generar impacto positivo en las comunidades."
-        imageUrl={heroImage}
-      />
+      <div className="relative h-[40vh] min-h-[400px] max-h-[500px] w-full overflow-hidden font-augenblick bg-gradient-to-b from-[#fff066] to-white">
+        <div className="absolute bottom-10 left-0 right-0 px-[5%] md:px-[50px] z-10">
+          <div className="max-w-[1400px] mx-auto flex flex-col gap-[30px]">
+             <p className="text-lg md:text-[18px] text-black font-[Neue_Augenblick]">Responsabilidad Corporativa</p>
+             <div className="flex flex-col lg:flex-row items-end justify-between gap-[40px] w-full">
+                <h1 className="text-5xl md:text-[65px] leading-[1] text-black max-w-[773px] font-[Neue_Augenblick]">
+                  RSE y Sostenibilidad
+                </h1>
+                <p className="text-xl md:text-[22px] leading-[24px] text-black max-w-[350px] lg:mr-32 pb-1 font-[Neue_Augenblick]">
+                  Nos movemos juntos a la sostenibilidad. Reducimos huella, impulsamos economía circular y generamos impacto positivo.
+                </p>
+             </div>
+          </div>
+        </div>
+      </div>
 
       <Section className="bg-white">
          <Container>

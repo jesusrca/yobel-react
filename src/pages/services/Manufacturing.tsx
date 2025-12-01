@@ -10,6 +10,7 @@ import { cn } from "../../components/ui/utils";
 import { Industries } from "../../components/landing/Industries";
 import { FAQ } from "../../components/landing/FAQ";
 import { ScrollRevealText } from "../../components/ui/motion-text";
+import { SolutionsShowcase } from "../../components/ui/SolutionsShowcase";
 
 // Images from Figma
 import imgImage2 from "figma:asset/188b5403cfad247086e7d5b3ee2d0d391e5be8a2.png";
@@ -174,48 +175,13 @@ export function Manufacturing() {
       </Section>
 
       {/* Solutions / Soluciones */}
-      <Section className="bg-white py-20">
-        <Container>
-           <div className="flex flex-col gap-12">
-             <div className="flex flex-col gap-2 items-start">
-               <span className="text-xl text-gray-400 font-medium">Soluciones</span>
-             </div>
-             
-             <div className="flex flex-col lg:flex-row gap-16 items-center">
-                <div className="w-full lg:w-1/2 flex flex-col gap-0 border-t border-black">
-                  {solutions.map((sol, index) => (
-                    <div 
-                      key={sol.id}
-                      className="group border-b border-black py-10 cursor-pointer transition-all duration-300"
-                      onMouseEnter={() => setActiveSolution(sol.id)}
-                    >
-                      <div className="flex items-start justify-between gap-4">
-                        <div className="flex flex-col md:flex-row gap-4 md:gap-8 items-baseline">
-                           <span className="text-3xl md:text-4xl font-light whitespace-nowrap">{sol.id} /</span>
-                           <h3 className="text-3xl md:text-4xl font-light">{sol.title}</h3>
-                        </div>
-                        <div className="shrink-0">
-                           <div className="w-[50px] h-[30px] rounded-full border border-black flex items-center justify-center group-hover:bg-black group-hover:text-white transition-colors">
-                             <ChevronRight size={20} />
-                           </div>
-                        </div>
-                      </div>
-                      <div className={`mt-6 overflow-hidden transition-all duration-500 ease-in-out ${activeSolution === sol.id ? 'max-h-[200px] opacity-100' : 'max-h-0 opacity-0'}`}>
-                         <p className="text-xl text-gray-600 font-light max-w-lg ml-0 md:ml-20">
-                           {sol.fullDesc}
-                         </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                
-                <div className="w-full lg:w-1/2 relative h-[600px] rounded-[30px] overflow-hidden">
-                   <img src={imgImage2} alt="Manufacturing" className="absolute inset-0 w-full h-full object-cover" />
-                </div>
-             </div>
-           </div>
-        </Container>
-      </Section>
+      <SolutionsShowcase 
+        label="Soluciones"
+        title=""
+        solutions={solutions}
+        imageUrl={imgImage2}
+        imageAlt="Manufactura"
+      />
 
       {/* Benefits Section */}
       <Section className="bg-white py-20">
