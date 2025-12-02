@@ -1,7 +1,8 @@
 import React, { useState, useRef } from "react";
 import { Section } from "../../components/ui/custom-section";
 import { Container } from "../../components/ui/custom-container";
-import { Button } from "../../components/ui/button";
+import { YellowGradientButton } from "../../components/ui/yellow-gradient-button";
+import { BlackGradientButton } from "../../components/ui/black-gradient-button";
 import { Phrase } from "../../components/company/Phrase";
 import { VideoScrollSection } from "../../components/company/VideoScrollSection";
 import { ContactModal } from "../../components/company/ContactModal";
@@ -51,15 +52,24 @@ const locationsData: Record<string, Location[]> = {
       timezone: "America/Lima"
     }
   ],
-  mexico: [
+  ecuador: [
     {
-      city: "Ciudad de México",
-      country: "México",
-      email: "mexico@yobel.com.mx",
-      phone: "+52 55 5000 0000",
-      address: "Av. Insurgentes Sur 1458, Ciudad de México, México",
-      imageUrl: "https://images.unsplash.com/photo-1704423846283-f92ff6badea3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3Jwb3JhdGUlMjBvZmZpY2UlMjBidWlsZGluZ3xlbnwxfHx8fDE3NjQ2NDUwMzB8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      timezone: "America/Mexico_City"
+      city: "Quito",
+      country: "Ecuador",
+      email: "quito@yobel.com.ec",
+      phone: "+593 2 398 3800",
+      address: "Av. 6 de Diciembre N36-149, Quito, Ecuador",
+      imageUrl: "https://images.unsplash.com/photo-1650392131866-e4e2e06a0c78?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3YXJlaG91c2UlMjBhcmNoaXRlY3R1cmV8ZW58MXx8fHwxNzY0NjY2Nzk0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      timezone: "America/Guayaquil"
+    },
+    {
+      city: "Guayaquil",
+      country: "Ecuador",
+      email: "guayaquil@yobel.com.ec",
+      phone: "+593 4 263 4800",
+      address: "Av. Francisco de Orellana, Guayaquil, Ecuador",
+      imageUrl: "https://images.unsplash.com/photo-1619070284836-e850273d69ac?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjB3YXJlaG91c2UlMjBsb2dpc3RpY3N8ZW58MXx8fHwxNzY0NjUwOTM3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      timezone: "America/Guayaquil"
     }
   ],
   colombia: [
@@ -80,26 +90,6 @@ const locationsData: Record<string, Location[]> = {
       address: "Carrera 65 #8B-91, Medellín, Colombia",
       imageUrl: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBvZmZpY2UlMjBpbnRlcmlvcnxlbnwxfHx8fDE3NjQ1NTc5MjZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
       timezone: "America/Bogota"
-    }
-  ],
-  ecuador: [
-    {
-      city: "Quito",
-      country: "Ecuador",
-      email: "quito@yobel.com.ec",
-      phone: "+593 2 398 3800",
-      address: "Av. 6 de Diciembre N36-149, Quito, Ecuador",
-      imageUrl: "https://images.unsplash.com/photo-1650392131866-e4e2e06a0c78?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3YXJlaG91c2UlMjBhcmNoaXRlY3R1cmV8ZW58MXx8fHwxNzY0NjY2Nzk0fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      timezone: "America/Guayaquil"
-    },
-    {
-      city: "Guayaquil",
-      country: "Ecuador",
-      email: "guayaquil@yobel.com.ec",
-      phone: "+593 4 263 4800",
-      address: "Av. Francisco de Orellana, Guayaquil, Ecuador",
-      imageUrl: "https://images.unsplash.com/photo-1619070284836-e850273d69ac?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjB3YXJlaG91c2UlMjBsb2dpc3RpY3N8ZW58MXx8fHwxNzY0NjUwOTM3fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      timezone: "America/Guayaquil"
     }
   ],
   panama: [
@@ -124,88 +114,48 @@ const locationsData: Record<string, Location[]> = {
       timezone: "America/Costa_Rica"
     }
   ],
-  chile: [
+  rep_dominicana: [
     {
-      city: "Santiago",
-      country: "Chile",
-      email: "santiago@yobel.cl",
-      phone: "+56 2 2573 4200",
-      address: "Av. Américo Vespucio 1501, Pudahuel, Santiago, Chile",
-      imageUrl: "https://images.unsplash.com/photo-1761815139982-0876947bf09a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkaXN0cmlidXRpb24lMjBjZW50ZXIlMjBidWlsZGluZ3xlbnwxfHx8fDE3NjQ2NjY3OTN8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      timezone: "America/Santiago"
-    }
-  ],
-  argentina: [
-    {
-      city: "Buenos Aires",
-      country: "Argentina",
-      email: "buenosaires@yobel.com.ar",
-      phone: "+54 11 5236 8800",
-      address: "Av. Del Libertador 498, Buenos Aires, Argentina",
+      city: "Santo Domingo",
+      country: "República Dominicana",
+      email: "santodomingo@yobel.com.do",
+      phone: "+1 809 500 0000",
+      address: "Santo Domingo, República Dominicana",
       imageUrl: "https://images.unsplash.com/photo-1704423846283-f92ff6badea3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3Jwb3JhdGUlMjBvZmZpY2UlMjBidWlsZGluZ3xlbnwxfHx8fDE3NjQ2NDUwMzB8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      timezone: "America/Argentina/Buenos_Aires"
+      timezone: "America/Santo_Domingo"
     }
   ],
-  uruguay: [
+  el_salvador: [
     {
-      city: "Montevideo",
-      country: "Uruguay",
-      email: "montevideo@yobel.com.uy",
-      phone: "+598 2 628 3200",
-      address: "Ruta 8 Km 17.500, Montevideo, Uruguay",
-      imageUrl: "https://images.unsplash.com/photo-1650392131866-e4e2e06a0c78?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3YXJlaG91c2UlMjBhcmNoaXRlY3R1cmV8ZW58MXx8fHwxNzY0NjY2Nzk0fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      timezone: "America/Montevideo"
-    }
-  ],
-  bolivia: [
-    {
-      city: "La Paz",
-      country: "Bolivia",
-      email: "lapaz@yobel.com.bo",
-      phone: "+591 2 277 7000",
-      address: "Av. Arce 2081, La Paz, Bolivia",
+      city: "San Salvador",
+      country: "El Salvador",
+      email: "sansalvador@yobel.com.sv",
+      phone: "+503 2500 0000",
+      address: "San Salvador, El Salvador",
       imageUrl: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBvZmZpY2UlMjBpbnRlcmlvcnxlbnwxfHx8fDE3NjQ1NTc5MjZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      timezone: "America/La_Paz"
-    },
-    {
-      city: "Santa Cruz",
-      country: "Bolivia",
-      email: "santacruz@yobel.com.bo",
-      phone: "+591 3 336 5000",
-      address: "Av. San Martín 1500, Santa Cruz, Bolivia",
-      imageUrl: "https://images.unsplash.com/photo-1619070284836-e850273d69ac?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjB3YXJlaG91c2UlMjBsb2dpc3RpY3N8ZW58MXx8fHwxNzY0NjUwOTM3fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      timezone: "America/La_Paz"
+      timezone: "America/El_Salvador"
     }
   ],
-  brasil: [
+  guatemala: [
     {
-      city: "São Paulo",
-      country: "Brasil",
-      email: "saopaulo@yobel.com.br",
-      phone: "+55 11 3145 8000",
-      address: "Av. Paulista 1578, São Paulo, Brasil",
+      city: "Ciudad de Guatemala",
+      country: "Guatemala",
+      email: "guatemala@yobel.com.gt",
+      phone: "+502 2300 0000",
+      address: "Zona 10, Ciudad de Guatemala, Guatemala",
       imageUrl: "https://images.unsplash.com/photo-1704423846283-f92ff6badea3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3Jwb3JhdGUlMjBvZmZpY2UlMjBidWlsZGluZ3xlbnwxfHx8fDE3NjQ2NDUwMzB8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      timezone: "America/Sao_Paulo"
-    },
-    {
-      city: "Rio de Janeiro",
-      country: "Brasil",
-      email: "rio@yobel.com.br",
-      phone: "+55 21 2222 5000",
-      address: "Av. Rio Branco 156, Rio de Janeiro, Brasil",
-      imageUrl: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBvZmZpY2UlMjBpbnRlcmlvcnxlbnwxfHx8fDE3NjQ1NTc5MjZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      timezone: "America/Sao_Paulo"
+      timezone: "America/Guatemala"
     }
   ],
-  venezuela: [
+  mexico: [
     {
-      city: "Caracas",
-      country: "Venezuela",
-      email: "caracas@yobel.com.ve",
-      phone: "+58 212 945 3000",
-      address: "Av. Francisco de Miranda, Caracas, Venezuela",
+      city: "Ciudad de México",
+      country: "México",
+      email: "mexico@yobel.com.mx",
+      phone: "+52 55 5000 0000",
+      address: "Av. Insurgentes Sur 1458, Ciudad de México, México",
       imageUrl: "https://images.unsplash.com/photo-1704423846283-f92ff6badea3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3Jwb3JhdGUlMjBvZmZpY2UlMjBidWlsZGluZ3xlbnwxfHx8fDE3NjQ2NDUwMzB8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      timezone: "America/Caracas"
+      timezone: "America/Mexico_City"
     }
   ]
 };
@@ -220,17 +170,14 @@ const stats = [
 
 const countryOptions = [
   { value: "peru", label: "Perú" },
-  { value: "mexico", label: "México" },
-  { value: "colombia", label: "Colombia" },
   { value: "ecuador", label: "Ecuador" },
+  { value: "colombia", label: "Colombia" },
   { value: "panama", label: "Panamá" },
   { value: "costa_rica", label: "Costa Rica" },
-  { value: "chile", label: "Chile" },
-  { value: "argentina", label: "Argentina" },
-  { value: "uruguay", label: "Uruguay" },
-  { value: "bolivia", label: "Bolivia" },
-  { value: "brasil", label: "Brasil" },
-  { value: "venezuela", label: "Venezuela" }
+  { value: "rep_dominicana", label: "Rep. Dominicana" },
+  { value: "el_salvador", label: "El Salvador" },
+  { value: "guatemala", label: "Guatemala" },
+  { value: "mexico", label: "México" }
 ];
 
 export function GlobalPresence() {
@@ -243,17 +190,14 @@ export function GlobalPresence() {
   // Map country IDs to display names
   const countryDisplayNames: Record<string, string> = {
     'peru': 'Perú',
-    'mexico': 'México',
-    'colombia': 'Colombia',
     'ecuador': 'Ecuador',
+    'colombia': 'Colombia',
     'panama': 'Panamá',
     'costa_rica': 'Costa Rica',
-    'chile': 'Chile',
-    'argentina': 'Argentina',
-    'uruguay': 'Uruguay',
-    'bolivia': 'Bolivia',
-    'brasil': 'Brasil',
-    'venezuela': 'Venezuela'
+    'rep_dominicana': 'Rep. Dominicana',
+    'el_salvador': 'El Salvador',
+    'guatemala': 'Guatemala',
+    'mexico': 'México'
   };
   
   const countryName = countryDisplayNames[selectedCountry] || 'Perú';
@@ -341,7 +285,7 @@ export function GlobalPresence() {
            {/* Map and Offices - Aligned side by side */}
            <div className="flex flex-col lg:flex-row gap-16 lg:gap-20 mb-20">
               {/* Right Column: SVG Map */}
-              <div className="lg:w-1/2 min-h-[500px] flex items-center justify-center lg:sticky lg:top-8 lg:self-start">
+              <div className="lg:w-3/5 min-h-[600px] flex items-center justify-center lg:sticky lg:top-8 lg:self-start">
                  <AmericasMap 
                     onSelect={(country) => {
                       setSelectedCountry(country);
@@ -349,16 +293,22 @@ export function GlobalPresence() {
                       setTimeout(scrollToOffices, 100);
                     }}
                     selected={selectedCountry}
-                    className="w-full max-w-[500px] mx-auto"
+                    className="w-full max-w-[700px] mx-auto"
                  />
               </div>
               
               {/* Left Column: Offices Vertical Carousel */}
-              <div className="lg:w-1/2" ref={officesRef}>
+              <div className="lg:w-2/5" ref={officesRef}>
                  {/* Country header with time - Fixed */}
                  <CountryTimeHeader 
                    country={countryName === "Peru" ? "Perú" : countryName}
                    timezone={currentLocations[0]?.timezone || "America/Lima"}
+                   availableCountries={countryOptions}
+                   selectedCountry={selectedCountry}
+                   onCountryChange={(country) => {
+                     setSelectedCountry(country);
+                     setScrollIndex(0);
+                   }}
                  />
                  
                  {/* Vertical scroll container for offices */}
@@ -400,9 +350,9 @@ export function GlobalPresence() {
               <div className="w-full md:w-auto shrink-0">
                 <ContactModal 
                   trigger={
-                    <Button className="w-full md:w-auto px-8 bg-black text-white py-6 rounded-full transition-all duration-500 text-base relative overflow-hidden before:absolute before:inset-0 before:bg-gradient-to-r before:from-[#5dd3c0] before:to-[#f0e626] before:opacity-0 before:transition-opacity before:duration-500 before:rounded-full hover:before:opacity-100 hover:text-black">
-                      <span className="relative z-10">Contactar ahora</span>
-                    </Button>
+                    <BlackGradientButton className="w-full md:w-auto hover:!border-transparent">
+                      Contactar ahora
+                    </BlackGradientButton>
                   }
                 />
               </div>

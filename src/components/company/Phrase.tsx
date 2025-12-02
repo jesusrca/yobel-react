@@ -1,6 +1,7 @@
 import React from "react";
 import svgPaths from "../../imports/svg-663tm4jlj0";
 import { ScrollRevealString } from "../ui/scroll-reveal-text";
+import { YellowGradientButton } from "../ui/yellow-gradient-button";
 
 function Iso() {
   return (
@@ -49,17 +50,17 @@ export function Phrase() {
         <div className="box-border content-stretch flex flex-col gap-[48px] items-center justify-center px-[5%] md:px-[50px] py-[120px] md:py-[200px] relative w-full max-w-[1400px] mx-auto">
           <Iso />
           <Text />
-          <button
+          <YellowGradientButton
             onClick={() => {
               const nextSection = document.querySelector('[data-section="locations"]');
               if (nextSection) {
                 nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
               }
             }}
-            className="mt-8 px-8 py-4 rounded-full border-2 border-black bg-transparent text-black relative overflow-hidden transition-all duration-500 text-base font-medium font-[Neue_Augenblick] before:absolute before:inset-0 before:bg-gradient-to-r before:from-[#5dd3c0] before:to-[#f0e626] before:opacity-0 before:transition-opacity before:duration-500 before:rounded-full hover:before:opacity-100 hover:border-transparent"
+            className="mt-8"
           >
-            <span className="relative z-10">VER NUESTRAS SEDES</span>
-          </button>
+            Ver Nuestras Sedes
+          </YellowGradientButton>
         </div>
       </div>
     </div>
