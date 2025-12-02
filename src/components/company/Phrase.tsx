@@ -1,66 +1,40 @@
 import React from "react";
-import svgPaths from "../../imports/svg-663tm4jlj0";
-import { ScrollRevealString } from "../ui/scroll-reveal-text";
-import { YellowGradientButton } from "../ui/yellow-gradient-button";
+import svgPaths from "../../imports/svg-1m3ko4nf5o";
 
-function Iso() {
+function IsotipoIcon() {
   return (
-    <div className="relative shrink-0 size-[60px]" data-name="Iso">
-      <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 60 60">
-        <g id="Iso">
-          <path d={svgPaths.p1d326d00} fill="var(--fill-0, black)" id="Vector" />
-        </g>
-      </svg>
-    </div>
-  );
-}
-
-function TextSecundary() {
-  return (
-    <div className="relative shrink-0 w-full" data-name="Text Secundary">
-      <div className="flex flex-row items-center justify-center size-full">
-        <div className="box-border content-stretch flex gap-[10px] items-center justify-center px-4 md:px-[50px] py-0 relative w-full font-[Neue_Augenblick] text-center">
-          <ScrollRevealString 
-            text="Operamos con conexión directa a puertos, aeropuertos y redes logísticas nacionales."
-            as="p"
-            className="basis-0 font-augenblick grow leading-tight md:leading-[48px] min-h-px min-w-px not-italic relative shrink-0 text-2xl md:text-[45px] text-black text-center font-[Abel]"
-          />
-        </div>
+    <div className="relative w-[41px] h-10 shrink-0">
+      <div className="absolute inset-0">
+        <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 40.7226 39.9999">
+          <g id="Vector">
+            <path d={svgPaths.p1cc6bd50} fill="black" id="Vector" />
+          </g>
+        </svg>
       </div>
     </div>
   );
 }
 
-function Text() {
-  return (
-    <div className="relative shrink-0 w-full" data-name="Text">
-      <div className="flex flex-col items-center justify-center size-full">
-        <div className="box-border content-stretch flex flex-col gap-[32px] items-center justify-center px-4 md:px-[112px] py-0 relative w-full">
-          <TextSecundary />
-        </div>
-      </div>
-    </div>
-  );
+interface PhraseProps {
+  text?: string;
 }
 
-export function Phrase() {
+export function Phrase({ 
+  text = "Cada década hemos escrito un nuevo capítulo: de la manufactura de productos de cuidado personal a la gestión integral de cadenas de suministro en Latinoamérica. Nuestra historia refleja que la excelencia y la innovación forman parte de nuestro ADN."
+}: PhraseProps) {
   return (
-    <div className="relative w-full bg-white" data-name="Phrase">
-      <div className="flex flex-col items-center justify-center w-full">
-        <div className="box-border content-stretch flex flex-col gap-[48px] items-center justify-center px-[5%] md:px-[50px] py-[120px] md:py-[200px] relative w-full max-w-[1400px] mx-auto">
-          <Iso />
-          <Text />
-          <YellowGradientButton
-            onClick={() => {
-              const nextSection = document.querySelector('[data-section="locations"]');
-              if (nextSection) {
-                nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-              }
-            }}
-            className="mt-8"
-          >
-            Ver Nuestras Sedes
-          </YellowGradientButton>
+    <div className="relative w-full bg-white overflow-hidden">
+      <div className="max-w-[1440px] mx-auto px-6 md:px-12 py-20 md:py-32 lg:py-40">
+        <div className="flex flex-col items-center gap-8 md:gap-10 text-center">
+          {/* Icon */}
+          <div className="shrink-0">
+            <IsotipoIcon />
+          </div>
+          
+          {/* Text */}
+          <p className="text-2xl md:text-3xl lg:text-[40px] leading-relaxed lg:leading-[1.2] text-black font-['Neue_Augenblick'] font-light max-w-[1100px]">
+            {text}
+          </p>
         </div>
       </div>
     </div>
