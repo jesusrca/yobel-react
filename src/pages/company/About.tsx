@@ -105,51 +105,35 @@ const TypewriterText = ({
   className?: string;
 }) => {
   const [displayedWords, setDisplayedWords] = useState<string[]>([]);
-  const [animationKey, setAnimationKey] = useState(0);
   const words = text.split(' ');
   
   useEffect(() => {
-    let timeouts: NodeJS.Timeout[] = [];
-    
-    const unsubscribe = scrollProgress.on("change", (latest) => {
-      // Clear any ongoing animations
-      timeouts.forEach(t => clearTimeout(t));
-      timeouts = [];
-      
-      if (latest < startProgress || latest > endProgress) {
-        // Outside the range - reset
+    return scrollProgress.on("change", (latest) => {
+      if (latest < startProgress) {
         setDisplayedWords([]);
-        setAnimationKey(prev => prev + 1);
-      } else if (latest >= startProgress) {
-        // Inside the range - start animation
-        setDisplayedWords([]);
-        
-        // Animate words appearing one by one
-        words.forEach((word, idx) => {
-          const timeout = setTimeout(() => {
-            setDisplayedWords(prev => [...prev, word]);
-          }, idx * 80);
-          timeouts.push(timeout);
-        });
+      } else if (latest >= startProgress && latest <= endProgress) {
+        // Calculate how many words to show
+        const progress = (latest - startProgress) / (endProgress - startProgress);
+        const wordCount = Math.floor(progress * words.length);
+        setDisplayedWords(words.slice(0, wordCount));
+      } else {
+        setDisplayedWords(words);
       }
     });
-    
-    return () => {
-      unsubscribe();
-      timeouts.forEach(t => clearTimeout(t));
-    };
-  }, [scrollProgress, startProgress, endProgress, animationKey]);
+  }, [scrollProgress, words, startProgress, endProgress]);
 
   return (
-    <span className={className} key={animationKey}>
-      {words.map((word, idx) => (
-        <span
+    <span className={className}>
+      {displayedWords.map((word, idx) => (
+        <motion.span
           key={idx}
-          className="inline-block mr-[0.25em] transition-opacity duration-300"
-          style={{ opacity: displayedWords.includes(word) ? 1 : 0 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
+          className="inline-block mr-[0.25em]"
         >
           {word}
-        </span>
+        </motion.span>
       ))}
     </span>
   );
@@ -288,13 +272,10 @@ export function About() {
                              </svg>
                           </div>
                           
-                          <p className="font-augenblick leading-[48px] not-italic relative shrink-0 text-3xl md:text-[45px] text-center w-full text-gray-500">
-                              <TypewriterText 
-                                text={item.title}
-                                scrollProgress={scrollYProgress}
-                                startProgress={typewriterRanges[idx].start}
-                                endProgress={typewriterRanges[idx].end}
-                              />
+                          <p 
+                              className="font-augenblick leading-[48px] not-italic relative shrink-0 text-3xl md:text-[45px] text-center w-full text-gray-500"
+                          >
+                              {item.title}
                           </p>
                           <div className="max-w-5xl">
                               <p className="font-augenblick leading-[1.4] md:leading-[48px] text-2xl md:text-[45px] text-center text-black">
