@@ -1,17 +1,8 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
-import { Section } from "../../components/ui/custom-section";
-import { Container } from "../../components/ui/custom-container";
-import { Button } from "../../components/ui/button";
-import { FAQ } from "../../components/landing/FAQ";
-import { Industries } from "../../components/landing/Industries";
-import { Phrase } from "../../components/landing/Phrase";
-import { FullWidthImage } from "../../components/ui/FullWidthImage";
-import { ParallaxCurves } from "../../components/landing/ParallaxCurves";
-import svgPaths from "../../imports/svg-5srx0k234k";
-import { SolutionsList } from "../../components/landing/SolutionsList";
-import { ParallaxImage } from "../../components/landing/ParallaxImage";
+import { motion } from "motion/react";
+import { useCountry } from "../../contexts/CountryContext";
+import { PageHero } from "../../components/ui/PageHero";
 
 const heroImage = "https://images.unsplash.com/photo-1641290451977-a427586acf49?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkZWxpdmVyeSUyMHRydWNrcyUyMGxvZ2lzdGljcyUyMGRpc3RyaWJ1dGlvbiUyMGNlbnRlciUyMGZsZWV0fGVufDF8fHx8MTc2NDE5NTIwNHww&ixlib=rb-4.1.0&q=80&w=1080";
 
@@ -60,59 +51,44 @@ const faqs = [
 ];
 
 export function Distribution() {
+  const { selectedCountry } = useCountry();
+  
+  const processes = [
+    { title: "Planificación de rutas", desc: `Diseñamos rutas y asignamos recursos según la demanda para una distribución eficiente en todo ${selectedCountry}.` },
+    { title: "Picking", desc: "Preparación y verificación de pedidos, garantizando exactitud en cada entrega." },
+    { title: "Transporte", desc: "Movilizamos tu mercancía según la modalidad logística elegida (fletes exclusivos, consolidados o express)." },
+    { title: "Entrega confirmada", desc: "Confirmación de recepción con trazabilidad en tiempo real para mayor control." },
+    { title: "Seguimiento y reporte", desc: "Monitoreo constante del estado de distribución con reportes digitales actualizados." }
+  ];
+  
+  const faqs = [
+    { question: `¿Puedo coordinar envíos a cualquier región de ${selectedCountry}?`, answer: "Sí, contamos con una red de transporte y centros estratégicos que nos permiten cubrir todo el país con eficiencia y puntualidad." },
+    { question: "¿Puedo programar entregas según mi calendario comercial?", answer: "Sí, planificamos rutas y ventanas horarias adaptadas a la demanda de tu negocio." },
+    { question: "¿Realizan entregas en zonas rurales o de difícil acceso?", answer: "Sí, contamos con cobertura nacional y aliados estratégicos que garantizan llegada a cualquier destino." },
+    { question: "¿Ofrecen seguimiento de entregas?", answer: "Sí, disponemos de trazabilidad 24/7 y confirmación digital de cada despacho, accesible vía web o app móvil." }
+  ];
+
   return (
     <>
-      <div className="relative h-[80vh] min-h-[600px] max-h-[920px] w-full overflow-hidden font-augenblick">
-        <div className="absolute inset-0 overflow-hidden">
-          <video 
-            src="https://circular.ws/yobel/amarillo-desktop.mp4"
-            className="absolute inset-0 h-full w-full object-cover"
-            autoPlay
-            loop
-            muted
-            playsInline
-          />
-          <div className="absolute inset-0 bg-black/10" />
-          <div className="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-[#fff066] via-[#fff066]/60 to-transparent pointer-events-none" />
-        </div>
-
-        <div className="absolute bottom-20 left-0 right-0 px-[5%] md:px-[50px] z-10">
-          <div className="max-w-[1400px] mx-auto flex flex-col gap-[30px]">
-             <p className="text-lg md:text-[18px] text-black">Distribución</p>
-             <div className="flex flex-col lg:flex-row items-start gap-[40px]">
-                <h1 className="text-5xl md:text-[65px] leading-[1] text-black max-w-[773px]">
-                  Distribución logística nacional
-                </h1>
-                <p className="text-xl md:text-[22px] leading-[24px] text-black max-w-[316px] pt-2">
-                  Coordinamos entregas con cobertura nacional y trazabilidad total.
-                </p>
-             </div>
-          </div>
-        </div>
-      </div>
+      <PageHero
+        title="Distribución logística nacional"
+        subtitle="Coordinamos entregas con cobertura nacional y trazabilidad total."
+        videoSrc="https://circular.ws/yobel/amarillo-desktop.mp4"
+        videoColor="bg-black/10"
+        videoGradient="bg-gradient-to-t from-[#fff066] via-[#fff066]/60 to-transparent pointer-events-none"
+        heroImage={heroImage}
+        heroTitle="En Yobel diseñamos e implementamos soluciones de distribución eficientes para que tu cadena de suministro funcione sin interrupciones."
+        heroButton={
+          <Link to="/contacto">
+            <Button className="font-augenblick bg-transparent border-[1.5px] border-black text-black px-8 py-6 rounded-full text-xl hover:bg-black hover:text-white transition-colors duration-500 ease-in-out w-fit">
+                Contactar asesor
+            </Button>
+          </Link>
+        }
+      />
 
       <Section className="bg-white">
          <Container>
-            <div className="max-w-[1200px] mx-auto my-20 text-center">
-              <div className="mb-8 flex justify-center">
-                 <svg width="48" height="46" viewBox="0 0 48 46" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d={svgPaths.pff39b00} fill="black" />
-                 </svg>
-              </div>
-
-               <h2 className="text-[32px] md:text-[48px] leading-[1.2] font-normal mb-16 max-w-[1000px] mx-auto tracking-tight text-black">
-                 En Yobel diseñamos e implementamos soluciones de distribución eficientes para que tu cadena de suministro funcione sin interrupciones.
-               </h2>
-
-               <div className="flex justify-center">
-                   <Link to="/contacto">
-                    <Button className="font-augenblick bg-transparent border-[1.5px] border-black text-black px-8 py-6 rounded-full text-xl hover:bg-black hover:text-white transition-colors duration-500 ease-in-out w-fit">
-                        Contactar asesor
-                    </Button>
-                   </Link>
-               </div>
-            </div>
-
             <ParallaxCurves />
 
             {/* Solutions with Scroll Animation */}

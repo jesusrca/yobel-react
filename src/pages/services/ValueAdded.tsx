@@ -1,13 +1,8 @@
-import React, { useState, useRef } from "react";
-import Slider from "react-slick";
-import { Section } from "../../components/ui/custom-section";
-import { Container } from "../../components/ui/custom-container";
-import { Button } from "../../components/ui/button";
-import { ChevronRight, Check } from "lucide-react";
+import React from "react";
+import { Link } from "react-router-dom";
 import { motion } from "motion/react";
-import { Industries } from "../../components/landing/Industries";
-import { FAQ } from "../../components/landing/FAQ";
-import { ScrollRevealText } from "../../components/ui/motion-text";
+import { useCountry } from "../../contexts/CountryContext";
+import { PageHero } from "../../components/ui/PageHero";
 
 // SVG Paths (Reused from Manufacturing style)
 const svgPaths = {
@@ -75,40 +70,19 @@ const faqs = [
 ];
 
 export function ValueAdded() {
+  const { selectedCountry } = useCountry();
   const [activeSolution, setActiveSolution] = useState<string | null>("01");
   const containerRef = useRef(null);
 
   return (
     <>
       {/* Hero Section */}
-      <div className="relative h-[80vh] min-h-[600px] max-h-[920px] w-full overflow-hidden font-augenblick">
-        <div className="absolute inset-0 overflow-hidden">
-          <video 
-            src="https://circular.ws/yobel/fondo-celeste.mp4"
-            className="absolute inset-0 h-full w-full object-cover"
-            autoPlay
-            loop
-            muted
-            playsInline
-          />
-          <div className="absolute inset-0 bg-black/10" />
-          <div className="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-white via-white/60 to-transparent pointer-events-none" />
-        </div>
-
-        <div className="absolute bottom-20 left-0 right-0 px-[5%] md:px-[50px] z-10">
-          <div className="max-w-[1400px] mx-auto flex flex-col gap-[30px]">
-             <p className="text-lg md:text-[18px] text-black">Servicios</p>
-             <div className="flex flex-col lg:flex-row items-start gap-[40px]">
-                <h1 className="text-5xl md:text-[65px] leading-[1] text-black max-w-[773px]">
-                  Servicio de Valor Agregado en Perú
-                </h1>
-                <p className="text-xl md:text-[22px] leading-[24px] text-black max-w-[400px] pt-2">
-                  Potenciamos tu operación con servicios de acondicionamiento, empaque y personalización, diseñados para agregar valor a tus productos.
-                </p>
-             </div>
-          </div>
-        </div>
-      </div>
+      <PageHero
+        videoSrc="https://circular.ws/yobel/fondo-celeste.mp4"
+        title={`Servicio de Valor Agregado en ${selectedCountry}`}
+        subtitle="Potenciamos tu operación con servicios de acondicionamiento, empaque y personalización, diseñados para agregar valor a tus productos."
+        className="bg-gradient-to-b from-white to-[#59c1e6]"
+      />
 
       {/* Intro Section */}
       <Section className="bg-white py-20">

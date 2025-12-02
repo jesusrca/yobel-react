@@ -1,11 +1,12 @@
-import React, { useState, useRef, useEffect } from "react";
-import Slider from "react-slick";
+import React from "react";
+import { Link } from "react-router-dom";
+import { motion } from "motion/react";
+import { useCountry } from "../../contexts/CountryContext";
 import { PageHero } from "../../components/ui/PageHero";
 import { Section } from "../../components/ui/custom-section";
 import { Container } from "../../components/ui/custom-container";
 import { Button } from "../../components/ui/button";
 import { Plus, Minus, ChevronLeft, ChevronRight, Check } from "lucide-react";
-import { motion, useScroll, useTransform, useInView, animate, MotionValue } from "motion/react";
 import { cn } from "../../components/ui/utils";
 import { Industries } from "../../components/landing/Industries";
 import { FAQ } from "../../components/landing/FAQ";
@@ -101,6 +102,7 @@ const faqs = [
 ];
 
 export function Manufacturing() {
+  const { selectedCountry } = useCountry();
   const sliderRef = useRef<Slider>(null);
   const [activeSolution, setActiveSolution] = useState<string | null>("01");
   const containerRef = useRef(null);
@@ -138,7 +140,7 @@ export function Manufacturing() {
              <p className="text-lg md:text-[18px] text-black">Manufactura</p>
              <div className="flex flex-col lg:flex-row items-start gap-[40px]">
                 <h1 className="text-5xl md:text-[65px] leading-[1] text-black max-w-[773px]">
-                  Manufactura en Perú para empresas
+                  Manufactura en {selectedCountry} para empresas
                 </h1>
                 <p className="text-xl md:text-[22px] leading-[24px] text-black max-w-[316px] pt-2">
                   Producción, envasado y desarrollo de productos con altos estándares internacionales.

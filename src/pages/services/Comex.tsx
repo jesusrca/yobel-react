@@ -1,6 +1,7 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
+import { motion } from "framer-motion";
+import { useCountry } from "../../contexts/CountryContext";
 import { PageHero } from "../../components/ui/PageHero";
 import { Section } from "../../components/ui/custom-section";
 import { Container } from "../../components/ui/custom-container";
@@ -56,14 +57,16 @@ const processes = [
   { title: "Entrega Final", desc: "Garantizamos la llegada de tus productos con trazabilidad completa y cumplimiento de tiempos." }
 ];
 
-const faqs = [
-  { question: "¿Yobel Perú gestiona todo el proceso de importación?", answer: "Sí, nos encargamos desde la llegada de la mercancía al puerto hasta su entrega final, incluyendo trámites aduaneros, transporte y nacionalización." },
-  { question: "¿Yobel puede gestionar cargas con requisitos sanitarios o peligrosos?", answer: "Sí, contamos con experiencia en la manipulación de mercancías reguladas y coordinación con autoridades sanitarias y aduaneras." },
-  { question: "¿Ofrecen asesoría en normativa de exportación e importación?", answer: "Sí, brindamos soporte técnico y documental para cumplir con los requisitos legales y optimizar los tiempos de despacho." },
-  { question: "¿Puedo tener visibilidad del estado de mi carga en tránsito?", answer: "Sí, ofrecemos trazabilidad total con reportes en línea y actualizaciones automáticas durante cada fase del proceso." }
-];
-
 export function Comex() {
+  const { selectedCountry } = useCountry();
+  
+  const faqs = [
+    { question: `¿Yobel ${selectedCountry} gestiona todo el proceso de importación?`, answer: "Sí, nos encargamos desde la llegada de la mercancía al puerto hasta su entrega final, incluyendo trámites aduaneros, transporte y nacionalización." },
+    { question: "¿Yobel puede gestionar cargas con requisitos sanitarios o peligrosos?", answer: "Sí, contamos con experiencia en la manipulación de mercancías reguladas y coordinación con autoridades sanitarias y aduaneras." },
+    { question: "¿Ofrecen asesoría en normativa de exportación e importación?", answer: "Sí, brindamos soporte técnico y documental para cumplir con los requisitos legales y optimizar los tiempos de despacho." },
+    { question: "¿Puedo tener visibilidad del estado de mi carga en tránsito?", answer: "Sí, ofrecemos trazabilidad total con reportes en línea y actualizaciones automáticas durante cada fase del proceso." }
+  ];
+  
   return (
     <>
       <div className="relative h-[80vh] min-h-[600px] max-h-[920px] w-full overflow-hidden font-augenblick">

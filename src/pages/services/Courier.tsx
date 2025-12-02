@@ -1,18 +1,8 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
-import { Section } from "../../components/ui/custom-section";
-import { Container } from "../../components/ui/custom-container";
-import { Button } from "../../components/ui/button";
-import { FAQ } from "../../components/landing/FAQ";
-import { Industries } from "../../components/landing/Industries";
-import { Phrase } from "../../components/landing/Phrase";
-import { FullWidthImage } from "../../components/ui/FullWidthImage";
-import { ParallaxCurves } from "../../components/landing/ParallaxCurves";
-import svgPaths from "../../imports/svg-5srx0k234k";
-import { SolutionsList } from "../../components/landing/SolutionsList";
-import { ParallaxImage } from "../../components/landing/ParallaxImage";
-import courierBenefitsImage from "figma:asset/4603c5dfabc6b3e8854844680539663624b1d48a.png";
+import { motion } from "motion/react";
+import { useCountry } from "../../contexts/CountryContext";
+import { PageHero } from "../../components/ui/PageHero";
 
 const heroImage = "https://images.unsplash.com/photo-1607130232670-52123ba5be5c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3VyaWVyJTIwZGVsaXZlcnklMjBleHByZXNzJTIwcGFja2FnZSUyMG1vdG9yY3ljbGUlMjBjb3VyaWVyfGVufDF8fHx8MTc2NDE5NTIwNHww&ixlib=rb-4.1.0&q=80&w=1080";
 
@@ -38,13 +28,6 @@ const features = [
   { title: "Postventa dedicada", desc: "Soporte inmediato para resolver incidencias." }
 ];
 
-const benefits = [
-  "Alta confiabilidad: Cumplimiento OTIF (On Time, In Full) del 99.6%.",
-  "Tecnología avanzada: Seguimiento en tiempo real 24/7.",
-  "Equipo especializado: Entregas críticas y sensibles.",
-  "Cobertura total: Llegamos a zonas urbanas y rurales en todo el Perú."
-];
-
 const processes = [
   { title: "Planificación de rutas", desc: "Optimización de envíos y recursos según la demanda." },
   { title: "Picking", desc: "Preparación y verificación de pedidos." },
@@ -61,122 +44,29 @@ const faqs = [
 ];
 
 export function Courier() {
+  const { selectedCountry } = useCountry();
+  
+  const benefits = [
+    "Alta confiabilidad: Cumplimiento OTIF (On Time, In Full) del 99.6%.",
+    "Tecnología avanzada: Seguimiento en tiempo real 24/7.",
+    "Equipo especializado: Entregas críticas y sensibles.",
+    `Cobertura total: Llegamos a zonas urbanas y rurales en todo ${selectedCountry}.`
+  ];
+
   return (
     <>
-      <div className="relative h-[80vh] min-h-[600px] max-h-[920px] w-full overflow-hidden font-augenblick">
-        <div className="absolute inset-0 overflow-hidden">
-          <video 
-            src="https://circular.ws/yobel/amarillo-desktop.mp4"
-            className="absolute inset-0 h-full w-full object-cover"
-            autoPlay
-            loop
-            muted
-            playsInline
-          />
-          <div className="absolute inset-0 bg-black/10" />
-          <div className="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-[#fff066] via-[#fff066]/60 to-transparent pointer-events-none" />
-        </div>
-
-        <div className="absolute bottom-20 left-0 right-0 px-[5%] md:px-[50px] z-10">
-          <div className="max-w-[1400px] mx-auto flex flex-col gap-[30px]">
-             <p className="text-lg md:text-[18px] text-black">Courier Express</p>
-             <div className="flex flex-col lg:flex-row items-start gap-[40px]">
-                <h1 className="text-5xl md:text-[65px] leading-[1] text-black max-w-[773px]">
-                  Entregas rápidas y eficientes
-                </h1>
-                <p className="text-xl md:text-[22px] leading-[24px] text-black max-w-[316px] pt-2">
-                  Puerta a puerta con trazabilidad 24/7 y cumplimiento OTIF del 99.6%.
-                </p>
-             </div>
-          </div>
-        </div>
-      </div>
-
-      <Section className="bg-white">
-         <Container>
-            <div className="max-w-[1200px] mx-auto my-20 text-center">
-              <div className="mb-8 flex justify-center">
-                 <svg width="48" height="46" viewBox="0 0 48 46" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d={svgPaths.pff39b00} fill="black" />
-                 </svg>
-              </div>
-
-               <h2 className="text-[32px] md:text-[48px] leading-[1.2] font-normal mb-16 max-w-[1000px] mx-auto tracking-tight text-black">
-                 En Yobel ofrecemos servicios de courier rápido, confiable y con cobertura nacional, diseñados para garantizar la seguridad y puntualidad de cada entrega.
-               </h2>
-
-               <div className="flex justify-center">
-                   <Link to="/contacto">
-                    <Button className="font-augenblick bg-transparent border-[1.5px] border-black text-black px-8 py-6 rounded-full text-xl hover:bg-black hover:text-white transition-colors duration-500 ease-in-out w-fit">
-                        Contactar asesor
-                    </Button>
-                   </Link>
-               </div>
-            </div>
-
-            <ParallaxCurves />
-
-            {/* Solutions with Scroll Animation */}
-            <SolutionsList 
-               solutions={solutions} 
-               hoverImage={heroImage} 
-               title="Soluciones de Entrega"
-            />
-
-             {/* Features Grid */}
-             <div className="mb-20">
-               <h3 className="text-[32px] md:text-[42px] leading-[1.1] font-normal mb-12 text-black tracking-tight">
-                  Características del servicio
-               </h3>
-               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                 {features.map((feat, idx) => (
-                   <div key={idx} className="bg-gray-50 p-8 rounded-[20px] hover:bg-gray-100 transition-colors">
-                      <div className="w-10 h-10 bg-black rounded-full mb-6 flex items-center justify-center text-white font-bold">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <polyline points="20 6 9 17 4 12"></polyline>
-                        </svg>
-                      </div>
-                      <h4 className="text-xl font-medium mb-3 text-black">{feat.title}</h4>
-                      <p className="text-gray-600 leading-relaxed">{feat.desc}</p>
-                   </div>
-                 ))}
-               </div>
-             </div>
-
-            {/* Benefits */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 mb-20">
-               <div className="flex flex-col">
-                  <span className="text-gray-400 text-lg mb-12 block">Beneficios</span>
-                  <ParallaxImage 
-                     src={courierBenefitsImage} 
-                     alt="Beneficios Courier" 
-                     yValues={[-200, 0]}
-                  />
-               </div>
-
-               <div className="flex flex-col pt-8">
-                  <h3 className="text-[32px] md:text-[42px] leading-[1.1] font-normal mb-12 text-black tracking-tight max-w-xl">
-                     Nos enfocamos en optimizar tiempos y costos
-                  </h3>
-                  
-                  <ul className="flex flex-col w-full">
-                     {benefits.map((item, idx) => (
-                        <li key={idx} className="flex items-start gap-6 py-6 border-b border-gray-100 last:border-0">
-                           <div className="mt-1.5 shrink-0">
-                              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                 <path d="M20 6L9 17L4 12" stroke="black" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
-                              </svg>
-                           </div>
-                           <span className="text-lg md:text-xl text-gray-600 font-light leading-relaxed">
-                             {item}
-                           </span>
-                        </li>
-                     ))}
-                  </ul>
-               </div>
-            </div>
-         </Container>
-      </Section>
+      <PageHero
+        title="Entregas rápidas y eficientes"
+        subtitle="Puerta a puerta con trazabilidad 24/7 y cumplimiento OTIF del 99.6%."
+        backgroundImage="https://circular.ws/yobel/amarillo-desktop.mp4"
+        videoColor="bg-black/10"
+        gradient="bg-gradient-to-t from-[#fff066] via-[#fff066]/60 to-transparent pointer-events-none"
+        heroImage={heroImage}
+        heroText="En Yobel ofrecemos servicios de courier rápido, confiable y con cobertura nacional, diseñados para garantizar la seguridad y puntualidad de cada entrega."
+        buttonText="Contactar asesor"
+        buttonLink="/contacto"
+        buttonClass="font-augenblick bg-transparent border-[1.5px] border-black text-black px-8 py-6 rounded-full text-xl hover:bg-black hover:text-white transition-colors duration-500 ease-in-out w-fit"
+      />
 
       <div className="w-full h-[400px] lg:h-[600px] mb-20 relative overflow-hidden">
          <motion.img 

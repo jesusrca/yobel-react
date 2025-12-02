@@ -1,4 +1,6 @@
-import React, { useRef } from "react";
+import React, { useState, useRef } from "react";
+import { Link } from "react-router-dom";
+import { useCountry } from "../../contexts/CountryContext";
 import { Section } from "../../components/ui/custom-section";
 import { Container } from "../../components/ui/custom-container";
 import { Button } from "../../components/ui/button";
@@ -132,6 +134,7 @@ const iconTypeMapping = [
 ];
 
 export function CodeOfEthics() {
+  const { selectedCountry } = useCountry();
   const containerRef = useRef(null);
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 500], [0, -150]);
@@ -247,7 +250,7 @@ export function CodeOfEthics() {
                            <h4 className="text-xl font-bold">Canales Disponibles</h4>
                        </div>
                        <ul className="space-y-4">
-                           <li className="text-gray-400 text-lg">Perú: 0-800-00-000</li>
+                           <li className="text-gray-400 text-lg">{selectedCountry}: 0-800-00-000</li>
                            <li className="text-gray-400 text-lg">Internacional: +51 1 123 4567</li>
                            <li className="text-gray-400 text-lg">etica@yobel.com</li>
                        </ul>

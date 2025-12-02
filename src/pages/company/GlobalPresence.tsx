@@ -1,4 +1,5 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import { useCountry } from "../../contexts/CountryContext";
 import { Section } from "../../components/ui/custom-section";
 import { Container } from "../../components/ui/custom-container";
 import { YellowGradientButton } from "../../components/ui/yellow-gradient-button";
@@ -181,7 +182,26 @@ const countryOptions = [
 ];
 
 export function GlobalPresence() {
-  const [selectedCountry, setSelectedCountry] = useState<string>("peru");
+  const { selectedCountry: globalSelectedCountry } = useCountry();
+  
+  // Map global country name to local country ID
+  const countryNameToId: Record<string, string> = {
+    'Perú': 'peru',
+    'Ecuador': 'ecuador',
+    'Colombia': 'colombia',
+    'Panamá': 'panama',
+    'Costa Rica': 'costa_rica',
+    'República Dominicana': 'rep_dominicana',
+    'Rep. Dominicana': 'rep_dominicana',
+    'El Salvador': 'el_salvador',
+    'Guatemala': 'guatemala',
+    'México': 'mexico'
+  };
+  
+  // Initialize with the globally selected country, or default to peru
+  const initialCountry = countryNameToId[globalSelectedCountry] || 'peru';
+  
+  const [selectedCountry, setSelectedCountry] = useState<string>(initialCountry);
   const [scrollIndex, setScrollIndex] = useState<number>(0);
   const officesRef = useRef<HTMLDivElement>(null);
 
@@ -202,6 +222,13 @@ export function GlobalPresence() {
   
   const countryName = countryDisplayNames[selectedCountry] || 'Perú';
 
+  // Update selected country when global country changes
+  useEffect(() => {
+    const newCountry = countryNameToId[globalSelectedCountry] || 'peru';
+    setSelectedCountry(newCountry);
+    setScrollIndex(0);
+  }, [globalSelectedCountry]);
+
   const scrollToOffices = () => {
     // Solo hacer scroll en móviles (lg breakpoint es 1024px)
     if (window.innerWidth < 1024 && officesRef.current) {
@@ -211,6 +238,11 @@ export function GlobalPresence() {
       });
     }
   };
+
+  useEffect(() => {
+    // Scroll to offices when selected country changes
+    scrollToOffices();
+  }, [selectedCountry]);
 
   return (
     <>
@@ -235,7 +267,7 @@ export function GlobalPresence() {
              <p className="text-lg md:text-[18px] text-black font-medium">Presencia Global</p>
              <div className="flex flex-col lg:flex-row items-start gap-[40px]">
                 <h1 className="text-5xl md:text-[65px] leading-[1] text-black max-w-[800px] tracking-tight font-[Neue_Augenblick]">
-                  Conectamos tu cadena de suministro desde Perú hacia 9 países de Latinoamérica
+                  Conectamos tu cadena de suministro desde {globalSelectedCountry} hacia 9 países de Latinoamérica
                 </h1>
              </div>
           </div>
