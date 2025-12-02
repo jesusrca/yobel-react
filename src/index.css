@@ -527,6 +527,10 @@
     position: relative;
   }
 
+  .static {
+    position: static;
+  }
+
   .sticky {
     position: sticky;
   }
@@ -1629,6 +1633,10 @@
   .scale-x-0 {
     --tw-scale-x: 0%;
     scale: var(--tw-scale-x) var(--tw-scale-y);
+  }
+
+  .rotate-0 {
+    rotate: none;
   }
 
   .rotate-180 {
@@ -5099,6 +5107,12 @@
   @media (width >= 64rem) {
     .lg\:mr-32 {
       margin-right: calc(var(--spacing) * 32);
+    }
+  }
+
+  @media (width >= 64rem) {
+    .lg\:mb-16 {
+      margin-bottom: calc(var(--spacing) * 16);
     }
   }
 

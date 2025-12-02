@@ -249,7 +249,7 @@ export function GlobalPresence() {
       <Section className="bg-white pt-24 md:pt-32" data-section="locations">
         <Container>
            {/* Title Block - Above everything */}
-           <div className="mb-16">
+           <div className="mb-8 lg:mb-16">
              <ScrollRevealString 
                text="Encuentra nuestros centros logísticos y oficinas"
                as="h2"
@@ -283,7 +283,7 @@ export function GlobalPresence() {
            </div>
 
            {/* Map and Offices - Aligned side by side */}
-           <div className="flex flex-col lg:flex-row gap-16 lg:gap-20 mb-20">
+           <div className="flex flex-col lg:flex-row gap-8 lg:gap-20 mb-20">
               {/* Right Column: SVG Map */}
               <div className="lg:w-3/5 min-h-[600px] flex items-center justify-center lg:sticky lg:top-8 lg:self-start">
                  <AmericasMap 

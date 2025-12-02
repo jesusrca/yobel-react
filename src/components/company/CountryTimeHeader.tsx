@@ -43,8 +43,14 @@ export function CountryTimeHeader({
   return (
     <div className="mb-8 pb-6 border-b border-gray-200">
       <div className="flex items-center justify-between mb-2">
+        {/* Mobile: always show static text */}
+        <h3 className="md:hidden text-3xl tracking-tight text-black font-[Neue_Augenblick]">
+          {country}
+        </h3>
+        
+        {/* Desktop: show dropdown if available, otherwise static text */}
         {availableCountries && onCountryChange ? (
-          <div className="relative flex-1 max-w-xs">
+          <div className="hidden md:block relative flex-1 max-w-xs">
             <select
               value={selectedCountry}
               onChange={(e) => onCountryChange(e.target.value)}
@@ -59,7 +65,7 @@ export function CountryTimeHeader({
             <ChevronDown className="absolute right-1 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" />
           </div>
         ) : (
-          <h3 className="text-3xl md:text-4xl tracking-tight text-black font-[Neue_Augenblick]">
+          <h3 className="hidden md:block text-3xl md:text-4xl tracking-tight text-black font-[Neue_Augenblick]">
             {country}
           </h3>
         )}

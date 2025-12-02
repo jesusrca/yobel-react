@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "motion/react";
 import svgPaths from "../../imports/svg-djl5v4gr4k";
 import { cn } from "../ui/utils";
-import { Copy, Check } from "lucide-react";
+import { Copy, Check, ChevronDown } from "lucide-react";
 
 function Logo() {
   return (
@@ -170,8 +170,79 @@ export function Footer() {
                 </div>
             </div>
 
-            {/* Right Side: Navigation (Split Column) */}
-            <div className="flex flex-col md:flex-row gap-12 md:gap-32 w-full lg:w-2/3">
+            {/* Right Side: Navigation - Mobile Accordion / Desktop Two Columns */}
+            {/* MOBILE: Accordion Style */}
+            <div className="md:hidden flex flex-col gap-6 w-full">
+                <p className="text-[16px] text-white/50 font-medium mb-2">PÁGINAS</p>
+                {menuItems.map((item) => (
+                    <div key={item.id}>
+                        {/* Menu Item Header */}
+                        <div 
+                            className="group flex items-center justify-between cursor-pointer"
+                            onClick={() => setActiveCategory(activeCategory === item.title ? "" : item.title)}
+                        >
+                            <div className="flex items-center gap-4">
+                                <span 
+                                    className={cn(
+                                        "text-[22px] transition-colors duration-300",
+                                        activeCategory === item.title 
+                                            ? "bg-gradient-to-r from-[#fff066] to-white bg-clip-text text-transparent" 
+                                            : "text-white"
+                                    )}
+                                >
+                                    {item.id} /
+                                </span>
+                                <span 
+                                    className={cn(
+                                        "text-[22px] transition-all duration-300 group-hover:underline",
+                                        activeCategory === item.title 
+                                            ? "bg-gradient-to-r from-[#fff066] to-white bg-clip-text text-transparent" 
+                                            : "text-white"
+                                    )}
+                                >
+                                    {item.title}
+                                </span>
+                            </div>
+                            <ChevronDown 
+                                className={cn(
+                                    "w-5 h-5 transition-transform duration-300",
+                                    activeCategory === item.title 
+                                        ? "rotate-180" 
+                                        : "rotate-0"
+                                )}
+                            />
+                        </div>
+                        
+                        {/* Submenu - Expanded Below */}
+                        <AnimatePresence>
+                            {activeCategory === item.title && (
+                                <motion.div
+                                    initial={{ height: 0, opacity: 0 }}
+                                    animate={{ height: "auto", opacity: 1 }}
+                                    exit={{ height: 0, opacity: 0 }}
+                                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                                    className="overflow-hidden"
+                                >
+                                    <div className="flex flex-col gap-4 mt-4 ml-12">
+                                        {item.items.map((link, idx) => (
+                                            <Link 
+                                                key={idx} 
+                                                to={link.path}
+                                                className="text-[20px] text-white/80 hover:text-white hover:underline transition-all w-fit"
+                                            >
+                                                {link.name}
+                                            </Link>
+                                        ))}
+                                    </div>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+                    </div>
+                ))}
+            </div>
+            
+            {/* DESKTOP: Two Column Layout */}
+            <div className="hidden md:flex flex-col md:flex-row gap-12 md:gap-32 w-full lg:w-2/3">
                 {/* Categories */}
                 <div className="flex flex-col gap-6 md:w-1/2">
                     <p className="text-[16px] text-white/50 font-medium mb-2">PÁGINAS</p>
