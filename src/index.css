@@ -3903,14 +3903,15 @@
   }
 
   @media (hover: hover) {
-    .hover\:\!border-transparent:hover {
-      border-color: #0000 !important;
+    .hover\:\!border-0:hover {
+      border-style: var(--tw-border-style) !important;
+      border-width: 0 !important;
     }
   }
 
   @media (hover: hover) {
-    .hover\:border-\[\#FFE300\]:hover {
-      border-color: #ffe300;
+    .hover\:\!border-transparent:hover {
+      border-color: #0000 !important;
     }
   }
 
@@ -4055,6 +4056,18 @@
   @media (hover: hover) {
     .hover\:bg-yellow-400:hover {
       background-color: var(--color-yellow-400);
+    }
+  }
+
+  @media (hover: hover) {
+    .hover\:\!px-\[calc\(1rem\+1\.5px\)\]:hover {
+      padding-inline: calc(1rem + 1.5px) !important;
+    }
+  }
+
+  @media (hover: hover) {
+    .hover\:\!py-\[calc\(1rem\+1\.5px\)\]:hover {
+      padding-block: calc(1rem + 1.5px) !important;
     }
   }
 
