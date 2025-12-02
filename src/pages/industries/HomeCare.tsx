@@ -7,9 +7,9 @@ import { motion } from "motion/react";
 import { ScrollRevealText } from "../../components/ui/motion-text";
 import { Certificates } from "../../components/landing/Certificates";
 import { SolutionsShowcase } from "../../components/ui/SolutionsShowcase";
-import homeCareImage from "figma:asset/50e0a699b9e043e4e913ec47e0c48bda6dfeb7c2.png";
-import homeCareServicesImage from "figma:asset/bca7a8c0fa2e9bd47dbad55a9f3e65e72a8c4207.png";
-import homeCareWarehouseImage from "figma:asset/0d3fa24a8f0f0a95aca9db1f42b92e5ee5fe3e8a.png";
+import homeCareImage from "../../assets/50e0a699b9e043e4e913ec47e0c48bda6dfeb7c2.png";
+import homeCareServicesImage from "../../assets/bca7a8c0fa2e9bd47dbad55a9f3e65e72a8c4207.png";
+import homeCareWarehouseImage from "../../assets/0d3fa24a8f0f0a95aca9db1f42b92e5ee5fe3e8a.png";
 
 // SVG Paths
 const svgPaths = {
