@@ -1,18 +1,68 @@
 import React from "react";
 import svgPaths from "../../imports/svg-vr8jsk0xw0";
+import { motion } from "framer-motion";
 
 function YobelLogo() {
   return (
     <div className="w-full max-w-[600px] lg:max-w-[800px] xl:max-w-[1146px] h-auto aspect-[1146/429]">
       <svg className="block size-full" fill="none" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1146 429">
         <g id="Logo">
-          <path d={svgPaths.p1f03c100} fill="var(--fill-0, black)" id="Vector" />
-          <path d={svgPaths.p3a953300} fill="var(--fill-0, black)" id="Vector_2" />
-          <path d={svgPaths.p80eae80} fill="var(--fill-0, black)" id="Vector_3" />
-          <path d={svgPaths.p15cbed00} fill="var(--fill-0, black)" id="Vector_4" />
-          <path d={svgPaths.p19fc3880} fill="var(--fill-0, black)" id="Vector_5" />
-          <path d={svgPaths.pf09d400} fill="var(--fill-0, black)" id="Vector_6" />
-          <path d={svgPaths.p2c34d100} fill="var(--fill-0, black)" id="Vector_7" />
+          <motion.path 
+            d={svgPaths.p1f03c100} 
+            fill="var(--fill-0, black)" 
+            id="Vector"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0, ease: "easeOut" }}
+          />
+          <motion.path 
+            d={svgPaths.p3a953300} 
+            fill="var(--fill-0, black)" 
+            id="Vector_2"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
+          />
+          <motion.path 
+            d={svgPaths.p80eae80} 
+            fill="var(--fill-0, black)" 
+            id="Vector_3"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+          />
+          <motion.path 
+            d={svgPaths.p15cbed00} 
+            fill="var(--fill-0, black)" 
+            id="Vector_4"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.45, ease: "easeOut" }}
+          />
+          <motion.path 
+            d={svgPaths.p19fc3880} 
+            fill="var(--fill-0, black)" 
+            id="Vector_5"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
+          />
+          <motion.path 
+            d={svgPaths.pf09d400} 
+            fill="var(--fill-0, black)" 
+            id="Vector_6"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.75, ease: "easeOut" }}
+          />
+          <motion.path 
+            d={svgPaths.p2c34d100} 
+            fill="var(--fill-0, black)" 
+            id="Vector_7"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.9, ease: "easeOut" }}
+          />
         </g>
       </svg>
     </div>
@@ -31,17 +81,27 @@ export function HistoryHero({
   description 
 }: HistoryHeroProps) {
   return (
-    <div className="relative w-full bg-[#a7e370] overflow-hidden">
+    <div className="relative w-full overflow-hidden">
       {/* Container */}
-      <div className="max-w-[1440px] mx-auto px-6 md:px-12 pt-32 md:pt-40 lg:pt-48 pb-20 md:pb-32 lg:pb-40">
+      <div className="max-w-[1440px] mx-auto px-6 md:px-12 pt-40 md:pt-40 lg:pt-48 pb-20 md:pb-32 lg:pb-40">
         
         {/* Logo */}
-        <div className="mb-16 md:mb-24 lg:mb-32">
+        <motion.div 
+          className="mb-16 md:mb-24 lg:mb-32"
+          initial={{ opacity: 0, y: 60, filter: "blur(10px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
+        >
           <YobelLogo />
-        </div>
+        </motion.div>
 
         {/* Content */}
-        <div className="flex flex-col gap-6">
+        <motion.div 
+          className="flex flex-col gap-6"
+          initial={{ opacity: 0, y: 50, filter: "blur(10px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{ duration: 1, ease: "easeOut", delay: 0.5 }}
+        >
           {/* Label */}
           <p className="text-base md:text-lg text-black/50 font-medium font-['Neue_Augenblick']">
             {label}
@@ -59,7 +119,7 @@ export function HistoryHero({
               {description}
             </p>
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
