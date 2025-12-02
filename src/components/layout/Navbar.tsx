@@ -5,6 +5,8 @@ import svgPaths from "../../imports/svg-biijegtt4v";
 import { FullScreenMenu } from "./FullScreenMenu";
 import { SearchOverlay } from "./SearchOverlay";
 import { CountryPopup } from "./CountryPopup";
+import { useCountry } from "../../contexts/CountryContext";
+import { getCountryCode } from "../../utils/countryUtils";
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,6 +15,7 @@ export function Navbar() {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [hasScrolled, setHasScrolled] = useState(false);
+  const { selectedCountry } = useCountry();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -79,7 +82,7 @@ export function Navbar() {
               className="flex items-center gap-2 cursor-pointer hover:opacity-70 transition-opacity"
               onClick={() => setIsCountryPopupOpen(true)}
             >
-              <span className="text-lg text-black">PE</span>
+              <span className="text-lg text-black">{getCountryCode(selectedCountry)}</span>
               <ChevronDown className="w-3 h-3 text-black" />
             </button>
             

@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "motion/react";
 import svgPaths from "../../imports/svg-djl5v4gr4k";
 import { cn } from "../ui/utils";
 import { Copy, Check, ChevronDown } from "lucide-react";
+import { useCountry } from "../../contexts/CountryContext";
 
 function Logo() {
   return (
@@ -114,6 +115,8 @@ export function Footer() {
     }
     textArea.remove();
   };
+
+  const { selectedCountry } = useCountry();
 
   return (
     <footer className="bg-black text-white w-full overflow-hidden py-12 md:py-20 font-augenblick">
@@ -307,7 +310,7 @@ export function Footer() {
 
         {/* Bottom Section: Copyright & Legal */}
         <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-8 pt-8 border-t border-white/10">
-             <p className="text-[18px] text-white">© Yobel Perú</p>
+             <p className="text-[18px] text-white">© Yobel {selectedCountry}</p>
              <div className="flex flex-wrap gap-6 md:gap-8">
                  <Link to="#" className="text-[16px] text-white/50 hover:text-white hover:underline transition-all">Términos y Condiciones</Link>
                  <Link to="/libro-reclamaciones" className="text-[16px] text-white/50 hover:text-white hover:underline transition-all">Libro de Reclamaciones</Link>

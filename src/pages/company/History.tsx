@@ -49,15 +49,15 @@ export function History() {
   // Transiciones más lentas aumentando el rango de valores
   const backgroundColor = useTransform(
     scrollYProgress,
-    [0, 0.14, 0.28, 0.42, 0.56, 0.70, 0.78, 0.85, 0.92],
-    ["#FFF700", "#FFE300", "#C6D800", "#95D500", "#A7E370", "#00C7CC", "#00BEEB", "#59C1E6", "#000000"]
+    [0, 0.11, 0.22, 0.33, 0.44, 0.55, 0.66, 0.77, 0.88, 1.0],
+    ["#FFF700", "#E7EF20", "#CFE842", "#B8E063", "#A1D883", "#88CFA3", "#70C9C5", "#59C1E6", "#97E4FF", "#FFFFFF"]
   );
 
-  // Text color changes to white when background gets dark
+  // Text color stays black throughout (since background ends in white)
   const textColor = useTransform(
     scrollYProgress,
-    [0, 0.82, 0.86],
-    ["#000000", "#000000", "#FFFFFF"]
+    [0, 1],
+    ["#000000", "#000000"]
   );
 
   return (

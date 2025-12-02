@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Layout } from "./components/layout/Layout";
 import { ScrollToTop } from "./components/layout/ScrollToTop";
 import { PageTransition } from "./components/layout/PageTransition";
+import { CountryProvider } from "./contexts/CountryContext";
 
 // Pages
 import { Home } from "./pages/Home";
@@ -56,64 +57,66 @@ import { NoticiaDetalle } from "./pages/noticias/NoticiaDetalle";
 
 export default function App() {
   return (
-    <Router>
-      <ScrollToTop />
-      <PageTransition />
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          
-          {/* Empresa */}
-          <Route path="/empresa/sobre-nosotros" element={<About />} />
-          <Route path="/empresa/presencia-global" element={<GlobalPresence />} />
-          <Route path="/empresa/historia" element={<History />} />
-          
-          {/* Servicios */}
-          <Route path="/servicios/comercio-exterior" element={<Comex />} />
-          <Route path="/servicios/manufactura" element={<Manufacturing />} />
-          <Route path="/servicios/valor-agregado" element={<ValueAdded />} />
-          <Route path="/servicios/almacenamiento" element={<Warehousing />} />
-          <Route path="/servicios/distribucion" element={<Distribution />} />
-          <Route path="/servicios/courier-express" element={<Courier />} />
-          
-          <Route path="/tarifas" element={<Tarifas />} />
+    <CountryProvider>
+      <Router>
+        <ScrollToTop />
+        <PageTransition />
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            
+            {/* Empresa */}
+            <Route path="/empresa/sobre-nosotros" element={<About />} />
+            <Route path="/empresa/presencia-global" element={<GlobalPresence />} />
+            <Route path="/empresa/historia" element={<History />} />
+            
+            {/* Servicios */}
+            <Route path="/servicios/comercio-exterior" element={<Comex />} />
+            <Route path="/servicios/manufactura" element={<Manufacturing />} />
+            <Route path="/servicios/valor-agregado" element={<ValueAdded />} />
+            <Route path="/servicios/almacenamiento" element={<Warehousing />} />
+            <Route path="/servicios/distribucion" element={<Distribution />} />
+            <Route path="/servicios/courier-express" element={<Courier />} />
+            
+            <Route path="/tarifas" element={<Tarifas />} />
 
-          {/* Industrias */}
-          <Route path="/industrias/alimentos-y-bebidas" element={<FoodAndBeverage />} />
-          <Route path="/industrias/belleza-y-cuidado-personal" element={<Beauty />} />
-          <Route path="/industrias/calzado-y-moda" element={<Fashion />} />
-          <Route path="/industrias/construccion" element={<Construction />} />
-          <Route path="/industrias/cuidado-del-hogar" element={<HomeCare />} />
-          <Route path="/industrias/editorial" element={<Editorial />} />
-          <Route path="/industrias/farmaceutica" element={<Pharma />} />
-          <Route path="/industrias/manufactura-industrial" element={<Industrial />} />
-          <Route path="/industrias/quimica" element={<Chemicals />} />
-          <Route path="/industrias/retail" element={<Retail />} />
-          <Route path="/industrias/tecnologia-y-electronica" element={<Tech />} />
+            {/* Industrias */}
+            <Route path="/industrias/alimentos-y-bebidas" element={<FoodAndBeverage />} />
+            <Route path="/industrias/belleza-y-cuidado-personal" element={<Beauty />} />
+            <Route path="/industrias/calzado-y-moda" element={<Fashion />} />
+            <Route path="/industrias/construccion" element={<Construction />} />
+            <Route path="/industrias/cuidado-del-hogar" element={<HomeCare />} />
+            <Route path="/industrias/editorial" element={<Editorial />} />
+            <Route path="/industrias/farmaceutica" element={<Pharma />} />
+            <Route path="/industrias/manufactura-industrial" element={<Industrial />} />
+            <Route path="/industrias/quimica" element={<Chemicals />} />
+            <Route path="/industrias/retail" element={<Retail />} />
+            <Route path="/industrias/tecnologia-y-electronica" element={<Tech />} />
 
-          {/* Ética y Sostenibilidad */}
-          <Route path="/etica/codigo-de-etica" element={<CodeOfEthics />} />
-          <Route path="/etica/linea-de-etica" element={<EthicsLine />} />
-          <Route path="/ethics/report" element={<ReportForm />} />
-          <Route path="/etica/rse-sostenibilidad" element={<Sustainability />} />
+            {/* Ética y Sostenibilidad */}
+            <Route path="/etica/codigo-de-etica" element={<CodeOfEthics />} />
+            <Route path="/etica/linea-de-etica" element={<EthicsLine />} />
+            <Route path="/ethics/report" element={<ReportForm />} />
+            <Route path="/etica/rse-sostenibilidad" element={<Sustainability />} />
 
-          {/* Legal */}
-          <Route path="/libro-reclamaciones" element={<LibroReclamaciones />} />
-          <Route path="/terminos-y-condiciones" element={<TerminosCondiciones />} />
-          <Route path="/politicas-de-privacidad" element={<PoliticaPrivacidad />} />
-          <Route path="/politicas-de-cookies" element={<PoliticaCookies />} />
-          
-          {/* Contacto */}
-          <Route path="/contacto" element={<Contact />} />
+            {/* Legal */}
+            <Route path="/libro-reclamaciones" element={<LibroReclamaciones />} />
+            <Route path="/terminos-y-condiciones" element={<TerminosCondiciones />} />
+            <Route path="/politicas-de-privacidad" element={<PoliticaPrivacidad />} />
+            <Route path="/politicas-de-cookies" element={<PoliticaCookies />} />
+            
+            {/* Contacto */}
+            <Route path="/contacto" element={<Contact />} />
 
-          {/* Noticias */}
-          <Route path="/noticias" element={<Noticias />} />
-          <Route path="/noticias/:slug" element={<NoticiaDetalle />} />
+            {/* Noticias */}
+            <Route path="/noticias" element={<Noticias />} />
+            <Route path="/noticias/:slug" element={<NoticiaDetalle />} />
 
-          {/* 404 */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </Layout>
-    </Router>
+            {/* 404 */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Layout>
+      </Router>
+    </CountryProvider>
   );
 }

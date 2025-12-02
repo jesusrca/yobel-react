@@ -64,7 +64,11 @@ export function LifeAtYobel({ textColor }: { textColor: MotionValue<string> }) {
                 <div className="h-full cursor-pointer flex flex-col md:flex-row md:items-center justify-center md:justify-between gap-2 md:gap-4 px-4 md:px-0 py-6 md:py-0">
                   <motion.div 
                     className={`flex items-baseline gap-4 font-['Neue_Augenblick:Regular',sans-serif] text-2xl md:text-4xl leading-[32px] transition-colors duration-500 w-full md:w-5/12`}
-                    style={{ color: activeId === category.title ? textColor : "rgba(156, 163, 175, 0.6)" }}
+                    style={{ 
+                      color: activeId === category.title 
+                        ? textColor 
+                        : "rgba(0, 0, 0, 0.3)" // Gris oscuro para fondo blanco
+                    }}
                   >
                     <span className="text-nowrap whitespace-pre">{String(index + 1).padStart(2, '0')} /</span>
                     <span className="font-[Neue_Augenblick]">{category.title}</span>

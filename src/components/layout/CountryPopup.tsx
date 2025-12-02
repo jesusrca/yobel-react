@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { motion } from "motion/react";
 import svgPaths from "../../imports/svg-mb78q7u1ko";
+import { CountryFlag } from "./CountryFlags";
+import { useCountry } from "../../contexts/CountryContext";
 
 interface CountryPopupProps {
   isOpen: boolean;
@@ -44,24 +46,6 @@ function Icon({ onClick }: { onClick: () => void }) {
           <Plus />
         </div>
       </div>
-    </div>
-  );
-}
-
-function PeruFlag() {
-  return (
-    <div className="h-[48px] relative shrink-0 w-[72px]" data-name="Peru Flag">
-      <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 72 48">
-        <g clipPath="url(#clip0_261_975)" id="Peru Flag">
-          <path d="M0 0H72V48H0V0Z" fill="#D91023" id="Vector" />
-          <path d="M24 0H48V48H24V0Z" fill="white" id="Vector_2" />
-        </g>
-        <defs>
-          <clipPath id="clip0_261_975">
-            <rect fill="white" height="48" width="72" />
-          </clipPath>
-        </defs>
-      </svg>
     </div>
   );
 }
@@ -260,12 +244,13 @@ function Contenido({
 }
 
 export function CountryPopup({ isOpen, onClose }: CountryPopupProps) {
-  const [selectedCountry, setSelectedCountry] = useState("Perú");
+  const { selectedCountry, setSelectedCountry } = useCountry();
   const [isExpanded, setIsExpanded] = useState(false);
 
   const handleSelectCountry = (country: string) => {
     setSelectedCountry(country);
     setIsExpanded(false);
+    onClose(); // Cerrar el popup después de seleccionar el país
   };
 
   if (!isOpen) return null;
@@ -301,7 +286,7 @@ export function CountryPopup({ isOpen, onClose }: CountryPopupProps) {
         <div className="flex flex-col items-end size-full">
           <div className="box-border content-stretch flex flex-col gap-[36px] items-end p-[32px] relative size-full">
             <div className="flex items-start justify-between w-full">
-              <PeruFlag />
+              <CountryFlag country={selectedCountry} />
               <Icon onClick={onClose} />
             </div>
             <div className="content-stretch flex flex-col gap-[32px] items-start relative shrink-0 w-full">

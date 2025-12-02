@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { Search, ChevronDown } from "lucide-react";
 import svgPaths from "../../imports/svg-1hie16nw8a";
 import { cn } from "../ui/utils";
+import { useCountry } from "../../contexts/CountryContext";
+import { getCountryCode } from "../../utils/countryUtils";
 
 interface FullScreenMenuProps {
   onClose: () => void;
@@ -85,6 +87,8 @@ export function FullScreenMenu({ onClose, onSearchClick }: FullScreenMenuProps) 
   // Logic for displaying items on desktop
   const activeItemsDesktop = menuItems.find(item => item.title === activeCategory)?.items || [];
 
+  const { selectedCountry } = useCountry();
+
   return (
     <motion.div 
       initial={{ opacity: 0 }}
@@ -117,7 +121,7 @@ export function FullScreenMenu({ onClose, onSearchClick }: FullScreenMenuProps) 
 
                 {/* Country (Hidden on small mobile if crowded, but let's keep it) */}
                 <div className="hidden sm:flex items-center gap-2 cursor-pointer">
-                  <span className="text-lg text-white">PE</span>
+                  <span className="text-lg text-white">{getCountryCode(selectedCountry)}</span>
                   <div className="w-3 h-2">
                       <svg className="w-full h-full" viewBox="0 0 12 7" fill="none">
                           <path d={svgPaths.p3478d380} fill="white" />
