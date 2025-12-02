@@ -49,7 +49,7 @@ export function SolutionsList({ solutions, hoverImage, title, children }: Soluti
                 >
                    <div className="w-full flex justify-between items-center z-10 relative">
                       <h4 className={`w-full md:w-5/12 text-[28px] md:text-[32px] font-normal leading-tight transition-colors duration-300 ${isHovered ? 'text-black' : 'text-gray-400'}`}>
-                         <span className="mr-4">0{idx + 1} /</span> 
+                         <span className="mr-4 font-[Neue_Augenblick]">0{idx + 1} /</span> 
                          <span className={isHovered ? 'text-black' : 'text-gray-600'}>{sol.title}</span>
                       </h4>
 

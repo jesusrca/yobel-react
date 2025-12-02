@@ -1,18 +1,62 @@
-import React, { useState } from "react";
-import { AnimatePresence } from "motion/react";
+import React, { useState, useEffect } from "react";
+import { AnimatePresence, motion } from "motion/react";
 import { Search, User, ChevronDown } from "lucide-react";
 import svgPaths from "../../imports/svg-biijegtt4v";
 import { FullScreenMenu } from "./FullScreenMenu";
 import { SearchOverlay } from "./SearchOverlay";
+import { CountryPopup } from "./CountryPopup";
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isCountryPopupOpen, setIsCountryPopupOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [hasScrolled, setHasScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      // Detectar si hay scroll para aplicar blur
+      setHasScrolled(currentScrollY > 50);
+      
+      if (currentScrollY < 10) {
+        // Siempre mostrar en la parte superior
+        setIsVisible(true);
+      } else if (currentScrollY > lastScrollY) {
+        // Scroll hacia abajo - ocultar
+        setIsVisible(false);
+      } else {
+        // Scroll hacia arriba - mostrar
+        setIsVisible(true);
+      }
+      
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
 
   return (
     <>
-      <div className="fixed top-5 left-0 right-0 z-50 flex justify-center px-4">
-        <div className="bg-white/50 backdrop-blur-md border border-white/50 rounded-full px-6 flex items-center justify-between w-full max-w-[1340px] shadow-sm h-[56px]">
+      <motion.div 
+        className="fixed top-5 left-0 right-0 z-50 flex justify-center px-4"
+        initial={{ opacity: 1 }}
+        animate={{ 
+          opacity: isVisible ? 1 : 0
+        }}
+        transition={{ 
+          duration: 0.3,
+          ease: "easeInOut"
+        }}
+      >
+        <div className={`border border-white/50 rounded-full px-6 flex items-center justify-between w-full max-w-[1340px] h-[56px] transition-all duration-300 ${
+          hasScrolled 
+            ? 'bg-white/70 backdrop-blur-xl shadow-lg' 
+            : 'bg-white/50 backdrop-blur-md shadow-sm'
+        }`}>
           {/* Logo */}
           <a href="/" className="h-[30px] w-[80px] relative block hover:opacity-70 transition-opacity">
             <svg className="w-full h-full" viewBox="0 0 94 36" fill="none">
@@ -31,28 +75,14 @@ export function Navbar() {
           {/* Right Actions */}
           <div className="flex items-center gap-2 md:gap-6">
             {/* Lang */}
-            <details className="relative group">
-                <summary className="flex items-center gap-2 cursor-pointer list-none [&::-webkit-details-marker]:hidden">
-                    <span className="text-lg text-black">PE</span>
-                    <ChevronDown className="w-3 h-3 group-open:rotate-180 transition-transform text-black" />
-                </summary>
-                <div className="absolute top-full right-0 mt-6 w-64 bg-white rounded-[20px] shadow-2xl border border-gray-100 p-5 flex flex-col gap-3 z-50">
-                    <div className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1 px-2">Selecciona ubicación</div>
-                    
-                    <button className="text-left px-4 py-3 rounded-xl bg-gray-50 text-black font-medium flex justify-between items-center ring-1 ring-black/5 hover:bg-gray-100 transition-colors">
-                        Perú <span className="text-[11px] font-bold bg-black text-white px-2 py-0.5 rounded-full">ES</span>
-                    </button>
-                    
-                    <button className="text-left px-4 py-3 rounded-xl hover:bg-gray-50 text-gray-600 font-medium flex justify-between items-center transition-colors">
-                        Global <span className="text-[11px] font-bold bg-gray-200 text-gray-600 px-2 py-0.5 rounded-full">EN</span>
-                    </button>
-
-                    <button className="text-left px-4 py-3 rounded-xl hover:bg-gray-50 text-gray-600 font-medium flex justify-between items-center transition-colors">
-                        Chile <span className="text-[11px] font-bold bg-gray-200 text-gray-600 px-2 py-0.5 rounded-full">ES</span>
-                    </button>
-                </div>
-            </details>
-
+            <button 
+              className="flex items-center gap-2 cursor-pointer hover:opacity-70 transition-opacity"
+              onClick={() => setIsCountryPopupOpen(true)}
+            >
+              <span className="text-lg text-black">PE</span>
+              <ChevronDown className="w-3 h-3 text-black" />
+            </button>
+            
             {/* User Icon */}
             <div className="w-[30px] h-[30px] flex items-center justify-center cursor-pointer hover:opacity-70 transition-opacity">
                 <User className="w-6 h-6 text-black" strokeWidth={1.5} />
@@ -78,7 +108,7 @@ export function Navbar() {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       <AnimatePresence>
         {isMenuOpen && (
@@ -92,6 +122,15 @@ export function Navbar() {
       <AnimatePresence>
         {isSearchOpen && (
           <SearchOverlay onClose={() => setIsSearchOpen(false)} />
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {isCountryPopupOpen && (
+          <CountryPopup 
+            isOpen={isCountryPopupOpen} 
+            onClose={() => setIsCountryPopupOpen(false)} 
+          />
         )}
       </AnimatePresence>
     </>

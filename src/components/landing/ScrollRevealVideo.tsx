@@ -16,7 +16,7 @@ export function ScrollRevealVideo() {
     <div ref={containerRef} className="relative h-[300vh] w-full bg-white">
       <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
          {/* Video Container with specific height matching design */}
-         <div className="relative w-full h-[50vh] md:h-[70vh] overflow-hidden">
+         <div className="relative w-full h-[70vh] md:h-[85vh] overflow-hidden">
              <video 
                 src="https://circular.ws/yobel/camion.mp4"
                 className="absolute top-0 left-0 w-full h-full object-cover"

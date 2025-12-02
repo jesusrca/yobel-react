@@ -11,9 +11,14 @@ import { ParallaxCurves } from "../../components/landing/ParallaxCurves";
 import { VideoScrollSection } from "../../components/company/VideoScrollSection";
 import { ProcessItem } from "../../components/company/ProcessItem";
 import { SolutionsShowcase } from "../../components/ui/SolutionsShowcase";
+import { ScrollRevealString } from "../../components/ui/scroll-reveal-text";
 import svgPaths from "../../imports/svg-5srx0k234k";
 import svgPathsProcess from "../../imports/svg-u5y25zzhvz";
 import svgPathsIcon from "../../imports/svg-j9zkv27h5w";
+import svgPathsLock from "../../imports/svg-p9ws4xe10j";
+import svgPathsChart from "../../imports/svg-muxqxnrydh";
+import svgPathsArrows from "../../imports/svg-2pvbep99pw";
+import svgPathsPeople from "../../imports/svg-sxujtiy446";
 
 const MetallicGradient = ({ id, delay }: { id: string; delay: number }) => (
   <defs>
@@ -40,44 +45,65 @@ const ProcessIcon = ({ type, index = 0 }: { type: string; index?: number }) => {
     case "Seguridad y calidad":
       return (
         <div className="relative w-[127px] h-[127px] flex items-center justify-center">
-            <svg className="w-[75%] h-[87%]" viewBox="0 0 100 111" fill="none">
-                <MetallicGradient id={gradientId} delay={delay} />
-                <path d={svgPathsProcess.p1471ab00} stroke={strokeUrl} strokeWidth={width} strokeLinecap="round" strokeLinejoin="round" />
-                <path d={svgPathsProcess.p3dea9000} stroke={strokeBlack} strokeWidth={width} strokeLinecap="round" strokeLinejoin="round" />
+            <svg className="w-[55%] h-[63%]" viewBox="0 0 71 80" fill="none">
+                <g clipPath="url(#clip0_230_33)">
+                  <path d={svgPathsLock.p13bbc980} fill="#242D30" />
+                </g>
+                <defs>
+                  <clipPath id="clip0_230_33">
+                    <rect fill="white" height="80" width="70.0952" />
+                  </clipPath>
+                </defs>
             </svg>
         </div>
       );
     case "Datos y visibilidad":
       return (
-        <div className="relative w-[127px] h-[127px]">
-             <svg className="w-full h-full" viewBox="0 0 127 127" fill="none">
-                <MetallicGradient id={gradientId} delay={delay} />
-                <g opacity="0.7">
-                    <path d={svgPathsProcess.p1876f440} stroke={strokeUrl} strokeWidth={width} strokeLinecap="round" strokeLinejoin="round" />
-                    <path d="M89.9583 31.75H121.708V63.5" stroke={strokeBlack} strokeWidth={width} strokeLinecap="round" strokeLinejoin="round" />
+        <div className="relative w-[127px] h-[127px] flex items-center justify-center">
+             <svg className="w-[58%] h-[37%]" viewBox="0 0 92 59" fill="none">
+                <g clipPath="url(#clip0_230_59_datos)">
+                  <path d={svgPathsChart.p2584fe80} fill="#303024" />
+                  <path d={svgPathsChart.p31660d00} fill="#303024" />
                 </g>
+                <defs>
+                  <clipPath id="clip0_230_59_datos">
+                    <rect fill="white" height="59" width="92" />
+                  </clipPath>
+                </defs>
              </svg>
         </div>
       );
     case "Mejora continua":
       return (
-        <div className="relative w-[127px] h-[127px]">
-             <svg className="w-full h-full" viewBox="0 0 127 127" fill="none">
-                <MetallicGradient id={gradientId} delay={delay} />
-                <path d={svgPathsProcess.p32899600} stroke={strokeUrl} strokeWidth={width} strokeLinecap="round" strokeLinejoin="round" />
-                <path d={svgPathsProcess.p2fb71e11} stroke={strokeUrl} strokeWidth={width} strokeLinecap="round" strokeLinejoin="round" />
+        <div className="relative w-[127px] h-[127px] flex items-center justify-center">
+             <svg className="w-[55%] h-[47%]" viewBox="0 0 88 75" fill="none">
+                <g clipPath="url(#clip0_230_75_mejora)">
+                  <path d={svgPathsArrows.p305ed580} fill="#242D30" />
+                  <path d={svgPathsArrows.pe93b900} fill="#242D30" />
+                </g>
+                <defs>
+                  <clipPath id="clip0_230_75_mejora">
+                    <rect fill="white" height="75.0008" width="88" />
+                  </clipPath>
+                </defs>
              </svg>
         </div>
       );
     case "Colaboración abierta":
       return (
-         <div className="relative w-[127px] h-[127px]">
-             <svg className="w-full h-full" viewBox="0 0 127 127" fill="none">
-                <MetallicGradient id={gradientId} delay={delay} />
-                <path d={svgPathsProcess.p6c78880} stroke={strokeUrl} strokeWidth={width} strokeLinecap="round" strokeLinejoin="round" />
-                <path d={svgPathsProcess.p14d48600} stroke={strokeBlack} strokeWidth={width} strokeLinecap="round" strokeLinejoin="round" />
-                <path d={svgPathsProcess.p24192100} stroke={strokeUrl} strokeWidth={width} strokeLinecap="round" strokeLinejoin="round" />
-                <path d={svgPathsProcess.p204f1f00} stroke={strokeBlack} strokeWidth={width} strokeLinecap="round" strokeLinejoin="round" />
+         <div className="relative w-[127px] h-[127px] flex items-center justify-center">
+             <svg className="w-[62%] h-[52%]" viewBox="0 0 100 84" fill="none">
+                <g clipPath="url(#clip0_230_104_colaboracion)">
+                  <path d={svgPathsPeople.p14d00100} fill="#242D30" />
+                  <path d={svgPathsPeople.p20082d80} fill="#242D30" />
+                  <path d={svgPathsPeople.pbf38400} fill="#242D30" />
+                  <path d={svgPathsPeople.p398ba180} fill="#242D30" />
+                </g>
+                <defs>
+                  <clipPath id="clip0_230_104_colaboracion">
+                    <rect fill="white" height="84.0002" width="100" />
+                  </clipPath>
+                </defs>
              </svg>
          </div>
       );
@@ -250,13 +276,6 @@ export function About() {
         <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden bg-white">
             {/* Content */}
             {purposeItems.map((item, idx) => {
-              // Define typewriter progress ranges for each section
-              const typewriterRanges = [
-                { start: 0.05, end: 0.22 },  // Propósito
-                { start: 0.38, end: 0.55 },  // Misión
-                { start: 0.71, end: 0.88 }   // Visión
-              ];
-              
               return (
                 <motion.div 
                   key={idx} 
@@ -278,14 +297,11 @@ export function About() {
                               {item.title}
                           </p>
                           <div className="max-w-5xl">
-                              <p className="font-augenblick leading-[1.4] md:leading-[48px] text-2xl md:text-[45px] text-center text-black">
-                                  <TypewriterText 
-                                    text={item.content}
-                                    scrollProgress={scrollYProgress}
-                                    startProgress={typewriterRanges[idx].start}
-                                    endProgress={typewriterRanges[idx].end}
-                                  />
-                              </p>
+                              <ScrollRevealString 
+                                text={item.content}
+                                className="font-augenblick leading-[1.4] md:leading-[48px] text-2xl md:text-[45px] text-center text-black justify-center"
+                                as="p"
+                              />
                           </div>
                       </div>
                    </div>

@@ -112,6 +112,9 @@ export function FullScreenMenu({ onClose, onSearchClick }: FullScreenMenuProps) 
 
             {/* Actions */}
             <div className="flex items-center gap-2 md:gap-6">
+                {/* Portal de Clientes Button - Desktop */}
+                <button className="hidden md:block px-4 py-2 text-[23px] text-white hover:opacity-70">Portal de Clientes</button>
+
                 {/* Country (Hidden on small mobile if crowded, but let's keep it) */}
                 <div className="hidden sm:flex items-center gap-2 cursor-pointer">
                   <span className="text-lg text-white">PE</span>
@@ -270,6 +273,11 @@ export function FullScreenMenu({ onClose, onSearchClick }: FullScreenMenuProps) 
               {/* Mobile Tracking Button */}
               <button className="mt-8 w-full py-4 border border-white rounded-full text-xl font-medium hover:bg-white hover:text-black transition-colors">
                   Tracking de Envíos
+              </button>
+
+              {/* Mobile Portal de Clientes Button */}
+              <button className="w-full py-4 border border-white rounded-full text-xl font-medium hover:bg-white hover:text-black transition-colors">
+                  Portal de Clientes
               </button>
               
               {/* Legal Links Mobile */}

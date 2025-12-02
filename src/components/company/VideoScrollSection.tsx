@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
-import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "motion/react";
+import { motion, useScroll, useMotionValueEvent, AnimatePresence, useTransform } from "motion/react";
 import { cn } from "../ui/utils";
+import { imgImage4 } from "../../imports/svg-qubmg";
 
 export interface DataPoint {
   value: string;
@@ -60,11 +61,14 @@ export function VideoScrollSection({
     setActiveIndex(index);
   });
 
+  // Animate mask opacity from 0 to 1 as user scrolls
+  const maskOpacity = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
+
   return (
     <div ref={containerRef} className={cn("relative h-[400vh] w-full bg-black", className)}>
       <div className="absolute top-0 left-0 w-full h-32 z-30 bg-gradient-to-b from-white to-transparent pointer-events-none" />
       <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
-         <video
+         <motion.video
             src={videoSrc}
             className="absolute inset-0 w-full h-full object-cover"
             muted
@@ -72,9 +76,25 @@ export function VideoScrollSection({
             autoPlay
             loop
             preload="auto"
+            style={{
+              maskImage: `linear-gradient(to bottom, 
+                rgba(0,0,0,${maskOpacity}) 0%, 
+                rgba(0,0,0,${maskOpacity}) 100%), 
+                url("${imgImage4}")`,
+              maskSize: '100% 100%, 100% 100%',
+              maskRepeat: 'no-repeat, no-repeat',
+              maskPosition: 'center, center',
+              maskComposite: 'intersect',
+              WebkitMaskImage: `linear-gradient(to bottom, 
+                rgba(0,0,0,1) 0%, 
+                rgba(0,0,0,1) 100%), 
+                url("${imgImage4}")`,
+              WebkitMaskSize: '100% 100%, 100% 100%',
+              WebkitMaskRepeat: 'no-repeat, no-repeat',
+              WebkitMaskPosition: 'center, center',
+              WebkitMaskComposite: 'source-in'
+            }}
          />
-         
-         <div className="absolute inset-0 bg-black/10 pointer-events-none" />
 
          {/* Glass Card Overlay - Bottom Right */}
          <div className="absolute bottom-10 right-5 md:bottom-20 md:right-[50px] z-20">
@@ -84,9 +104,9 @@ export function VideoScrollSection({
                         {data[activeIndex] && (
                             <motion.div
                                 key={activeIndex}
-                                initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
-                                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                                exit={{ opacity: 0, y: -20, filter: "blur(10px)" }}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -20 }}
                                 transition={{ duration: 0.5, ease: "easeOut" }}
                                 className="absolute inset-0 flex flex-col justify-between"
                             >

@@ -11,7 +11,7 @@ export const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
     return (
       <div 
         ref={ref}
-        className={cn("max-w-[1340px] mx-auto", className)} 
+        className={cn("max-w-[1400px] mx-auto", className)} 
         {...props}
       >
         {children}

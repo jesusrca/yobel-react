@@ -10,7 +10,7 @@ interface LatinAmericaMapProps {
 
 const countries = [
   { 
-    id: 'brazil', 
+    id: 'brasil', 
     path: svgPaths.p3f0f0, 
     viewBox: "0 0 261 263", 
     inset: "bottom-[32.63%] left-[27.26%] right-0 top-[12.57%]" 
@@ -101,6 +101,16 @@ export function LatinAmericaMap({ className, selected, onSelect }: LatinAmericaM
   
   return (
     <div className={cn("relative w-full h-full aspect-[0.8] select-none", className)}>
+      {/* SVG Gradient Definition */}
+      <svg width="0" height="0" style={{ position: 'absolute' }}>
+        <defs>
+          <linearGradient id="yellowGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style={{ stopColor: '#F0DE32', stopOpacity: 1 }} />
+            <stop offset="100%" style={{ stopColor: '#FFFFFF', stopOpacity: 1 }} />
+          </linearGradient>
+        </defs>
+      </svg>
+
       {/* Shapes */}
       {countries.map((country) => {
         const isSelected = selected === country.id;
@@ -119,9 +129,10 @@ export function LatinAmericaMap({ className, selected, onSelect }: LatinAmericaM
                 className={cn(
                   "block w-full h-full transition-all duration-300",
                   "fill-gray-200 stroke-white stroke-[0.5]",
-                  "hover:fill-gray-300 hover:scale-[1.02]",
-                  isSelected && "fill-[#fff066] hover:fill-[#ffeebb] z-10 scale-[1.02] drop-shadow-lg stroke-yellow-500/20"
+                  "hover:fill-sky-200 hover:scale-[1.02]",
+                  isSelected && "z-10 scale-[1.02] drop-shadow-lg stroke-yellow-600/30"
                 )}
+                style={isSelected ? { fill: 'url(#yellowGradient)' } : undefined}
                 preserveAspectRatio="none" 
                 viewBox={country.viewBox}
               >
@@ -134,7 +145,7 @@ export function LatinAmericaMap({ className, selected, onSelect }: LatinAmericaM
 
       {/* Labels */}
       <div className="pointer-events-none absolute inset-0 z-20">
-        <p className="absolute font-['Tahoma',sans-serif] inset-[36.46%_23.11%_59.15%_65.42%] leading-[normal] text-[clamp(10px,2vw,17px)] text-black/80">Brazil</p>
+        <p className="absolute font-['Tahoma',sans-serif] inset-[36.46%_23.11%_59.15%_65.42%] leading-[normal] text-[clamp(10px,2vw,17px)] text-black/80">Brasil</p>
         <p className="absolute bottom-[74.43%] left-0 right-[86.85%] top-[22.23%] font-['Tahoma',sans-serif] leading-[normal] text-[clamp(8px,1.5vw,13px)] text-black/80">Ecuador</p>
         <p className="absolute font-['Tahoma',sans-serif] inset-[5.74%_51.18%_90.71%_31.19%] leading-[normal] text-[clamp(8px,1.5vw,14px)] text-black/80">Venezuela</p>
         <div className="absolute flex inset-[67.49%_66.1%_24.99%_27.08%] items-center justify-center">

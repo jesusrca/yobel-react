@@ -94,7 +94,7 @@ export default function Group() {
           </svg>
         </div>
       </div>
-      <p className="absolute font-['Tahoma:Regular',sans-serif] inset-[36.46%_23.11%_59.15%_65.42%] leading-[normal] not-italic text-[17px] text-black text-nowrap whitespace-pre">Brazil</p>
+      <p className="absolute font-['Tahoma:Regular',sans-serif] inset-[36.46%_23.11%_59.15%_65.42%] leading-[normal] not-italic text-[17px] text-black text-nowrap whitespace-pre">Brasil</p>
       <p className="absolute bottom-[74.43%] font-['Tahoma:Regular',sans-serif] leading-[normal] left-0 not-italic right-[86.85%] text-[13px] text-black text-nowrap top-[22.23%] whitespace-pre">Ecuador</p>
       <p className="absolute font-['Tahoma:Regular',sans-serif] inset-[5.74%_51.18%_90.71%_31.19%] leading-[normal] not-italic text-[14px] text-black text-nowrap whitespace-pre">Venezuela</p>
       <div className="absolute flex inset-[67.49%_66.1%_24.99%_27.08%] items-center justify-center">

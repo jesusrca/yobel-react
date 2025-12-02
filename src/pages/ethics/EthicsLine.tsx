@@ -3,34 +3,24 @@ import { Section } from "../../components/ui/custom-section";
 import { Container } from "../../components/ui/custom-container";
 import { Button } from "../../components/ui/button";
 import { ArrowUpRight, ShieldAlert } from "lucide-react";
+import { HeroGradient } from "../../components/ui/hero-gradient";
 
 export function EthicsLine() {
-  const channelUrl = "https://www.resguarda.com/yobel";
-
   return (
     <>
-      <div className="relative h-[40vh] min-h-[400px] max-h-[500px] w-full overflow-hidden font-augenblick bg-gradient-to-b from-[#fff066] to-white">
-        <div className="absolute bottom-10 left-0 right-0 px-[5%] md:px-[50px] z-10">
-          <div className="max-w-[1400px] mx-auto flex flex-col gap-[30px]">
-             <p className="text-lg md:text-[18px] text-black font-[Neue_Augenblick]">Integridad</p>
-             <div className="flex flex-col lg:flex-row items-end justify-between gap-[40px] w-full">
-                <h1 className="text-5xl md:text-[65px] leading-[1] text-black max-w-[773px] font-[Neue_Augenblick]">
-                  Línea de Ética
-                </h1>
-                <p className="text-xl md:text-[22px] leading-[24px] text-black max-w-[350px] lg:mr-32 pb-1 font-[Neue_Augenblick]">
-                  Un canal seguro, confidencial y anónimo para reportar preocupaciones éticas.
-                </p>
-             </div>
-          </div>
-        </div>
-      </div>
+      <HeroGradient 
+        category="Integridad"
+        title="Línea de Ética"
+        description="Un canal seguro, confidencial y anónimo para reportar preocupaciones éticas."
+        variant="yellow"
+      />
 
       <Section className="bg-white py-16 md:py-24">
         <Container>
           <div className="flex flex-col gap-8 items-start">
             <div className="w-full flex justify-between items-center flex-wrap gap-4">
               
-              <a href={channelUrl} target="_blank" rel="noopener noreferrer">
+              <a href="/ethics/report">
                 <Button className="font-augenblick bg-transparent border-[1.5px] border-black text-black px-8 py-6 rounded-full text-xl hover:bg-black hover:text-white transition-colors duration-500 ease-in-out gap-3 font-[Neue_Augenblick]">
                   <ArrowUpRight className="w-5 h-5" />
                   Ir al Canal de Denuncias
@@ -38,7 +28,7 @@ export function EthicsLine() {
               </a>
             </div>
 
-            <div className="w-full bg-gray-50 rounded-2xl p-8 md:p-12 border border-gray-200 font-[Neue_Augenblick]">
+            <div className="w-full p-8 md:p-12 font-[Neue_Augenblick]">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
                  <div className="flex flex-col gap-6">
                     <div className="flex items-center gap-3 mb-2">

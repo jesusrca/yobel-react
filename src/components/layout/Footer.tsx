@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "motion/react";
 import svgPaths from "../../imports/svg-djl5v4gr4k";
 import { cn } from "../ui/utils";
+import { Copy, Check } from "lucide-react";
 
 function Logo() {
   return (
@@ -90,8 +91,29 @@ const menuItems = [
 
 export function Footer() {
   const [activeCategory, setActiveCategory] = useState<string>("Empresa");
+  const [emailCopied, setEmailCopied] = useState(false);
 
   const activeItems = menuItems.find(item => item.title === activeCategory)?.items || [];
+
+  const handleCopyEmail = () => {
+    // Fallback method for environments where Clipboard API is blocked
+    const textArea = document.createElement("textarea");
+    textArea.value = "contacto@yobel.com.pe";
+    textArea.style.position = "fixed";
+    textArea.style.left = "-999999px";
+    textArea.style.top = "-999999px";
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    try {
+      document.execCommand('copy');
+      setEmailCopied(true);
+      setTimeout(() => setEmailCopied(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy text: ', err);
+    }
+    textArea.remove();
+  };
 
   return (
     <footer className="bg-black text-white w-full overflow-hidden py-12 md:py-20 font-augenblick">
@@ -117,6 +139,25 @@ export function Footer() {
                 <div className="flex flex-col gap-2">
                     <p className="text-[16px] text-white/50 font-medium">CONTACTO COMERCIAL</p>
                     <p className="text-[22px] md:text-[24px]">+511 997 593 459</p>
+                </div>
+
+                <div className="flex flex-col gap-2">
+                    <p className="text-[16px] text-white/50 font-medium">EMAIL</p>
+                    <div 
+                      className="group relative w-fit cursor-pointer"
+                      onClick={handleCopyEmail}
+                    >
+                      <p className="text-[22px] md:text-[24px] group-hover:text-[#fff066] transition-colors duration-300">
+                        contacto@yobel.com.pe
+                      </p>
+                      <div className="absolute -right-10 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        {emailCopied ? (
+                          <Check className="w-5 h-5 text-green-400" />
+                        ) : (
+                          <Copy className="w-5 h-5 text-white/50" />
+                        )}
+                      </div>
+                    </div>
                 </div>
 
                 <div className="flex flex-col gap-4">

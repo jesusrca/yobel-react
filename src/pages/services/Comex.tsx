@@ -18,6 +18,7 @@ import comexImage from "figma:asset/e608a17e3bf93a1d2e8a4b868a2f12aa32b3854b.png
 import hoverImage from "figma:asset/4288be58a4ef94beb9d8a69085417550e080ee9b.png";
 import truckImage from "figma:asset/581b279261d7ceb7941417797fbd59c23f768b5e.png";
 import yellowTruck from "figma:asset/b94e87eb574754035d4788fe21930672651cb6ac.png";
+import warehouseImage from "figma:asset/cb9b48b25b6989c920d64371cd04e872c5cfcd05.png";
 
 
 const heroImage = "https://images.unsplash.com/photo-1663103746090-2e4274c6c7ac?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzaGlwcGluZyUyMGNvbnRhaW5lciUyMHNoaXAlMjBwb3J0fGVufDF8fHx8MTc2NDE5MzYxOXww&ixlib=rb-4.1.0&q=80&w=1080";
@@ -128,7 +129,7 @@ export function Comex() {
             >
                <div className="mt-12">
                  <Link to="/tarifas">
-                   <Button className="font-augenblick bg-transparent border-[1.5px] border-black text-black px-8 py-6 rounded-full text-xl hover:bg-black hover:text-white transition-colors duration-500 ease-in-out w-fit">
+                   <Button className="font-augenblick bg-transparent border-[1.5px] border-black text-black px-8 py-6 rounded-full text-xl hover:bg-black hover:text-white transition-colors duration-500 ease-in-out w-fit font-[Neue_Augenblick]">
                      Ver tarifas
                    </Button>
                  </Link>
@@ -138,7 +139,7 @@ export function Comex() {
             {/* Benefits */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 my-20">
                <div className="flex flex-col">
-                  <span className="text-gray-400 text-lg mb-20 block">Beneficios</span>
+                  <span className="text-gray-400 text-lg mb-20 block font-[Neue_Augenblick]">Beneficios</span>
                   <ParallaxImage 
                      src={yellowTruck} 
                      alt="Logística Yobel" 
@@ -147,7 +148,7 @@ export function Comex() {
                </div>
 
                <div className="flex flex-col pt-0">
-                  <h3 className="text-[32px] md:text-[42px] leading-[1.1] font-normal mb-20 text-black tracking-tight max-w-xl">
+                  <h3 className="text-[32px] md:text-[42px] leading-[1.1] font-normal mb-20 text-black tracking-tight max-w-xl font-[Neue_Augenblick]">
                      Nos enfocamos en optimizar tiempos y costos en cada operación de comercio exterior.
                   </h3>
                   
@@ -172,7 +173,7 @@ export function Comex() {
 
       <div className="w-full h-[400px] lg:h-[600px] mb-20 relative overflow-hidden">
          <motion.img 
-            src="https://images.unsplash.com/photo-1631388167556-55a285cc86a5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzaGlwcGluZyUyMGxvZ2lzdGljcyUyMGNhcmdvJTIwY29udGFpbmVyJTIwdGVybWluYWwlMjBhZXJpYWwlMjB2aWV3JTIwd2lkZXxlbnwxfHx8fDE3NjQzNjg5MTh8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" 
+            src={warehouseImage} 
             alt="Global Logistics" 
             className="w-full h-full object-cover"
             initial={{ scale: 1.1 }}
@@ -220,7 +221,7 @@ export function Comex() {
                               </motion.span>
                            </div>
                            <div className="w-full lg:w-1/2 flex flex-col gap-6">
-                              <h3 className="text-2xl md:text-[26px] text-black font-augenblick text-center lg:text-left">{proc.title}</h3>
+                              <h3 className="text-2xl md:text-[26px] text-black font-augenblick text-center lg:text-left font-[Neue_Augenblick]">{proc.title}</h3>
                               <div className="pl-0 md:pl-12 lg:pl-20">
                                  <p className="text-xl md:text-[22px] text-black mb-8 max-w-lg leading-relaxed text-center lg:text-left">
                                     {proc.desc}
