@@ -5,7 +5,7 @@ import { Button } from "../../components/ui/button";
 import { Phrase } from "../../components/company/Phrase";
 import { VideoScrollSection } from "../../components/company/VideoScrollSection";
 import { ContactModal } from "../../components/company/ContactModal";
-import { LatinAmericaMap } from "../../components/company/LatinAmericaMap";
+import { AmericasMap } from "../../components/company/AmericasMap";
 import { ScrollRevealString } from "../../components/ui/scroll-reveal-text";
 import { LocationCard } from "../../components/company/LocationCard";
 import { CountryTimeHeader } from "../../components/company/CountryTimeHeader";
@@ -51,6 +51,17 @@ const locationsData: Record<string, Location[]> = {
       timezone: "America/Lima"
     }
   ],
+  mexico: [
+    {
+      city: "Ciudad de México",
+      country: "México",
+      email: "mexico@yobel.com.mx",
+      phone: "+52 55 5000 0000",
+      address: "Av. Insurgentes Sur 1458, Ciudad de México, México",
+      imageUrl: "https://images.unsplash.com/photo-1704423846283-f92ff6badea3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3Jwb3JhdGUlMjBvZmZpY2UlMjBidWlsZGluZ3xlbnwxfHx8fDE3NjQ2NDUwMzB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      timezone: "America/Mexico_City"
+    }
+  ],
   colombia: [
     {
       city: "Bogotá",
@@ -91,6 +102,28 @@ const locationsData: Record<string, Location[]> = {
       timezone: "America/Guayaquil"
     }
   ],
+  panama: [
+    {
+      city: "Ciudad de Panamá",
+      country: "Panamá",
+      email: "panama@yobel.com.pa",
+      phone: "+507 200 0000",
+      address: "Vía España, Ciudad de Panamá, Panamá",
+      imageUrl: "https://images.unsplash.com/photo-1704423846283-f92ff6badea3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3Jwb3JhdGUlMjBvZmZpY2UlMjBidWlsZGluZ3xlbnwxfHx8fDE3NjQ2NDUwMzB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      timezone: "America/Panama"
+    }
+  ],
+  costa_rica: [
+    {
+      city: "San José",
+      country: "Costa Rica",
+      email: "sanjose@yobel.com.cr",
+      phone: "+506 2000 0000",
+      address: "Escazú, San José, Costa Rica",
+      imageUrl: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBvZmZpY2UlMjBpbnRlcmlvcnxlbnwxfHx8fDE3NjQ1NTc5MjZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      timezone: "America/Costa_Rica"
+    }
+  ],
   chile: [
     {
       city: "Santiago",
@@ -123,6 +156,57 @@ const locationsData: Record<string, Location[]> = {
       imageUrl: "https://images.unsplash.com/photo-1650392131866-e4e2e06a0c78?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3YXJlaG91c2UlMjBhcmNoaXRlY3R1cmV8ZW58MXx8fHwxNzY0NjY2Nzk0fDA&ixlib=rb-4.1.0&q=80&w=1080",
       timezone: "America/Montevideo"
     }
+  ],
+  bolivia: [
+    {
+      city: "La Paz",
+      country: "Bolivia",
+      email: "lapaz@yobel.com.bo",
+      phone: "+591 2 277 7000",
+      address: "Av. Arce 2081, La Paz, Bolivia",
+      imageUrl: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBvZmZpY2UlMjBpbnRlcmlvcnxlbnwxfHx8fDE3NjQ1NTc5MjZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      timezone: "America/La_Paz"
+    },
+    {
+      city: "Santa Cruz",
+      country: "Bolivia",
+      email: "santacruz@yobel.com.bo",
+      phone: "+591 3 336 5000",
+      address: "Av. San Martín 1500, Santa Cruz, Bolivia",
+      imageUrl: "https://images.unsplash.com/photo-1619070284836-e850273d69ac?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjB3YXJlaG91c2UlMjBsb2dpc3RpY3N8ZW58MXx8fHwxNzY0NjUwOTM3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      timezone: "America/La_Paz"
+    }
+  ],
+  brasil: [
+    {
+      city: "São Paulo",
+      country: "Brasil",
+      email: "saopaulo@yobel.com.br",
+      phone: "+55 11 3145 8000",
+      address: "Av. Paulista 1578, São Paulo, Brasil",
+      imageUrl: "https://images.unsplash.com/photo-1704423846283-f92ff6badea3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3Jwb3JhdGUlMjBvZmZpY2UlMjBidWlsZGluZ3xlbnwxfHx8fDE3NjQ2NDUwMzB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      timezone: "America/Sao_Paulo"
+    },
+    {
+      city: "Rio de Janeiro",
+      country: "Brasil",
+      email: "rio@yobel.com.br",
+      phone: "+55 21 2222 5000",
+      address: "Av. Rio Branco 156, Rio de Janeiro, Brasil",
+      imageUrl: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBvZmZpY2UlMjBpbnRlcmlvcnxlbnwxfHx8fDE3NjQ1NTc5MjZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      timezone: "America/Sao_Paulo"
+    }
+  ],
+  venezuela: [
+    {
+      city: "Caracas",
+      country: "Venezuela",
+      email: "caracas@yobel.com.ve",
+      phone: "+58 212 945 3000",
+      address: "Av. Francisco de Miranda, Caracas, Venezuela",
+      imageUrl: "https://images.unsplash.com/photo-1704423846283-f92ff6badea3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3Jwb3JhdGUlMjBvZmZpY2UlMjBidWlsZGluZ3xlbnwxfHx8fDE3NjQ2NDUwMzB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      timezone: "America/Caracas"
+    }
   ]
 };
 
@@ -136,12 +220,17 @@ const stats = [
 
 const countryOptions = [
   { value: "peru", label: "Perú" },
+  { value: "mexico", label: "México" },
   { value: "colombia", label: "Colombia" },
   { value: "ecuador", label: "Ecuador" },
+  { value: "panama", label: "Panamá" },
+  { value: "costa_rica", label: "Costa Rica" },
   { value: "chile", label: "Chile" },
   { value: "argentina", label: "Argentina" },
   { value: "uruguay", label: "Uruguay" },
-  { value: "brasil", label: "Brasil" }
+  { value: "bolivia", label: "Bolivia" },
+  { value: "brasil", label: "Brasil" },
+  { value: "venezuela", label: "Venezuela" }
 ];
 
 export function GlobalPresence() {
@@ -150,7 +239,24 @@ export function GlobalPresence() {
   const officesRef = useRef<HTMLDivElement>(null);
 
   const currentLocations = locationsData[selectedCountry] || locationsData["peru"];
-  const countryName = selectedCountry.charAt(0).toUpperCase() + selectedCountry.slice(1).replace("peru", "Perú");
+  
+  // Map country IDs to display names
+  const countryDisplayNames: Record<string, string> = {
+    'peru': 'Perú',
+    'mexico': 'México',
+    'colombia': 'Colombia',
+    'ecuador': 'Ecuador',
+    'panama': 'Panamá',
+    'costa_rica': 'Costa Rica',
+    'chile': 'Chile',
+    'argentina': 'Argentina',
+    'uruguay': 'Uruguay',
+    'bolivia': 'Bolivia',
+    'brasil': 'Brasil',
+    'venezuela': 'Venezuela'
+  };
+  
+  const countryName = countryDisplayNames[selectedCountry] || 'Perú';
 
   const scrollToOffices = () => {
     // Solo hacer scroll en móviles (lg breakpoint es 1024px)
@@ -236,7 +342,7 @@ export function GlobalPresence() {
            <div className="flex flex-col lg:flex-row gap-16 lg:gap-20 mb-20">
               {/* Right Column: SVG Map */}
               <div className="lg:w-1/2 min-h-[500px] flex items-center justify-center lg:sticky lg:top-8 lg:self-start">
-                 <LatinAmericaMap 
+                 <AmericasMap 
                     onSelect={(country) => {
                       setSelectedCountry(country);
                       setScrollIndex(0);
