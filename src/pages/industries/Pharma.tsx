@@ -2,10 +2,14 @@ import React, { useState, useRef } from "react";
 import { Section } from "../../components/ui/custom-section";
 import { Container } from "../../components/ui/custom-container";
 import { Button } from "../../components/ui/button";
-import { ChevronRight, Check } from "lucide-react";
-import { motion } from "motion/react";
-import { ScrollRevealText } from "../../components/ui/motion-text";
 import { Certificates } from "../../components/landing/Certificates";
+import { ResultsGrid } from "../../components/ui/ResultsGrid";
+import { SolutionsShowcase } from "../../components/ui/SolutionsShowcase";
+import { InteractiveList } from "../../components/ui/InteractiveList";
+import { HeroGradientTall } from "../../components/ui/hero-gradient-tall";
+import { ScrollGradientTransition } from "../../components/ui/scroll-gradient-transition";
+import { BenefitsSection } from "../../components/landing/BenefitsSection";
+import { MaskedFullWidthImage } from "../../components/ui/MaskedFullWidthImage";
 
 // SVG Paths
 const svgPaths = {
@@ -16,28 +20,48 @@ const solutions = [
   {
     id: "01",
     title: "Manufactura Farmacéutica",
-    fullDesc: "Producimos, envasamos y reacondicionamos medicamentos y productos sanitarios cumpliendo estrictos estándares regulatorios nacionales e internacionales."
+    description: "Producimos, envasamos y reacondicionamos medicamentos y productos sanitarios cumpliendo estrictos estándares regulatorios nacionales e internacionales.",
+    image: "https://images.unsplash.com/photo-1576669801838-1b1c52121e6a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwaGFybWFjZXV0aWNhbCUyMG1hbnVmYWN0dXJpbmclMjBsYWJvcmF0b3J5JTIwbWVkaWNpbmV8ZW58MXx8fHwxNzY0NDE1MjUyfDA&ixlib=rb-4.1.0&q=80&w=1080"
   },
   {
     id: "02",
     title: "Almacenamiento Regulado",
-    fullDesc: "Operamos con temperatura controlada, áreas segregadas y cuarentena sanitaria para garantizar la inocuidad y el cumplimiento normativo."
+    description: "Operamos con temperatura controlada, áreas segregadas y cuarentena sanitaria para garantizar la inocuidad y el cumplimiento normativo.",
+    image: "https://images.unsplash.com/photo-1576669801838-1b1c52121e6a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwaGFybWFjZXV0aWNhbCUyMG1hbnVmYWN0dXJpbmclMjBsYWJvcmF0b3J5JTIwbWVkaWNpbmV8ZW58MXx8fHwxNzY0NDE1MjUyfDA&ixlib=rb-4.1.0&q=80&w=1080"
   },
   {
     id: "03",
     title: "Distribución Sanitaria",
-    fullDesc: "Entregas a droguerías, hospitales, clínicas y puntos de venta con visibilidad en tiempo real y control estricto por lote."
+    description: "Entregas a droguerías, hospitales, clínicas y puntos de venta con visibilidad en tiempo real y control estricto por lote.",
+    image: "https://images.unsplash.com/photo-1576669801838-1b1c52121e6a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwaGFybWFjZXV0aWNhbCUyMG1hbnVmYWN0dXJpbmclMjBsYWJvcmF0b3J5JTIwbWVkaWNpbmV8ZW58MXx8fHwxNzY0NDE1MjUyfDA&ixlib=rb-4.1.0&q=80&w=1080"
   },
   {
     id: "04",
     title: "Valor Agregado (VAS)",
-    fullDesc: "Etiquetado sanitario, codificación, armado de kits hospitalarios y empaques promocionales con validación regulatoria."
+    description: "Etiquetado sanitario, codificación, armado de kits hospitalarios y empaques promocionales con validación regulatoria.",
+    image: "https://images.unsplash.com/photo-1576669801838-1b1c52121e6a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwaGFybWFjZXV0aWNhbCUyMG1hbnVmYWN0dXJpbmclMjBsYWJvcmF0b3J5JTIwbWVkaWNpbmV8ZW58MXx8fHwxNzY0NDE1MjUyfDA&ixlib=rb-4.1.0&q=80&w=1080"
   },
   {
     id: "05",
     title: "Comercio Exterior",
-    fullDesc: "Gestión aduanera y transporte internacional de materias primas, insumos activos y productos terminados bajo normativa sanitaria."
+    description: "Gestión aduanera y transporte internacional de materias primas, insumos activos y productos terminados bajo normativa sanitaria.",
+    image: "https://images.unsplash.com/photo-1576669801838-1b1c52121e6a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwaGFybWFjZXV0aWNhbCUyMG1hbnVmYWN0dXJpbmclMjBsYWJvcmF0b3J5JTIwbWVkaWNpbmV8ZW58MXx8fHwxNzY0NDE1MjUyfDA&ixlib=rb-4.1.0&q=80&w=1080"
   }
+];
+
+const useCases = [
+  { id: "01", title: "Lanzamientos farmacéuticos", fullDesc: "Distribución nacional y regional de nuevas líneas con control de fecha de vigencia." },
+  { id: "02", title: "Acondicionamiento secundario", fullDesc: "Etiquetado, codificado o empaquetado final según requerimientos del país de destino." },
+  { id: "03", title: "Re-etiquetado sanitario", fullDesc: "Adaptación regulatoria ágil por canal o mercado específico." },
+  { id: "04", title: "Distribución hospitalaria", fullDesc: "Entrega directa y prioritaria a clínicas, farmacias y hospitales." },
+  { id: "05", title: "Logística inversa", fullDesc: "Retiro, control y disposición segura de productos fuera de estándar o vencidos." }
+];
+
+const results = [
+  { highlight: "Cumplimiento OTIF 99.6%", normal: "en entregas farmacéuticas." },
+  { highlight: "Temperatura monitoreada", normal: "en tiempo real." },
+  { highlight: "Trazabilidad 100% validada", normal: "por lote y cliente." },
+  { highlight: "Lead time reducido", normal: "en lanzamientos y reabastecimientos." }
 ];
 
 const benefits = [
@@ -48,241 +72,78 @@ const benefits = [
   "Cobertura nacional con OTIF 99.6%."
 ];
 
-const useCases = [
-  { number: "01", title: "Lanzamientos farmacéuticos", desc: "Distribución nacional y regional de nuevas líneas con control de fecha de vigencia." },
-  { number: "02", title: "Acondicionamiento secundario", desc: "Etiquetado, codificado o empaquetado final según requerimientos del país de destino." },
-  { number: "03", title: "Re-etiquetado sanitario", desc: "Adaptación regulatoria ágil por canal o mercado específico." },
-  { number: "04", title: "Distribución hospitalaria", desc: "Entrega directa y prioritaria a clínicas, farmacias y hospitales." },
-  { number: "05", title: "Logística inversa", desc: "Retiro, control y disposición segura de productos fuera de estándar o vencidos." }
-];
-
-const results = [
-  "Cumplimiento OTIF 99.6% en entregas farmacéuticas.",
-  "Temperatura monitoreada en tiempo real.",
-  "Trazabilidad 100% validada por lote y cliente.",
-  "Lead time reducido en lanzamientos y reabastecimientos."
-];
-
-const certifications = [
-  { title: "BPM/BPA", desc: "Buenas Prácticas de Manufactura y Almacenamiento." },
-  { title: "ISO 9001", desc: "Calidad y mejora continua." },
-  { title: "BASC", desc: "Seguridad en la cadena de suministro." },
-  { title: "Habilitaciones", desc: "Habilitaciones DIGEMID y sanitarias internacionales." }
-];
-
 export function Pharma() {
   const [activeSolution, setActiveSolution] = useState<string | null>("01");
   const containerRef = useRef(null);
 
   return (
     <>
-      {/* Hero Section */}
-      <div className="relative h-[80vh] min-h-[600px] max-h-[920px] w-full overflow-hidden font-augenblick">
-        <div className="absolute inset-0 overflow-hidden">
-          <video 
-            src="https://circular.ws/yobel/fondo-celeste.mp4"
-            className="absolute inset-0 h-full w-full object-cover"
-            autoPlay
-            loop
-            muted
-            playsInline
-          />
-          <div className="absolute inset-0 bg-black/10" />
-          <div className="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-white via-white/60 to-transparent pointer-events-none" />
-        </div>
+      <ScrollGradientTransition>
+        {/* Hero Section */}
+        <HeroGradientTall 
+          category="Industrias"
+          title="Soluciones logísticas para la industria Farmacéutica"
+          description="Garantizamos la integridad de tus productos con control sanitario y trazabilidad total."
+          variant="yellow"
+        />
 
-        <div className="absolute bottom-20 left-0 right-0 px-[5%] md:px-[50px] z-10">
-          <div className="max-w-[1400px] mx-auto flex flex-col gap-[30px]">
-             <p className="text-lg md:text-[18px] text-black">Industrias</p>
-             <div className="flex flex-col lg:flex-row items-start gap-[40px]">
-                <h1 className="text-5xl md:text-[65px] leading-[1] text-black max-w-[900px]">
-                  Soluciones logísticas para la industria Farmacéutica
-                </h1>
-                <p className="text-xl md:text-[22px] leading-[24px] text-black max-w-[400px] pt-2">
-                  Garantizamos la integridad de tus productos con control sanitario y trazabilidad total.
-                </p>
-             </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Intro Section */}
-      <Section className="bg-white py-20">
-        <Container>
-           <div className="flex flex-col gap-8 max-w-[1000px] mx-auto items-center text-center">
-             <div className="w-12 h-12 relative mb-2">
-               <svg className="w-full h-full" viewBox="0 0 48 46" fill="none">
-                 <path d={svgPaths.pff39b00} fill="black" />
-               </svg>
-             </div>
-             <h2 className="text-2xl md:text-3xl lg:text-[32px] leading-tight font-light text-gray-400">
-               Salud y precisión
-             </h2>
-             <div className="flex flex-col gap-12 items-center">
-               <p className="text-2xl md:text-4xl lg:text-[40px] leading-tight font-normal text-black">
-                 En Yobel SCM diseñamos soluciones integradas para laboratorios y distribuidoras de salud. Gestionamos medicamentos e insumos bajo normas BPM y BPA, con cadena de frío certificada y procesos trazables.
-               </p>
-               <div>
-                 <Button className="bg-transparent border-[1.5px] border-black text-black px-8 py-6 rounded-full text-xl hover:bg-black hover:text-white transition-all duration-300">
-                   Contactar Asesor
-                 </Button>
-               </div>
-             </div>
-           </div>
-        </Container>
-      </Section>
-
-      {/* Solutions Section */}
-      <Section className="bg-white py-20">
-        <Container>
-           <div className="flex flex-col gap-12">
-             <div className="flex flex-col gap-2 items-start">
-               <span className="text-xl text-gray-400 font-medium">Servicios</span>
-               <h3 className="text-3xl md:text-4xl font-normal mb-6">¿Cómo te ayudamos?</h3>
-             </div>
-             
-             <div className="flex flex-col lg:flex-row gap-16 items-center">
-                <div className="w-full lg:w-1/2 flex flex-col gap-0 border-t border-black">
-                  {solutions.map((sol) => (
-                    <div 
-                      key={sol.id}
-                      className="group border-b border-black py-10 cursor-pointer transition-all duration-300"
-                      onMouseEnter={() => setActiveSolution(sol.id)}
-                    >
-                      <div className="flex items-start justify-between gap-4">
-                        <div className="flex flex-col md:flex-row gap-4 md:gap-8 items-baseline">
-                           <span className="text-3xl md:text-4xl font-light whitespace-nowrap">{sol.id} /</span>
-                           <h3 className="text-3xl md:text-4xl font-light">{sol.title}</h3>
-                        </div>
-                        <div className="shrink-0">
-                           <div className="w-[50px] h-[30px] rounded-full border border-black flex items-center justify-center group-hover:bg-black group-hover:text-white transition-colors">
-                             <ChevronRight size={20} />
-                           </div>
-                        </div>
-                      </div>
-                      <div className={`mt-6 overflow-hidden transition-all duration-500 ease-in-out ${activeSolution === sol.id ? 'max-h-[200px] opacity-100' : 'max-h-0 opacity-0'}`}>
-                         <p className="text-xl text-gray-600 font-light max-w-lg ml-0 md:ml-20">
-                           {sol.fullDesc}
-                         </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                
-                <div className="w-full lg:w-1/2 relative h-[600px] rounded-[30px] overflow-hidden">
-                   <img 
-                     src="https://images.unsplash.com/photo-1576669801838-1b1c52121e6a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwaGFybWFjZXV0aWNhbCUyMG1hbnVmYWN0dXJpbmclMjBsYWJvcmF0b3J5JTIwbWVkaWNpbmV8ZW58MXx8fHwxNzY0NDE1MjUyfDA&ixlib=rb-4.1.0&q=80&w=1080" 
-                     alt="Pharma Industry" 
-                     className="absolute inset-0 w-full h-full object-cover" 
-                   />
-                </div>
-             </div>
-           </div>
-        </Container>
-      </Section>
-
-      {/* Benefits Section */}
-      <Section className="bg-white py-20">
-         <Container>
-            <div className="flex flex-col lg:flex-row gap-16 items-center">
-               <div className="w-full lg:w-1/2">
-                  <div className="mb-6">
-                     <span className="text-xl text-gray-400 font-medium block mb-4">Beneficios</span>
-                     <h2 className="text-4xl md:text-5xl lg:text-[45px] leading-tight font-normal">
-                        Cumplimiento, trazabilidad y eficiencia
-                     </h2>
-                  </div>
-                  <div className="mt-12 relative h-[400px] rounded-[20px] overflow-hidden hidden lg:block">
-                     <img 
-                       src="https://images.unsplash.com/photo-1608243499710-5ebece89a37d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb2xkJTIwY2hhaW4lMjBsb2dpc3RpY3MlMjB2YWNjaW5lfGVufDF8fHx8MTc2NDQxNTI1NHww&ixlib=rb-4.1.0&q=80&w=1080" 
-                       alt="Benefits" 
-                       className="absolute inset-0 w-full h-full object-cover" 
-                     />
-                  </div>
-               </div>
-               <div className="w-full lg:w-1/2 flex flex-col gap-10">
-                  {benefits.map((benefit, idx) => (
-                    <div key={idx} className="flex items-start gap-6">
-                       <div className="w-10 h-10 shrink-0 flex items-center justify-center">
-                          <Check size={32} strokeWidth={1.5} />
-                       </div>
-                       <p className="text-2xl md:text-[22px] font-light leading-relaxed">{benefit}</p>
-                    </div>
-                  ))}
-               </div>
-            </div>
-         </Container>
-      </Section>
-
-      {/* Process / Use Cases Section */}
-      <Section className="bg-white py-20 overflow-hidden relative">
-         <Container className="relative z-10" ref={containerRef}>
-            <div className="flex flex-col gap-12 mb-20">
-               <div className="w-12 h-12 relative">
+        {/* Intro Section */}
+        <Section className="py-32 md:py-40">
+          <Container>
+             <div className="flex flex-col gap-8 max-w-[1000px] mx-auto items-center text-center">
+               <div className="w-12 h-12 relative mb-2">
                  <svg className="w-full h-full" viewBox="0 0 48 46" fill="none">
                    <path d={svgPaths.pff39b00} fill="black" />
                  </svg>
                </div>
-               <div className="max-w-4xl">
-                  <h2 className="text-4xl md:text-5xl lg:text-[45px] leading-tight font-normal mb-8">
-                    Casos de uso típicos
-                  </h2>
-               </div>
-            </div>
-
-            <div className="flex flex-col w-full">
-               <span className="text-xl text-gray-400 font-medium block mb-12">Aplicaciones</span>
-               {useCases.map((step, idx) => (
-                 <div key={idx} className="py-20 border-b border-gray-200 last:border-none">
-                    <div className="flex flex-col lg:flex-row items-start lg:items-center gap-8 lg:gap-20">
-                        <div className="w-full lg:w-1/2 text-left">
-                           <motion.span 
-                             className="text-[100px] md:text-[165px] font-normal leading-none block bg-clip-text text-transparent bg-gradient-to-b from-[#090909] via-[#59c1e6] to-[#090909]"
-                             style={{ backgroundSize: "100% 200%" }}
-                             initial={{ opacity: 0, y: 50, filter: "blur(10px)" }}
-                             whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                             viewport={{ once: true, margin: "-100px" }}
-                             animate={{ backgroundPosition: ["0% 0%", "0% 100%"] }}
-                             transition={{ 
-                               opacity: { duration: 0.8, ease: "easeOut" },
-                               y: { duration: 0.8, ease: "easeOut" },
-                               filter: { duration: 0.8, ease: "easeOut" },
-                               backgroundPosition: { duration: 3, repeat: Infinity, ease: "linear", repeatType: "reverse" }
-                             }}
-                           >
-                             {step.number}
-                           </motion.span>
-                        </div>
-                        <div className="w-full lg:w-1/2 flex flex-col gap-6">
-                           <h3 className="text-2xl md:text-[26px] text-black font-augenblick">{step.title}</h3>
-                           <div className="pl-8 md:pl-12 lg:pl-20">
-                              <ScrollRevealText 
-                                 text={step.desc}
-                                 className="text-xl md:text-[22px] text-black mb-8 max-w-lg leading-relaxed"
-                              />
-                           </div>
-                        </div>
-                    </div>
+               <div className="flex flex-col gap-12 items-center">
+                 <p className="text-2xl md:text-4xl lg:text-[40px] leading-tight font-normal text-black">
+                   En Yobel SCM diseñamos soluciones integradas para laboratorios y distribuidoras de salud. Gestionamos medicamentos e insumos bajo normas BPM y BPA, con cadena de frío certificada y procesos trazables.
+                 </p>
+                 <div>
+                   <Button className="bg-transparent border-[1.5px] border-black text-black px-8 py-6 rounded-full text-xl relative overflow-hidden transition-all duration-500 before:absolute before:inset-0 before:bg-[linear-gradient(150deg,#FFF700_0%,#FFF700_32%,#FFE300_70%,#5dd3c0_100%)] before:opacity-0 before:transition-opacity before:duration-500 before:rounded-full hover:before:opacity-100 hover:border-0">
+                     <span className="relative z-10">Contactar Asesor</span>
+                   </Button>
                  </div>
-               ))}
-            </div>
-         </Container>
+               </div>
+             </div>
+          </Container>
+        </Section>
+      </ScrollGradientTransition>
+
+      {/* Solutions Section */}
+      <InteractiveList items={solutions} title="¿Cómo te ayudamos?" />
+
+      {/* Benefits Section */}
+      <Section className="bg-white py-20">
+        <Container>
+          <BenefitsSection 
+            title="Cumplimiento, trazabilidad y eficiencia"
+            image="https://images.unsplash.com/photo-1608243499710-5ebece89a37d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb2xkJTIwY2hhaW4lMjBsb2dpc3RpY3MlMjB2YWNjaW5lfGVufDF8fHx8MTc2NDQxNTI1NHww&ixlib=rb-4.1.0&q=80&w=1080"
+            imageAlt="Benefits"
+            benefits={benefits}
+          />
+        </Container>
       </Section>
+
+      {/* Process / Use Cases Section */}
+      <SolutionsShowcase 
+        label="Aplicaciones"
+        title="Casos de uso típicos"
+        solutions={useCases}
+        imageUrl="https://images.unsplash.com/photo-1576669801838-1b1c52121e6a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwaGFybWFjZXV0aWNhbCUyMG1hbnVmYWN0dXJpbmclMjBsYWJvcmF0b3J5JTIwbWVkaWNpbmV8ZW58MXx8fHwxNzY0NDE1MjUyfDA&ixlib=rb-4.1.0&q=80&w=1080"
+        imageAlt="Industria Farmacéutica"
+      />
+
+      {/* Full Width Image with Mask */}
+      <MaskedFullWidthImage />
 
       {/* Results Section */}
-      <Section className="bg-black text-white py-20">
-         <Container>
-            <h3 className="text-3xl md:text-4xl font-normal mb-16 text-center">Indicadores que priorizamos</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-                {results.map((res, idx) => (
-                    <div key={idx} className="text-center px-4 flex flex-col items-center">
-                       <div className="w-3 h-3 bg-[#59c1e6] rounded-full mb-6" />
-                       <p className="text-xl font-light leading-relaxed">{res}</p>
-                    </div>
-                ))}
-            </div>
-         </Container>
-      </Section>
+      <ResultsGrid 
+        label="Resultados"
+        title="Indicadores que priorizamos"
+        items={results}
+      />
 
       {/* Certifications Section */}
       <Certificates description="Respaldamos cada operación con certificaciones internacionales y habilitaciones regulatorias." />

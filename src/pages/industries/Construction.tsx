@@ -2,10 +2,14 @@ import React, { useState, useRef } from "react";
 import { Section } from "../../components/ui/custom-section";
 import { Container } from "../../components/ui/custom-container";
 import { Button } from "../../components/ui/button";
-import { ChevronRight, Check } from "lucide-react";
-import { motion } from "motion/react";
-import { ScrollRevealText } from "../../components/ui/motion-text";
 import { Certificates } from "../../components/landing/Certificates";
+import { ResultsGrid } from "../../components/ui/ResultsGrid";
+import { SolutionsShowcase } from "../../components/ui/SolutionsShowcase";
+import { InteractiveList } from "../../components/ui/InteractiveList";
+import { HeroGradientTall } from "../../components/ui/hero-gradient-tall";
+import { ScrollGradientTransition } from "../../components/ui/scroll-gradient-transition";
+import { BenefitsSection } from "../../components/landing/BenefitsSection";
+import { MaskedFullWidthImage } from "../../components/ui/MaskedFullWidthImage";
 
 // SVG Paths
 const svgPaths = {
@@ -16,28 +20,48 @@ const solutions = [
   {
     id: "01",
     title: "Almacenamiento en Obra",
-    fullDesc: "Administramos inventarios directamente en obra o en nuestras instalaciones, con tecnología WMS y control de materiales por lote o proyecto."
+    description: "Administramos inventarios directamente en obra o en nuestras instalaciones, con tecnología WMS y control de materiales por lote o proyecto.",
+    image: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb25zdHJ1Y3Rpb24lMjBtYXRlcmlhbHMlMjB3YXJlaG91c2UlMjBzdG9yYWdlfGVufDF8fHx8MTc2NDQxNTczMnww&ixlib=rb-4.1.0&q=80&w=1080"
   },
   {
     id: "02",
     title: "Distribución Programada",
-    fullDesc: "Planificamos rutas y entregas según cronograma de obra, evitando demoras y sobrecostos logísticos innecesarios."
+    description: "Planificamos rutas y entregas según cronograma de obra, evitando demoras y sobrecostos logísticos innecesarios.",
+    image: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb25zdHJ1Y3Rpb24lMjBtYXRlcmlhbHMlMjB3YXJlaG91c2UlMjBzdG9yYWdlfGVufDF8fHx8MTc2NDQxNTczMnww&ixlib=rb-4.1.0&q=80&w=1080"
   },
   {
     id: "03",
     title: "Courier Técnico",
-    fullDesc: "Entregas urgentes de muestras, planos o piezas críticas con trazabilidad en tiempo real para no detener la operación."
+    description: "Entregas urgentes de muestras, planos o piezas críticas con trazabilidad en tiempo real para no detener la operación.",
+    image: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb25zdHJ1Y3Rpb24lMjBtYXRlcmlhbHMlMjB3YXJlaG91c2UlMjBzdG9yYWdlfGVufDF8fHx8MTc2NDQxNTczMnww&ixlib=rb-4.1.0&q=80&w=1080"
   },
   {
     id: "04",
     title: "Valor Agregado (VAS)",
-    fullDesc: "Kitting y armado de kits de instalación o mantenimiento listos para uso inmediato en el punto de montaje."
+    description: "Kitting y armado de kits de instalación o mantenimiento listos para uso inmediato en el punto de montaje.",
+    image: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb25zdHJ1Y3Rpb24lMjBtYXRlcmlhbHMlMjB3YXJlaG91c2UlMjBzdG9yYWdlfGVufDF8fHx8MTc2NDQxNTczMnww&ixlib=rb-4.1.0&q=80&w=1080"
   },
   {
     id: "05",
     title: "Comercio Exterior",
-    fullDesc: "Coordinamos importación y despacho de maquinaria, insumos y materiales especializados desde cualquier parte del mundo."
+    description: "Coordinamos importación y despacho de maquinaria, insumos y materiales especializados desde cualquier parte del mundo.",
+    image: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb25zdHJ1Y3Rpb24lMjBtYXRlcmlhbHMlMjB3YXJlaG91c2UlMjBzdG9yYWdlfGVufDF8fHx8MTc2NDQxNTczMnww&ixlib=rb-4.1.0&q=80&w=1080"
   }
+];
+
+const useCases = [
+  { id: "01", title: "Abastecimiento por fases", fullDesc: "Entregas programadas de materiales estrictamente según el avance de la obra." },
+  { id: "02", title: "Repuestos críticos", fullDesc: "Servicio de courier urgente con trazabilidad total para maquinaria detenida." },
+  { id: "03", title: "Control de herramientas", fullDesc: "Registro, monitoreo y rotación eficiente de activos en campo." },
+  { id: "04", title: "Kits de instalación", fullDesc: "Armado y envío de componentes agrupados por lote o punto de montaje." },
+  { id: "05", title: "Gestión de importaciones", fullDesc: "Coordinación logística integral de maquinaria o insumos especializados." }
+];
+
+const results = [
+  { highlight: "Cumplimiento OTIF 99.6%", normal: "en entregas a obra." },
+  { highlight: "Trazabilidad total", normal: "del inventario y activos." },
+  { highlight: "Lead time reducido hasta 30%", normal: "por proyecto." },
+  { highlight: "Disponibilidad asegurada", normal: "por fase o requerimiento." }
 ];
 
 const benefits = [
@@ -48,243 +72,81 @@ const benefits = [
   "Integración con sistemas ERP o plataformas del cliente."
 ];
 
-const useCases = [
-  { number: "01", title: "Abastecimiento por fases", desc: "Entregas programadas de materiales estrictamente según el avance de la obra." },
-  { number: "02", title: "Repuestos críticos", desc: "Servicio de courier urgente con trazabilidad total para maquinaria detenida." },
-  { number: "03", title: "Control de herramientas", desc: "Registro, monitoreo y rotación eficiente de activos en campo." },
-  { number: "04", title: "Kits de instalación", desc: "Armado y envío de componentes agrupados por lote o punto de montaje." },
-  { number: "05", title: "Gestión de importaciones", desc: "Coordinación logística integral de maquinaria o insumos especializados." }
-];
-
-const results = [
-  "Cumplimiento OTIF 99.6% en entregas a obra.",
-  "Trazabilidad total del inventario y activos.",
-  "Lead time reducido hasta 30% por proyecto.",
-  "Disponibilidad asegurada por fase o requerimiento."
-];
-
-const certifications = [
-  { title: "ISO 9001", desc: "Calidad y mejora continua." },
-  { title: "BASC", desc: "Seguridad en la cadena de suministro." },
-  { title: "ISO 45001", desc: "Seguridad y salud ocupacional." }
-];
-
 export function Construction() {
   const [activeSolution, setActiveSolution] = useState<string | null>("01");
   const containerRef = useRef(null);
 
   return (
     <>
-      {/* Hero Section */}
-      <div className="relative h-[80vh] min-h-[600px] max-h-[920px] w-full overflow-hidden font-augenblick">
-        <div className="absolute inset-0 overflow-hidden">
-          <video 
-            src="https://circular.ws/yobel/fondo-celeste.mp4"
-            className="absolute inset-0 h-full w-full object-cover"
-            autoPlay
-            loop
-            muted
-            playsInline
-          />
-          <div className="absolute inset-0 bg-black/10" />
-          <div className="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-white via-white/60 to-transparent pointer-events-none" />
-        </div>
+      <ScrollGradientTransition>
+        {/* Hero Section */}
+        <HeroGradientTall 
+          category="Industrias"
+          title="Soluciones logísticas para Construcción e Infraestructura"
+          description="Movemos materiales y equipos con precisión, puntualidad y control por proyecto."
+          variant="yellow"
+        />
 
-        <div className="absolute bottom-20 left-0 right-0 px-[5%] md:px-[50px] z-10">
-          <div className="max-w-[1400px] mx-auto flex flex-col gap-[30px]">
-             <p className="text-lg md:text-[18px] text-black">Industrias</p>
-             <div className="flex flex-col lg:flex-row items-start gap-[40px]">
-                <h1 className="text-5xl md:text-[65px] leading-[1] text-black max-w-[900px]">
-                  Soluciones logísticas para la Construcción
-                </h1>
-                <p className="text-xl md:text-[22px] leading-[24px] text-black max-w-[400px] pt-2">
-                  Abastecemos tus proyectos con eficiencia, control y visibilidad total.
-                </p>
-             </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Intro Section */}
-      <Section className="bg-white py-20">
-        <Container>
-           <div className="flex flex-col gap-8 max-w-[1000px] mx-auto items-center text-center">
-             <div className="w-12 h-12 relative mb-2">
-               <svg className="w-full h-full" viewBox="0 0 48 46" fill="none">
-                 <path d={svgPaths.pff39b00} fill="black" />
-               </svg>
-             </div>
-             <h2 className="text-2xl md:text-3xl lg:text-[32px] leading-tight font-light text-gray-400">
-               Solidez y precisión
-             </h2>
-             <div className="flex flex-col gap-12 items-center">
-               <p className="text-2xl md:text-4xl lg:text-[40px] leading-tight font-normal text-black">
-                 En Yobel SCM gestionamos la cadena de suministro de materiales, repuestos y equipos para obras de construcción e infraestructura. Optimizamos tiempos y recursos con soluciones que integran almacenamiento y distribución.
-               </p>
-               <div>
-                 <Button className="bg-transparent border-[1.5px] border-black text-black px-8 py-6 rounded-full text-xl hover:bg-black hover:text-white transition-all duration-300">
-                   Contactar Asesor
-                 </Button>
-               </div>
-             </div>
-           </div>
-        </Container>
-      </Section>
-
-      {/* Solutions Section */}
-      <Section className="bg-white py-20">
-        <Container>
-           <div className="flex flex-col gap-12">
-             <div className="flex flex-col gap-2 items-start">
-               <span className="text-xl text-gray-400 font-medium">Servicios</span>
-               <h3 className="text-3xl md:text-4xl font-normal mb-6">¿Cómo te ayudamos?</h3>
-             </div>
-             
-             <div className="flex flex-col lg:flex-row gap-16 items-center">
-                <div className="w-full lg:w-1/2 flex flex-col gap-0 border-t border-black">
-                  {solutions.map((sol) => (
-                    <div 
-                      key={sol.id}
-                      className="group border-b border-black py-10 cursor-pointer transition-all duration-300"
-                      onMouseEnter={() => setActiveSolution(sol.id)}
-                    >
-                      <div className="flex items-start justify-between gap-4">
-                        <div className="flex flex-col md:flex-row gap-4 md:gap-8 items-baseline">
-                           <span className="text-3xl md:text-4xl font-light whitespace-nowrap">{sol.id} /</span>
-                           <h3 className="text-3xl md:text-4xl font-light">{sol.title}</h3>
-                        </div>
-                        <div className="shrink-0">
-                           <div className="w-[50px] h-[30px] rounded-full border border-black flex items-center justify-center group-hover:bg-black group-hover:text-white transition-colors">
-                             <ChevronRight size={20} />
-                           </div>
-                        </div>
-                      </div>
-                      <div className={`mt-6 overflow-hidden transition-all duration-500 ease-in-out ${activeSolution === sol.id ? 'max-h-[200px] opacity-100' : 'max-h-0 opacity-0'}`}>
-                         <p className="text-xl text-gray-600 font-light max-w-lg ml-0 md:ml-20">
-                           {sol.fullDesc}
-                         </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                
-                <div className="w-full lg:w-1/2 relative h-[600px] rounded-[30px] overflow-hidden">
-                   <img 
-                     src="https://images.unsplash.com/photo-1763665814842-f2526387dfb4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb25zdHJ1Y3Rpb24lMjBtYXRlcmlhbHMlMjBsb2dpc3RpY3MlMjB3YXJlaG91c2V8ZW58MXx8fHwxNzY0NDE1MDY5fDA&ixlib=rb-4.1.0&q=80&w=1080" 
-                     alt="Construction Industry" 
-                     className="absolute inset-0 w-full h-full object-cover" 
-                   />
-                </div>
-             </div>
-           </div>
-        </Container>
-      </Section>
-
-      {/* Benefits Section */}
-      <Section className="bg-white py-20">
-         <Container>
-            <div className="flex flex-col lg:flex-row gap-16 items-center">
-               <div className="w-full lg:w-1/2">
-                  <div className="mb-6">
-                     <span className="text-xl text-gray-400 font-medium block mb-4">Beneficios</span>
-                     <h2 className="text-4xl md:text-5xl lg:text-[45px] leading-tight font-normal">
-                        Optimizamos tiempos y recursos en obra
-                     </h2>
-                  </div>
-                  <div className="mt-12 relative h-[400px] rounded-[20px] overflow-hidden hidden lg:block">
-                     <img 
-                       src="https://images.unsplash.com/photo-1763665814546-27c2c003317e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoZWF2eSUyMG1hY2hpbmVyeSUyMHRyYW5zcG9ydCUyMGxvZ2lzdGljc3xlbnwxfHx8fDE3NjQ0MTUwNzR8MA&ixlib=rb-4.1.0&q=80&w=1080" 
-                       alt="Benefits" 
-                       className="absolute inset-0 w-full h-full object-cover" 
-                     />
-                  </div>
-               </div>
-               <div className="w-full lg:w-1/2 flex flex-col gap-10">
-                  {benefits.map((benefit, idx) => (
-                    <div key={idx} className="flex items-start gap-6">
-                       <div className="w-10 h-10 shrink-0 flex items-center justify-center">
-                          <Check size={32} strokeWidth={1.5} />
-                       </div>
-                       <p className="text-2xl md:text-[22px] font-light leading-relaxed">{benefit}</p>
-                    </div>
-                  ))}
-               </div>
-            </div>
-         </Container>
-      </Section>
-
-      {/* Process / Use Cases Section */}
-      <Section className="bg-white py-20 overflow-hidden relative">
-         <Container className="relative z-10" ref={containerRef}>
-            <div className="flex flex-col gap-12 mb-20">
-               <div className="w-12 h-12 relative">
+        {/* Intro Section */}
+        <Section className="py-32 md:py-40">
+          <Container>
+             <div className="flex flex-col gap-8 max-w-[1000px] mx-auto items-center text-center">
+               <div className="w-12 h-12 relative mb-2">
                  <svg className="w-full h-full" viewBox="0 0 48 46" fill="none">
                    <path d={svgPaths.pff39b00} fill="black" />
                  </svg>
                </div>
-               <div className="max-w-4xl">
-                  <h2 className="text-4xl md:text-5xl lg:text-[45px] leading-tight font-normal mb-8">
-                    Casos de uso típicos
-                  </h2>
-               </div>
-            </div>
-
-            <div className="flex flex-col w-full">
-               <span className="text-xl text-gray-400 font-medium block mb-12">Aplicaciones</span>
-               {useCases.map((step, idx) => (
-                 <div key={idx} className="py-20 border-b border-gray-200 last:border-none">
-                    <div className="flex flex-col lg:flex-row items-start lg:items-center gap-8 lg:gap-20">
-                        <div className="w-full lg:w-1/2 text-left">
-                           <motion.span 
-                             className="text-[100px] md:text-[165px] font-normal leading-none block bg-clip-text text-transparent bg-gradient-to-b from-[#090909] via-[#59c1e6] to-[#090909]"
-                             style={{ backgroundSize: "100% 200%" }}
-                             initial={{ opacity: 0, y: 50, filter: "blur(10px)" }}
-                             whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                             viewport={{ once: true, margin: "-100px" }}
-                             animate={{ backgroundPosition: ["0% 0%", "0% 100%"] }}
-                             transition={{ 
-                               opacity: { duration: 0.8, ease: "easeOut" },
-                               y: { duration: 0.8, ease: "easeOut" },
-                               filter: { duration: 0.8, ease: "easeOut" },
-                               backgroundPosition: { duration: 3, repeat: Infinity, ease: "linear", repeatType: "reverse" }
-                             }}
-                           >
-                             {step.number}
-                           </motion.span>
-                        </div>
-                        <div className="w-full lg:w-1/2 flex flex-col gap-6">
-                           <h3 className="text-2xl md:text-[26px] text-black font-augenblick">{step.title}</h3>
-                           <div className="pl-8 md:pl-12 lg:pl-20">
-                              <ScrollRevealText 
-                                 text={step.desc}
-                                 className="text-xl md:text-[22px] text-black mb-8 max-w-lg leading-relaxed"
-                              />
-                           </div>
-                        </div>
-                    </div>
+               <div className="flex flex-col gap-12 items-center">
+                 <p className="text-2xl md:text-4xl lg:text-[40px] leading-tight font-normal text-black">
+                   En Yobel SCM coordinamos la logística de proyectos constructivos con entregas programadas, courier técnico y control en tiempo real. Garantizamos disponibilidad de materiales, herramientas y equipos según el cronograma de obra.
+                 </p>
+                 <div>
+                   <Button className="bg-transparent border-[1.5px] border-black text-black px-8 py-6 rounded-full text-xl relative overflow-hidden transition-all duration-500 before:absolute before:inset-0 before:bg-[linear-gradient(150deg,#FFF700_0%,#FFF700_32%,#FFE300_70%,#5dd3c0_100%)] before:opacity-0 before:transition-opacity before:duration-500 before:rounded-full hover:before:opacity-100 hover:border-0">
+                     <span className="relative z-10">Contactar Asesor</span>
+                   </Button>
                  </div>
-               ))}
-            </div>
-         </Container>
+               </div>
+             </div>
+          </Container>
+        </Section>
+      </ScrollGradientTransition>
+
+      {/* Solutions Section */}
+      <InteractiveList items={solutions} title="¿Cómo te ayudamos?" />
+
+      {/* Benefits Section */}
+      <Section className="bg-white py-20">
+        <Container>
+          <BenefitsSection 
+            title="Disponibilidad, control y eficiencia"
+            image="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb25zdHJ1Y3Rpb24lMjBtYXRlcmlhbHMlMjB3YXJlaG91c2UlMjBzdG9yYWdlfGVufDF8fHx8MTc2NDQxNTczMnww&ixlib=rb-4.1.0&q=80&w=1080"
+            imageAlt="Benefits"
+            benefits={benefits}
+          />
+        </Container>
       </Section>
+
+      {/* Process / Use Cases Section */}
+      <SolutionsShowcase 
+        label="Aplicaciones"
+        title="Casos de uso típicos"
+        solutions={useCases}
+        imageUrl="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb25zdHJ1Y3Rpb24lMjBtYXRlcmlhbHMlMjB3YXJlaG91c2UlMjBzdG9yYWdlfGVufDF8fHx8MTc2NDQxNTczMnww&ixlib=rb-4.1.0&q=80&w=1080"
+        imageAlt="Construcción e Infraestructura"
+      />
+
+      {/* Full Width Image with Mask */}
+      <MaskedFullWidthImage />
 
       {/* Results Section */}
-      <Section className="bg-black text-white py-20">
-         <Container>
-            <h3 className="text-3xl md:text-4xl font-normal mb-16 text-center">Indicadores que priorizamos</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-                {results.map((res, idx) => (
-                    <div key={idx} className="text-center px-4 flex flex-col items-center">
-                       <div className="w-3 h-3 bg-[#59c1e6] rounded-full mb-6" />
-                       <p className="text-xl font-light leading-relaxed">{res}</p>
-                    </div>
-                ))}
-            </div>
-         </Container>
-      </Section>
+      <ResultsGrid 
+        label="Resultados"
+        title="Indicadores que priorizamos"
+        items={results}
+      />
 
       {/* Certifications Section */}
-      <Certificates description="Garantizamos excelencia y seguridad con certificaciones reconocidas internacionalmente." />
+      <Certificates description="Operamos con certificaciones internacionales que garantizan calidad, seguridad y sostenibilidad en cada etapa." />
     </>
   );
 }

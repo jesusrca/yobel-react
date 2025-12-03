@@ -4,6 +4,7 @@ export const newsData = [
     title: "Innovación en Logística: El futuro de la cadena de suministro",
     category: "Innovación y Tecnología",
     date: "28 Nov 2025",
+    country: "Perú",
     image: "https://images.unsplash.com/photo-1640517526259-8e5aacbebf71?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsb2dpc3RpY3MlMjB3YXJlaG91c2UlMjB0ZWNobm9sb2d5JTIwZHJvbmV8ZW58MXx8fHwxNzY0Mjg5NjAzfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
     excerpt: "Descubre cómo la inteligencia artificial y la automatización están transformando los centros de distribución modernos y optimizando tiempos de entrega.",
     content: `
@@ -24,6 +25,7 @@ export const newsData = [
     title: "Yobel recibe reconocimiento por prácticas de sostenibilidad",
     category: "Sostenibilidad",
     date: "15 Nov 2025",
+    country: "Chile",
     image: "https://images.unsplash.com/photo-1763702426948-4888730bcda2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdXN0YWluYWJpbGl0eSUyMGdyZWVuJTIwZW5lcmd5JTIwcGxhbnR8ZW58MXx8fHwxNzY0Mjg5NjA1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
     excerpt: "Nuestro compromiso con el medio ambiente ha sido galardonado con el premio a la Excelencia en Sostenibilidad Corporativa 2025.",
     content: `
@@ -41,6 +43,7 @@ export const newsData = [
     title: "Expansión Regional: Nuevas oficinas en Latinoamérica",
     category: "Empresa",
     date: "01 Nov 2025",
+    country: "Colombia",
     image: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3Jwb3JhdGUlMjBidXNpbmVzcyUyMG1lZXRpbmclMjBuZXdzfGVufDF8fHx8MTc2NDI4OTYwMHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
     excerpt: "Fortalecemos nuestra presencia en la región con la apertura de nuevos centros operativos estratégicos para servir mejor a nuestros clientes.",
     content: `
@@ -48,6 +51,60 @@ export const newsData = [
       <br/>
       <h3>Nuevos Mercados</h3>
       <p>La consolidación de nuestra presencia en mercados clave nos posiciona como el socio estratégico ideal para empresas que buscan escalar sus operaciones a nivel continental. Nuestras nuevas instalaciones cuentan con la misma tecnología de punta y estándares de calidad que nos caracterizan.</p>
+    `
+  },
+  {
+    id: "transformacion-digital-supply-chain",
+    title: "Transformación Digital en la Cadena de Suministro",
+    category: "Innovación y Tecnología",
+    date: "12 Oct 2025",
+    country: "Perú",
+    image: "https://images.unsplash.com/photo-1761195696590-3490ea770aa1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsb2dpc3RpY3MlMjBzdXBwbHklMjBjaGFpbiUyMHRlY2hub2xvZ3l8ZW58MXx8fHwxNzY0ODAzMDE1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    excerpt: "Implementamos soluciones digitales avanzadas para optimizar la visibilidad y eficiencia en toda la cadena de suministro.",
+    content: `
+      <p>La transformación digital es fundamental para mantener la competitividad en el sector logístico. Yobel ha invertido significativamente en plataformas digitales que permiten una gestión más eficiente y transparente de toda la cadena de suministro.</p>
+      <br/>
+      <h3>Visibilidad en Tiempo Real</h3>
+      <p>Nuestros clientes ahora pueden rastrear sus envíos en tiempo real a través de nuestra plataforma digital, obteniendo actualizaciones automáticas sobre el estado de sus pedidos y estimaciones precisas de entrega.</p>
+      <br/>
+      <h3>Analítica Predictiva</h3>
+      <p>Utilizamos análisis de datos avanzados para anticipar demandas, optimizar inventarios y prevenir interrupciones en la cadena de suministro antes de que ocurran.</p>
+    `
+  },
+  {
+    id: "certificacion-iso-2025",
+    title: "Yobel obtiene certificación ISO 14001 en Gestión Ambiental",
+    category: "Sostenibilidad",
+    date: "28 Sep 2025",
+    country: "México",
+    image: "https://images.unsplash.com/photo-1764726202458-81f579594c84?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3YXJlaG91c2UlMjBkaXN0cmlidXRpb24lMjBjZW50ZXJ8ZW58MXx8fHwxNzY0NzU4NDA0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    excerpt: "Reafirmamos nuestro compromiso con el medio ambiente al obtener la certificación internacional ISO 14001.",
+    content: `
+      <p>Estamos orgullosos de anunciar que Yobel ha obtenido la certificación ISO 14001, reconociendo nuestros esfuerzos en la implementación de un sistema de gestión ambiental efectivo y sostenible.</p>
+      <br/>
+      <h3>Gestión Responsable</h3>
+      <p>Esta certificación valida nuestro compromiso continuo con la reducción del impacto ambiental en todas nuestras operaciones. Desde la gestión de residuos hasta el uso eficiente de recursos, cada aspecto de nuestras operaciones ha sido evaluado y optimizado.</p>
+      <br/>
+      <h3>Mejora Continua</h3>
+      <p>La certificación ISO 14001 no es un punto de llegada, sino parte de nuestro viaje hacia la excelencia ambiental. Continuaremos mejorando nuestros procesos para minimizar nuestra huella ecológica.</p>
+    `
+  },
+  {
+    id: "alianza-estrategica-retail",
+    title: "Alianza Estratégica con Líderes del Retail en LATAM",
+    category: "Empresa",
+    date: "15 Sep 2025",
+    country: "Chile",
+    image: "https://images.unsplash.com/photo-1601509876296-aba16d4c10a4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMHRlYW0lMjBjb2xsYWJvcmF0aW9ufGVufDF8fHx8MTc2NDc2ODQ3MXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    excerpt: "Firmamos acuerdos de colaboración con las principales cadenas de retail en Latinoamérica para fortalecer la cadena de suministro regional.",
+    content: `
+      <p>Yobel ha firmado acuerdos estratégicos con importantes cadenas de retail en toda Latinoamérica, consolidando nuestra posición como socio logístico preferido en la región.</p>
+      <br/>
+      <h3>Sinergia Regional</h3>
+      <p>Estas alianzas nos permiten optimizar las rutas de distribución, reducir costos operativos y mejorar los tiempos de entrega para todos nuestros clientes en el sector retail.</p>
+      <br/>
+      <h3>Innovación Compartida</h3>
+      <p>Trabajaremos conjuntamente en el desarrollo de soluciones logísticas innovadoras que beneficien a toda la industria, desde la última milla hasta la gestión de inventarios.</p>
     `
   }
 ];

@@ -1,18 +1,67 @@
-import React from "react";
-import { PageHero } from "../../components/ui/PageHero";
+import React, { useState, useRef } from "react";
 import { Section } from "../../components/ui/custom-section";
 import { Container } from "../../components/ui/custom-container";
 import { Button } from "../../components/ui/button";
 import { Certificates } from "../../components/landing/Certificates";
+import { ResultsGrid } from "../../components/ui/ResultsGrid";
+import { SolutionsShowcase } from "../../components/ui/SolutionsShowcase";
+import { InteractiveList } from "../../components/ui/InteractiveList";
+import { HeroGradientTall } from "../../components/ui/hero-gradient-tall";
+import { ScrollGradientTransition } from "../../components/ui/scroll-gradient-transition";
+import { BenefitsSection } from "../../components/landing/BenefitsSection";
+import { MaskedFullWidthImage } from "../../components/ui/MaskedFullWidthImage";
 
-const heroImage = "https://images.unsplash.com/photo-1764114908655-9a26d32750a0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbmR1c3RyaWFsJTIwbWFudWZhY3R1cmluZyUyMGZhY3RvcnklMjBtYWNoaW5lcnl8ZW58MXx8fHwxNzY0MTk1MjA1fDA&ixlib=rb-4.1.0&q=80&w=1080";
+// SVG Paths
+const svgPaths = {
+  pff39b00: "M0 45.9994V30.6785C0 30.6785 36.2411 15.2325 36.2411 8.71527C36.2411 4.64101 0 15.0514 0 15.0514V0H35.0771C49.2263 0 47.9715 7.45669 47.9715 14.9269V46H24.4355C24.4355 46 40.1752 20.8884 36.2411 20.8884C30.4859 20.8884 0 45.9994 0 45.9994Z",
+};
 
 const solutions = [
-  { title: "Abastecimiento In-House o Just-in-Time", desc: "Operamos directamente dentro de tus plantas o centros productivos para garantizar un flujo continuo de materiales y componentes." },
-  { title: "Almacenamiento industrial y control de insumos", desc: "Gestión avanzada de inventarios con WMS, control por lote, peso, dimensiones o tipo de material." },
-  { title: "Distribución y transporte especializado", desc: "Rutas planificadas para abastecimiento B2B, distribución nacional o exportación de productos terminados." },
-  { title: "Valor Agregado (VAS)", desc: "Kitting, armado de sets industriales, empaques técnicos y reacondicionado de piezas o repuestos." },
-  { title: "Comercio exterior (COMEX)", desc: "Coordinación integral de importaciones y exportaciones de maquinaria, materias primas y productos industriales." }
+  {
+    id: "01",
+    title: "Abastecimiento In-House",
+    description: "Operamos directamente dentro de tus plantas o centros productivos para garantizar un flujo continuo de materiales y componentes.",
+    image: "https://images.unsplash.com/photo-1764114908655-9a26d32750a0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbmR1c3RyaWFsJTIwbWFudWZhY3R1cmluZyUyMGZhY3RvcnklMjBtYWNoaW5lcnl8ZW58MXx8fHwxNzY0MTk1MjA1fDA&ixlib=rb-4.1.0&q=80&w=1080"
+  },
+  {
+    id: "02",
+    title: "Almacenamiento Industrial",
+    description: "Gestión avanzada de inventarios con WMS, control por lote, peso, dimensiones o tipo de material.",
+    image: "https://images.unsplash.com/photo-1764114908655-9a26d32750a0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbmR1c3RyaWFsJTIwbWFudWZhY3R1cmluZyUyMGZhY3RvcnklMjBtYWNoaW5lcnl8ZW58MXx8fHwxNzY0MTk1MjA1fDA&ixlib=rb-4.1.0&q=80&w=1080"
+  },
+  {
+    id: "03",
+    title: "Transporte Especializado",
+    description: "Rutas planificadas para abastecimiento B2B, distribución nacional o exportación de productos terminados.",
+    image: "https://images.unsplash.com/photo-1764114908655-9a26d32750a0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbmR1c3RyaWFsJTIwbWFudWZhY3R1cmluZyUyMGZhY3RvcnklMjBtYWNoaW5lcnl8ZW58MXx8fHwxNzY0MTk1MjA1fDA&ixlib=rb-4.1.0&q=80&w=1080"
+  },
+  {
+    id: "04",
+    title: "Valor Agregado (VAS)",
+    description: "Kitting, armado de sets industriales, empaques técnicos y reacondicionado de piezas o repuestos.",
+    image: "https://images.unsplash.com/photo-1764114908655-9a26d32750a0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbmR1c3RyaWFsJTIwbWFudWZhY3R1cmluZyUyMGZhY3RvcnklMjBtYWNoaW5lcnl8ZW58MXx8fHwxNzY0MTk1MjA1fDA&ixlib=rb-4.1.0&q=80&w=1080"
+  },
+  {
+    id: "05",
+    title: "Comercio Exterior",
+    description: "Coordinación integral de importaciones y exportaciones de maquinaria, materias primas y productos industriales.",
+    image: "https://images.unsplash.com/photo-1764114908655-9a26d32750a0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbmR1c3RyaWFsJTIwbWFudWZhY3R1cmluZyUyMGZhY3RvcnklMjBtYWNoaW5lcnl8ZW58MXx8fHwxNzY0MTk1MjA1fDA&ixlib=rb-4.1.0&q=80&w=1080"
+  }
+];
+
+const useCases = [
+  { id: "01", title: "Abastecimiento de línea", fullDesc: "Flujo continuo de componentes en planta." },
+  { id: "02", title: "Gestión de repuestos", fullDesc: "Control y despacho rápido de piezas críticas." },
+  { id: "03", title: "Kitting de ensamblaje", fullDesc: "Preparación de kits de componentes por orden de producción." },
+  { id: "04", title: "Reacondicionado", fullDesc: "Ajustes de presentación o empaques técnicos." },
+  { id: "05", title: "Exportaciones industriales", fullDesc: "Coordinación logística de maquinaria o piezas." }
+];
+
+const results = [
+  { highlight: "Cumplimiento OTIF 99.6%", normal: "en entregas industriales." },
+  { highlight: "Lead time reducido hasta 25%", normal: "en abastecimientos internos." },
+  { highlight: "Inventario visible 100%", normal: "en tiempo real vía WMS." },
+  { highlight: "Optimización de espacio", normal: "en planta y centros logísticos." }
 ];
 
 const benefits = [
@@ -23,121 +72,81 @@ const benefits = [
   "Cumplimiento OTIF 99.6% en entregas industriales."
 ];
 
-const useCases = [
-  "Abastecimiento de línea: Flujo continuo de componentes en planta.",
-  "Gestión de repuestos: Control y despacho rápido de piezas críticas.",
-  "Kitting de ensamblaje: Preparación de kits de componentes por orden de producción.",
-  "Reacondicionado: Ajustes de presentación o empaques técnicos.",
-  "Exportaciones industriales: Coordinación logística de maquinaria o piezas."
-];
-
-const results = [
-  "Cumplimiento OTIF 99.6% en entregas industriales.",
-  "Lead time reducido hasta 25% en abastecimientos internos.",
-  "Inventario visible 100% en tiempo real vía WMS.",
-  "Optimización de espacio en planta y centros logísticos."
-];
-
-const certifications = [
-  { title: "ISO 9001", desc: "Calidad y mejora continua." },
-  { title: "BASC", desc: "Seguridad en la cadena de suministro." },
-  { title: "ISO 45001", desc: "Seguridad y salud ocupacional." },
-  { title: "ISO 14001", desc: "Gestión ambiental sostenible." }
-];
-
 export function Industrial() {
+  const [activeSolution, setActiveSolution] = useState<string | null>("01");
+  const containerRef = useRef(null);
+
   return (
     <>
-      <PageHero 
-        title="Soluciones logísticas para la industria manufacturera"
-        description="Impulsamos la productividad de tu planta con procesos integrados y suministro continuo."
-        imageUrl={heroImage}
+      <ScrollGradientTransition>
+        {/* Hero Section */}
+        <HeroGradientTall 
+          category="Industrias"
+          title="Soluciones logísticas para la industria manufacturera"
+          description="Impulsamos la productividad de tu planta con procesos integrados y suministro continuo."
+          variant="yellow"
+        />
+
+        {/* Intro Section */}
+        <Section className="py-32 md:py-40">
+          <Container>
+             <div className="flex flex-col gap-8 max-w-[1000px] mx-auto items-center text-center">
+               <div className="w-12 h-12 relative mb-2">
+                 <svg className="w-full h-full" viewBox="0 0 48 46" fill="none">
+                   <path d={svgPaths.pff39b00} fill="black" />
+                 </svg>
+               </div>
+               <div className="flex flex-col gap-12 items-center">
+                 <p className="text-2xl md:text-4xl lg:text-[40px] leading-tight font-normal text-black">
+                   En Yobel SCM diseñamos soluciones logísticas integrales para empresas manufactureras e industriales. Conectamos el flujo de materias primas, componentes y productos terminados mediante almacenamiento, transporte, distribución y servicios de valor agregado.
+                 </p>
+                 <div>
+                   <Button className="bg-transparent border-[1.5px] border-black text-black px-8 py-6 rounded-full text-xl relative overflow-hidden transition-all duration-500 before:absolute before:inset-0 before:bg-[linear-gradient(150deg,#FFF700_0%,#FFF700_32%,#FFE300_70%,#5dd3c0_100%)] before:opacity-0 before:transition-opacity before:duration-500 before:rounded-full hover:before:opacity-100 hover:border-0">
+                     <span className="relative z-10">Contactar Asesor</span>
+                   </Button>
+                 </div>
+               </div>
+             </div>
+          </Container>
+        </Section>
+      </ScrollGradientTransition>
+
+      {/* Solutions Section */}
+      <InteractiveList items={solutions} title="¿Cómo te ayudamos?" />
+
+      {/* Benefits Section */}
+      <Section className="bg-white py-20">
+        <Container>
+          <BenefitsSection 
+            title="Eficiencia, control y seguridad operativa"
+            image="https://images.unsplash.com/photo-1764114908655-9a26d32750a0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbmR1c3RyaWFsJTIwbWFudWZhY3R1cmluZyUyMGZhY3RvcnklMjBtYWNoaW5lcnl8ZW58MXx8fHwxNzY0MTk1MjA1fDA&ixlib=rb-4.1.0&q=80&w=1080"
+            imageAlt="Benefits"
+            benefits={benefits}
+          />
+        </Container>
+      </Section>
+
+      {/* Process / Use Cases Section */}
+      <SolutionsShowcase 
+        label="Aplicaciones"
+        title="Casos de uso típicos"
+        solutions={useCases}
+        imageUrl="https://images.unsplash.com/photo-1764114908655-9a26d32750a0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbmR1c3RyaWFsJTIwbWFudWZhY3R1cmluZyUyMGZhY3RvcnklMjBtYWNoaW5lcnl8ZW58MXx8fHwxNzY0MTk1MjA1fDA&ixlib=rb-4.1.0&q=80&w=1080"
+        imageAlt="Industria Manufacturera"
       />
 
-      <Section className="bg-white">
-         <Container>
-            <div className="max-w-4xl mb-20">
-               <p className="text-xl md:text-2xl text-gray-600 leading-relaxed font-light">
-                 En Yobel SCM diseñamos soluciones logísticas integrales para empresas manufactureras e industriales. Conectamos el flujo de materias primas, componentes y productos terminados mediante almacenamiento, transporte, distribución y servicios de valor agregado, asegurando eficiencia, trazabilidad y reducción de costos operativos en toda la cadena.
-               </p>
-               <div className="mt-10">
-                 <Button className="bg-black text-white px-8 py-4 rounded-full text-lg hover:bg-gray-800 transition-colors">Contactar asesor</Button>
-               </div>
-            </div>
+      {/* Full Width Image with Mask */}
+      <MaskedFullWidthImage />
 
-            {/* Solutions */}
-            <div className="mb-20">
-               <h3 className="text-3xl md:text-4xl font-normal mb-10">¿Cómo te ayudamos?</h3>
-               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {solutions.map((sol, idx) => (
-                     <div key={idx} className="bg-gray-50 p-8 rounded-[30px] hover:shadow-lg transition-all">
-                        <h4 className="text-xl font-bold mb-4">{sol.title}</h4>
-                        <p className="text-gray-600 leading-relaxed">{sol.desc}</p>
-                     </div>
-                  ))}
-               </div>
-            </div>
+      {/* Results Section */}
+      <ResultsGrid 
+        label="Resultados"
+        title="Indicadores que priorizamos"
+        items={results}
+      />
 
-            {/* Benefits */}
-            <div className="flex flex-col lg:flex-row gap-16 bg-gray-50 rounded-[40px] p-10 md:p-20 mb-20">
-               <div className="lg:w-1/3">
-                  <h3 className="text-3xl md:text-4xl font-normal mb-6 leading-tight">Nos enfocamos en eficiencia, control y seguridad operativa</h3>
-               </div>
-               <div className="lg:w-2/3">
-                  <ul className="space-y-6">
-                     {benefits.map((item, idx) => (
-                        <li key={idx} className="flex items-start gap-4">
-                           <div className="mt-2 w-2 h-2 bg-blue-600 rounded-full shrink-0" />
-                           <span className="text-lg md:text-xl text-gray-800 font-light leading-relaxed">{item}</span>
-                        </li>
-                     ))}
-                  </ul>
-               </div>
-            </div>
-
-            {/* Use Cases */}
-            <div className="mb-20">
-               <h3 className="text-3xl md:text-4xl font-normal mb-10">Casos de uso típicos</h3>
-               <ul className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                   {useCases.map((item, idx) => (
-                       <li key={idx} className="flex gap-4 items-start border border-gray-100 p-6 rounded-[20px] hover:border-gray-300 transition-colors">
-                           <div className="w-2 h-2 mt-2 bg-black rounded-full shrink-0" />
-                           <span className="text-lg text-gray-700 font-light">{item}</span>
-                       </li>
-                   ))}
-               </ul>
-            </div>
-
-            {/* Results */}
-            <div className="bg-black text-white rounded-[40px] p-10 md:p-20 mb-20">
-                <h3 className="text-3xl md:text-4xl font-normal mb-16 text-center">Indicadores que priorizamos</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-                    {results.map((res, idx) => (
-                        <div key={idx} className="text-center border-r last:border-0 border-gray-800 px-4 flex flex-col items-center">
-                           <div className="w-3 h-3 bg-white rounded-full mb-6 opacity-50" />
-                           <p className="text-xl font-light leading-relaxed">{res}</p>
-                        </div>
-                    ))}
-                </div>
-            </div>
-
-            {/* Certifications */}
-            <div className="mb-20">
-               <Certificates 
-                  label="Certificados"
-                  title="Nuestros certificados nos respaldan"
-                  description="En Yobel SCM, garantizamos calidad, seguridad y eficiencia industrial bajo certificaciones internacionales que respaldan cada proceso de la cadena productiva."
-               />
-            </div>
-
-            {/* Contact CTA */}
-            <div className="bg-gray-50 rounded-[40px] p-16 text-center">
-                <h3 className="text-3xl md:text-4xl font-normal mb-8">Conversemos sobre tu operación</h3>
-                <Button className="bg-black text-white px-12 py-5 rounded-full text-xl hover:bg-gray-800 transition-colors">Contactar asesor</Button>
-            </div>
-
-         </Container>
-      </Section>
+      {/* Certifications Section */}
+      <Certificates description="En Yobel SCM, garantizamos calidad, seguridad y eficiencia industrial bajo certificaciones internacionales que respaldan cada proceso de la cadena productiva." />
     </>
   );
 }

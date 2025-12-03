@@ -1,0 +1,2 @@
+Line 432-437 should be:
+                          <LocationCard location={location} />

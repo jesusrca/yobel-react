@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "motion/react";
 import { useCountry } from "../../contexts/CountryContext";
@@ -6,12 +6,14 @@ import { PageHero } from "../../components/ui/PageHero";
 import { Section } from "../../components/ui/custom-section";
 import { Container } from "../../components/ui/custom-container";
 import { Button } from "../../components/ui/button";
-import { ChevronRight, Check } from "lucide-react";
+import { Plus, Minus, ChevronLeft, ChevronRight, Check } from "lucide-react";
+import { cn } from "../../components/ui/utils";
 import { Industries } from "../../components/landing/Industries";
 import { FAQ } from "../../components/landing/FAQ";
 import { ScrollRevealText } from "../../components/ui/motion-text";
+import { SolutionsShowcase } from "../../components/ui/SolutionsShowcase";
 
-// SVG Paths (Reused from Manufacturing style)
+// SVG Paths
 const svgPaths = {
   pff39b00: "M0 45.9994V30.6785C0 30.6785 36.2411 15.2325 36.2411 8.71527C36.2411 4.64101 0 15.0514 0 15.0514V0H35.0771C49.2263 0 47.9715 7.45669 47.9715 14.9269V46H24.4355C24.4355 46 40.1752 20.8884 36.2411 20.8884C30.4859 20.8884 0 45.9994 0 45.9994Z",
 };
@@ -20,53 +22,60 @@ const solutions = [
   {
     id: "01",
     title: "Maquila + Suministro",
+    shortDesc: "Gestión integral del material de empaque y acondicionamiento.",
     fullDesc: "Gestión integral del material de empaque y acondicionamiento, asegurando la disponibilidad y calidad de los insumos necesarios para tu operación."
   },
   {
     id: "02",
     title: "Blísteres y termoempacados",
+    shortDesc: "Soluciones de empaque seguro y visible.",
     fullDesc: "Soluciones de empaque seguro y visible que protegen tus productos y mejoran su presentación en el punto de venta."
   },
   {
     id: "03",
     title: "Etiquetado y Codificación",
+    shortDesc: "Identificación precisa con tecnología INKJET.",
     fullDesc: "Identificación precisa con tecnología INKJET y etiquetado normativo para asegurar la trazabilidad y cumplimiento legal de cada unidad."
   },
   {
     id: "04",
     title: "Packs Promocionales",
+    shortDesc: "Armado de ofertas, kits y combinaciones especiales.",
     fullDesc: "Armado de ofertas, kits y combinaciones especiales diseñadas para campañas estacionales y promociones en retail."
   },
   {
     id: "05",
     title: "Selección e Inspección",
+    shortDesc: "Control de calidad riguroso y validación del estado.",
     fullDesc: "Control de calidad riguroso y validación del estado de la mercancía para garantizar que solo productos perfectos lleguen al mercado."
   },
   {
     id: "06",
     title: "Recuperados",
+    shortDesc: "Servicios de reacondicionamiento y recuperación de valor.",
     fullDesc: "Servicios de reacondicionamiento y recuperación de valor para productos devueltos o con daños menores en el empaque."
   },
   {
     id: "07",
     title: "Reempaque",
+    shortDesc: "Adaptación de la presentación de tus productos.",
     fullDesc: "Adaptación de la presentación de tus productos para exportación o venta local, cumpliendo con los requisitos específicos de cada canal."
   }
 ];
 
 const benefits = [
-  "Alta confiabilidad con cumplimiento OTIF (On Time, In Full) del 99.6%.",
-  "Tecnología para seguimiento en tiempo real 24/7.",
-  "Equipo especializado en entregas críticas y sensibles.",
-  "Cobertura en zonas urbanas y rurales."
+  "Reducción de costos operativos mediante servicios integrados.",
+  "Flexibilidad para adaptarse a temporadas y promociones.",
+  "Control de calidad en cada etapa del acondicionamiento.",
+  "Cumplimiento normativo y trazabilidad completa."
 ];
 
-const processes = [
-  { number: "01", title: "Solicitud y Programación", desc: "Registro y coordinación del envío de tus documentos o paquetería de forma ágil y sencilla." },
-  { number: "02", title: "Recolección", desc: "Retiro puntual en el punto de origen con confirmación inmediata." },
-  { number: "03", title: "Transporte y Seguimiento", desc: "Traslado seguro con monitoreo en tiempo real y control de calidad en cada fase." },
-  { number: "04", title: "Entrega Confirmada", desc: "Recepción garantizada con registro digital y trazabilidad completa." },
-  { number: "05", title: "Postventa", desc: "Gestión de incidencias y soporte personalizado para asegurar tu satisfacción." }
+const processSteps = [
+  { number: "01", title: "Solicitud y Programación", desc: "Registro y coordinación del servicio de valor agregado de forma ágil y personalizada." },
+  { number: "02", title: "Recepción y Análisis", desc: "Evaluación del producto y planificación del proceso de acondicionamiento." },
+  { number: "03", title: "Acondicionamiento", desc: "Ejecución del servicio con control de calidad en cada fase del proceso." },
+  { number: "04", title: "Validación Final", desc: "Inspección y registro digital del producto terminado antes del despacho." },
+  { number: "05", title: "Entrega y Postventa", desc: "Despacho con trazabilidad completa y soporte continuo para tu satisfacción." }
 ];
 
 const faqs = [
@@ -83,13 +92,34 @@ export function ValueAdded() {
 
   return (
     <>
-      {/* Hero Section */}
-      <PageHero
-        videoSrc="https://circular.ws/yobel/fondo-celeste.mp4"
-        title={`Servicio de Valor Agregado en ${selectedCountry}`}
-        subtitle="Potenciamos tu operación con servicios de acondicionamiento, empaque y personalización, diseñados para agregar valor a tus productos."
-        className="bg-gradient-to-b from-white to-[#59c1e6]"
-      />
+      <div className="relative h-[80vh] min-h-[600px] max-h-[920px] w-full overflow-hidden font-augenblick">
+        <div className="absolute inset-0 overflow-hidden">
+          <video 
+            src="https://circular.ws/yobel/fondo-celeste.mp4"
+            className="absolute inset-0 h-full w-full object-cover"
+            autoPlay
+            loop
+            muted
+            playsInline
+          />
+          <div className="absolute inset-0 bg-black/10" />
+          <div className="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-white via-white/60 to-transparent pointer-events-none" />
+        </div>
+
+        <div className="absolute bottom-20 left-0 right-0 px-[5%] md:px-[50px] z-10">
+          <div className="max-w-[1400px] mx-auto flex flex-col gap-[30px]">
+             <p className="text-lg md:text-[18px] text-black">Valor Agregado</p>
+             <div className="flex flex-col lg:flex-row items-start gap-[40px]">
+                <h1 className="text-5xl md:text-[65px] leading-[1] text-black max-w-[773px]">
+                  Servicio de Valor Agregado en {selectedCountry}
+                </h1>
+                <p className="text-xl md:text-[22px] leading-[24px] text-black max-w-[316px] pt-2">
+                  Potenciamos tu operación con servicios de acondicionamiento, empaque y personalización.
+                </p>
+             </div>
+          </div>
+        </div>
+      </div>
 
       {/* Intro Section */}
       <Section className="bg-white py-20">
@@ -109,7 +139,7 @@ export function ValueAdded() {
                </p>
                <div>
                  <Button className="bg-transparent border-[1.5px] border-black text-black px-8 py-6 rounded-full text-xl hover:bg-black hover:text-white transition-all duration-300">
-                   Contactar Asesor
+                   Solicitar Servicio de Valor Agregado
                  </Button>
                </div>
              </div>
@@ -117,54 +147,14 @@ export function ValueAdded() {
         </Container>
       </Section>
 
-      {/* Solutions Section */}
-      <Section className="bg-white py-20">
-        <Container>
-           <div className="flex flex-col gap-12">
-             <div className="flex flex-col gap-2 items-start">
-               <span className="text-xl text-gray-400 font-medium">Soluciones</span>
-               <h3 className="text-3xl md:text-4xl font-normal mb-6">Damos valor a cada mercancía</h3>
-             </div>
-             
-             <div className="flex flex-col lg:flex-row gap-16 items-center">
-                <div className="w-full lg:w-1/2 flex flex-col gap-0 border-t border-black">
-                  {solutions.map((sol) => (
-                    <div 
-                      key={sol.id}
-                      className="group border-b border-black py-10 cursor-pointer transition-all duration-300"
-                      onMouseEnter={() => setActiveSolution(sol.id)}
-                    >
-                      <div className="flex items-start justify-between gap-4">
-                        <div className="flex flex-col md:flex-row gap-4 md:gap-8 items-baseline">
-                           <span className="text-3xl md:text-4xl font-light whitespace-nowrap">{sol.id} /</span>
-                           <h3 className="text-3xl md:text-4xl font-light">{sol.title}</h3>
-                        </div>
-                        <div className="shrink-0">
-                           <div className="w-[50px] h-[30px] rounded-full border border-black flex items-center justify-center group-hover:bg-black group-hover:text-white transition-colors">
-                             <ChevronRight size={20} />
-                           </div>
-                        </div>
-                      </div>
-                      <div className={`mt-6 overflow-hidden transition-all duration-500 ease-in-out ${activeSolution === sol.id ? 'max-h-[200px] opacity-100' : 'max-h-0 opacity-0'}`}>
-                         <p className="text-xl text-gray-600 font-light max-w-lg ml-0 md:ml-20">
-                           {sol.fullDesc}
-                         </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                
-                <div className="w-full lg:w-1/2 relative h-[600px] rounded-[30px] overflow-hidden">
-                   <img 
-                     src="https://images.unsplash.com/photo-1674573070777-690850b7c68a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbmR1c3RyaWFsJTIwcGFja2FnaW5nJTIwbGFiZWxpbmclMjB3b3JrZXJzfGVufDF8fHx8MTc2NDQxMjY0Nnww&ixlib=rb-4.1.0&q=80&w=1080" 
-                     alt="Value Added Services" 
-                     className="absolute inset-0 w-full h-full object-cover" 
-                   />
-                </div>
-             </div>
-           </div>
-        </Container>
-      </Section>
+      {/* Solutions / Soluciones */}
+      <SolutionsShowcase 
+        label="Soluciones"
+        title="Damos valor a cada mercancía"
+        solutions={solutions}
+        imageUrl="https://images.unsplash.com/photo-1674573070777-690850b7c68a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbmR1c3RyaWFsJTIwcGFja2FnaW5nJTIwbGFiZWxpbmclMjB3b3JrZXJzfGVufDF8fHx8MTc2NDQxMjY0Nnww&ixlib=rb-4.1.0&q=80&w=1080"
+        imageAlt="Valor Agregado"
+      />
 
       {/* Benefits Section */}
       <Section className="bg-white py-20">
@@ -174,7 +164,7 @@ export function ValueAdded() {
                   <div className="mb-6">
                      <span className="text-xl text-gray-400 font-medium block mb-4">Beneficios</span>
                      <h2 className="text-4xl md:text-5xl lg:text-[45px] leading-tight font-normal">
-                        Nos enfocamos en optimizar tiempos y costos
+                        Optimizamos tiempos y costos en tu operación
                      </h2>
                   </div>
                   <div className="mt-12 relative h-[400px] rounded-[20px] overflow-hidden hidden lg:block">
@@ -199,7 +189,7 @@ export function ValueAdded() {
          </Container>
       </Section>
 
-      {/* Process Section */}
+      {/* Process / Traceability Section */}
       <Section className="bg-white py-20 overflow-hidden relative">
          <Container className="relative z-10" ref={containerRef}>
             <div className="flex flex-col gap-12 mb-20">
@@ -210,14 +200,17 @@ export function ValueAdded() {
                </div>
                <div className="max-w-4xl">
                   <h2 className="text-4xl md:text-5xl lg:text-[45px] leading-tight font-normal mb-8">
-                    Descubre cómo llevamos tu operación al siguiente nivel
+                    Procesos de valor agregado con trazabilidad completa
                   </h2>
+                  <p className="text-2xl md:text-[45px] leading-tight font-light text-gray-500">
+                    Descubre cómo llevamos tu operación al siguiente nivel con servicios personalizados
+                  </p>
                </div>
             </div>
 
             <div className="flex flex-col w-full">
                <span className="text-xl text-gray-400 font-medium block mb-12">Procesos</span>
-               {processes.map((step, idx) => (
+               {processSteps.map((step, idx) => (
                  <div key={idx} className="py-20 border-b border-gray-200 last:border-none">
                     <div className="flex flex-col lg:flex-row items-start lg:items-center gap-8 lg:gap-20">
                         <div className="w-full lg:w-1/2 text-left">
@@ -254,8 +247,10 @@ export function ValueAdded() {
          </Container>
       </Section>
 
+      {/* Industries Section (Carousel) */}
       <Industries className="bg-gradient-to-b from-white to-[#59c1e6]" />
 
+      {/* FAQ Section */}
       <FAQ items={faqs} />
     </>
   );
