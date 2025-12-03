@@ -27,7 +27,7 @@ export function HeroGradientTall({
             {category}
           </p>
           <div className="flex flex-col lg:flex-row items-start gap-[40px] w-full">
-            <h1 className="text-5xl md:text-[65px] leading-[1] text-black max-w-[900px] font-[Neue_Augenblick]">
+            <h1 className="text-5xl md:text-[65px] leading-[1] text-black max-w-[700px] font-[Neue_Augenblick]">
               {title}
             </h1>
             <p className="text-xl md:text-[22px] leading-[24px] text-black max-w-[400px] pt-2 font-[Neue_Augenblick]">

@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 
 interface ParallaxImageProps {
@@ -10,6 +10,19 @@ interface ParallaxImageProps {
 
 export function ParallaxImage({ src, alt, className, yValues = [-100, 0] }: ParallaxImageProps) {
   const ref = useRef(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"]
@@ -22,7 +35,7 @@ export function ParallaxImage({ src, alt, className, yValues = [-100, 0] }: Para
   return (
     <motion.div 
       ref={ref}
-      style={{ y, opacity }}
+      style={isMobile ? { opacity } : { y, opacity }}
       className={`mt-auto w-full aspect-[4/3] rounded-[30px] overflow-hidden relative shadow-sm ${className || ''}`}
     >
       <img 

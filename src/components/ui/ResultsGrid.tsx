@@ -22,26 +22,26 @@ export function ResultsGrid({ label, title, items, className = "" }: ResultsGrid
   return (
     <Section className={`bg-white ${className}`}>
       <div className="flex flex-col items-center size-full">
-        <div className="box-border content-stretch flex flex-col gap-[80px] md:gap-[120px] items-center px-[20px] md:px-[50px] py-[80px] md:py-[120px] relative w-full max-w-[1440px]">
+        <div className="box-border content-stretch flex flex-col gap-[40px] md:gap-[120px] items-center px-[20px] md:px-[50px] py-[80px] md:py-[120px] relative w-full max-w-[1440px]">
           {/* Title Section */}
           <div className="content-stretch flex flex-col md:flex-row gap-[40px] md:gap-[133px] items-start relative w-full">
-            <p className="font-augenblick leading-[24px] not-italic text-[24px] text-[rgba(73,73,73,0.5)] w-full md:w-[547px]">
+            <p className="font-augenblick leading-[24px] not-italic text-[24px] text-[rgba(73,73,73,0.5)] w-full md:w-[40%]">
               {label}
             </p>
-            <div className="content-stretch flex gap-[20px] items-start w-full md:w-[547px]">
-              <p className="font-augenblick leading-[48px] not-italic text-[32px] md:text-[45px] text-black w-full md:w-[434px]">
+            <div className="content-stretch flex gap-[20px] items-start w-full md:w-[60%]">
+              <p className="font-augenblick leading-[48px] not-italic text-[32px] md:text-[45px] text-black w-full">
                 {title}
               </p>
             </div>
           </div>
 
           {/* Content with left spacer and right grid */}
-          <div className="content-stretch flex flex-col md:flex-row gap-[40px] md:gap-[133px] items-end relative w-full">
+          <div className="content-stretch flex flex-col md:flex-row gap-[40px] md:gap-[133px] items-start relative w-full">
             {/* Left spacer (hidden on mobile) */}
-            <div className="hidden md:block h-[347px] relative shrink-0 md:flex-1" />
+            <div className="hidden md:block h-[347px] relative shrink-0 w-[40%]" />
 
             {/* Grid Cards - Right Column */}
-            <div className="content-stretch flex flex-col gap-[8px] items-start relative w-full md:flex-1">
+            <div className="content-stretch flex flex-col gap-[8px] items-start relative w-full md:w-[60%]">
               {/* First Row */}
               {firstRow.length > 0 && (
                 <div className="content-stretch flex flex-col md:flex-row gap-[8px] md:gap-[16px] items-stretch relative w-full">
@@ -49,8 +49,8 @@ export function ResultsGrid({ label, title, items, className = "" }: ResultsGrid
                     <React.Fragment key={idx}>
                       {/* Item */}
                       <div className="basis-0 box-border content-stretch flex flex-col gap-[24px] md:gap-[48px] grow items-start min-h-px min-w-px px-0 py-[40px] relative">
-                        <div aria-hidden="true" className="absolute border-[0px_0px_1px] border-[rgba(73,73,73,0.2)] border-solid bottom-[-0.5px] left-0 pointer-events-none right-0 top-0" />
-                        <div className="relative shrink-0 size-[40px]">
+                        <div aria-hidden="true" className="hidden md:block absolute border-[0px_0px_1px] border-[rgba(73,73,73,0.2)] border-solid bottom-[-0.5px] left-0 pointer-events-none right-0 top-0" />
+                        <div className="hidden md:block relative shrink-0 size-[40px]">
                           <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 40 40">
                             <path d={svgPathsCheck.p148cd180} stroke="black" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" />
                           </svg>
@@ -83,8 +83,8 @@ export function ResultsGrid({ label, title, items, className = "" }: ResultsGrid
                     <React.Fragment key={idx}>
                       {/* Item */}
                       <div className="basis-0 box-border content-stretch flex flex-col gap-[24px] md:gap-[48px] grow items-start min-h-px min-w-px px-0 py-[40px] relative">
-                        <div aria-hidden="true" className="absolute border-[0px_0px_1px] border-[rgba(73,73,73,0.2)] border-solid bottom-[-0.5px] left-0 pointer-events-none right-0 top-0" />
-                        <div className="relative shrink-0 size-[40px]">
+                        <div aria-hidden="true" className="hidden md:block absolute border-[0px_0px_1px] border-[rgba(73,73,73,0.2)] border-solid bottom-[-0.5px] left-0 pointer-events-none right-0 top-0" />
+                        <div className="hidden md:block relative shrink-0 size-[40px]">
                           <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 40 40">
                             <path d={svgPathsCheck.p148cd180} stroke="black" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" />
                           </svg>

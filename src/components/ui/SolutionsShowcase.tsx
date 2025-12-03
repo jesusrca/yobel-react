@@ -53,7 +53,7 @@ export function SolutionsShowcase({
               ))}
             </div>
             
-            <div className="w-full lg:w-1/2 relative h-[600px] rounded-[30px] overflow-hidden sticky top-8">
+            <div className="w-full lg:w-1/2 relative h-[600px] rounded-[30px] overflow-hidden sticky top-8 hidden lg:block">
               <ImageWithFallback 
                 src={imageUrl} 
                 alt={imageAlt} 

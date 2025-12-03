@@ -135,9 +135,6 @@ export function FoodAndBeverage() {
         </Container>
       </Section>
 
-      {/* Full Width Image with Mask */}
-      <MaskedFullWidthImage />
-
       {/* Process / Use Cases Section */}
       <SolutionsShowcase 
         label="Aplicaciones"
@@ -146,6 +143,9 @@ export function FoodAndBeverage() {
         imageUrl="https://images.unsplash.com/photo-1739204618173-3e89def7140f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmb29kJTIwYmV2ZXJhZ2UlMjB3YXJlaG91c2UlMjBkaXN0cmlidXRpb258ZW58MXx8fHwxNzY0Nzc2NTMxfDA&ixlib=rb-4.1.0&q=80&w=1080"
         imageAlt="Distribución de alimentos y bebidas"
       />
+
+      {/* Full Width Image with Mask */}
+      <MaskedFullWidthImage />
 
       {/* Results Section */}
       <ResultsGrid 
