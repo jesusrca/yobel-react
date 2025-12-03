@@ -11,6 +11,8 @@ import { SolutionsShowcase } from "../../components/ui/SolutionsShowcase";
 import { InteractiveList } from "../../components/ui/InteractiveList";
 import { HeroGradientTall } from "../../components/ui/hero-gradient-tall";
 import { ScrollGradientTransition } from "../../components/ui/scroll-gradient-transition";
+import { BenefitsSection } from "../../components/landing/BenefitsSection";
+import { MaskedFullWidthImage } from "../../components/ui/MaskedFullWidthImage";
 
 // SVG Paths (Reused)
 const svgPaths = {
@@ -50,14 +52,6 @@ const solutions = [
   }
 ];
 
-const benefits = [
-  "Cumplimiento sanitario y BPM/BPA.",
-  "Reducción de mermas en transporte y almacenamiento.",
-  "Control por lote y trazabilidad total 24/7.",
-  "Cobertura nacional con OTIF 99.6%.",
-  "Flexibilidad ante picos estacionales o promociones."
-];
-
 const useCases = [
   { id: "01", title: "Lanzamientos estacionales", fullDesc: "Kitting y distribución nacional para nuevas líneas o promociones." },
   { id: "02", title: "Re-etiquetado sanitario", fullDesc: "Adaptación de etiquetas según normativa local o por canal." },
@@ -79,6 +73,14 @@ const certifications = [
   { title: "BASC", desc: "Seguridad en la cadena de suministro." }
 ];
 
+const benefits = [
+  "Cumplimiento sanitario y BPM/BPA.",
+  "Reducción de mermas en transporte y almacenamiento.",
+  "Control por lote y trazabilidad total 24/7.",
+  "Cobertura nacional con OTIF 99.6%.",
+  "Flexibilidad ante picos estacionales o promociones."
+];
+
 export function FoodAndBeverage() {
   const [activeSolution, setActiveSolution] = useState<string | null>("01");
   const containerRef = useRef(null);
@@ -95,7 +97,7 @@ export function FoodAndBeverage() {
         />
 
         {/* Intro Section */}
-        <Section className="py-20">
+        <Section className="py-32 md:py-40">
           <Container>
              <div className="flex flex-col gap-8 max-w-[1000px] mx-auto items-center text-center">
                <div className="w-12 h-12 relative mb-2">
@@ -103,9 +105,6 @@ export function FoodAndBeverage() {
                    <path d={svgPaths.pff39b00} fill="black" />
                  </svg>
                </div>
-               <h2 className="text-2xl md:text-3xl lg:text-[32px] leading-tight font-light text-gray-400">
-                 Calidad e inocuidad garantizada
-               </h2>
                <div className="flex flex-col gap-12 items-center">
                  <p className="text-2xl md:text-4xl lg:text-[40px] leading-tight font-normal text-black">
                    Garantizamos la calidad, inocuidad y frescura de tus productos desde la materia prima hasta el punto de venta. En Yobel integramos manufactura, almacenamiento, transporte y distribución bajo los más altos estándares BPM/BPA.
@@ -126,36 +125,18 @@ export function FoodAndBeverage() {
 
       {/* Benefits Section */}
       <Section className="bg-white py-20">
-         <Container>
-            <div className="flex flex-col lg:flex-row gap-16 items-center">
-               <div className="w-full lg:w-1/2">
-                  <div className="mb-6">
-                     <span className="text-xl text-gray-400 font-medium block mb-4">Beneficios</span>
-                     <h2 className="text-4xl md:text-5xl lg:text-[45px] leading-tight font-normal">
-                        Nos enfocamos en optimizar tiempos y trazabilidad
-                     </h2>
-                  </div>
-                  <div className="mt-12 relative h-[400px] rounded-[20px] overflow-hidden hidden lg:block">
-                     <img 
-                       src="https://images.unsplash.com/photo-1578351709091-33ee78a1565d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb2xkJTIwc3RvcmFnZSUyMHdhcmVob3VzZSUyMGZvb2QlMjBzYWZldHl8ZW58MXx8fHwxNzY0NDEyNzE0fDA&ixlib=rb-4.1.0&q=80&w=1080" 
-                       alt="Benefits" 
-                       className="absolute inset-0 w-full h-full object-cover" 
-                     />
-                  </div>
-               </div>
-               <div className="w-full lg:w-1/2 flex flex-col gap-10">
-                  {benefits.map((benefit, idx) => (
-                    <div key={idx} className="flex items-start gap-6">
-                       <div className="w-10 h-10 shrink-0 flex items-center justify-center">
-                          <Check size={32} strokeWidth={1.5} />
-                       </div>
-                       <p className="text-2xl md:text-[22px] font-light leading-relaxed">{benefit}</p>
-                    </div>
-                  ))}
-               </div>
-            </div>
-         </Container>
+        <Container>
+          <BenefitsSection 
+            title="Nos enfocamos en optimizar tiempos y trazabilidad"
+            image="https://images.unsplash.com/photo-1578351709091-33ee78a1565d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb2xkJTIwc3RvcmFnZSUyMHdhcmVob3VzZSUyMGZvb2QlMjBzYWZldHl8ZW58MXx8fHwxNzY0NDEyNzE0fDA&ixlib=rb-4.1.0&q=80&w=1080"
+            imageAlt="Benefits"
+            benefits={benefits}
+          />
+        </Container>
       </Section>
+
+      {/* Full Width Image with Mask */}
+      <MaskedFullWidthImage />
 
       {/* Process / Use Cases Section */}
       <SolutionsShowcase 

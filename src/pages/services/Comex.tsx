@@ -15,12 +15,12 @@ import svgPaths from "../../imports/svg-5srx0k234k";
 import { SolutionsList } from "../../components/landing/SolutionsList";
 import { ParallaxImage } from "../../components/landing/ParallaxImage";
 import { ScrollRevealVideo } from "../../components/landing/ScrollRevealVideo";
+import { BenefitsSection } from "../../components/landing/BenefitsSection";
 import comexImage from "figma:asset/e608a17e3bf93a1d2e8a4b868a2f12aa32b3854b.png";
 import hoverImage from "figma:asset/4288be58a4ef94beb9d8a69085417550e080ee9b.png";
 import truckImage from "figma:asset/581b279261d7ceb7941417797fbd59c23f768b5e.png";
 import yellowTruck from "figma:asset/b94e87eb574754035d4788fe21930672651cb6ac.png";
 import warehouseImage from "figma:asset/cb9b48b25b6989c920d64371cd04e872c5cfcd05.png";
-
 
 const heroImage = "https://images.unsplash.com/photo-1663103746090-2e4274c6c7ac?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzaGlwcGluZyUyMGNvbnRhaW5lciUyMHNoaXAlMjBwb3J0fGVufDF8fHx8MTc2NDE5MzYxOXww&ixlib=rb-4.1.0&q=80&w=1080";
 
@@ -140,37 +140,11 @@ export function Comex() {
             </SolutionsList>
 
             {/* Benefits */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 my-20">
-               <div className="flex flex-col">
-                  <span className="text-gray-400 text-lg mb-20 block font-[Neue_Augenblick]">Beneficios</span>
-                  <ParallaxImage 
-                     src={yellowTruck} 
-                     alt="Logística Yobel" 
-                     yValues={[-200, 0]}
-                  />
-               </div>
-
-               <div className="flex flex-col pt-0">
-                  <h3 className="text-[32px] md:text-[42px] leading-[1.1] font-normal mb-20 text-black tracking-tight max-w-xl font-[Neue_Augenblick]">
-                     Nos enfocamos en optimizar tiempos y costos en cada operación de comercio exterior.
-                  </h3>
-                  
-                  <ul className="flex flex-col w-full">
-                     {benefits.map((item, idx) => (
-                        <li key={idx} className="flex items-start gap-6 py-6 border-b border-gray-100 last:border-0">
-                           <div className="mt-1.5 shrink-0">
-                              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                 <path d="M20 6L9 17L4 12" stroke="black" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
-                              </svg>
-                           </div>
-                           <span className="text-lg md:text-xl text-gray-600 font-light leading-relaxed">
-                             {item}
-                           </span>
-                        </li>
-                     ))}
-                  </ul>
-               </div>
-            </div>
+            <BenefitsSection 
+               benefits={benefits} 
+               image={yellowTruck} 
+               title="Nos enfocamos en optimizar tiempos y costos en cada operación de comercio exterior."
+            />
          </Container>
       </Section>
 
