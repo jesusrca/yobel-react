@@ -45,7 +45,7 @@ import { Tech } from "./pages/industries/Tech";
 import { CodeOfEthics } from "./pages/ethics/CodeOfEthics";
 import { EthicsLine } from "./pages/ethics/EthicsLine";
 import { Sustainability } from "./pages/ethics/Sustainability";
-import ReportForm from "./pages/ethics/ReportForm";
+import { ReportForm } from "./pages/ethics/ReportForm";
 
 // Contact
 import { Contact } from "./pages/Contact";

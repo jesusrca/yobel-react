@@ -294,14 +294,14 @@ export function CountryPopup({ isOpen, onClose }: CountryPopupProps) {
                 <p className="font-['Neue_Augenblick:Medium',sans-serif] leading-[24px] min-w-full not-italic relative shrink-0 text-[24px] text-black w-[min-content]">Estas en {selectedCountry.toUpperCase()}</p>
                 <p className="font-['Neue_Augenblick:Regular',sans-serif] leading-[22px] min-w-full not-italic relative shrink-0 text-[18px] text-black w-[min-content]">Mostramos la información de servicios y contacto de Yobel en tu país.</p>
               </div>
-              <Primary selectedCountry={selectedCountry} onContinue={onClose} />
-              <p className="font-['Neue_Montreal:Regular',sans-serif] leading-[16px] not-italic relative shrink-0 text-[14px] text-black text-center w-full">O</p>
               <Form 
                 selectedCountry={selectedCountry}
                 isExpanded={isExpanded}
                 onToggle={() => setIsExpanded(!isExpanded)}
                 onSelectCountry={handleSelectCountry}
               />
+              <p className="font-['Neue_Montreal:Regular',sans-serif] leading-[16px] not-italic relative shrink-0 text-[14px] text-black text-center w-full">O</p>
+              <Primary selectedCountry={selectedCountry} onContinue={onClose} />
               <Idioma />
             </div>
           </div>

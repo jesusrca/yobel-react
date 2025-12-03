@@ -1,8 +1,8 @@
 import React from "react";
 import { HeroGradient } from "../../components/ui/hero-gradient";
-import OptimizedReportForm from "../../components/ethics/OptimizedReportForm";
+import { OptimizedReportForm } from "../../components/ethics/OptimizedReportForm";
 
-export default function ReportForm() {
+export function ReportForm() {
   return (
     <div className="w-full overflow-x-hidden">
       <HeroGradient 

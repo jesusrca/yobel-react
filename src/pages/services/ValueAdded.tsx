@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "motion/react";
 import { useCountry } from "../../contexts/CountryContext";
 import { PageHero } from "../../components/ui/PageHero";
+import { Section } from "../../components/ui/custom-section";
+import { Container } from "../../components/ui/custom-container";
+import { Button } from "../../components/ui/button";
+import { ChevronRight, Check } from "lucide-react";
+import { Industries } from "../../components/landing/Industries";
+import { FAQ } from "../../components/landing/FAQ";
+import { ScrollRevealText } from "../../components/ui/motion-text";
 
 // SVG Paths (Reused from Manufacturing style)
 const svgPaths = {

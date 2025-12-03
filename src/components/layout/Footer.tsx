@@ -57,8 +57,15 @@ const menuItems = [
     items: [
       { name: "Alimentos y Bebidas", path: "/industrias/alimentos-y-bebidas" },
       { name: "Belleza y Cuidado Personal", path: "/industrias/belleza-y-cuidado-personal" },
+      { name: "Calzado y Moda", path: "/industrias/calzado-y-moda" },
+      { name: "Construcción", path: "/industrias/construccion" },
+      { name: "Cuidado del Hogar", path: "/industrias/cuidado-del-hogar" },
+      { name: "Editorial", path: "/industrias/editorial" },
       { name: "Farmacéutica", path: "/industrias/farmaceutica" },
+      { name: "Manufactura Industrial", path: "/industrias/manufactura-industrial" },
+      { name: "Química", path: "/industrias/quimica" },
       { name: "Retail", path: "/industrias/retail" },
+      { name: "Tecnología y Electrónica", path: "/industrias/tecnologia-y-electronica" },
     ]
   },
   {

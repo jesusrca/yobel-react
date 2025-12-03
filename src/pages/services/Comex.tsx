@@ -61,7 +61,7 @@ export function Comex() {
   const { selectedCountry } = useCountry();
   
   const faqs = [
-    { question: `¿Yobel ${selectedCountry} gestiona todo el proceso de importación?`, answer: "Sí, nos encargamos desde la llegada de la mercancía al puerto hasta su entrega final, incluyendo trámites aduaneros, transporte y nacionalización." },
+    { question: "¿Yobel gestiona todo el proceso de importación?", answer: "Sí, nos encargamos desde la llegada de la mercancía al puerto hasta su entrega final, incluyendo trámites aduaneros, transporte y nacionalización." },
     { question: "¿Yobel puede gestionar cargas con requisitos sanitarios o peligrosos?", answer: "Sí, contamos con experiencia en la manipulación de mercancías reguladas y coordinación con autoridades sanitarias y aduaneras." },
     { question: "¿Ofrecen asesoría en normativa de exportación e importación?", answer: "Sí, brindamos soporte técnico y documental para cumplir con los requisitos legales y optimizar los tiempos de despacho." },
     { question: "¿Puedo tener visibilidad del estado de mi carga en tránsito?", answer: "Sí, ofrecemos trazabilidad total con reportes en línea y actualizaciones automáticas durante cada fase del proceso." }

@@ -3,8 +3,23 @@ import { Link } from "react-router-dom";
 import { motion } from "motion/react";
 import { useCountry } from "../../contexts/CountryContext";
 import { PageHero } from "../../components/ui/PageHero";
+import { Section } from "../../components/ui/custom-section";
+import { Container } from "../../components/ui/custom-container";
+import { Button } from "../../components/ui/button";
+import { Check } from "lucide-react";
+import { Industries } from "../../components/landing/Industries";
+import { FAQ } from "../../components/landing/FAQ";
+import { ScrollRevealText } from "../../components/ui/motion-text";
+import { ParallaxImage } from "../../components/landing/ParallaxImage";
+import { FullWidthImage } from "../../components/ui/FullWidthImage";
+import { Phrase } from "../../components/landing/Phrase";
 
 const heroImage = "https://images.unsplash.com/photo-1556743769-8d7477994b25?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjB3YXJlaG91c2UlMjBsb2dpc3RpY3MlMjBzdG9yYWdlJTIwc2hlbHZlc3xlbnwxfHx8fDE3NjQxOTUyMDR8MA&ixlib=rb-4.1.0&q=80&w=1080";
+
+// SVG Paths
+const svgPaths = {
+  pff39b00: "M0 45.9994V30.6785C0 30.6785 36.2411 15.2325 36.2411 8.71527C36.2411 4.64101 0 15.0514 0 15.0514V0H35.0771C49.2263 0 47.9715 7.45669 47.9715 14.9269V46H24.4355C24.4355 46 40.1752 20.8884 36.2411 20.8884C30.4859 20.8884 0 45.9994 0 45.9994Z",
+};
 
 const solutions = [
   {

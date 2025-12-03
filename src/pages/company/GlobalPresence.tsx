@@ -26,69 +26,69 @@ interface Location {
 const locationsData: Record<string, Location[]> = {
   peru: [
     {
-      city: "Lima",
+      city: "Los Olivos",
       country: "Perú",
-      email: "lima@yobel.com.pe",
+      email: "losolivos@yobel.com.pe",
       phone: "+51 1 618 5400",
-      address: "Av. Argentina 2833, San Genaro, Lima 15109, Perú",
+      address: "Av. San Genaro 150, Urb. Molitalia, Los Olivos",
       imageUrl: "https://images.unsplash.com/photo-1619070284836-e850273d69ac?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjB3YXJlaG91c2UlMjBsb2dpc3RpY3N8ZW58MXx8fHwxNzY0NjUwOTM3fDA&ixlib=rb-4.1.0&q=80&w=1080",
       timezone: "America/Lima"
     },
     {
-      city: "Lima - Lurín",
+      city: "Los Olivos",
       country: "Perú",
-      email: "lurin@yobel.com.pe",
+      email: "losolivos2@yobel.com.pe",
       phone: "+51 1 618 5400",
-      address: "Km. 40 Panamericana Sur, Lurín, Lima, Perú",
-      imageUrl: "https://images.unsplash.com/photo-1761815139982-0876947bf09a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkaXN0cmlidXRpb24lMjBjZW50ZXIlMjBidWlsZGluZ3xlbnwxfHx8fDE3NjQ2NjY3OTN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      address: "Calle San Andrés 6100, Urb. Molitalia, Los Olivos",
+      imageUrl: "https://images.unsplash.com/photo-1717662292789-e97dfb7d3c88?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsb2dpc3RpY3MlMjBjZW50ZXIlMjBleHRlcmlvcnxlbnwxfHx8fDE3NjQ2NjY3OTR8MA&ixlib=rb-4.1.0&q=80&w=1080",
       timezone: "America/Lima"
     },
     {
-      city: "Lima - Los Olivos",
+      city: "Lurín",
       country: "Perú",
-      email: "losolivos@yobel.com.pe",
+      email: "lurin@yobel.com.pe",
       phone: "+51 1 618 5400",
-      address: "Av. San Andrés, Los Olivos, Lima, Perú",
-      imageUrl: "https://images.unsplash.com/photo-1717662292789-e97dfb7d3c88?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsb2dpc3RpY3MlMjBjZW50ZXIlMjBleHRlcmlvcnxlbnwxfHx8fDE3NjQ2NjY3OTR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      address: "Parcela 3-4, Los Eucaliptos, s/n Santa Genoveva, Lurín",
+      imageUrl: "https://images.unsplash.com/photo-1761815139982-0876947bf09a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkaXN0cmlidXRpb24lMjBjZW50ZXIlMjBidWlsZGluZ3xlbnwxfHx8fDE3NjQ2NjY3OTN8MA&ixlib=rb-4.1.0&q=80&w=1080",
       timezone: "America/Lima"
     }
   ],
   ecuador: [
     {
-      city: "Quito",
-      country: "Ecuador",
-      email: "quito@yobel.com.ec",
-      phone: "+593 2 398 3800",
-      address: "Av. 6 de Diciembre N36-149, Quito, Ecuador",
-      imageUrl: "https://images.unsplash.com/photo-1650392131866-e4e2e06a0c78?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3YXJlaG91c2UlMjBhcmNoaXRlY3R1cmV8ZW58MXx8fHwxNzY0NjY2Nzk0fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      timezone: "America/Guayaquil"
-    },
-    {
       city: "Guayaquil",
       country: "Ecuador",
       email: "guayaquil@yobel.com.ec",
       phone: "+593 4 263 4800",
-      address: "Av. Francisco de Orellana, Guayaquil, Ecuador",
+      address: "Km 9.5 vía a Daule, Guayaquil",
       imageUrl: "https://images.unsplash.com/photo-1619070284836-e850273d69ac?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjB3YXJlaG91c2UlMjBsb2dpc3RpY3N8ZW58MXx8fHwxNzY0NjUwOTM3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      timezone: "America/Guayaquil"
+    },
+    {
+      city: "Quito",
+      country: "Ecuador",
+      email: "quito@yobel.com.ec",
+      phone: "+593 2 398 3800",
+      address: "Av. García Moreno Km 15.5, sector Llano Chico – Quito",
+      imageUrl: "https://images.unsplash.com/photo-1650392131866-e4e2e06a0c78?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3YXJlaG91c2UlMjBhcmNoaXRlY3R1cmV8ZW58MXx8fHwxNzY0NjY2Nzk0fDA&ixlib=rb-4.1.0&q=80&w=1080",
       timezone: "America/Guayaquil"
     }
   ],
   colombia: [
     {
-      city: "Bogotá",
+      city: "Guarne, Antioquia",
       country: "Colombia",
-      email: "bogota@yobel.com.co",
-      phone: "+57 1 423 7000",
-      address: "Calle 100 #19A-91, Bogotá, Colombia",
+      email: "guarne@yobel.com.co",
+      phone: "+57 4 444 3200",
+      address: "Vereda Garrido, A 1.5 km del, Batallón Juan del Corral, Guarne, Antioquia",
       imageUrl: "https://images.unsplash.com/photo-1704423846283-f92ff6badea3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3Jwb3JhdGUlMjBvZmZpY2UlMjBidWlsZGluZ3xlbnwxfHx8fDE3NjQ2NDUwMzB8MA&ixlib=rb-4.1.0&q=80&w=1080",
       timezone: "America/Bogota"
     },
     {
-      city: "Medellín",
+      city: "Guarne, Antioquia",
       country: "Colombia",
-      email: "medellin@yobel.com.co",
+      email: "guarne2@yobel.com.co",
       phone: "+57 4 444 3200",
-      address: "Carrera 65 #8B-91, Medellín, Colombia",
+      address: "Vereda Berracal Retorno 9 Autopista Medellín Bogotá, Guarne, Antioquia",
       imageUrl: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBvZmZpY2UlMjBpbnRlcmlvcnxlbnwxfHx8fDE3NjQ1NTc5MjZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
       timezone: "America/Bogota"
     }
@@ -99,18 +99,27 @@ const locationsData: Record<string, Location[]> = {
       country: "Panamá",
       email: "panama@yobel.com.pa",
       phone: "+507 200 0000",
-      address: "Vía España, Ciudad de Panamá, Panamá",
+      address: "Av. José Domingo Díaz, Parque Industrial Corporativo Sur - Panamá",
       imageUrl: "https://images.unsplash.com/photo-1704423846283-f92ff6badea3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3Jwb3JhdGUlMjBvZmZpY2UlMjBidWlsZGluZ3xlbnwxfHx8fDE3NjQ2NDUwMzB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      timezone: "America/Panama"
+    },
+    {
+      city: "Ciudad de Panamá",
+      country: "Panamá",
+      email: "panama2@yobel.com.pa",
+      phone: "+507 200 0000",
+      address: "24 de diciembre, Parque Logistico Panamá",
+      imageUrl: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBvZmZpY2UlMjBpbnRlcmlvcnxlbnwxfHx8fDE3NjQ1NTc5MjZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
       timezone: "America/Panama"
     }
   ],
   costa_rica: [
     {
-      city: "San José",
+      city: "Alajuela",
       country: "Costa Rica",
-      email: "sanjose@yobel.com.cr",
+      email: "alajuela@yobel.com.cr",
       phone: "+506 2000 0000",
-      address: "Escazú, San José, Costa Rica",
+      address: "Radial Coyol, parque logístico LATAM, bodega 100, Alajuela, Provincia de San José",
       imageUrl: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBvZmZpY2UlMjBpbnRlcmlvcnxlbnwxfHx8fDE3NjQ1NTc5MjZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
       timezone: "America/Costa_Rica"
     }
@@ -121,40 +130,103 @@ const locationsData: Record<string, Location[]> = {
       country: "República Dominicana",
       email: "santodomingo@yobel.com.do",
       phone: "+1 809 500 0000",
-      address: "Santo Domingo, República Dominicana",
-      imageUrl: "https://images.unsplash.com/photo-1704423846283-f92ff6badea3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3Jwb3JhdGUlMjBvZmZpY2UlMjBidWlsZGluZ3xlbnwxfHx8fDE3NjQ2NDUwMzB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      address: "Av. Prolongación 27 de Febrero casi esq. Autopista Duarte, Sector Alameda",
+      imageUrl: "https://images.unsplash.com/photo-1704423846283-f92ff6badea3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3Jwb3JhdGUlMjBvZmZpY2UlMjBidWlsZGluZ3xlbnwxfHx8fDE3NjQ2NDUwMzN8MA&ixlib=rb-4.1.0&q=80&w=1080",
       timezone: "America/Santo_Domingo"
     }
   ],
   el_salvador: [
     {
-      city: "San Salvador",
+      city: "San Juan Opico",
       country: "El Salvador",
-      email: "sansalvador@yobel.com.sv",
+      email: "sanjuanopico@yobel.com.sv",
       phone: "+503 2500 0000",
-      address: "San Salvador, El Salvador",
+      address: "Carretera Panamericana Km 26.10 San Juan Opico – San Salvador",
       imageUrl: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBvZmZpY2UlMjBpbnRlcmlvcnxlbnwxfHx8fDE3NjQ1NTc5MjZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      timezone: "America/El_Salvador"
+    },
+    {
+      city: "Santa Tecla",
+      country: "El Salvador",
+      email: "santatecla@yobel.com.sv",
+      phone: "+503 2500 0000",
+      address: "Carretera al Puerto de La Libertad, km 11, Block E Santa Tecla, La Libertad",
+      imageUrl: "https://images.unsplash.com/photo-1619070284836-e850273d69ac?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjB3YXJlaG91c2UlMjBsb2dpc3RpY3N8ZW58MXx8fHwxNzY0NjUwOTM3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      timezone: "America/El_Salvador"
+    },
+    {
+      city: "Ciudad Arce",
+      country: "El Salvador",
+      email: "ciudadarce@yobel.com.sv",
+      phone: "+503 2500 0000",
+      address: "Km 36 1/2 Carretera A Santa Ana. Zona Franca American Park. Ciudad Arce La Libertad",
+      imageUrl: "https://images.unsplash.com/photo-1704423846283-f92ff6badea3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3Jwb3JhdGUlMjBvZmZpY2UlMjBidWlsZGluZ3xlbnwxfHx8fDE3NjQ2NDUwMzB8MA&ixlib=rb-4.1.0&q=80&w=1080",
       timezone: "America/El_Salvador"
     }
   ],
   guatemala: [
     {
-      city: "Ciudad de Guatemala",
+      city: "CEDI Villa Lobos",
       country: "Guatemala",
-      email: "guatemala@yobel.com.gt",
+      email: "villalobos@yobel.com.gt",
       phone: "+502 2300 0000",
-      address: "Zona 10, Ciudad de Guatemala, Guatemala",
+      address: "Calzada Aguilar Batres 57-61 zona 12",
       imageUrl: "https://images.unsplash.com/photo-1704423846283-f92ff6badea3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3Jwb3JhdGUlMjBvZmZpY2UlMjBidWlsZGluZ3xlbnwxfHx8fDE3NjQ2NDUwMzB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      timezone: "America/Guatemala"
+    },
+    {
+      city: "CEDI ALGESA",
+      country: "Guatemala",
+      email: "algesa@yobel.com.gt",
+      phone: "+502 2300 0000",
+      address: "27 Avenida 33 – 85, Bodega #3, zona 12",
+      imageUrl: "https://images.unsplash.com/photo-1619070284836-e850273d69ac?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjB3YXJlaG91c2UlMjBsb2dpc3RpY3N8ZW58MXx8fHwxNzY0NjUwOTM3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      timezone: "America/Guatemala"
+    },
+    {
+      city: "CEDI CLEF",
+      country: "Guatemala",
+      email: "clef@yobel.com.gt",
+      phone: "+502 2300 0000",
+      address: "23 calle 11-41 interior zona 5 Finca El Frutal, Villa Nueva",
+      imageUrl: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBvZmZpY2UlMjBpbnRlcmlvcnxlbnwxfHx8fDE3NjQ1NTc5MjZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      timezone: "America/Guatemala"
+    },
+    {
+      city: "CEDI El Frutal",
+      country: "Guatemala",
+      email: "elfrutal@yobel.com.gt",
+      phone: "+502 2300 0000",
+      address: "1ra. Av. 20-77 zona 7, El Frutal, San Miguel Petapa",
+      imageUrl: "https://images.unsplash.com/photo-1650392131866-e4e2e06a0c78?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3YXJlaG91c2UlMjBhcmNoaXRlY3R1cmV8ZW58MXx8fHwxNzY0NjY2Nzk0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      timezone: "America/Guatemala"
+    },
+    {
+      city: "CEDI Los Álamos",
+      country: "Guatemala",
+      email: "losalamos@yobel.com.gt",
+      phone: "+502 2300 0000",
+      address: "0 Avenida 7-83´Col. Los Álamos zona 6, San Miguel Petapa",
+      imageUrl: "https://images.unsplash.com/photo-1717662292789-e97dfb7d3c88?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsb2dpc3RpY3MlMjBjZW50ZXIlMjBleHRlcmlvcnxlbnwxfHx8fDE3NjQ2NjY3OTR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      timezone: "America/Guatemala"
+    },
+    {
+      city: "CEDI Distripark",
+      country: "Guatemala",
+      email: "distripark@yobel.com.gt",
+      phone: "+502 2300 0000",
+      address: "Parque logístico Distripark, Bodega D-4, Km.28.5 Carretera al Pacífico, Amatitlán",
+      imageUrl: "https://images.unsplash.com/photo-1761815139982-0876947bf09a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkaXN0cmlidXRpb24lMjBjZW50ZXIlMjBidWlsZGluZ3xlbnwxfHx8fDE3NjQ2NjY3OTN8MA&ixlib=rb-4.1.0&q=80&w=1080",
       timezone: "America/Guatemala"
     }
   ],
   mexico: [
     {
-      city: "Ciudad de México",
+      city: "Estado de México",
       country: "México",
       email: "mexico@yobel.com.mx",
       phone: "+52 55 5000 0000",
-      address: "Av. Insurgentes Sur 1458, Ciudad de México, México",
+      address: "Av. Tejocotes Lote 9 Interior Encino 1 Colonia San Martín Obispo, Estado de México",
       imageUrl: "https://images.unsplash.com/photo-1704423846283-f92ff6badea3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3Jwb3JhdGUlMjBvZmZpY2UlMjBidWlsZGluZ3xlbnwxfHx8fDE3NjQ2NDUwMzB8MA&ixlib=rb-4.1.0&q=80&w=1080",
       timezone: "America/Mexico_City"
     }

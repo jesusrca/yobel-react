@@ -10,6 +10,8 @@ import { ProcessItem } from "../../components/company/ProcessItem";
 import svgPathsProcess from "../../imports/svg-u5y25zzhvz";
 import { motion, useScroll, useTransform } from "motion/react";
 import { GradientCTA } from "../../components/ui/GradientCTA";
+import { UseCasesSection } from "../../components/sections/UseCasesSection";
+import svgPathsIso from "../../imports/svg-rbwz0su45n";
 
 // SVG Paths
 const svgPaths = {
@@ -111,11 +113,11 @@ const principles = [
 ];
 
 const policies = [
-  { title: "Código de Ética", desc: "Principios de conducta: conflictos de interés, regalos, uso de activos, respeto, denuncias y sanciones." },
-  { title: "Política Anticorrupción", desc: "Cero sobornos y pagos de facilitación; reglas claras con funcionarios y terceros." },
-  { title: "Seguridad y Salud", desc: "Responsabilidades SST, uso de EPP, prevención, ergonomía y reporte de incidentes." },
-  { title: "Diversidad e Inclusión", desc: "Igualdad y no discriminación; prevención del acoso y canales de apoyo." },
-  { title: "Política Ambiental", desc: "Gestión de residuos, uso eficiente de recursos y cumplimiento de metas ambientales." }
+  { number: "01", title: "Código de Ética", desc: "Principios de conducta: conflictos de interés, regalos, uso de activos, respeto, denuncias y sanciones." },
+  { number: "02", title: "Política Anticorrupción", desc: "Cero sobornos y pagos de facilitación; reglas claras con funcionarios y terceros." },
+  { number: "03", title: "Seguridad y Salud", desc: "Responsabilidades SST, uso de EPP, prevención, ergonomía y reporte de incidentes." },
+  { number: "04", title: "Diversidad e Inclusión", desc: "Igualdad y no discriminación; prevención del acoso y canales de apoyo." },
+  { number: "05", title: "Política Ambiental", desc: "Gestión de residuos, uso eficiente de recursos y cumplimiento de metas ambientales." }
 ];
 
 const faqs = [
@@ -132,6 +134,32 @@ const iconTypeMapping = [
   "Datos y visibilidad",  // Cumplimiento
   "Seguridad y calidad"   // Seguridad y Ambiente
 ];
+
+const ParallaxImageSection = () => {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+  
+  const y = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
+  
+  return (
+    <div ref={ref} className="relative w-full h-[500px] md:h-[600px] lg:h-[900px] overflow-hidden bg-gray-100">
+      {/* Parallax Image */}
+      <motion.div 
+        style={{ y }}
+        className="absolute inset-0 w-full h-[120%] -top-[10%]"
+      >
+        <img 
+          src="https://circular.ws/yobel/etica-yobel.jpg"
+          alt="Ethics"
+          className="w-full h-full object-cover"
+        />
+      </motion.div>
+    </div>
+  );
+};
 
 export function CodeOfEthics() {
   const { selectedCountry } = useCountry();
@@ -193,6 +221,9 @@ export function CodeOfEthics() {
         </Container>
       </Section>
 
+      {/* Parallax Image Section with Wave Mask */}
+      <ParallaxImageSection />
+
       {/* Principles Section (ProcessItem Style) */}
       <Section className="bg-white py-20">
         <Container>
@@ -221,70 +252,87 @@ export function CodeOfEthics() {
       </Section>
 
       {/* Ethics Channel Section (Dark) */}
-      <Section className="bg-black text-white py-24">
-         <Container>
-            <div className="flex flex-col lg:flex-row gap-16 items-center">
-               <div className="w-full lg:w-1/2">
-                   <h3 className="text-3xl md:text-4xl font-normal mb-8">Reporta una preocupación con confianza</h3>
-                   <p className="text-xl opacity-80 mb-10 font-light leading-relaxed max-w-xl">
-                      Si detectas conductas contrarias a nuestro Código de Ética, repórtalo. Puedes hacerlo de forma anónima, confidencial y sin represalias.
-                   </p>
-                   <div className="flex flex-wrap gap-4 mb-12">
-                       {['Formulario web', 'Línea telefónica', 'Seguimiento de caso'].map((item, i) => (
-                           <div key={i} className="flex items-center gap-2 px-4 py-2 rounded-full border border-white/20">
-                               <div className="w-2 h-2 bg-[#59c1e6] rounded-full" />
-                               <span className="text-sm md:text-base">{item}</span>
-                           </div>
-                       ))}
-                   </div>
-                   <Button className="bg-white text-black px-10 py-5 rounded-full text-lg hover:bg-gray-200 transition-colors">
-                      Abrir Canal de Ética
-                   </Button>
+      <Section className="bg-gradient-to-b from-white to-[#FFE55C]">
+         <div className="flex flex-col items-center justify-center size-full">
+            <div className="box-border content-stretch flex flex-col gap-[48px] items-center justify-center px-[20px] md:px-[50px] py-[80px] md:py-[120px] relative size-full">
+               {/* Isotipo */}
+               <div className="h-[60px] relative shrink-0 w-[93px]">
+                  <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 93 60">
+                     <path d={svgPathsIso.p1d326d00} fill="black" />
+                  </svg>
                </div>
-               <div className="w-full lg:w-1/2 flex justify-center lg:justify-end">
-                   <div className="bg-[#1A1A1A] p-10 rounded-[30px] max-w-md w-full border border-white/10">
-                       <div className="flex items-center gap-4 mb-6">
-                           <div className="w-12 h-12 bg-[#59c1e6]/20 rounded-full flex items-center justify-center text-[#59c1e6]">
-                               <ArrowUpRight size={24} />
+               
+               {/* Texto principal */}
+               <div className="relative shrink-0 w-full">
+                  <div className="flex flex-col items-center justify-center size-full">
+                     <div className="box-border content-stretch flex flex-col gap-[32px] items-center justify-center px-4 md:px-[112px] py-0 relative w-full">
+                        <motion.p 
+                           className="font-augenblick leading-[1.2] md:leading-[48px] not-italic relative shrink-0 text-[32px] md:text-[45px] text-black/50 text-center w-full"
+                           initial={{ opacity: 0, y: 30 }}
+                           whileInView={{ opacity: 1, y: 0 }}
+                           viewport={{ once: true }}
+                           transition={{ duration: 0.8, delay: 0.2 }}
+                        >
+                           Reporta una preocupación con confianza
+                        </motion.p>
+                        <motion.div 
+                           className="relative shrink-0 w-full"
+                           initial={{ opacity: 0, y: 30 }}
+                           whileInView={{ opacity: 1, y: 0 }}
+                           viewport={{ once: true }}
+                           transition={{ duration: 0.8, delay: 0.4 }}
+                        >
+                           <div className="flex flex-row items-center justify-center size-full">
+                              <div className="box-border content-stretch flex gap-[10px] items-center justify-center px-4 md:px-[50px] py-0 relative w-full">
+                                 <p className="basis-0 font-augenblick grow leading-[1.2] md:leading-[48px] min-h-px min-w-px not-italic relative shrink-0 text-[32px] md:text-[45px] text-black text-center">
+                                    Si detectas conductas contrarias a nuestro Código de Ética, repórtalo. Puedes hacerlo de forma anónima, confidencial y sin represalias.
+                                 </p>
+                              </div>
                            </div>
-                           <h4 className="text-xl font-bold">Canales Disponibles</h4>
-                       </div>
-                       <ul className="space-y-4">
-                           <li className="text-gray-400 text-lg">{selectedCountry}: 0-800-00-000</li>
-                           <li className="text-gray-400 text-lg">Internacional: +51 1 123 4567</li>
-                           <li className="text-gray-400 text-lg">etica@yobel.com</li>
-                       </ul>
-                   </div>
+                        </motion.div>
+                     </div>
+                  </div>
                </div>
+
+               {/* Items horizontales */}
+               <motion.div 
+                  className="flex flex-wrap justify-center gap-4 md:gap-6"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: 0.6 }}
+               >
+                  {['Formulario web', 'Línea telefónica', 'Seguimiento de caso'].map((item, i) => (
+                     <div key={i} className="flex items-center gap-2 px-4 py-2 rounded-full border border-black/20">
+                        <div className="w-2 h-2 bg-[#59c1e6] rounded-full" />
+                        <span className="text-sm md:text-base text-black">{item}</span>
+                     </div>
+                  ))}
+               </motion.div>
+
+               {/* Botón CTA */}
+               <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: 0.8 }}
+               >
+                  <Link to="/linea-etica">
+                     <Button className="bg-black text-white px-10 py-5 rounded-full text-lg hover:bg-black/80 transition-colors">
+                        Abrir Canal de Ética
+                     </Button>
+                  </Link>
+               </motion.div>
             </div>
-         </Container>
+         </div>
       </Section>
 
-      {/* Policies Section (Grid) */}
-      <Section className="bg-white py-24">
-         <Container>
-            <div className="flex flex-col gap-12 text-center mb-20">
-               <h2 className="text-4xl md:text-[45px] leading-tight font-normal">
-                  Políticas y Documentos
-               </h2>
-               <p className="text-xl md:text-[25px] font-light leading-relaxed text-gray-800 max-w-3xl mx-auto">
-                  Nuestro marco normativo asegura la coherencia y transparencia en todas nuestras operaciones.
-               </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-               {policies.map((pol, idx) => (
-                   <div key={idx} className="border border-black/10 p-8 rounded-[30px] hover:shadow-xl transition-all bg-white flex flex-col gap-4 group">
-                       <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center group-hover:bg-black group-hover:text-white transition-colors">
-                           <Check size={20} />
-                       </div>
-                       <h4 className="text-2xl font-bold font-augenblick">{pol.title}</h4>
-                       <p className="text-lg text-gray-600 leading-relaxed">{pol.desc}</p>
-                   </div>
-               ))}
-            </div>
-         </Container>
-      </Section>
+      {/* Policies Section */}
+      <UseCasesSection 
+        title="Ética y cumplimiento"
+        subtitle="Nuestro negocio se sostiene en la integridad. Aquí puedes consultar nuestras políticas vigentes."
+        useCases={policies}
+      />
       
       {/* FAQ Section */}
       <FAQ items={faqs} />

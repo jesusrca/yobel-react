@@ -35,9 +35,9 @@ export function InteractiveList({ items, className = "", defaultImage }: Interac
               onClick={() => setActiveId(item.id)}
             >
               <div className="h-full cursor-pointer flex flex-col md:flex-row md:items-center justify-center md:justify-between gap-2 md:gap-4 px-4 md:px-0 py-6 md:py-0">
-                <div className={`flex items-baseline gap-4 text-2xl md:text-4xl transition-colors duration-500 w-full md:w-5/12 ${activeId === item.id ? 'text-black' : 'text-gray-400'}`}>
-                  <span>{item.id} /</span>
-                  <span className="font-augenblick">{item.title}</span>
+                <div className={`flex items-baseline gap-4 text-2xl md:text-4xl w-full md:w-5/12 ${activeId === item.id ? 'text-black' : 'text-gray-400'}`}>
+                  <span className="transition-colors duration-500">{item.id} /</span>
+                  <span className="font-augenblick transition-all duration-500" style={{ transform: activeId === item.id ? 'scale(1.1)' : 'scale(1)', transformOrigin: 'left center' }}>{item.title}</span>
                 </div>
                 
                 {/* Mobile View Content */}

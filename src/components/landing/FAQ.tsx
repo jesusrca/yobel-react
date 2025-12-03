@@ -71,7 +71,7 @@ export function FAQItem({ question, answer }: FAQItemData) {
             className="overflow-hidden"
           >
             <div className="pt-6">
-               <p className="text-lg md:text-[22px] text-gray-500 leading-relaxed max-w-[547px]">
+               <p className="text-lg md:text-[22px] text-black leading-relaxed max-w-[547px]">
                  {answer}
                </p>
             </div>
