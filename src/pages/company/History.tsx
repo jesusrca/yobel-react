@@ -50,7 +50,7 @@ export function History() {
             description="Nuestra historia refleja que la excelencia y la innovación forman parte de nuestro ADN."
           />
 
-          <Phrase textColor={textColor} />
+          <Phrase textColor={textColor} showButton={false} />
 
           <HistoryTimeline items={timeline} textColor={textColor} />
 

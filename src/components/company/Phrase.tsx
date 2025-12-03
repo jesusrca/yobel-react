@@ -1,6 +1,7 @@
 import React from "react";
 import { motion, MotionValue } from "motion/react";
 import svgPaths from "../../imports/svg-j9zkv27h5w";
+import { YellowGradientButton } from "../ui/yellow-gradient-button";
 
 function IsotipoIcon({ color }: { color: MotionValue<string> }) {
   return (
@@ -19,11 +20,13 @@ function IsotipoIcon({ color }: { color: MotionValue<string> }) {
 interface PhraseProps {
   text?: string;
   textColor: MotionValue<string>;
+  showButton?: boolean;
 }
 
 export function Phrase({ 
   text = "Cada década hemos escrito un nuevo capítulo: de la manufactura de productos de cuidado personal a la gestión integral de cadenas de suministro en Latinoamérica. Nuestra historia refleja que la excelencia y la innovación forman parte de nuestro ADN.",
-  textColor
+  textColor,
+  showButton = true
 }: PhraseProps) {
   return (
     <div className="relative w-full overflow-hidden">
@@ -47,6 +50,19 @@ export function Phrase({
           >
             {text}
           </motion.p>
+
+          {/* Button */}
+          {showButton && <YellowGradientButton 
+            className="mt-4"
+            onClick={() => {
+              const mapSection = document.querySelector('[data-section="locations"]');
+              if (mapSection) {
+                mapSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
+            }}
+          >
+            Nuestras Sedes
+          </YellowGradientButton>}
         </motion.div>
       </div>
     </div>

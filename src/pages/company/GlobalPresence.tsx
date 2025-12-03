@@ -346,7 +346,7 @@ export function GlobalPresence() {
         </div>
       </div>
 
-      <Phrase />
+      <Phrase text="Operamos con conexión directa a puertos, aeropuertos y redes logísticas nacionales, integrando manufactura, almacenamiento, distribución y comercio exterior con estándares de calidad y seguridad." />
 
       <VideoScrollSection data={stats} />
 

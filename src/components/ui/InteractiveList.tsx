@@ -15,9 +15,11 @@ interface InteractiveListProps {
   items: InteractiveListItem[];
   className?: string;
   defaultImage?: string;
+  title?: string;
+  label?: string;
 }
 
-export function InteractiveList({ items, className = "", defaultImage }: InteractiveListProps) {
+export function InteractiveList({ items, className = "", defaultImage, title, label }: InteractiveListProps) {
   const [activeId, setActiveId] = useState("");
 
   // Fallback image logic: use the one provided in props, or the first item's image
@@ -26,6 +28,12 @@ export function InteractiveList({ items, className = "", defaultImage }: Interac
   return (
     <Section className={`bg-white ${className}`}>
       <Container className="relative min-h-[600px]">
+        {(title || label) && (
+          <div className="flex flex-col gap-2 items-start mb-12">
+            {label && <span className="text-xl text-gray-400 font-medium">{label}</span>}
+            {title && <h3 className="text-3xl md:text-4xl font-normal">{title}</h3>}
+          </div>
+        )}
         <div className="flex flex-col w-full" onMouseLeave={() => setActiveId("")}>
           {items.map((item) => (
             <div 
