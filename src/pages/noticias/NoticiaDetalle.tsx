@@ -1,13 +1,68 @@
 import React from "react";
-import { useParams, Navigate } from "react-router-dom";
+import { useParams, Navigate, Link } from "react-router-dom";
 import { Section } from "../../components/ui/custom-section";
 import { Container } from "../../components/ui/custom-container";
 import { newsData } from "../../data/news";
-import { Facebook, Linkedin, Share2 } from "lucide-react";
+import svgPaths from "../../imports/svg-lteuacjx2u";
+import coverImage from "figma:asset/9c0d9760c07ea0839629b15d82a01182a11d78ea.png";
+import ArticulosRelacionados from "../../imports/ArticulosRelacionados";
 
 export function NoticiaDetalle() {
   const { slug } = useParams<{ slug: string }>();
   const newsItem = newsData.find(item => item.id === slug);
+  const [scrollProgress, setScrollProgress] = React.useState(0);
+  const [isNearEnd, setIsNearEnd] = React.useState(false);
+  const contentRef = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      if (!contentRef.current) return;
+      
+      const contentElement = contentRef.current;
+      const contentRect = contentElement.getBoundingClientRect();
+      const contentTop = contentElement.offsetTop;
+      const contentHeight = contentElement.offsetHeight;
+      const windowHeight = window.innerHeight;
+      const scrollTop = window.scrollY;
+      
+      // Calcular el progreso basado en el contenido principal
+      // Empieza a contar cuando el contenido entra al viewport
+      // Termina al 100% cuando el final del contenido llega al final del viewport
+      const scrollStart = contentTop;
+      const scrollEnd = contentTop + contentHeight - windowHeight;
+      const scrollRange = scrollEnd - scrollStart;
+      
+      if (scrollTop < scrollStart) {
+        setScrollProgress(0);
+      } else if (scrollTop > scrollEnd) {
+        setScrollProgress(100);
+      } else {
+        const progress = ((scrollTop - scrollStart) / scrollRange) * 100;
+        setScrollProgress(Math.min(Math.max(progress, 0), 100));
+      }
+      
+      // Mostrar botón cuando el usuario ha scrolleado al menos 50% del contenido
+      const overallProgress = (scrollTop / (document.documentElement.scrollHeight - windowHeight)) * 100;
+      setIsNearEnd(overallProgress >= 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Calcular inicial
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const handleCopyLink = () => {
+    navigator.clipboard.writeText(window.location.href);
+    alert("Enlace copiado al portapapeles");
+  };
+
+  const handleShareFacebook = () => {
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`, '_blank');
+  };
+
+  const handleShareLinkedIn = () => {
+    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`, '_blank');
+  };
 
   if (!newsItem) {
     return <Navigate to="/noticias" replace />;
@@ -16,32 +71,39 @@ export function NoticiaDetalle() {
   return (
     <div className="bg-white min-h-screen font-[Neue_Augenblick]">
       {/* Header Section */}
-      <Section className="pt-32 pb-0 md:pt-40 md:pb-6">
+      <Section className="pt-24 pb-0 md:pt-28 md:pb-6">
         <Container>
-          <div className="max-w-[1400px] mx-auto flex flex-col gap-12">
-            <div className="flex flex-col gap-6">
-              <div className="flex items-center gap-4 mb-6">
-                <span className="text-[#59c1e6] text-sm font-bold uppercase tracking-widest">
-                  {newsItem.category}
-                </span>
+          <div className="relative w-full">
+            {/* Back Button */}
+            <Link 
+              to="/noticias"
+              className="absolute box-border content-stretch flex gap-[8px] items-center justify-center left-[51px] p-[10px] rounded-[40px] top-[20px] group hover:bg-gray-50 transition-colors z-10"
+            >
+              <div aria-hidden="true" className="absolute border-[1.5px] border-black border-solid inset-[-0.75px] pointer-events-none rounded-[40.75px]" />
+              {/* Left Arrow Icon */}
+              <div className="overflow-clip relative shrink-0 size-[20px]">
+                <div className="absolute flex inset-[20.81%_16.06%_20.86%_17.27%] items-center justify-center">
+                  <div className="flex-none h-[12px] rotate-[180deg] w-[14px]">
+                    <div className="relative size-full">
+                      <div className="absolute bottom-[-3.79%] left-0 right-[-3.78%] top-[-3.79%]">
+                        <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 17 16">
+                          <path d="M0 7.52417H16" stroke="black" strokeLinejoin="round" strokeWidth="1.5" />
+                          <path d={svgPaths.p3cf45500} stroke="black" strokeLinejoin="round" strokeWidth="1.5" />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              
-              <h1 className="text-5xl md:text-7xl lg:text-[80px] leading-[1.1] text-black font-normal max-w-5xl">
-                {newsItem.title}
-              </h1>
+              <p className="font-['Neue_Augenblick:Medium',sans-serif] leading-[18px] not-italic relative shrink-0 text-[16px] text-black text-center text-nowrap whitespace-pre">Regresar a Noticias</p>
+            </Link>
 
-              <div className="bg-gray-100 text-black px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider w-fit mt-4">
-                5 MINS
+            {/* Title Section - Centered */}
+            <div className="flex flex-col items-center justify-center size-full">
+              <div className="box-border content-stretch flex flex-col gap-[24px] items-center justify-center not-italic pb-[80px] pt-[120px] px-[50px] relative text-center w-full">
+                <p className="font-['Neue_Augenblick:Medium',sans-serif] leading-[18px] relative shrink-0 text-[16px] text-[rgba(73,73,73,0.5)] max-w-[351px]">{newsItem.category}</p>
+                <p className="font-['Neue_Augenblick:Regular',sans-serif] leading-[67px] relative shrink-0 text-[65px] text-black max-w-[773px]">{newsItem.title}</p>
               </div>
-            </div>
-
-            {/* Hero Image */}
-            <div className="w-full h-[50vh] md:h-[60vh] lg:h-[70vh] overflow-hidden rounded-sm mt-8">
-              <img 
-                src={newsItem.image} 
-                alt={newsItem.title} 
-                className="w-full h-full object-cover"
-              />
             </div>
           </div>
         </Container>
@@ -54,41 +116,107 @@ export function NoticiaDetalle() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
               
               {/* Sidebar / Meta Column */}
-              <div className="lg:col-span-3">
-                <div className="lg:sticky lg:top-32 flex flex-col gap-8 pb-8 lg:pb-0 border-b lg:border-b-0 border-gray-100">
-                  <div className="flex flex-col gap-2">
-                    <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400">
-                      PUBLISHED
-                    </span>
-                    <span className="text-[#59c1e6] font-bold font-mono tracking-widest">
-                      {newsItem.date}
-                    </span>
-                  </div>
+              <div className="lg:col-span-3 relative">
+                <div className="sticky top-32 content-stretch flex flex-col gap-[60px] items-start w-full max-h-[calc(100vh-10rem)] overflow-visible">
+                  {/* Publicado el */}
+                  <p className="font-['Neue_Augenblick:Medium',sans-serif] leading-[18px] not-italic relative shrink-0 text-[16px] text-[rgba(73,73,73,0.5)] w-full">
+                    Publicado el {newsItem.date}
+                  </p>
 
-                  <div className="flex flex-col gap-2">
-                    <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400">
-                      CATEGORY
-                    </span>
-                    <span className="text-[#59c1e6] font-bold uppercase tracking-widest">
-                      {newsItem.category}
-                    </span>
-                  </div>
-
-                  <div className="flex flex-col gap-2">
-                    <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400">
-                      SHARE
-                    </span>
-                    <div className="flex gap-4 text-black">
-                      <a href="#" className="hover:text-[#59c1e6] transition-colors"><Facebook size={20} /></a>
-                      <a href="#" className="hover:text-[#59c1e6] transition-colors"><Linkedin size={20} /></a>
-                      <button className="hover:text-[#59c1e6] transition-colors"><Share2 size={20} /></button>
+                  {/* Tiempo de Lectura - Progress Bar */}
+                  <div className="content-stretch flex flex-col gap-[8px] items-start justify-center relative shrink-0 w-full">
+                    <p className="font-['Neue_Augenblick:Medium',sans-serif] leading-[18px] min-w-full not-italic relative shrink-0 text-[16px] text-[rgba(73,73,73,0.5)] w-[min-content]">
+                      Tiempo de Lectura
+                    </p>
+                    <div className="content-stretch flex flex-col gap-[14px] items-start relative shrink-0 w-full">
+                      {/* Progress bar container */}
+                      <div className="w-full h-[40px] relative">
+                        {/* Text */}
+                        <div className="absolute inset-0 flex items-center">
+                          <div className="flex flex-col font-['Neue_Augenblick:Medium',sans-serif] justify-center leading-[0] not-italic relative text-[22px] text-nowrap">
+                            <p className="leading-[24px] whitespace-pre" style={{ 
+                              backgroundImage: `linear-gradient(to right, black ${scrollProgress}%, rgba(73,73,73,0.3) ${scrollProgress}%)`,
+                              WebkitBackgroundClip: 'text',
+                              WebkitTextFillColor: 'transparent',
+                              backgroundClip: 'text'
+                            }}>
+                              6 minutos
+                            </p>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
+
+                  {/* Compartir */}
+                  <div className="content-stretch flex flex-col gap-[8px] items-start justify-center relative shrink-0 w-full">
+                    <p className="font-['Neue_Augenblick:Medium',sans-serif] leading-[18px] min-w-full not-italic relative shrink-0 text-[16px] text-[rgba(73,73,73,0.5)] w-[min-content]">
+                      Compartir
+                    </p>
+                    <div className="content-stretch flex flex-col gap-[14px] items-start relative shrink-0">
+                      {/* Facebook */}
+                      <button 
+                        onClick={handleShareFacebook}
+                        className="box-border content-stretch flex gap-[12px] items-start px-0 py-[8px] relative shrink-0 cursor-pointer hover:opacity-60 transition-opacity"
+                      >
+                        <div className="flex flex-col font-['Neue_Augenblick:Medium',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[22px] text-black text-nowrap">
+                          <p className="leading-[24px] whitespace-pre">Facebook</p>
+                        </div>
+                      </button>
+
+                      {/* LinkedIn */}
+                      <button 
+                        onClick={handleShareLinkedIn}
+                        className="box-border content-stretch flex gap-[12px] items-start px-0 py-[8px] relative shrink-0 cursor-pointer hover:opacity-60 transition-opacity"
+                      >
+                        <div className="flex flex-col font-['Neue_Augenblick:Medium',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[22px] text-black text-nowrap">
+                          <p className="leading-[24px] whitespace-pre">LinkedIn</p>
+                        </div>
+                      </button>
+
+                      {/* Copiar enlace */}
+                      <button 
+                        onClick={handleCopyLink}
+                        className="box-border content-stretch flex gap-[12px] items-start px-0 py-[8px] relative shrink-0 cursor-pointer hover:opacity-60 transition-opacity"
+                      >
+                        <div className="flex flex-col font-['Neue_Augenblick:Medium',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[22px] text-black text-nowrap">
+                          <p className="leading-[24px] whitespace-pre">Copiar enlace</p>
+                        </div>
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Contactar un asesor */}
+                  {isNearEnd && (
+                    <div className="content-stretch flex flex-col gap-[20px] items-start justify-center relative shrink-0 w-full transition-all duration-700 ease-in-out animate-in fade-in slide-in-from-bottom-4">
+                      <p className="font-['Neue_Augenblick:Medium',sans-serif] leading-[18px] not-italic relative shrink-0 text-[16px] text-[rgba(73,73,73,0.5)] text-nowrap whitespace-pre">
+                        Conversemos sobre tu operación
+                      </p>
+                      <Link
+                        to="/contacto"
+                        className="box-border content-stretch flex gap-[12px] items-center justify-center p-[16px] relative rounded-[30px] shrink-0 cursor-pointer hover:bg-gray-50 transition-colors"
+                      >
+                        <div aria-hidden="true" className="absolute border-[1.5px] border-black border-solid inset-[-0.75px] pointer-events-none rounded-[30.75px]" />
+                        <p className="font-['Neue_Augenblick:Medium',sans-serif] leading-[24px] not-italic relative shrink-0 text-[24px] text-black text-center text-nowrap whitespace-pre">
+                          Contactar un asesor
+                        </p>
+                      </Link>
+                    </div>
+                  )}
                 </div>
               </div>
 
               {/* Main Content Column */}
-              <div className="lg:col-span-8 lg:col-start-5 flex flex-col gap-12 w-full">
+              <div className="lg:col-span-8 lg:col-start-5 flex flex-col gap-12 w-full" ref={contentRef}>
+                {/* Cover Image */}
+                <div className="w-full overflow-hidden rounded-sm">
+                   <img 
+                     src={coverImage} 
+                     alt="Imagen de portada" 
+                     className="w-full h-auto lg:h-[500px] object-cover"
+                   />
+                </div>
+
                 {/* Lead Paragraph */}
                 <p className="text-2xl md:text-3xl lg:text-4xl font-light leading-tight text-black">
                   {newsItem.excerpt}
@@ -116,7 +244,7 @@ export function NoticiaDetalle() {
                 {/* Bottom Image */}
                 <div className="w-full h-[400px] overflow-hidden rounded-sm mt-8">
                    <img 
-                     src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop" 
+                     src={coverImage} 
                      alt="Details" 
                      className="w-full h-full object-cover"
                    />
@@ -127,6 +255,9 @@ export function NoticiaDetalle() {
           </div>
         </Container>
       </Section>
+
+      {/* Related Articles Section */}
+      <ArticulosRelacionados />
     </div>
   );
 }
