@@ -70,7 +70,7 @@ export function FAQItem({ question, answer }: FAQItemData) {
             transition={{ duration: 0.3 }}
             className="overflow-hidden"
           >
-            <div className="pt-6">
+            <div className="pt-6 pl-12 md:pl-[50px]">
                <p className="text-lg md:text-[22px] text-black leading-relaxed max-w-[547px]">
                  {answer}
                </p>
@@ -88,15 +88,53 @@ interface FAQProps {
 }
 
 export function FAQ({ items = defaultFaqs, className }: FAQProps) {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.05,
+        delayChildren: 0.1
+      }
+    }
+  };
+
+  const wordVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 20, 
+      filter: "blur(8px)" 
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      filter: "blur(0px)",
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  };
+
   return (
     <Section className={`relative overflow-hidden bg-gradient-to-b from-[#FFFFFF] to-[#31CDFF] ${className}`}>
       <Container className="relative z-10 flex flex-col lg:flex-row gap-20 items-start">
-         <div className="lg:w-1/3 sticky top-24">
-            <h2 className="text-4xl md:text-[45px] leading-tight text-black font-[Neue_Augenblick]">
-               ¿Tienes algunas preguntas? Encuentra tu respuesta
-            </h2>
+         <div className="lg:w-[40%] sticky top-24">
+            <motion.h2 
+              className="text-4xl md:text-[45px] leading-tight text-black font-[Neue_Augenblick] flex flex-wrap gap-x-[0.25em]"
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
+              {"¿Tienes algunas preguntas? Encuentra tu respuesta".split(" ").map((word, i) => (
+                <motion.span key={i} variants={wordVariants} className="inline-block">
+                  {word}
+                </motion.span>
+              ))}
+            </motion.h2>
          </div>
-         <div className="lg:w-2/3 w-full">
+         <div className="lg:w-1/2 w-full">
             {items.map((faq, idx) => (
                <FAQItem key={idx} {...faq} />
             ))}

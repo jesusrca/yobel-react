@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useCountry } from "../../contexts/CountryContext";
+import { Link } from "react-router-dom";
 import { Section } from "../../components/ui/custom-section";
 import { Container } from "../../components/ui/custom-container";
 import { YellowGradientButton } from "../../components/ui/yellow-gradient-button";
@@ -12,6 +13,7 @@ import { ScrollRevealString } from "../../components/ui/scroll-reveal-text";
 import { LocationCard } from "../../components/company/LocationCard";
 import { CountryTimeHeader } from "../../components/company/CountryTimeHeader";
 import { MapPin, ChevronDown } from "lucide-react";
+import { motion } from "framer-motion";
 
 interface Location {
   city: string;
@@ -319,7 +321,12 @@ export function GlobalPresence() {
   return (
     <>
       {/* HERO SECTION WITH VIDEO */}
-      <div className="relative h-[80vh] min-h-[600px] max-h-[920px] w-full overflow-hidden font-augenblick">
+      <motion.div 
+        className="relative h-screen w-full overflow-hidden font-augenblick"
+        initial={{ opacity: 0, filter: "blur(10px)" }}
+        animate={{ opacity: 1, filter: "blur(0px)" }}
+        transition={{ duration: 1, ease: "easeOut" }}
+      >
         <div className="absolute inset-0 overflow-hidden">
           <video 
             src="https://circular.ws/yobel/gris-desktop.mp4"
@@ -334,7 +341,12 @@ export function GlobalPresence() {
           <div className="absolute bottom-0 left-0 w-full h-96 bg-gradient-to-t from-white via-gray-200/40 to-transparent pointer-events-none" />
         </div>
 
-        <div className="absolute bottom-20 left-0 right-0 px-[5%] md:px-[50px] z-10">
+        <motion.div 
+          className="absolute bottom-20 left-0 right-0 px-[5%] md:px-[50px] z-10"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
+        >
           <div className="max-w-[1400px] mx-auto flex flex-col gap-[30px]">
              <p className="text-lg md:text-[18px] text-black font-medium">Presencia Global</p>
              <div className="flex flex-col lg:flex-row items-start gap-[40px]">
@@ -343,8 +355,8 @@ export function GlobalPresence() {
                 </h1>
              </div>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
       <Phrase text="Operamos con conexión directa a puertos, aeropuertos y redes logísticas nacionales, integrando manufactura, almacenamiento, distribución y comercio exterior con estándares de calidad y seguridad." />
 
@@ -354,14 +366,32 @@ export function GlobalPresence() {
         <Container>
            {/* Title Block - Above everything */}
            <div className="mb-8 lg:mb-16">
-             <ScrollRevealString 
-               text="Encuentra nuestros centros logísticos y oficinas"
-               as="h2"
-               className="text-4xl md:text-5xl font-augenblick font-normal mb-6 leading-tight text-black max-w-2xl"
-             />
-             <p className="text-lg text-gray-500 font-light max-w-md mb-6">
-               Selecciona un país en el mapa para ver nuestras sedes locales.
-             </p>
+             {/* Two column layout - Desktop */}
+             <div className="hidden lg:flex gap-[20px] items-start mb-6">
+               <div className="w-[60%] shrink-0">
+                 <ScrollRevealString 
+                   text="Encuentra nuestros centros logísticos y oficinas cerca de ti"
+                   as="h2"
+                   className="text-[45px] leading-[48px] font-augenblick font-normal text-black w-[70%]"
+                 />
+               </div>
+               <div className="w-[40%] flex flex-col gap-[20px] items-start min-w-0">
+                 <p className="text-[18px] leading-[22px] font-augenblick text-black w-full">
+Selecciona un país en el mapa para ver nuestras sedes locales.                 </p>
+               </div>
+             </div>
+
+             {/* Mobile layout */}
+             <div className="lg:hidden">
+               <ScrollRevealString 
+                 text="Encuentra nuestros centros logísticos y oficinas cerca de ti"
+                 as="h2"
+                 className="text-4xl md:text-5xl font-augenblick font-normal mb-6 leading-tight text-black"
+               />
+               <p className="text-lg text-gray-500 font-light max-w-md mb-6">
+                 Selecciona un país en el mapa para ver nuestras sedes locales.
+               </p>
+             </div>
              
              {/* Country Dropdown - Visible on mobile/tablet */}
              <div className="lg:hidden max-w-md">
@@ -389,7 +419,13 @@ export function GlobalPresence() {
            {/* Map and Offices - Aligned side by side */}
            <div className="flex flex-col lg:flex-row gap-8 lg:gap-20 mb-20">
               {/* Right Column: SVG Map */}
-              <div className="lg:w-3/5 min-h-[600px] flex items-center justify-center lg:sticky lg:top-8 lg:self-start">
+              <motion.div 
+                className="lg:w-3/5 min-h-[600px] flex items-center justify-center lg:sticky lg:top-8 lg:self-start"
+                initial={{ opacity: 0, filter: "blur(10px)", x: -50 }}
+                whileInView={{ opacity: 1, filter: "blur(0px)", x: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+              >
                  <AmericasMap 
                     onSelect={(country) => {
                       setSelectedCountry(country);
@@ -399,46 +435,61 @@ export function GlobalPresence() {
                     selected={selectedCountry}
                     className="w-full max-w-[700px] mx-auto"
                  />
-              </div>
+              </motion.div>
               
               {/* Left Column: Offices Vertical Carousel */}
-              <div className="lg:w-2/5" ref={officesRef}>
-                 {/* Country header with time - Fixed */}
-                 <CountryTimeHeader 
-                   country={countryName === "Peru" ? "Perú" : countryName}
-                   timezone={currentLocations[0]?.timezone || "America/Lima"}
-                   availableCountries={countryOptions}
-                   selectedCountry={selectedCountry}
-                   onCountryChange={(country) => {
-                     setSelectedCountry(country);
-                     setScrollIndex(0);
-                   }}
-                 />
-                 
-                 {/* Vertical scroll container for offices */}
-                 <div 
-                   className="max-h-[800px] overflow-y-auto pr-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
-                 >
-                   {/* Office cards with staggered animation */}
-                   <div className="space-y-8" key={selectedCountry}>
-                     {currentLocations.map((location, idx) => (
-                       <div
-                         key={idx}
-                         className="animate-in fade-in-blur"
-                         style={{ 
-                           animationDelay: `${idx * 150}ms`
-                         }}
-                       >
-                         <LocationCard location={location} />
-                       </div>
-                     ))}
+              <motion.div 
+                className="lg:w-2/5" 
+                ref={officesRef}
+                initial={{ opacity: 0, filter: "blur(10px)", x: 50 }}
+                whileInView={{ opacity: 1, filter: "blur(0px)", x: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+              >
+                 <div className="max-w-full">
+                   {/* Country header with time - Fixed */}
+                   <CountryTimeHeader 
+                     country={countryName === "Peru" ? "Perú" : countryName}
+                     timezone={currentLocations[0]?.timezone || "America/Lima"}
+                     availableCountries={countryOptions}
+                     selectedCountry={selectedCountry}
+                     onCountryChange={(country) => {
+                       setSelectedCountry(country);
+                       setScrollIndex(0);
+                     }}
+                   />
+                   
+                   {/* Vertical scroll container for offices */}
+                   <div 
+                     className="max-h-[800px] overflow-y-auto pr-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+                   >
+                     {/* Office cards with staggered animation */}
+                     <div className="space-y-8" key={selectedCountry}>
+                       {currentLocations.map((location, idx) => (
+                         <motion.div
+                           key={idx}
+                           className="animate-in fade-in-blur"
+                           style={{ 
+                             animationDelay: `${idx * 150}ms`
+                           }}
+                         >
+                           <LocationCard location={location} />
+                         </motion.div>
+                       ))}
+                     </div>
                    </div>
                  </div>
-              </div>
+              </motion.div>
            </div>
 
            {/* CTA Block - Moved to bottom and full width */}
-           <div className="p-10 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8">
+           <motion.div 
+             className="p-10 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8"
+             initial={{ opacity: 0, filter: "blur(10px)", y: 50 }}
+             whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+             viewport={{ once: true, margin: "-50px" }}
+             transition={{ duration: 0.8, ease: "easeOut" }}
+           >
               <div className="max-w-2xl">
                 <h3 className="text-3xl md:text-4xl font-augenblick mb-4 text-black">¿Necesitas más información?</h3>
                 <p className="text-black/60 leading-relaxed text-lg md:text-xl">
@@ -447,15 +498,13 @@ export function GlobalPresence() {
               </div>
               
               <div className="w-full md:w-auto shrink-0">
-                <ContactModal 
-                  trigger={
-                    <BlackGradientButton className="w-full md:w-auto hover:!border-transparent">
-                      Contactar ahora
-                    </BlackGradientButton>
-                  }
-                />
+                <Link to="/contacto">
+                  <BlackGradientButton className="w-full md:w-auto hover:!border-transparent">
+                    Contactar ahora
+                  </BlackGradientButton>
+                </Link>
               </div>
-           </div>
+           </motion.div>
         </Container>
       </Section>
     </>

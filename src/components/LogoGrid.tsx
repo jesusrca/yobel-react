@@ -8,9 +8,9 @@ interface LogoGridProps {
 
 export function LogoGrid({ children, className }: LogoGridProps) {
   return (
-    <div className={cn("grid grid-cols-2 md:flex md:flex-wrap md:justify-between items-center gap-x-8 gap-y-12 md:gap-12", className)}>
+    <div className={cn("grid grid-cols-3 md:grid-cols-5 items-center gap-x-6 gap-y-8 md:gap-8", className)}>
       {React.Children.map(children, (child) => (
-        <div className="flex items-center justify-center w-full aspect-[4/3] md:aspect-auto md:w-auto [&>*]:scale-125 md:[&>*]:scale-100">
+        <div className="flex items-center justify-center w-full">
           {child}
         </div>
       ))}

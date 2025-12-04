@@ -42,6 +42,8 @@ export function VideoScrollSection({
 }: VideoScrollSectionProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isUserScrolling, setIsUserScrolling] = useState(false);
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // Logic scroll: controls the active index
   const { scrollYProgress } = useScroll({
@@ -53,6 +55,19 @@ export function VideoScrollSection({
     const totalPoints = data.length;
     if (totalPoints === 0) return;
 
+    // Mark as user scrolling
+    setIsUserScrolling(true);
+    
+    // Clear existing timeout
+    if (scrollTimeoutRef.current) {
+      clearTimeout(scrollTimeoutRef.current);
+    }
+    
+    // Set timeout to reset scrolling state
+    scrollTimeoutRef.current = setTimeout(() => {
+      setIsUserScrolling(false);
+    }, 2000);
+
     const segmentSize = 1 / totalPoints;
     const index = Math.min(
         Math.floor(latest / segmentSize),
@@ -61,38 +76,46 @@ export function VideoScrollSection({
     setActiveIndex(index);
   });
 
-  // Animate mask opacity from 0 to 1 as user scrolls
-  const maskOpacity = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
+  // Auto-advance effect
+  React.useEffect(() => {
+    if (isUserScrolling || data.length === 0) return;
+
+    const interval = setInterval(() => {
+      setActiveIndex((current) => (current + 1) % data.length);
+    }, 3000); // Change every 3 seconds
+
+    return () => clearInterval(interval);
+  }, [isUserScrolling, data.length]);
+
+  // Cleanup timeout on unmount
+  React.useEffect(() => {
+    return () => {
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  // Parallax effect for video
+  const parallaxY = useTransform(scrollYProgress, [0, 1], ["0%", "-20%"]);
 
   return (
     <div ref={containerRef} className={cn("relative h-[400vh] w-full", className)}>
-      <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center bg-transparent">
+      <motion.div 
+         className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center bg-transparent"
+         initial={{ opacity: 0, filter: "blur(10px)" }}
+         whileInView={{ opacity: 1, filter: "blur(0px)" }}
+         viewport={{ once: true, margin: "-50px" }}
+         transition={{ duration: 0.8, ease: "easeOut" }}
+      >
          <motion.video
-            src={videoSrc}
+            src="https://circular.ws/yobel/camion.mp4"
             className="absolute inset-0 w-full h-full object-cover"
             muted
             playsInline
             autoPlay
             loop
             preload="auto"
-            style={{
-              maskImage: `linear-gradient(to bottom, 
-                rgba(0,0,0,${maskOpacity}) 0%, 
-                rgba(0,0,0,${maskOpacity}) 100%), 
-                url("${imgImage4}")`,
-              maskSize: '100% 100%, cover',
-              maskRepeat: 'no-repeat, no-repeat',
-              maskPosition: 'center, right center',
-              maskComposite: 'intersect',
-              WebkitMaskImage: `linear-gradient(to bottom, 
-                rgba(0,0,0,1) 0%, 
-                rgba(0,0,0,1) 100%), 
-                url("${imgImage4}")`,
-              WebkitMaskSize: '100% 100%, cover',
-              WebkitMaskRepeat: 'no-repeat, no-repeat',
-              WebkitMaskPosition: 'center, right center',
-              WebkitMaskComposite: 'source-in'
-            }}
          />
 
          {/* Glass Card Overlay - Bottom Right */}
@@ -130,7 +153,7 @@ export function VideoScrollSection({
                 </div>
             </div>
          </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

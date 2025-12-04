@@ -174,86 +174,97 @@ export function FullScreenMenu({ onClose, onSearchClick }: FullScreenMenuProps) 
         </div>
       </div>
 
-      {/* Scrollable Content */}
-      <div className="flex-1 overflow-y-auto">
-        <div className="w-full max-w-[1340px] mx-auto px-[20px] md:px-[50px] pb-[100px] pt-4">
+      {/* Content - Full height without scroll */}
+      <div className="flex-1 overflow-hidden">
+        <div className="w-full max-w-[1340px] mx-auto px-[20px] md:px-[50px] h-full flex flex-col">
            
            {/* --- Desktop Layout (lg:flex) --- */}
-           <div className="hidden lg:flex w-full h-full min-h-[600px]">
-              {/* Left Col: Categories */}
-              <div className="w-[400px] xl:w-[547px] flex flex-col gap-8 pt-8">
-                 {menuItems.map((item) => (
-                    <div 
-                        key={item.id} 
-                        className="group flex items-center gap-2 cursor-pointer"
-                        onClick={() => setActiveCategory(item.title)}
-                    >
-                        <span className={cn(
-                            "text-[24px] font-medium transition-colors duration-300",
-                            activeCategory === item.title 
-                                ? "bg-gradient-to-r from-[#fff066] to-white bg-clip-text text-transparent" 
-                                : "text-white"
-                        )}>
-                            {item.id} /
-                        </span>
-                        <span className={cn(
-                            "text-[24px] font-medium transition-colors duration-300 border-b-[1.5px] border-transparent group-hover:border-white",
-                            activeCategory === item.title 
-                                ? "bg-gradient-to-r from-[#fff066] to-white bg-clip-text text-transparent" 
-                                : "text-white"
-                        )}>
-                            {item.title}
-                        </span>
-                    </div>
-                 ))}
-              </div>
+           <div className="hidden lg:flex flex-col h-full justify-between py-8">
+              {/* Main Content Area */}
+              <div className="flex flex-1 min-h-0">
+                {/* Left Col: Categories */}
+                <div className="w-[400px] xl:w-[547px] flex flex-col gap-8">
+                  {menuItems.map((item) => (
+                      <div 
+                          key={item.id} 
+                          className="group flex items-center gap-2 cursor-pointer"
+                          onClick={() => setActiveCategory(item.title)}
+                      >
+                          <span className="text-[24px] font-medium text-white transition-colors duration-300">
+                              {item.id} /
+                          </span>
+                          <span className={cn(
+                              "text-[24px] font-medium text-white transition-all duration-300 border-b-[1.5px] border-transparent group-hover:border-white",
+                              activeCategory === item.title && "border-white"
+                          )}>
+                              {item.title}
+                          </span>
+                      </div>
+                  ))}
+                </div>
 
-              {/* Right Col: Subitems */}
-              <div className="flex-1 pl-20 pt-10 border-l border-white/10 ml-12 overflow-y-auto max-h-[600px] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-                 <AnimatePresence mode="wait">
-                    <motion.div
-                        key={activeCategory}
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: 10 }}
-                        transition={{ duration: 0.2 }}
-                        className="flex flex-col gap-6"
-                    >
-                        {activeItemsDesktop.map((link, idx) => {
-                            const isServicesCategory = activeCategory === "Servicios";
-                            const isManufacturingOrValueAddedOrVAS = 
-                                link.name === "Manufactura" || 
-                                link.name === "Valor Agregado" ||
-                                link.name === "Servicio Valor Agregado";
-                            const hoverColor = (isServicesCategory && isManufacturingOrValueAddedOrVAS) 
-                                ? "hover:text-[#00BEEB]" 
-                                : "hover:text-[#fff066]";
-                            
-                            return (
-                                <Link 
-                                    key={idx} 
-                                    to={link.path}
-                                    onClick={onClose}
-                                    className={`text-[32px] font-light text-white ${hoverColor} transition-colors w-fit`}
-                                >
-                                    {link.name}
-                                </Link>
-                            );
-                        })}
-                    </motion.div>
-                 </AnimatePresence>
+                {/* Right Col: Subitems */}
+                <div className="flex-1 pl-20 border-l border-white/10 ml-12 overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                  <AnimatePresence mode="wait">
+                      <motion.div
+                          key={activeCategory}
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          exit={{ opacity: 0, x: 10 }}
+                          transition={{ duration: 0.2 }}
+                          className="flex flex-col gap-4"
+                      >
+                          {activeItemsDesktop.map((link, idx) => {
+                              const isServicesCategory = activeCategory === "Servicios";
+                              const isManufacturingOrValueAddedOrVAS = 
+                                  link.name === "Manufactura" || 
+                                  link.name === "Valor Agregado" ||
+                                  link.name === "Servicio Valor Agregado";
+                              const hoverColor = (isServicesCategory && isManufacturingOrValueAddedOrVAS) 
+                                  ? "hover:text-[#00BEEB]" 
+                                  : "hover:text-[#fff066]";
+                              
+                              return (
+                                  <Link 
+                                      key={idx} 
+                                      to={link.path}
+                                      onClick={onClose}
+                                      className={`text-[22px] font-light text-white ${hoverColor} transition-colors w-fit`}
+                                  >
+                                      {link.name}
+                                  </Link>
+                              );
+                          })}
+                      </motion.div>
+                  </AnimatePresence>
+                </div>
+              </div>
+              
+              {/* Footer Desktop Links */}
+              <div className="flex justify-between items-end gap-8 pt-8 text-white/40 text-sm border-t border-white/10 mt-8">
+                  {/* Language Selector */}
+                  <div className="flex gap-4 items-center">
+                      <p className="text-[18px] text-white/50">Selecciona tu idioma:</p>
+                      <div className="flex gap-5 items-end">
+                          <button className="box-border px-0 py-1 border-b-[0.5px] border-solid border-white text-[16px] text-white hover:opacity-70 transition-opacity">
+                              Español
+                          </button>
+                          <button className="px-0 py-1 text-[16px] text-white/50 hover:text-white transition-colors">
+                              Inglés
+                          </button>
+                      </div>
+                  </div>
+
+                  {/* Legal Links */}
+                  <div className="flex gap-4">
+                      <Link to="/terminos-y-condiciones" onClick={onClose} className="px-0 py-2 hover:text-white transition-colors">Términos y Condiciones</Link>
+                      <Link to="/libro-reclamaciones" onClick={onClose} className="px-0 py-2 hover:text-white transition-colors">Libro de Reclamaciones</Link>
+                      <Link to="/politicas-de-privacidad" onClick={onClose} className="px-0 py-2 hover:text-white transition-colors">Privacidad</Link>
+                      <Link to="/politicas-de-cookies" onClick={onClose} className="px-0 py-2 hover:text-white transition-colors">Políticas de Cookies</Link>
+                  </div>
               </div>
            </div>
            
-           {/* Footer Desktop Links */}
-           <div className="hidden lg:flex justify-end gap-8 mt-20 text-white/40 text-sm">
-                <Link to="/terminos-y-condiciones" onClick={onClose} className="hover:text-white transition-colors">Términos y Condiciones</Link>
-                <Link to="/libro-reclamaciones" onClick={onClose} className="hover:text-white transition-colors">Libro de Reclamaciones</Link>
-                <Link to="/politicas-de-privacidad" onClick={onClose} className="hover:text-white transition-colors">Privacidad</Link>
-                <Link to="/politicas-de-cookies" onClick={onClose} className="hover:text-white transition-colors">Políticas de Cookies</Link>
-           </div>
-
-
            {/* --- Mobile Layout (lg:hidden) --- */}
            <div className="flex lg:hidden flex-col gap-6 pt-4">
               {/* Mobile Search */}

@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "motion/react";
 import Slider from "react-slick";
 import imgWarehouse from "figma:asset/d507ec513ebf701c67ceec058a95047f4353b881.png";
 import imgProduction from "figma:asset/1d572db1870691a1a016c8d5eca9b8435b8b8918.png";
@@ -12,6 +13,7 @@ import imgRetail from "figma:asset/3018caa8c33f0bce1611ac9d4b39efd1e291cae3.png"
 import { Section } from "../ui/custom-section";
 import { Container } from "../ui/custom-container";
 import { SectionHeading } from "../ui/typography";
+import { ThreeColumnLayout } from "../ui/ThreeColumnLayout";
 import { cn } from "../ui/utils";
 
 const industries = [
@@ -211,20 +213,28 @@ export function Industries({ className }: { className?: string }) {
       `}</style>
 
        <Container className="max-w-[1440px] flex flex-col gap-20">
-         <div className="flex flex-col md:flex-row gap-8 items-start py-12 md:py-0">
-            <p className="text-lg text-black w-32 shrink-0 mt-2 font-augenblick">Industrias en <em>movimiento</em></p>
-            <div className="flex-grow">
-               <SectionHeading 
-                 description="Conocemos las exigencias de cada sector. Por eso, en Yobel diseñamos soluciones integradas y adaptables, alineadas a los retos y necesidades de tu industria." className="font-augenblick font-[Neue_Augenblick]"
-               >
-                 <div className="text-4xl md:text-5xl leading-tight text-black max-w-md mb-6">
-                   <p>Industrias en movimiento</p>
-                 </div>
-               </SectionHeading>
-            </div>
-         </div>
+         <motion.div
+           initial={{ opacity: 0, filter: "blur(10px)", y: 50 }}
+           whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+           viewport={{ once: true, margin: "-50px" }}
+           transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+         >
+           <ThreeColumnLayout 
+             label="Industrias"
+             title={<>INDUSTRIAS EN <em>MOVIMIENTO</em></>}
+             description="Conocemos las exigencias de cada sector. Por eso, en Yobel diseñamos soluciones integradas y adaptables, alineadas a los retos y necesidades de tu industria."
+             labelClassName="shrink-0 w-32 text-lg mt-2 opacity-50"
+           />
+         </motion.div>
 
-         <div className="w-full -mr-20 md:-mr-40 relative" onWheel={handleWheel}>
+         <motion.div 
+           className="w-full -mr-20 md:-mr-40 relative" 
+           onWheel={handleWheel}
+           initial={{ opacity: 0, filter: "blur(10px)", y: 50 }}
+           whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+           viewport={{ once: true, margin: "-50px" }}
+           transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
+         >
             {/* Left Blur Overlay - Targeted to Image Height */}
             <div className="absolute left-0 top-0 h-[60vw] md:h-[25vw] max-h-[450px] w-16 md:w-32 z-10 pointer-events-none backdrop-blur-[1px]" style={{ maskImage: 'linear-gradient(to right, black, transparent)', WebkitMaskImage: 'linear-gradient(to right, black, transparent)' }} />
             
@@ -271,7 +281,7 @@ export function Industries({ className }: { className?: string }) {
                     </div>
                 ))}
             </Slider>
-         </div>
+         </motion.div>
        </Container>
     </Section>
   );

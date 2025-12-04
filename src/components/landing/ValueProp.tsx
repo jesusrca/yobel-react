@@ -5,6 +5,34 @@ import { Section } from "../ui/custom-section";
 import { Container } from "../ui/custom-container";
 
 export function ValueProp() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.05,
+        delayChildren: 0.1
+      }
+    }
+  };
+
+  const wordVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 20, 
+      filter: "blur(8px)" 
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      filter: "blur(0px)",
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  };
+
   return (
     <Section className="bg-gradient-to-b from-[#FFF700] to-white">
       <Container className="mb-20">
@@ -33,18 +61,50 @@ export function ValueProp() {
             </motion.div>
             
             <div>
-              <h2 className="text-4xl md:text-5xl font-normal text-black mb-6 font-[Neue_Augenblick]">
-                Impulsamos tu negocio
-              </h2>
-              <p className="text-xl md:text-2xl leading-relaxed text-black font-light not-italic font-[Neue_Augenblick] max-w-2xl">
-                Desde emprendedores hasta grandes corporaciones, en Yobel diseñamos servicios flexibles y a medida que eliminan la complejidad del comercio y la logística.
-              </p>
+              <motion.h2 
+                className="text-4xl md:text-5xl font-normal text-black mb-6 font-[Neue_Augenblick] flex flex-wrap gap-x-[0.25em]"
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+              >
+                {"Impulsamos tu negocio".split(" ").map((word, i) => (
+                  <motion.span key={i} variants={wordVariants} className="inline-block">
+                    {word}
+                  </motion.span>
+                ))}
+              </motion.h2>
+              <motion.p 
+                className="text-xl md:text-2xl leading-relaxed text-black font-light not-italic font-[Neue_Augenblick] max-w-2xl flex flex-wrap gap-x-[0.25em]"
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+              >
+                {"Desde emprendedores hasta grandes corporaciones, en Yobel diseñamos servicios flexibles y a medida que eliminan la complejidad del comercio y la logística.".split(" ").map((word, i) => (
+                  <motion.span key={i} variants={wordVariants} className="inline-block">
+                    {word}
+                  </motion.span>
+                ))}
+              </motion.p>
             </div>
           </div>
 
           {/* Right Side: Search Box */}
           <div className="w-full lg:max-w-[450px] flex flex-col gap-4 shrink-0 pb-2">
-              <p className="text-lg text-[rgb(8,8,8)] font-[Neue_Augenblick]">¿Dónde está mi envío?</p>
+              <motion.p 
+                className="text-lg text-[rgb(8,8,8)] font-[Neue_Augenblick] flex flex-wrap gap-x-[0.25em]"
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+              >
+                {"¿Dónde está mi envío?".split(" ").map((word, i) => (
+                  <motion.span key={i} variants={wordVariants} className="inline-block">
+                    {word}
+                  </motion.span>
+                ))}
+              </motion.p>
               
               <button className="w-fit px-8 py-3 rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors cursor-pointer group">
                 <span className="text-xl md:text-2xl font-light font-[Neue_Augenblick]">Ingresar tu N° guía aquí</span>

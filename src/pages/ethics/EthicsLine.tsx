@@ -4,102 +4,133 @@ import { Container } from "../../components/ui/custom-container";
 import { Button } from "../../components/ui/button";
 import { ArrowUpRight, ShieldAlert } from "lucide-react";
 import { HeroGradient } from "../../components/ui/hero-gradient";
+import svgPaths from "../../imports/svg-8fprg45iht";
+import imgRectangle29 from "figma:asset/0e8ef5b66e816058eb0c8d43e027124cb6461e57.png";
 
 export function EthicsLine() {
   return (
     <>
       <HeroGradient 
-        category="Integridad"
-        title="Línea de Ética"
-        description="Un canal seguro, confidencial y anónimo para reportar preocupaciones éticas."
+        category="Línea de Ética"
+        title="Reporta una preocupación con confianza"
+        description="Este canal es confidencial, permite reportes anónimos y prohíbe cualquier represalia por denuncias hechas de buena fe. No uses este formulario para emergencias (accidentes o riesgos inmediatos): comunícate con los canales HSE."
         variant="yellow"
       />
 
       <Section className="bg-white py-16 md:py-24">
         <Container>
-          <div className="flex flex-col gap-8 items-start">
-            <div className="w-full flex justify-between items-center flex-wrap gap-4">
+          <div className="flex flex-col items-center">
+            <div className="box-border content-stretch flex flex-col gap-[60px] items-center px-[20px] md:px-[50px] py-[60px] md:py-[120px] relative w-full">
               
-              <a href="/ethics/report">
-                <Button className="font-augenblick bg-transparent border-[1.5px] border-black text-black px-8 py-6 rounded-full text-xl hover:bg-black hover:text-white transition-colors duration-500 ease-in-out gap-3 font-[Neue_Augenblick]">
-                  <ArrowUpRight className="w-5 h-5" />
-                  Ir al Canal de Denuncias
-                </Button>
-              </a>
-            </div>
-
-            <div className="w-full p-8 md:p-12 font-[Neue_Augenblick]">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-                 <div className="flex flex-col gap-6">
-                    <div className="flex items-center gap-3 mb-2">
-                       <ShieldAlert className="w-8 h-8 text-black" />
-                       <h3 className="text-3xl font-normal text-black">¿Qué reportar?</h3>
-                    </div>
-                    <p className="text-xl text-gray-600 leading-relaxed">
-                       Este canal está diseñado para recibir reportes sobre conductas que violen nuestro Código de Ética, incluyendo pero no limitado a:
-                    </p>
-                    <ul className="space-y-3">
-                       {[
-                         "Fraude, soborno o corrupción",
-                         "Conflictos de interés no declarados",
-                         "Acoso laboral o sexual",
-                         "Discriminación de cualquier tipo",
-                         "Mal uso de activos o información confidencial",
-                         "Incumplimiento de normas de seguridad y medio ambiente"
-                       ].map((item, i) => (
-                         <li key={i} className="flex items-center gap-3 text-lg text-gray-800">
-                            <div className="w-1.5 h-1.5 bg-black rounded-full" />
-                            {item}
-                         </li>
-                       ))}
-                    </ul>
-                 </div>
-
-                 <div className="flex flex-col gap-6 bg-white p-8 rounded-xl border border-gray-100 shadow-sm">
-                    <h3 className="text-2xl font-normal text-black">Nuestras Garantías</h3>
-                    <div className="flex flex-col gap-4">
-                       <div className="pb-4 border-b border-gray-100">
-                          <h4 className="font-bold text-lg mb-1">Confidencialidad</h4>
-                          <p className="text-gray-600">Toda la información es tratada con estricta reserva.</p>
-                       </div>
-                       <div className="pb-4 border-b border-gray-100">
-                          <h4 className="font-bold text-lg mb-1">Anonimato</h4>
-                          <p className="text-gray-600">Puedes elegir no revelar tu identidad si así lo deseas.</p>
-                       </div>
-                       <div className="pb-4 border-b border-gray-100">
-                          <h4 className="font-bold text-lg mb-1">No Represalias</h4>
-                          <p className="text-gray-600">Garantizamos protección contra cualquier tipo de represalia por reportar de buena fe.</p>
-                       </div>
-                       <div>
-                          <h4 className="font-bold text-lg mb-1">Gestión Independiente</h4>
-                          <p className="text-gray-600">La plataforma es administrada por Resguarda, un tercero independiente.</p>
-                       </div>
-                    </div>
-                 </div>
+              {/* Text Section */}
+              <div className="content-stretch flex flex-col lg:flex-row gap-[40px] lg:gap-[60px] items-start relative shrink-0 w-full max-w-[1340px] mx-auto">
+                <div className="content-stretch flex flex-col gap-[9px] items-start relative w-full lg:w-1/2">
+                  <p className="font-['Neue_Augenblick:Medium',sans-serif] leading-[24px] not-italic relative shrink-0 text-[24px] text-[rgba(73,73,73,0.5)] w-full">
+                    Nuestro Compromiso con la Integridad
+                  </p>
+                </div>
+                <div className="content-stretch flex gap-[20px] items-start relative w-full lg:w-1/2">
+                  <p className="basis-0 font-['Neue_Augenblick:Regular',sans-serif] grow leading-[38px] lg:leading-[48px] min-h-px min-w-px not-italic relative shrink-0 text-[28px] md:text-[35px] lg:text-[45px] text-black">
+                    En Yobel, la ética y la transparencia son pilares fundamentales de nuestra cultura.
+                  </p>
+                </div>
               </div>
 
-              <div className="mt-12 p-6 bg-[#fff066]/20 border border-[#fff066] rounded-xl">
-                 <p className="text-black/80 text-lg">
-                    <span className="font-bold">Importante:</span> Este canal no sustituye a los servicios de emergencia. Si enfrentas una situación de riesgo inminente para la vida o la seguridad, contacta a los servicios de emergencia locales o al área de HSE de inmediato.
-                 </p>
-              </div>
+              {/* Content Section */}
+              <div className="content-stretch flex flex-col lg:flex-row gap-[40px] lg:gap-[60px] items-start relative shrink-0 w-full max-w-[1340px] mx-auto">
+                {/* Image */}
+                <div className="h-[300px] lg:h-[400px] lg:sticky lg:top-24 self-start shrink-0 w-full lg:w-1/2 rounded-[20px] overflow-hidden">
+                  <img alt="Camión Yobel" className="block max-w-none size-full object-cover" src={imgRectangle29} />
+                </div>
 
-              <div className="mt-8 p-6 bg-gray-50 border border-gray-200 rounded-xl">
-                 <h4 className="font-bold text-xl mb-4 text-black">Contacto de Emergencia</h4>
-                 <div className="flex flex-col md:flex-row gap-6">
-                    <div className="flex-1">
-                       <p className="text-sm text-gray-600 mb-1">Teléfono de Emergencia</p>
-                       <a href="tel:+51987654321" className="text-2xl font-medium text-black hover:text-[#59c1e6] transition-colors">
-                          +51 987 654 321
-                       </a>
+                {/* Items Container */}
+                <div className="content-stretch flex flex-col gap-[40px] items-center justify-center relative shrink-0 w-full lg:w-1/2">
+                  <div className="content-stretch flex flex-col items-start relative shrink-0 w-full">
+                    
+                    {/* First Item - Description */}
+                    <div className="box-border content-stretch flex flex-col gap-[20px] items-start px-0 py-[30px] lg:py-[40px] relative shrink-0 w-full border-b border-[rgba(73,73,73,0.2)]">
+                      <p className="font-['Neue_Augenblick:Regular',sans-serif] leading-[24px] not-italic relative shrink-0 text-[18px] lg:text-[22px] text-[rgba(73,73,73,0.5)] w-full">
+                        En tal sentido, ponemos a disposición de nuestros colaboradores, clientes, proveedores y público en general, nuestro canal de denuncias para reportar en buena fe y de forma segura y confidencial, cualquier conducta que consideren nos ayude a prevenir y combatir:
+                      </p>
                     </div>
-                    <div className="flex-1">
-                       <p className="text-sm text-gray-600 mb-1">Correo Electrónico</p>
-                       <a href="mailto:etica@yobel.com.pe" className="text-2xl font-medium text-black hover:text-[#59c1e6] transition-colors break-all">
-                          etica@yobel.com.pe
-                       </a>
+
+                    {/* Check Items */}
+                    <div className="box-border content-stretch flex gap-[15px] lg:gap-[20px] items-start px-0 py-[30px] lg:py-[40px] relative shrink-0 w-full border-b border-[rgba(73,73,73,0.2)]">
+                      <div className="relative shrink-0 size-[32px] lg:size-[40px]">
+                        <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 40 40">
+                          <path d={svgPaths.p148cd180} stroke="black" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" />
+                        </svg>
+                      </div>
+                      <p className="basis-0 font-['Neue_Augenblick:Regular',sans-serif] grow leading-[24px] min-h-px min-w-px not-italic relative shrink-0 text-[18px] lg:text-[22px] text-black">
+                        La corrupción de funcionarios
+                      </p>
                     </div>
-                 </div>
+
+                    <div className="box-border content-stretch flex gap-[15px] lg:gap-[20px] items-start px-0 py-[30px] lg:py-[40px] relative shrink-0 w-full border-b border-[rgba(73,73,73,0.2)]">
+                      <div className="relative shrink-0 size-[32px] lg:size-[40px]">
+                        <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 40 40">
+                          <path d={svgPaths.p148cd180} stroke="black" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" />
+                        </svg>
+                      </div>
+                      <p className="basis-0 font-['Neue_Augenblick:Regular',sans-serif] grow leading-[24px] min-h-px min-w-px not-italic relative shrink-0 text-[18px] lg:text-[22px] text-black">
+                        El lavado de activos
+                      </p>
+                    </div>
+
+                    <div className="box-border content-stretch flex gap-[15px] lg:gap-[20px] items-start px-0 py-[30px] lg:py-[40px] relative shrink-0 w-full border-b border-[rgba(73,73,73,0.2)]">
+                      <div className="relative shrink-0 size-[32px] lg:size-[40px]">
+                        <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 40 40">
+                          <path d={svgPaths.p148cd180} stroke="black" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" />
+                        </svg>
+                      </div>
+                      <p className="basis-0 font-['Neue_Augenblick:Regular',sans-serif] grow leading-[24px] min-h-px min-w-px not-italic relative shrink-0 text-[18px] lg:text-[22px] text-black">
+                        El financiamiento del terrorismo
+                      </p>
+                    </div>
+
+                    <div className="box-border content-stretch flex gap-[15px] lg:gap-[20px] items-start px-0 py-[30px] lg:py-[40px] relative shrink-0 w-full border-b border-[rgba(73,73,73,0.2)]">
+                      <div className="relative shrink-0 size-[32px] lg:size-[40px]">
+                        <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 40 40">
+                          <path d={svgPaths.p148cd180} stroke="black" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" />
+                        </svg>
+                      </div>
+                      <p className="basis-0 font-['Neue_Augenblick:Regular',sans-serif] grow leading-[24px] min-h-px min-w-px not-italic relative shrink-0 text-[18px] lg:text-[22px] text-black">
+                        El tráfico de influencias
+                      </p>
+                    </div>
+
+                    <div className="box-border content-stretch flex gap-[15px] lg:gap-[20px] items-start px-0 py-[30px] lg:py-[40px] relative shrink-0 w-full border-b border-[rgba(73,73,73,0.2)]">
+                      <div className="relative shrink-0 size-[32px] lg:size-[40px]">
+                        <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 40 40">
+                          <path d={svgPaths.p148cd180} stroke="black" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" />
+                        </svg>
+                      </div>
+                      <p className="basis-0 font-['Neue_Augenblick:Regular',sans-serif] grow leading-[24px] min-h-px min-w-px not-italic relative shrink-0 text-[18px] lg:text-[22px] text-black">
+                        Las prácticas que atenten contra la libre competencia
+                      </p>
+                    </div>
+
+                    <div className="box-border content-stretch flex gap-[15px] lg:gap-[20px] items-start px-0 py-[30px] lg:py-[40px] relative shrink-0 w-full border-b border-[rgba(73,73,73,0.2)]">
+                      <div className="relative shrink-0 size-[32px] lg:size-[40px]">
+                        <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 40 40">
+                          <path d={svgPaths.p148cd180} stroke="black" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" />
+                        </svg>
+                      </div>
+                      <p className="basis-0 font-['Neue_Augenblick:Regular',sans-serif] grow leading-[24px] min-h-px min-w-px not-italic relative shrink-0 text-[18px] lg:text-[22px] text-black">
+                        Cualquier otra conducta que vulnere nuestro código de ética o políticas de prevención
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Button */}
+                  <a href="/ethics/report" className="w-full flex justify-center lg:justify-start">
+                    <div className="box-border content-stretch flex gap-[12px] items-center justify-center px-[24px] py-[14px] lg:p-[16px] relative rounded-[30px] shrink-0 border-[1.5px] border-black hover:bg-black hover:text-white transition-colors duration-300 cursor-pointer">
+                      <p className="font-['Neue_Augenblick:Medium',sans-serif] leading-[24px] not-italic relative shrink-0 text-[20px] lg:text-[24px] text-center text-nowrap whitespace-pre">
+                        Crear Reporte
+                      </p>
+                    </div>
+                  </a>
+                </div>
               </div>
             </div>
           </div>

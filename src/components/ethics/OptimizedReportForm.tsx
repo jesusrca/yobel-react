@@ -169,50 +169,31 @@ export function OptimizedReportForm() {
   // Step 1 State
   const [reportType, setReportType] = useState<string>("");
   const [categories, setCategories] = useState<string[]>([]);
-  const [hasImmediateRisk, setHasImmediateRisk] = useState<string>("");
-  const [description, setDescription] = useState<string>("");
+  const [otherCategory, setOtherCategory] = useState<string>("");
+  const [reporterName, setReporterName] = useState<string>("");
+  const [reporterEmail, setReporterEmail] = useState<string>("");
+  const [reporterPhone, setReporterPhone] = useState<string>("");
+  const [companyRelation, setCompanyRelation] = useState<string>("");
 
-  // Step 2 State
-  const [selectedCountries, setSelectedCountries] = useState<string[]>([]);
-  const [city, setCity] = useState<string>("");
+  // Step 2 State - Información de la Denuncia
   const [incidentDate, setIncidentDate] = useState<string>("");
-  const [incidentTime, setIncidentTime] = useState<string>("");
-  const [frequency, setFrequency] = useState<string>("");
-  const [area, setArea] = useState<string>("");
-  const [involved, setInvolved] = useState<string>("");
-
-  // Step 3 State
-  const [reportTitle, setReportTitle] = useState<string>("");
-  const [detailedDescription, setDetailedDescription] = useState<string>("");
+  const [incidentCountry, setIncidentCountry] = useState<string>("");
+  const [incidentCity, setIncidentCity] = useState<string>("");
+  const [incidentArea, setIncidentArea] = useState<string>("");
   const [personsInvolved, setPersonsInvolved] = useState<string>("");
-  const [relationWithYobel, setRelationWithYobel] = useState<string[]>([]);
-  const [otherRelation, setOtherRelation] = useState<string>("");
-  const [hasReportedBefore, setHasReportedBefore] = useState<string>("");
-  const [reportedToWhom, setReportedToWhom] = useState<string>("");
-  const [estimatedImpact, setEstimatedImpact] = useState<string[]>([]);
+  const [detailedDescription, setDetailedDescription] = useState<string>("");
 
-  // Step 4 State
+  // Step 3 State - Evidencia y Declaración
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
-  const [fileUrl, setFileUrl] = useState<string>("");
-  const [hasMoreFiles, setHasMoreFiles] = useState<string>("");
-  const [contactName, setContactName] = useState<string>("");
-
-  // Step 5 State
-  const [userName, setUserName] = useState<string>("");
-  const [userEmail, setUserEmail] = useState<string>("");
-  const [confirmations, setConfirmations] = useState<string[]>([]);
+  const [declarations, setDeclarations] = useState<string[]>([]);
 
   const reportCategories = [
-    "Corrupción / soborno",
-    "Fraude / malversación",
-    "Acoso / discriminación",
-    "Seguridad y salud (HSE)",
-    "Privacidad y datos personales",
-    "Conflicto de interés",
-    "Uso indebido de activos",
-    "Incumplimiento regulatorio",
-    "Medio ambiente",
-    "Otra"
+    "Corrupción",
+    "Lavado de Activos",
+    "Financiamiento del Terrorismo",
+    "Tráfico de Influencias",
+    "Prácticas contra la Libre Competencia",
+    "Otros (favor de especificar)"
   ];
 
   const countries = [
@@ -271,40 +252,24 @@ export function OptimizedReportForm() {
   }, []);
 
   const toggleCountry = useCallback((country: string) => {
-    setSelectedCountries(prev => 
-      prev.includes(country) 
-        ? prev.filter(c => c !== country)
-        : [...prev, country]
+    setIncidentCountry(country);
+  }, []);
+
+  const toggleDeclaration = useCallback((declaration: string) => {
+    setDeclarations(prev => 
+      prev.includes(declaration) 
+        ? prev.filter(d => d !== declaration)
+        : [...prev, declaration]
     );
   }, []);
 
-  const toggleRelation = useCallback((relation: string) => {
-    setRelationWithYobel(prev => 
-      prev.includes(relation) 
-        ? prev.filter(r => r !== relation)
-        : [...prev, relation]
-    );
-  }, []);
-
-  const toggleImpact = useCallback((impact: string) => {
-    setEstimatedImpact(prev => 
-      prev.includes(impact) 
-        ? prev.filter(i => i !== impact)
-        : [...prev, impact]
-    );
-  }, []);
-
-  const toggleConfirmation = useCallback((confirmation: string) => {
-    setConfirmations(prev => 
-      prev.includes(confirmation) 
-        ? prev.filter(c => c !== confirmation)
-        : [...prev, confirmation]
-    );
-  }, []);
-
-  const handleFileUpload = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      const newFiles = Array.from(e.target.files);
+  const handleFileUpload = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+    if (files) {
+      const newFiles = Array.from(files).filter(file => {
+        const validTypes = ['application/pdf', 'image/jpeg', 'image/jpg', 'image/png', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+        return validTypes.includes(file.type);
+      });
       setUploadedFiles(prev => [...prev, ...newFiles]);
     }
   }, []);
@@ -314,7 +279,7 @@ export function OptimizedReportForm() {
   }, []);
 
   const handleNextStep = useCallback(() => {
-    if (currentStep < 5) {
+    if (currentStep < 3) {
       setCurrentStep(prev => prev + 1);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -381,81 +346,62 @@ export function OptimizedReportForm() {
     addText('Tipo de Reporte', 14, 'bold');
     addSpace(8);
     
-    addText('¿Deseas reportar de forma anónima o identificada?', 10, 'normal', [120, 120, 120]);
-    addSpace(4);
-    addText(reportType ? (reportType === "anonymous" ? "Anónima" : "Identificada") : "No especificado", 11, 'normal');
-    addSpace(8);
-    
     addText('Categorías del reporte', 10, 'normal', [120, 120, 120]);
     addSpace(4);
     addText(categories.length > 0 ? categories.join(", ") : "No especificado", 11, 'normal');
     addSpace(8);
     
-    addText('¿Existe riesgo inmediato para la salud, seguridad o medio ambiente?', 10, 'normal', [120, 120, 120]);
+    if (otherCategory) {
+      addText('Otra categoría', 10, 'normal', [120, 120, 120]);
+      addSpace(4);
+      addText(otherCategory, 11, 'normal');
+      addSpace(8);
+    }
+    
+    addText('Nombre del reportante', 10, 'normal', [120, 120, 120]);
     addSpace(4);
-    addText(hasImmediateRisk || "No especificado", 11, 'normal');
+    addText(reporterName || "No proporcionado", 11, 'normal');
     addSpace(8);
     
-    addText('Descripción del incidente', 10, 'normal', [120, 120, 120]);
+    addText('Correo electrónico del reportante', 10, 'normal', [120, 120, 120]);
     addSpace(4);
-    addText(description || "No proporcionado", 11, 'normal');
+    addText(reporterEmail || "No proporcionado", 11, 'normal');
+    addSpace(8);
+    
+    addText('Teléfono del reportante', 10, 'normal', [120, 120, 120]);
+    addSpace(4);
+    addText(reporterPhone || "No proporcionado", 11, 'normal');
+    addSpace(8);
+    
+    addText('Relación con la empresa', 10, 'normal', [120, 120, 120]);
+    addSpace(4);
+    addText(companyRelation || "No especificado", 11, 'normal');
     addSpace(8);
     
     addDivider();
     
-    // Section 2: Ubicación y Tiempo
-    addText('Ubicación y Tiempo', 14, 'bold');
+    // Section 2: Información de la Denuncia
+    addText('Información de la Denuncia', 14, 'bold');
     addSpace(8);
     
-    addText('¿En qué país(es) ocurrió el incidente?', 10, 'normal', [120, 120, 120]);
-    addSpace(4);
-    addText(selectedCountries.length > 0 ? selectedCountries.join(", ") : "No especificado", 11, 'normal');
-    addSpace(8);
-    
-    addText('Ciudad', 10, 'normal', [120, 120, 120]);
-    addSpace(4);
-    addText(city || "No proporcionado", 11, 'normal');
-    addSpace(8);
-    
-    addText('Fecha del incidente', 10, 'normal', [120, 120, 120]);
+    addText('Fecha de los hechos', 10, 'normal', [120, 120, 120]);
     addSpace(4);
     addText(incidentDate || "No especificado", 11, 'normal');
     addSpace(8);
     
-    addText('Hora aproximada', 10, 'normal', [120, 120, 120]);
+    addText('País donde ocurrieron los hechos', 10, 'normal', [120, 120, 120]);
     addSpace(4);
-    addText(incidentTime || "No especificado", 11, 'normal');
+    addText(incidentCountry || "No especificado", 11, 'normal');
     addSpace(8);
     
-    addText('¿Con qué frecuencia ocurre?', 10, 'normal', [120, 120, 120]);
+    addText('Ciudad', 10, 'normal', [120, 120, 120]);
     addSpace(4);
-    addText(frequency || "No especificado", 11, 'normal');
+    addText(incidentCity || "No proporcionado", 11, 'normal');
     addSpace(8);
     
-    addText('Área involucrada', 10, 'normal', [120, 120, 120]);
+    addText('Área o Departamento', 10, 'normal', [120, 120, 120]);
     addSpace(4);
-    addText(area || "No proporcionado", 11, 'normal');
-    addSpace(8);
-    
-    addText('¿Cuántas personas están involucradas?', 10, 'normal', [120, 120, 120]);
-    addSpace(4);
-    addText(involved || "No especificado", 11, 'normal');
-    addSpace(8);
-    
-    addDivider();
-    
-    // Section 3: Descripción Detallada
-    addText('Descripción Detallada', 14, 'bold');
-    addSpace(8);
-    
-    addText('Título del reporte', 10, 'normal', [120, 120, 120]);
-    addSpace(4);
-    addText(reportTitle || "No proporcionado", 11, 'normal');
-    addSpace(8);
-    
-    addText('Correlación detallada', 10, 'normal', [120, 120, 120]);
-    addSpace(4);
-    addText(detailedDescription || "No proporcionado", 11, 'normal');
+    addText(incidentArea || "No proporcionado", 11, 'normal');
     addSpace(8);
     
     addText('Personas involucradas', 10, 'normal', [120, 120, 120]);
@@ -463,108 +409,47 @@ export function OptimizedReportForm() {
     addText(personsInvolved || "No proporcionado", 11, 'normal');
     addSpace(8);
     
-    addText('Relación con Yobel', 10, 'normal', [120, 120, 120]);
+    addText('Descripción detallada de los hechos', 10, 'normal', [120, 120, 120]);
     addSpace(4);
-    addText(relationWithYobel.length > 0 ? relationWithYobel.join(", ") : "No especificado", 11, 'normal');
-    addSpace(8);
-    
-    if (otherRelation) {
-      addText('Otra relación', 10, 'normal', [120, 120, 120]);
-      addSpace(4);
-      addText(otherRelation, 11, 'normal');
-      addSpace(8);
-    }
-    
-    addText('¿Ha reportado este incidente antes?', 10, 'normal', [120, 120, 120]);
-    addSpace(4);
-    addText(hasReportedBefore || "No especificado", 11, 'normal');
-    addSpace(8);
-    
-    if (reportedToWhom) {
-      addText('¿A quién reportó?', 10, 'normal', [120, 120, 120]);
-      addSpace(4);
-      addText(reportedToWhom, 11, 'normal');
-      addSpace(8);
-    }
-    
-    addText('Impacto estimado', 10, 'normal', [120, 120, 120]);
-    addSpace(4);
-    addText(estimatedImpact.length > 0 ? estimatedImpact.join(", ") : "No especificado", 11, 'normal');
+    addText(detailedDescription || "No proporcionado", 11, 'normal');
     addSpace(8);
     
     addDivider();
     
-    // Section 4: Evidencia
-    addText('Evidencia y Archivos', 14, 'bold');
+    // Section 3: Evidencia y Declaración
+    addText('Evidencia y Declaración', 14, 'bold');
     addSpace(8);
     
-    addText('Archivos adjuntos', 10, 'normal', [120, 120, 120]);
-    addSpace(4);
     if (uploadedFiles.length > 0) {
+      addText('Archivos adjuntos', 10, 'normal', [120, 120, 120]);
+      addSpace(4);
       uploadedFiles.forEach(file => {
-        addText(`• ${file.name}`, 11, 'normal');
+        addText(`• ${file.name}`, 10, 'normal');
         addSpace(4);
       });
+      addSpace(4);
     } else {
+      addText('Archivos adjuntos', 10, 'normal', [120, 120, 120]);
+      addSpace(4);
       addText('No se adjuntaron archivos', 11, 'normal');
-    }
-    addSpace(4);
-    
-    addText('URL de archivos adicionales', 10, 'normal', [120, 120, 120]);
-    addSpace(4);
-    addText(fileUrl || "No proporcionado", 11, 'normal');
-    addSpace(8);
-    
-    addText('¿Tiene más archivos para compartir?', 10, 'normal', [120, 120, 120]);
-    addSpace(4);
-    addText(hasMoreFiles || "No especificado", 11, 'normal');
-    addSpace(8);
-    
-    addText('Contacto para más información', 10, 'normal', [120, 120, 120]);
-    addSpace(4);
-    addText(contactName || "No proporcionado", 11, 'normal');
-    addSpace(8);
-    
-    addDivider();
-    
-    // Section 5: Datos del Reportante
-    addText('Datos del Reportante', 14, 'bold');
-    addSpace(8);
-    
-    if (reportType === "identified") {
-      addText('Nombre completo', 10, 'normal', [120, 120, 120]);
-      addSpace(4);
-      addText(userName || "No proporcionado", 11, 'normal');
-      addSpace(8);
-      
-      addText('Correo electrónico', 10, 'normal', [120, 120, 120]);
-      addSpace(4);
-      addText(userEmail || "No proporcionado", 11, 'normal');
-      addSpace(8);
-    } else {
-      addText('Reporte anónimo', 11, 'italic', [120, 120, 120]);
       addSpace(8);
     }
     
     addDivider();
     
-    // Confirmations
-    if (confirmations.length > 0) {
-      addText('Confirmaciones', 14, 'bold');
+    // Declarations
+    if (declarations.length > 0) {
+      addText('Declaraciones', 14, 'bold');
       addSpace(8);
-      confirmations.forEach(confirmation => {
-        addText(`✓ ${confirmation}`, 10, 'normal');
+      declarations.forEach(declaration => {
+        addText(`✓ ${declaration}`, 10, 'normal');
         addSpace(6);
       });
     }
     
-    // Footer
-    addSpace(12);
-    addText('Yobel Supply Chain Management', 10, 'normal', [120, 120, 120]);
-    
     // Save PDF
     pdf.save(`Reporte_${reportCode}.pdf`);
-  }, [reportCode, reportType, categories, hasImmediateRisk, description, selectedCountries, city, incidentDate, incidentTime, frequency, area, involved, reportTitle, detailedDescription, personsInvolved, relationWithYobel, otherRelation, hasReportedBefore, reportedToWhom, estimatedImpact, fileUrl, uploadedFiles, hasMoreFiles, contactName, userName, userEmail, confirmations]);
+  }, [reportCode, categories, otherCategory, reporterName, reporterEmail, reporterPhone, companyRelation, incidentDate, incidentCountry, incidentCity, incidentArea, personsInvolved, detailedDescription, uploadedFiles, declarations]);
 
   const handleSubmit = useCallback(() => {
     const code = generateReportCode();
@@ -579,11 +464,9 @@ export function OptimizedReportForm() {
 
   const getStepTitle = () => {
     switch(currentStep) {
-      case 1: return "01 / Tipo de Reporte";
-      case 2: return "02 / Dónde y cuándo ocurrió";
-      case 3: return "03 / Describe lo sucedido";
-      case 4: return "04 / Evidencia y archivos";
-      case 5: return "05 / Tus datos y confidencialidad";
+      case 1: return "01 / Categoría del ilícito e información del denunciante";
+      case 2: return "02 / Información de la denuncia";
+      case 3: return "03 / Evidencia y declaración";
       default: return "";
     }
   };
@@ -592,9 +475,7 @@ export function OptimizedReportForm() {
     switch(currentStep) {
       case 1: return "Este canal es confidencial, permite reportes anónimos y prohíbe cualquier represalia por denuncias hechas de buena fe.";
       case 2: return "Proporciona los detalles de ubicación y tiempo para contextualizar el incidente reportado.";
-      case 3: return "Título del reporte";
-      case 4: return "Se aceptan PNG/JPG/JPEG max 20 MB c/u";
-      case 5: return "Completa estos datos para crear tu usuario";
+      case 3: return "Adjunta evidencia relevante y confirma tu conocimiento de las políticas.";
       default: return "";
     }
   };
@@ -673,7 +554,7 @@ export function OptimizedReportForm() {
           <div className="content-stretch flex flex-col lg:flex-row gap-[40px] lg:gap-[133px] items-start relative shrink-0 w-full max-w-[1340px]">
             <div className="content-stretch flex flex-col gap-[9px] items-center relative shrink-0 w-full lg:w-[547px] order-2 lg:order-1">
               <p className="font-['Neue_Augenblick:Medium',sans-serif] leading-[24px] not-italic relative shrink-0 text-[24px] text-[rgba(73,73,73,0.5)] w-full">
-                Línea de Ética
+                A continuación, por favor, completa los campos con la información de la denuncia y nuestro equipo de cumplimiento se encargará de la investigación en el mas breve plazo. Si deseas, puedes hacerla de forma anónima, pero proporcionar tus datos nos permitirá contactarte en caso necesitemos más detalles.
               </p>
             </div>
             <div className="content-stretch flex gap-[20px] items-start relative shrink-0 w-full lg:w-[547px] order-1 lg:order-2">
@@ -688,9 +569,7 @@ export function OptimizedReportForm() {
             <div className="content-stretch flex flex-col gap-[60px] items-start relative shrink-0 w-full lg:w-[547px] order-2 lg:order-1">
               {/* Información del canal */}
               <div className="content-stretch flex flex-col gap-[8px] items-start relative shrink-0 w-full">
-                <p className="font-['Neue_Augenblick:Medium',sans-serif] leading-[28px] not-italic relative shrink-0 text-[20px] text-black w-full">
-                  {getStepDescription()}
-                </p>
+                {/* Removed paragraph */}
               </div>
             </div>
 
@@ -700,40 +579,10 @@ export function OptimizedReportForm() {
               {/* STEP 1 - Tipo de Reporte */}
               {currentStep === 1 && (
                 <>
-                  {/* Report Type */}
-                  <div className="content-stretch flex flex-col gap-[8px] items-start relative shrink-0 w-full">
-                    <p className="font-['Neue_Augenblick:Medium',sans-serif] leading-[18px] not-italic relative shrink-0 text-[16px] text-[rgba(73,73,73,0.5)] whitespace-pre-wrap">
-                      <span>¿Deseas reportar de forma anónima o identificada? </span>
-                      <span className="text-[#59c1e6]">*</span>
-                    </p>
-                    <div className="content-stretch flex flex-col gap-[4px] items-start relative shrink-0 w-full">
-                      <RadioItem 
-                        label="Anónima" 
-                        checked={reportType === "anonymous"}
-                        onChange={() => setReportType("anonymous")}
-                      />
-                      <RadioItem 
-                        label="Identificada" 
-                        checked={reportType === "identified"}
-                        onChange={() => setReportType("identified")}
-                      />
-                    </div>
-                    <div className="content-stretch flex gap-[12px] items-center relative shrink-0 w-full mt-2">
-                      <div className="relative shrink-0 size-[20px]">
-                        <svg className="block size-full" fill="none" viewBox="0 0 20 20">
-                          <path d="M4 10l4 4 8-8" stroke="#000000" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.6" />
-                        </svg>
-                      </div>
-                      <p className="basis-0 font-['Neue_Augenblick:Medium',sans-serif] grow leading-[18px] min-h-px min-w-px not-italic relative shrink-0 text-[16px] text-[rgba(73,73,73,0.5)]">
-                        Si respondes "Sí", te mostraremos los canales HSE de contacto inmediato.
-                      </p>
-                    </div>
-                  </div>
-
                   {/* Categories */}
                   <div className="content-stretch flex flex-col gap-[8px] items-start relative shrink-0 w-full">
                     <p className="font-['Neue_Augenblick:Medium',sans-serif] leading-[18px] not-italic relative shrink-0 text-[16px] text-[rgba(73,73,73,0.5)] whitespace-pre-wrap">
-                      <span>Categoría del reporte </span>
+                      <span>Categoría del ilícito denunciado </span>
                       <span className="text-[#59c1e6]">*</span>
                     </p>
                     <div className="content-stretch flex flex-col gap-[4px] items-start relative shrink-0 w-full">
@@ -746,59 +595,86 @@ export function OptimizedReportForm() {
                         />
                       ))}
                     </div>
+                    {categories.includes("Otros (favor de especificar)") && (
+                      <div className="box-border content-stretch flex gap-[20px] items-start px-0 py-[8px] relative w-full mt-2">
+                        <div 
+                          aria-hidden="true" 
+                          className="absolute border-[0px_0px_1.5px] border-black border-solid bottom-[-0.75px] left-0 pointer-events-none right-0 top-0 transition-colors duration-300 focus-within:border-[#59c1e6]" 
+                        />
+                        <input
+                          type="text"
+                          value={otherCategory}
+                          onChange={(e) => setOtherCategory(e.target.value)}
+                          placeholder="Especificar"
+                          className="basis-0 flex flex-col font-['Neue_Augenblick:Medium',sans-serif] grow justify-center leading-[24px] min-h-px min-w-px not-italic relative shrink-0 text-[24px] text-black bg-transparent border-none outline-none w-full placeholder:text-[rgba(0,0,0,0.3)]"
+                        />
+                      </div>
+                    )}
                   </div>
 
-                  {/* Immediate Risk */}
+                  {/* Reporter Information (Optional) */}
                   <div className="content-stretch flex flex-col gap-[8px] items-start relative shrink-0 w-full">
                     <p className="font-['Neue_Augenblick:Medium',sans-serif] leading-[18px] not-italic relative shrink-0 text-[16px] text-[rgba(73,73,73,0.5)] whitespace-pre-wrap">
-                      <span>¿Existe riesgo inmediato para la seguridad o la salud? </span>
-                      <span className="text-[#59c1e6]">*</span>
+                      Información del Denunciante (Opcional)
+                    </p>
+                  </div>
+
+                  {/* Reporter Name */}
+                  <TextInput
+                    label="Nombre Completo"
+                    placeholder=""
+                    value={reporterName}
+                    onChange={setReporterName}
+                  />
+
+                  {/* Reporter Email */}
+                  <TextInput
+                    label="Correo Electrónico"
+                    placeholder=""
+                    value={reporterEmail}
+                    onChange={setReporterEmail}
+                    type="email"
+                  />
+
+                  {/* Reporter Phone */}
+                  <TextInput
+                    label="Teléfono de Contacto"
+                    placeholder=""
+                    value={reporterPhone}
+                    onChange={setReporterPhone}
+                  />
+
+                  {/* Company Relation */}
+                  <div className="content-stretch flex flex-col gap-[8px] items-start relative shrink-0 w-full">
+                    <p className="font-['Neue_Augenblick:Medium',sans-serif] leading-[18px] not-italic relative shrink-0 text-[16px] text-[rgba(73,73,73,0.5)] whitespace-pre-wrap">
+                      Relación con la Empresa
                     </p>
                     <div className="content-stretch flex flex-col gap-[4px] items-start relative shrink-0 w-full">
                       <RadioItem 
-                        label="Si" 
-                        checked={hasImmediateRisk === "yes"}
-                        onChange={() => setHasImmediateRisk("yes")}
+                        label="Empleado" 
+                        checked={companyRelation === "Empleado"}
+                        onChange={() => setCompanyRelation("Empleado")}
                       />
                       <RadioItem 
-                        label="No" 
-                        checked={hasImmediateRisk === "no"}
-                        onChange={() => setHasImmediateRisk("no")}
+                        label="Ex-empleado" 
+                        checked={companyRelation === "Ex-empleado"}
+                        onChange={() => setCompanyRelation("Ex-empleado")}
                       />
-                    </div>
-                    <div className="content-stretch flex gap-[12px] items-center relative shrink-0 w-full mt-2">
-                      <div className="relative shrink-0 size-[20px]">
-                        <svg className="block size-full" fill="none" viewBox="0 0 20 20">
-                          <path d="M4 10l4 4 8-8" stroke="#000000" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.6" />
-                        </svg>
-                      </div>
-                      <p className="basis-0 font-['Neue_Augenblick:Medium',sans-serif] grow leading-[18px] min-h-px min-w-px not-italic relative shrink-0 text-[16px] text-[rgba(73,73,73,0.5)]">
-                        Si respondes "Sí", te mostraremos los canales HSE de contacto inmediato.
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Description */}
-                  <div className="content-stretch flex flex-col gap-[14px] items-start relative shrink-0 w-full">
-                    <p className="font-['Neue_Augenblick:Medium',sans-serif] leading-[18px] not-italic relative shrink-0 text-[16px] text-[rgba(73,73,73,0.5)] whitespace-pre-wrap">
-                      <span>Descripción del incidente </span>
-                      <span className="text-[#59c1e6]">*</span>
-                    </p>
-                    <div className="h-[233px] relative rounded-[20px] shrink-0 w-full">
-                      <div 
-                        aria-hidden="true" 
-                        className="absolute border-[1.5px] border-black border-solid inset-[-0.75px] pointer-events-none rounded-[20.75px] transition-colors duration-300 focus-within:border-[#59c1e6]" 
+                      <RadioItem 
+                        label="Cliente" 
+                        checked={companyRelation === "Cliente"}
+                        onChange={() => setCompanyRelation("Cliente")}
                       />
-                      <div className="size-full">
-                        <div className="box-border content-stretch flex gap-[20px] h-[233px] items-start p-[14px] relative w-full">
-                          <textarea
-                            value={description}
-                            onChange={(e) => setDescription(e.target.value)}
-                            placeholder="Describe lo sucedido con el mayor detalle posible..."
-                            className="basis-0 flex flex-col font-['Neue_Augenblick:Medium',sans-serif] grow justify-center leading-[24px] min-h-px min-w-px not-italic relative shrink-0 text-[24px] text-black bg-transparent border-none outline-none w-full resize-none placeholder:text-[rgba(0,0,0,0.3)]"
-                          />
-                        </div>
-                      </div>
+                      <RadioItem 
+                        label="Proveedor" 
+                        checked={companyRelation === "Proveedor"}
+                        onChange={() => setCompanyRelation("Proveedor")}
+                      />
+                      <RadioItem 
+                        label="Tercero" 
+                        checked={companyRelation === "Tercero"}
+                        onChange={() => setCompanyRelation("Tercero")}
+                      />
                     </div>
                   </div>
                 </>
@@ -818,7 +694,7 @@ export function OptimizedReportForm() {
                         <CheckboxItem
                           key={country}
                           label={country}
-                          checked={selectedCountries.includes(country)}
+                          checked={incidentCountry === country}
                           onChange={() => toggleCountry(country)}
                         />
                       ))}
@@ -829,8 +705,8 @@ export function OptimizedReportForm() {
                   <TextInput
                     label="Ciudad / Sede"
                     placeholder="Ej. CD San Genaro, Lima"
-                    value={city}
-                    onChange={setCity}
+                    value={incidentCity}
+                    onChange={setIncidentCity}
                     required
                   />
 
@@ -844,81 +720,48 @@ export function OptimizedReportForm() {
                     required
                   />
 
-                  {/* Time */}
-                  <TextInput
-                    label="Hora"
-                    placeholder="00:00 hrs"
-                    value={incidentTime}
-                    onChange={setIncidentTime}
-                    type="time"
-                  />
-
-                  {/* Frequency */}
-                  <div className="content-stretch flex flex-col gap-[8px] items-start relative shrink-0 w-full">
-                    <p className="font-['Neue_Augenblick:Medium',sans-serif] leading-[18px] not-italic relative shrink-0 text-[16px] text-[rgba(73,73,73,0.5)] whitespace-pre-wrap">
-                      <span>Frecuencia </span>
-                      <span className="text-[#59c1e6]">*</span>
-                    </p>
-                    <div className="content-stretch flex flex-col gap-[4px] items-start relative shrink-0 w-full">
-                      <RadioItem 
-                        label="Ocurrió una sola vez" 
-                        checked={frequency === "once"}
-                        onChange={() => setFrequency("once")}
-                      />
-                      <RadioItem 
-                        label="Ocurre con frecuencia" 
-                        checked={frequency === "frequent"}
-                        onChange={() => setFrequency("frequent")}
-                      />
-                      <RadioItem 
-                        label="Anónima" 
-                        checked={frequency === "anonymous"}
-                        onChange={() => setFrequency("anonymous")}
-                      />
-                    </div>
-                  </div>
-
                   {/* Area */}
                   <SelectInput
                     label="Área / Terreno relacionado"
                     placeholder="Seleccione área"
-                    value={area}
-                    onChange={setArea}
+                    value={incidentArea}
+                    onChange={setIncidentArea}
                     options={areas}
                     required
                   />
 
-                  {/* Involved */}
-                  <TextInput
-                    label="Específique involucrado"
-                    placeholder="Ej. Oficina"
-                    value={involved}
-                    onChange={setInvolved}
-                    required
-                  />
-                </>
-              )}
-
-              {/* STEP 3 - Describe lo sucedido */}
-              {currentStep === 3 && (
-                <>
-                  {/* Report Title */}
-                  <TextInput
-                    label="Ej.: Presunto conflicto de interés en procesos de compras."
-                    placeholder=""
-                    value={reportTitle}
-                    onChange={setReportTitle}
-                    required
-                  />
+                  {/* Persons Involved */}
+                  <div className="content-stretch flex flex-col gap-[8px] items-start relative shrink-0 w-full">
+                    <p className="font-['Neue_Augenblick:Medium',sans-serif] leading-[18px] not-italic relative shrink-0 text-[16px] text-[rgba(73,73,73,0.5)] whitespace-pre-wrap">
+                      <span>Personas Involucradas </span>
+                      <span className="text-[#59c1e6]">*</span>
+                    </p>
+                    <div className="flex flex-col font-['Neue_Augenblick:Regular',sans-serif] justify-center leading-[0] min-w-full not-italic relative shrink-0 text-[18px] text-black w-[min-content]">
+                      <p className="leading-[22px]">(Nombre(s) y cargo(s) de las personas o entidades)</p>
+                    </div>
+                    <div className="box-border content-stretch flex gap-[20px] items-start px-0 py-[8px] relative w-full">
+                      <div 
+                        aria-hidden="true" 
+                        className="absolute border-[0px_0px_1.5px] border-black border-solid bottom-[-0.75px] left-0 pointer-events-none right-0 top-0 transition-colors duration-300 focus-within:border-[#59c1e6]" 
+                      />
+                      <input
+                        type="text"
+                        value={personsInvolved}
+                        onChange={(e) => setPersonsInvolved(e.target.value)}
+                        placeholder="Ej. Juan Pérez - Gerente de Ventas"
+                        className="basis-0 flex flex-col font-['Neue_Augenblick:Medium',sans-serif] grow justify-center leading-[24px] min-h-px min-w-px not-italic relative shrink-0 text-[24px] text-black bg-transparent border-none outline-none w-full placeholder:text-[rgba(0,0,0,0.3)]"
+                      />
+                    </div>
+                  </div>
 
                   {/* Detailed Description */}
                   <div className="content-stretch flex flex-col gap-[14px] items-start relative shrink-0 w-full">
                     <p className="font-['Neue_Augenblick:Medium',sans-serif] leading-[18px] not-italic relative shrink-0 text-[16px] text-[rgba(73,73,73,0.5)] whitespace-pre-wrap">
-                      <span>Correlación detallada </span>
+                      <span>Descripción Detallada de los Hechos </span>
                       <span className="text-[#59c1e6]">*</span>
                     </p>
                     <div className="flex flex-col font-['Neue_Augenblick:Regular',sans-serif] justify-center leading-[0] min-w-full not-italic relative shrink-0 text-[18px] text-black w-[min-content]">
-                      <p className="leading-[22px]">¿Qué ocurrió? ¿Quiénes estuvieron involucrados? ¿Cuándo y dónde? ¿Cómo lo supiste?</p>
+                      <p className="leading-[22px]">(Por favor, proporciona la mayor cantidad de información posible. Incluye cómo, cuándo y por qué crees que ocurrió el ilícito.)</p>
                     </div>
                     <div className="h-[233px] relative rounded-[20px] shrink-0 w-full">
                       <div 
@@ -937,115 +780,35 @@ export function OptimizedReportForm() {
                       </div>
                     </div>
                   </div>
-
-                  {/* Persons Involved */}
-                  <TextInput
-                    label="Personas involucradas"
-                    placeholder="Nombre / cargo (si lo conoces)"
-                    value={personsInvolved}
-                    onChange={setPersonsInvolved}
-                  />
-
-                  {/* Relation with Yobel */}
-                  <div className="content-stretch flex flex-col gap-[8px] items-start relative shrink-0 w-full">
-                    <p className="font-['Neue_Augenblick:Medium',sans-serif] leading-[18px] not-italic relative shrink-0 text-[16px] text-[rgba(73,73,73,0.5)] whitespace-pre-wrap">
-                      <span>Relación con Yobel </span>
-                      <span className="text-[#59c1e6]">*</span>
-                    </p>
-                    <div className="content-stretch flex flex-col gap-[4px] items-start relative shrink-0 w-full">
-                      {relations.map((relation) => (
-                        <CheckboxItem
-                          key={relation}
-                          label={relation}
-                          checked={relationWithYobel.includes(relation)}
-                          onChange={() => toggleRelation(relation)}
-                        />
-                      ))}
-                    </div>
-                    {relationWithYobel.includes("Otro (especifique)") && (
-                      <div className="box-border content-stretch flex gap-[20px] items-start px-0 py-[8px] relative w-full mt-2">
-                        <div 
-                          aria-hidden="true" 
-                          className="absolute border-[0px_0px_1.5px] border-black border-solid bottom-[-0.75px] left-0 pointer-events-none right-0 top-0 transition-colors duration-300 focus-within:border-[#59c1e6]" 
-                        />
-                        <input
-                          type="text"
-                          value={otherRelation}
-                          onChange={(e) => setOtherRelation(e.target.value)}
-                          placeholder="Especificar"
-                          className="basis-0 flex flex-col font-['Neue_Augenblick:Medium',sans-serif] grow justify-center leading-[24px] min-h-px min-w-px not-italic relative shrink-0 text-[24px] text-black bg-transparent border-none outline-none w-full placeholder:text-[rgba(0,0,0,0.3)]"
-                        />
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Has Reported Before */}
-                  <div className="content-stretch flex flex-col gap-[8px] items-start relative shrink-0 w-full">
-                    <p className="font-['Neue_Augenblick:Medium',sans-serif] leading-[18px] not-italic relative shrink-0 text-[16px] text-[rgba(73,73,73,0.5)] whitespace-pre-wrap">
-                      <span>¿Has denunciado este hecho antes? </span>
-                      <span className="text-[#59c1e6]">*</span>
-                    </p>
-                    <div className="content-stretch flex flex-col gap-[4px] items-start relative shrink-0 w-full">
-                      <RadioItem 
-                        label="Si" 
-                        checked={hasReportedBefore === "yes"}
-                        onChange={() => setHasReportedBefore("yes")}
-                      />
-                      <RadioItem 
-                        label="No" 
-                        checked={hasReportedBefore === "no"}
-                        onChange={() => setHasReportedBefore("no")}
-                      />
-                    </div>
-                    {hasReportedBefore === "yes" && (
-                      <div className="box-border content-stretch flex gap-[20px] items-start px-0 py-[8px] relative w-full mt-2">
-                        <div 
-                          aria-hidden="true" 
-                          className="absolute border-[0px_0px_1.5px] border-black border-solid bottom-[-0.75px] left-0 pointer-events-none right-0 top-0 transition-colors duration-300 focus-within:border-[#59c1e6]" 
-                        />
-                        <input
-                          type="text"
-                          value={reportedToWhom}
-                          onChange={(e) => setReportedToWhom(e.target.value)}
-                          placeholder="¿A quién y cuándo?"
-                          className="basis-0 flex flex-col font-['Neue_Augenblick:Medium',sans-serif] grow justify-center leading-[24px] min-h-px min-w-px not-italic relative shrink-0 text-[24px] text-black bg-transparent border-none outline-none w-full placeholder:text-[rgba(0,0,0,0.3)]"
-                        />
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Estimated Impact */}
-                  <div className="content-stretch flex flex-col gap-[8px] items-start relative shrink-0 w-full">
-                    <p className="font-['Neue_Augenblick:Medium',sans-serif] leading-[18px] not-italic relative shrink-0 text-[16px] text-[rgba(73,73,73,0.5)] whitespace-pre-wrap">
-                      <span>Impacto estimado </span>
-                      <span className="text-[#59c1e6]">*</span>
-                    </p>
-                    <div className="content-stretch flex flex-col gap-[4px] items-start relative shrink-0 w-full">
-                      {impacts.map((impact) => (
-                        <CheckboxItem
-                          key={impact}
-                          label={impact}
-                          checked={estimatedImpact.includes(impact)}
-                          onChange={() => toggleImpact(impact)}
-                        />
-                      ))}
-                    </div>
-                  </div>
                 </>
               )}
 
-              {/* STEP 4 - Evidencia y archivos */}
-              {currentStep === 4 && (
+              {/* STEP 3 - Evidencia y Declaración */}
+              {currentStep === 3 && (
                 <>
+                  {/* Evidence Section Header */}
+                  <div className="content-stretch flex flex-col gap-[8px] items-start relative shrink-0 w-full">
+                    <p className="font-['Neue_Augenblick:Medium',sans-serif] leading-[18px] not-italic relative shrink-0 text-[16px] text-[rgba(73,73,73,0.5)] whitespace-pre-wrap">
+                      4. Evidencia (Opcional)
+                    </p>
+                  </div>
+
                   {/* File Upload */}
                   <div className="content-stretch flex flex-col gap-[8px] items-start relative shrink-0 w-full">
-                    <label className="flex items-center gap-2 bg-white text-black border-2 border-black font-['Neue_Augenblick:Medium',sans-serif] text-[16px] py-3 px-6 rounded-full hover:bg-gray-100 transition-colors duration-300 cursor-pointer">
+                    <p className="font-['Neue_Augenblick:Medium',sans-serif] leading-[18px] not-italic relative shrink-0 text-[16px] text-[rgba(73,73,73,0.5)] whitespace-pre-wrap">
+                      Adjuntar Archivos
+                    </p>
+                    <div className="flex flex-col font-['Neue_Augenblick:Regular',sans-serif] justify-center leading-[0] min-w-full not-italic relative shrink-0 text-[18px] text-black w-[min-content]">
+                      <p className="leading-[22px]">(Documentos, fotos, correos electrónicos, etc. Formatos permitidos: PDF, JPG, PNG, DOCX)</p>
+                    </div>
+                    
+                    <label className="flex items-center gap-2 bg-white text-black border-2 border-black font-['Neue_Augenblick:Medium',sans-serif] text-[16px] py-3 px-6 rounded-full hover:bg-gray-100 transition-colors duration-300 cursor-pointer mt-4">
                       <Upload size={18} />
                       Adjuntar archivo
                       <input
                         type="file"
                         multiple
-                        accept=".png,.jpg,.jpeg"
+                        accept=".pdf,.jpg,.jpeg,.png,.docx"
                         onChange={handleFileUpload}
                         className="hidden"
                       />
@@ -1070,88 +833,27 @@ export function OptimizedReportForm() {
                     )}
                   </div>
 
-                  <p className="font-['Neue_Augenblick:Regular',sans-serif] leading-[18px] not-italic text-[14px] text-[rgba(73,73,73,0.5)]">
-                    Prefieres compartir evidencia de forma privada o anónima
-                  </p>
-
-                  {/* URL */}
-                  <TextInput
-                    label="URL"
-                    placeholder="Agregar URL"
-                    value={fileUrl}
-                    onChange={setFileUrl}
-                  />
-
-                  {/* Has More Files */}
+                  {/* Declaration Section Header */}
                   <div className="content-stretch flex flex-col gap-[8px] items-start relative shrink-0 w-full">
                     <p className="font-['Neue_Augenblick:Medium',sans-serif] leading-[18px] not-italic relative shrink-0 text-[16px] text-[rgba(73,73,73,0.5)] whitespace-pre-wrap">
-                      <span>¿Tienes más archivos para subir? </span>
+                      <span>5. Declaración de Conocimiento </span>
                       <span className="text-[#59c1e6]">*</span>
                     </p>
-                    <div className="content-stretch flex flex-col gap-[4px] items-start relative shrink-0 w-full">
-                      <RadioItem 
-                        label="Si" 
-                        checked={hasMoreFiles === "yes"}
-                        onChange={() => setHasMoreFiles("yes")}
-                      />
-                      <RadioItem 
-                        label="No" 
-                        checked={hasMoreFiles === "no"}
-                        onChange={() => setHasMoreFiles("no")}
-                      />
-                    </div>
-                    {hasMoreFiles === "yes" && (
-                      <div className="box-border content-stretch flex gap-[20px] items-start px-0 py-[8px] relative w-full mt-2">
-                        <div 
-                          aria-hidden="true" 
-                          className="absolute border-[0px_0px_1.5px] border-black border-solid bottom-[-0.75px] left-0 pointer-events-none right-0 top-0 transition-colors duration-300 focus-within:border-[#59c1e6]" 
-                        />
-                        <input
-                          type="text"
-                          value={contactName}
-                          onChange={(e) => setContactName(e.target.value)}
-                          placeholder="Nombre / contacto"
-                          className="basis-0 flex flex-col font-['Neue_Augenblick:Medium',sans-serif] grow justify-center leading-[24px] min-h-px min-w-px not-italic relative shrink-0 text-[24px] text-black bg-transparent border-none outline-none w-full placeholder:text-[rgba(0,0,0,0.3)]"
-                        />
-                      </div>
-                    )}
                   </div>
-                </>
-              )}
 
-              {/* STEP 5 - Tus datos y confidencialidad */}
-              {currentStep === 5 && (
-                <>
-                  {/* Name */}
-                  <TextInput
-                    label="Nombre"
-                    placeholder=""
-                    value={userName}
-                    onChange={setUserName}
-                    required
-                  />
-
-                  {/* Email */}
-                  <TextInput
-                    label="Correo / correo corporativo"
-                    placeholder=""
-                    value={userEmail}
-                    onChange={setUserEmail}
-                    type="email"
-                    required
-                  />
-
-                  {/* Confirmations */}
+                  {/* Declarations */}
                   <div className="content-stretch flex flex-col gap-[8px] items-start relative shrink-0 w-full">
                     <div className="content-stretch flex flex-col gap-[4px] items-start relative shrink-0 w-full">
-                      {confirmationItems.map((item) => (
-                        <CheckboxItem
-                          key={item}
-                          label={item}
-                          checked={confirmations.includes(item)}
-                          onChange={() => toggleConfirmation(item)}
-                        />
-                      ))}
+                      <CheckboxItem
+                        label="He leído y acepto la Política de Denuncias y Ética de la empresa."
+                        checked={declarations.includes("He leído y acepto la Política de Denuncias y Ética de la empresa.")}
+                        onChange={() => toggleDeclaration("He leído y acepto la Política de Denuncias y Ética de la empresa.")}
+                      />
+                      <CheckboxItem
+                        label="Declaro que la información proporcionada es verdadera y de buena fe."
+                        checked={declarations.includes("Declaro que la información proporcionada es verdadera y de buena fe.")}
+                        onChange={() => toggleDeclaration("Declaro que la información proporcionada es verdadera y de buena fe.")}
+                      />
                     </div>
                   </div>
                 </>
@@ -1168,7 +870,7 @@ export function OptimizedReportForm() {
                     Anterior paso
                   </button>
                 )}
-                {currentStep < 5 ? (
+                {currentStep < 3 ? (
                   <button 
                     onClick={handleNextStep}
                     className="flex items-center justify-center gap-2 bg-black text-white font-['Neue_Augenblick:Medium',sans-serif] text-[18px] py-4 px-8 rounded-full hover:bg-gray-800 transition-colors duration-300 flex-1"

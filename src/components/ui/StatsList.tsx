@@ -1,8 +1,8 @@
 import React, { useRef } from "react";
-import { useScroll } from "motion/react";
+import { motion, useScroll } from "motion/react";
 import { Section } from "../ui/custom-section";
 import { Container } from "../ui/custom-container";
-import { AnimatedNumber, ScrollRevealText } from "../ui/motion-text";
+import { AnimatedNumber, ScrollRevealTextBlack } from "../ui/motion-text";
 
 export interface StatItem {
   number: string;
@@ -28,11 +28,46 @@ export function StatsList({ stats, className = "" }: StatsListProps) {
     offset: ["start center", "end center"]
   });
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.05,
+        delayChildren: 0.1
+      }
+    }
+  };
+
+  const wordVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 20, 
+      filter: "blur(8px)" 
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      filter: "blur(0px)",
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  };
+
   return (
     <Section className={`bg-white ${className}`}>
        <Container ref={containerRef} className="flex flex-col">
           {stats.map((stat, idx) => (
-             <div key={idx} className="py-16 border-b border-gray-200 last:border-none">
+             <motion.div 
+               key={idx} 
+               className="py-16 border-b border-gray-200 last:border-none"
+               initial={{ opacity: 0, filter: "blur(10px)", y: 50 }}
+               whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+               viewport={{ once: true, margin: "-50px" }}
+               transition={{ duration: 0.8, ease: "easeOut", delay: idx * 0.1 }}
+             >
                <div className="flex flex-col lg:flex-row items-start lg:items-center gap-8 lg:gap-20">
                    <div className="w-full lg:w-1/2 text-left">
                       <AnimatedNumber 
@@ -43,7 +78,7 @@ export function StatsList({ stats, className = "" }: StatsListProps) {
                    <div className="w-full lg:w-1/2 flex flex-col gap-6">
                       <h3 className="text-2xl md:text-[26px] text-black font-augenblick font-[Neue_Augenblick]">{stat.title}</h3>
                       <div className="pl-8 md:pl-12 lg:pl-20">
-                         <ScrollRevealText 
+                         <ScrollRevealTextBlack 
                             text={stat.description}
                             className="text-xl md:text-[22px] text-black mb-8 max-w-lg leading-relaxed"
                          />
@@ -56,7 +91,7 @@ export function StatsList({ stats, className = "" }: StatsListProps) {
                       </div>
                    </div>
                </div>
-             </div>
+             </motion.div>
           ))}
        </Container>
     </Section>

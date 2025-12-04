@@ -41,7 +41,7 @@ export function CountryTimeHeader({
   }, [timezone]);
 
   return (
-    <div className="mb-8 pb-6 border-b border-gray-200">
+    <div className="mb-8 pb-2 border-b border-black pr-4">
       <div className="flex items-center justify-between mb-2">
         {/* Mobile: always show static text */}
         <h3 className="md:hidden text-3xl tracking-tight text-black font-[Neue_Augenblick]">
@@ -50,19 +50,19 @@ export function CountryTimeHeader({
         
         {/* Desktop: show dropdown if available, otherwise static text */}
         {availableCountries && onCountryChange ? (
-          <div className="hidden md:block relative flex-1 max-w-xs">
+          <div className="hidden md:block relative">
             <select
               value={selectedCountry}
               onChange={(e) => onCountryChange(e.target.value)}
-              className="w-full appearance-none bg-transparent border-none px-0 py-0 pr-7 text-2xl md:text-3xl text-black font-[Neue_Augenblick] focus:outline-none cursor-pointer [&>option]:text-base [&>option]:font-normal [&>option]:py-1"
+              className="appearance-none bg-transparent border-none px-0 py-0 pr-7 text-2xl text-black font-[Neue_Augenblick] focus:outline-none cursor-pointer [&>option]:text-sm [&>option]:font-normal [&>option]:py-1"
             >
               {availableCountries.map((c) => (
-                <option key={c.value} value={c.value} className="text-base py-1">
+                <option key={c.value} value={c.value} className="text-sm py-1">
                   {c.label}
                 </option>
               ))}
             </select>
-            <ChevronDown className="absolute right-1 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" />
+            <ChevronDown className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
           </div>
         ) : (
           <h3 className="hidden md:block text-3xl md:text-4xl tracking-tight text-black font-[Neue_Augenblick]">

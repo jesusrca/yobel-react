@@ -262,22 +262,13 @@ export function Footer() {
                             className="group flex items-center gap-4 cursor-pointer"
                             onClick={() => setActiveCategory(item.title)}
                         >
-                            <span 
-                                className={cn(
-                                    "text-[22px] transition-colors duration-300",
-                                    activeCategory === item.title 
-                                        ? "bg-gradient-to-r from-[#fff066] to-white bg-clip-text text-transparent" 
-                                        : "text-white"
-                                )}
-                            >
+                            <span className="text-[22px] text-white transition-colors duration-300">
                                 {item.id} /
                             </span>
                             <span 
                                 className={cn(
-                                    "text-[22px] transition-all duration-300 group-hover:underline",
-                                    activeCategory === item.title 
-                                        ? "bg-gradient-to-r from-[#fff066] to-white bg-clip-text text-transparent" 
-                                        : "text-white"
+                                    "text-[22px] text-white transition-all duration-300",
+                                    activeCategory === item.title && "underline"
                                 )}
                             >
                                 {item.title}

@@ -21,28 +21,106 @@ interface InteractiveListProps {
 
 export function InteractiveList({ items, className = "", defaultImage, title, label }: InteractiveListProps) {
   const [activeId, setActiveId] = useState("");
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   // Fallback image logic: use the one provided in props, or the first item's image
   const fallbackImage = defaultImage || (items.length > 0 ? items[0].image : "");
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    setMousePosition({
+      x: e.clientX,
+      y: e.clientY
+    });
+  };
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.05,
+        delayChildren: 0.1
+      }
+    }
+  };
+
+  const wordVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 20, 
+      filter: "blur(8px)" 
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      filter: "blur(0px)",
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  };
 
   return (
     <Section className={`bg-white ${className}`}>
       <Container className="relative min-h-[600px]">
         {(title || label) && (
-          <div className="flex flex-col gap-2 items-start mb-12">
-            {label && <span className="text-xl text-gray-400 font-medium">{label}</span>}
-            {title && <h3 className="text-3xl md:text-4xl font-normal">{title}</h3>}
-          </div>
+          <motion.div 
+            className="flex flex-col gap-2 items-start mb-12"
+            initial={{ opacity: 0, filter: "blur(10px)", y: 50 }}
+            whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+          >
+            {label && (
+              <motion.span 
+                className="text-xl text-gray-400 font-medium flex flex-wrap gap-x-[0.25em]"
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+              >
+                {label.split(" ").map((word, i) => (
+                  <motion.span key={i} variants={wordVariants} className="inline-block">
+                    {word}
+                  </motion.span>
+                ))}
+              </motion.span>
+            )}
+            {title && (
+              <motion.h3 
+                className="text-3xl md:text-4xl font-normal flex flex-wrap gap-x-[0.25em]"
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+              >
+                {title.split(" ").map((word, i) => (
+                  <motion.span key={i} variants={wordVariants} className="inline-block">
+                    {word}
+                  </motion.span>
+                ))}
+              </motion.h3>
+            )}
+          </motion.div>
         )}
-        <div className="flex flex-col w-full" onMouseLeave={() => setActiveId("")}>
+        <motion.div 
+          className="flex flex-col w-full" 
+          onMouseLeave={() => setActiveId("")}
+          onMouseMove={handleMouseMove}
+          initial={{ opacity: 0, filter: "blur(10px)", y: 50 }}
+          whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
+        >
           {items.map((item) => (
             <div 
               key={item.id}
-              className="relative group border-b border-gray-300 last:border-0 min-h-[100px] md:min-h-0 md:h-[120px]"
+              className="relative group border-b border-gray-300 last:border-0 min-h-[100px] md:min-h-0 py-6 md:py-8"
               onMouseEnter={() => setActiveId(item.id)}
               onClick={() => setActiveId(item.id)}
             >
-              <div className="h-full cursor-pointer flex flex-col md:flex-row md:items-center justify-center md:justify-between gap-2 md:gap-4 px-4 md:px-0 py-6 md:py-0">
+              <div className="h-full cursor-pointer flex flex-col md:flex-row md:items-center justify-center md:justify-between gap-2 md:gap-4 px-4 md:px-0">
                 <div className={`flex items-baseline gap-4 text-2xl md:text-4xl w-full md:w-5/12 ${activeId === item.id ? 'text-black' : 'text-gray-400'}`}>
                   <span className="transition-colors duration-500">{item.id} /</span>
                   <span className="font-augenblick transition-all duration-500" style={{ transform: activeId === item.id ? 'scale(1.1)' : 'scale(1)', transformOrigin: 'left center' }}>{item.title}</span>
@@ -77,29 +155,29 @@ export function InteractiveList({ items, className = "", defaultImage, title, la
               </div>
             </div>
           ))}
-        </div>
+        </motion.div>
 
-        {/* Floating Image for Desktop */}
+        {/* Floating Image for Desktop - Follows Cursor */}
         <AnimatePresence>
             {activeId && (
                 <motion.div 
-                    className="hidden lg:block absolute top-0 left-[55%] -translate-x-1/2 w-[400px] h-[240px] pointer-events-none transition-transform duration-700 ease-out z-10"
+                    className="hidden lg:block fixed w-[400px] h-[240px] pointer-events-none z-10"
                     style={{ 
-                      // Calculate position based on the index of the active item
-                      transform: `translateX(-50%) translateY(${((items.findIndex(i => i.id === activeId)) * 120) - 60}px)` 
+                      left: `${mousePosition.x - 200}px`,
+                      top: `${mousePosition.y - 120}px`
                     }}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ opacity: { duration: 0.3 } }}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.8 }}
+                    transition={{ opacity: { duration: 0.2 }, scale: { duration: 0.3 } }}
                 >
                     <AnimatePresence mode="wait">
                         <motion.div 
                         key={activeId}
-                        initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                        animate={{ opacity: 1, scale: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: 0.95, y: -20 }}
-                        transition={{ duration: 0.4, ease: "easeOut" }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.2 }}
                         className="w-full h-full rounded-[20px] overflow-hidden shadow-2xl"
                         >
                         <ImageWithFallback 

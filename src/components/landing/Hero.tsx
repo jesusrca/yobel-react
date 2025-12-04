@@ -45,7 +45,7 @@ export function Hero() {
   };
 
   return (
-    <div className="relative h-[80vh] min-h-[600px] max-h-[920px] w-full overflow-hidden bg-gray-900">
+    <div className="relative h-screen w-full overflow-hidden bg-gray-900">
       <div className="absolute inset-0 overflow-hidden">
         <video 
           src="https://circular.ws/yobel/fondo-horizontal.mp4"

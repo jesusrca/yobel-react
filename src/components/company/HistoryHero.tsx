@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 function YobelLogo() {
   return (
-    <div className="w-full max-w-[600px] lg:max-w-[800px] xl:max-w-[1146px] h-auto aspect-[1146/429]">
+    <div className="w-full max-w-[600px] lg:max-w-[800px] xl:max-w-[1146px] h-auto aspect-[1146/429] mx-auto">
       <svg className="block size-full" fill="none" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1146 429">
         <g clipPath="url(#clip0_297_1993)" id="Logo">
           {/* Y */}
