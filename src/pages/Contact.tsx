@@ -300,7 +300,7 @@ export function Contact() {
     fullName: "",
     company: "",
     email: "",
-    country: "",
+    country: globalSelectedCountry,
     phone: "",
     service: "",
     message: "",
@@ -331,6 +331,40 @@ export function Contact() {
     setSelectedCountry(newCountry);
     setScrollIndex(0);
   }, [globalSelectedCountry]);
+
+  // Sync form country field with global selected country
+  useEffect(() => {
+    setFormData(prev => ({ ...prev, country: globalSelectedCountry }));
+  }, [globalSelectedCountry]);
+
+  // Check for hash on mount and scroll to oficinas section
+  useEffect(() => {
+    const handleHashScroll = () => {
+      if (window.location.hash === '#oficinas' && mapSectionRef.current) {
+        // Use a longer delay to ensure everything is rendered
+        const scrollToSection = () => {
+          mapSectionRef.current?.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'start' 
+          });
+        };
+        
+        // Try multiple times with increasing delays
+        setTimeout(scrollToSection, 300);
+        setTimeout(scrollToSection, 600);
+      }
+    };
+
+    // Run on mount
+    handleHashScroll();
+
+    // Also listen for hash changes
+    window.addEventListener('hashchange', handleHashScroll);
+    
+    return () => {
+      window.removeEventListener('hashchange', handleHashScroll);
+    };
+  }, []);
 
   const scrollToOffices = () => {
     if (window.innerWidth < 1024 && officesRef.current) {
@@ -370,7 +404,7 @@ export function Contact() {
         fullName: "",
         company: "",
         email: "",
-        country: "",
+        country: globalSelectedCountry,
         phone: "",
         service: "",
         message: "",
@@ -804,7 +838,7 @@ export function Contact() {
       </Section>
 
       {/* Offices and Map Section */}
-      <Section ref={mapSectionRef} className="bg-white pt-12 pb-24" data-section="locations">
+      <Section id="oficinas" ref={mapSectionRef} className="bg-white pt-12 pb-24" data-section="locations">
         <Container>
            <div className="mb-8 lg:mb-16">
              <ScrollRevealString 

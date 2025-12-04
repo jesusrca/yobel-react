@@ -88,6 +88,8 @@ export function Industries({ className }: { className?: string }) {
   const lastScrollTime = useRef(0);
   
   const [isHovering, setIsHovering] = React.useState(false);
+  const [isDragging, setIsDragging] = React.useState(false);
+  const dragStartPos = useRef({ x: 0, y: 0 });
   const cursorRef = useRef<HTMLDivElement>(null);
 
   const handleMouseMove = (e: React.MouseEvent) => {
@@ -95,6 +97,23 @@ export function Industries({ className }: { className?: string }) {
         cursorRef.current.style.left = `${e.clientX}px`;
         cursorRef.current.style.top = `${e.clientY}px`;
     }
+  };
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    dragStartPos.current = { x: e.clientX, y: e.clientY };
+    setIsDragging(false);
+  };
+
+  const handleMouseMoveOnSlide = (e: React.MouseEvent) => {
+    const deltaX = Math.abs(e.clientX - dragStartPos.current.x);
+    const deltaY = Math.abs(e.clientY - dragStartPos.current.y);
+    if (deltaX > 5 || deltaY > 5) {
+      setIsDragging(true);
+    }
+  };
+
+  const handleMouseUp = () => {
+    setTimeout(() => setIsDragging(false), 100);
   };
 
   const handleWheel = (e: React.WheelEvent) => {
@@ -193,7 +212,7 @@ export function Industries({ className }: { className?: string }) {
 
        <Container className="max-w-[1440px] flex flex-col gap-20">
          <div className="flex flex-col md:flex-row gap-8 items-start py-12 md:py-0">
-            <p className="text-lg text-black w-32 shrink-0 mt-2 font-augenblick">Industrias</p>
+            <p className="text-lg text-black w-32 shrink-0 mt-2 font-augenblick">Industrias en <em>movimiento</em></p>
             <div className="flex-grow">
                <SectionHeading 
                  description="Conocemos las exigencias de cada sector. Por eso, en Yobel diseñamos soluciones integradas y adaptables, alineadas a los retos y necesidades de tu industria." className="font-augenblick font-[Neue_Augenblick]"
@@ -227,8 +246,19 @@ export function Industries({ className }: { className?: string }) {
                            className="group relative flex flex-col h-full"
                            onMouseEnter={() => setIsHovering(true)}
                            onMouseLeave={() => setIsHovering(false)}
+                           onMouseDown={handleMouseDown}
+                           onMouseMove={handleMouseMoveOnSlide}
+                           onMouseUp={handleMouseUp}
                         >
-                            <Link to={ind.path} className="flex flex-col gap-5 w-full cursor-pointer block">
+                            <Link 
+                              to={ind.path} 
+                              className="flex flex-col gap-5 w-full cursor-pointer block"
+                              onClick={(e) => {
+                                if (isDragging) {
+                                  e.preventDefault();
+                                }
+                              }}
+                            >
                                 <div className="aspect-square w-full rounded-[20px] overflow-hidden relative shrink-0">
                                     <img src={ind.image} alt={ind.title} className="w-full h-full object-cover" />
                                 </div>

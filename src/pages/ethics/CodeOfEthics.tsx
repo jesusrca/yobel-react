@@ -12,6 +12,8 @@ import { motion, useScroll, useTransform } from "motion/react";
 import { GradientCTA } from "../../components/ui/GradientCTA";
 import { UseCasesSection } from "../../components/sections/UseCasesSection";
 import svgPathsIso from "../../imports/svg-rbwz0su45n";
+import { HeroGradientTall } from "../../components/ui/hero-gradient-tall";
+import { ScrollRevealText } from "../../components/ui/motion-text";
 
 // SVG Paths
 const svgPaths = {
@@ -170,25 +172,12 @@ export function CodeOfEthics() {
   return (
     <>
       {/* Hero Section */}
-      <div className="relative h-[40vh] min-h-[400px] max-h-[500px] w-full overflow-hidden font-augenblick">
-        <motion.div 
-          style={{ y }}
-          className="absolute inset-0 bg-gradient-to-b from-[#e5e5e5] to-white"
-        />
-        <div className="absolute bottom-10 left-0 right-0 px-[5%] md:px-[50px] z-10">
-          <div className="max-w-[1400px] mx-auto flex flex-col gap-[30px]">
-             <p className="text-lg md:text-[18px] text-black font-[Neue_Augenblick]">Código de Ética</p>
-             <div className="flex flex-col lg:flex-row items-end justify-between gap-[40px] w-full">
-                <h1 className="text-5xl md:text-[65px] leading-[1] text-black max-w-[773px] font-[Neue_Augenblick]">
-                  Actuamos con integridad en cada eslabón
-                </h1>
-                <p className="text-xl md:text-[22px] leading-[24px] text-black max-w-[350px] lg:mr-32 pb-1 font-[Neue_Augenblick]">
-                  Nuestros principios guían cada decisión en toda la cadena de suministro.
-                </p>
-             </div>
-          </div>
-        </div>
-      </div>
+      <HeroGradientTall 
+        category="Código de Ética"
+        title="Actuamos con integridad en cada eslabón"
+        description="Nuestros principios guían cada decisión en toda la cadena de suministro."
+        variant="cyan"
+      />
 
       {/* Intro Section */}
       <Section className="bg-white py-24">
@@ -203,19 +192,21 @@ export function CodeOfEthics() {
 ´              Código de Ética
              </h2>
              <div className="flex flex-col gap-12 items-center">
-               <p className="text-2xl md:text-4xl lg:text-[40px] leading-tight font-normal text-black">
-                 Nuestro Código de Ética y nuestras políticas guían cómo trabajamos con clientes, aliados y comunidades en toda Latinoamérica.
-               </p>
-               <Button 
-                 className="rounded-full px-[14px] py-[8px] h-auto text-[22px] font-medium leading-[24px] bg-transparent text-black border-[1.5px] border-black hover:bg-black hover:text-white transition-all duration-300 flex items-center gap-[12px]"
-                 onClick={() => window.open("https://www.resguarda.com/yobel", "_blank")}
-               >
-                 Abrir Canal de Ética
-                 <svg className="w-[17px] h-[16px]" viewBox="0 0 17 16" fill="none">
-                   <path d="M0 7.52417H16" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
-                   <path d="M8.85449 0.53033L15.8545 7.53033L8.85449 14.5303" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
-                 </svg>
-               </Button>
+               <ScrollRevealText 
+                 text="Nuestro Código de Ética y nuestras políticas guían cómo trabajamos con clientes, aliados y comunidades en toda Latinoamérica."
+                 className="text-2xl md:text-4xl lg:text-[40px] leading-tight font-normal font-augenblick text-center justify-center"
+               />
+               <Link to="/etica/linea-de-etica">
+                 <Button 
+                   className="rounded-full px-[14px] py-[8px] h-auto text-[22px] font-medium leading-[24px] bg-transparent text-black border-[1.5px] border-black hover:bg-black hover:text-white transition-all duration-300 flex items-center gap-[12px]"
+                 >
+                   Ir a línea de Ética
+                   <svg className="w-[17px] h-[16px]" viewBox="0 0 17 16" fill="none">
+                     <path d="M0 7.52417H16" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+                     <path d="M8.85449 0.53033L15.8545 7.53033L8.85449 14.5303" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+                   </svg>
+                 </Button>
+               </Link>
              </div>
            </div>
         </Container>
@@ -252,7 +243,7 @@ export function CodeOfEthics() {
       </Section>
 
       {/* Ethics Channel Section (Dark) */}
-      <Section className="bg-gradient-to-b from-white to-[#FFE55C]">
+      <Section className="bg-white">
          <div className="flex flex-col items-center justify-center size-full">
             <div className="box-border content-stretch flex flex-col gap-[48px] items-center justify-center px-[20px] md:px-[50px] py-[80px] md:py-[120px] relative size-full">
                {/* Isotipo */}
@@ -303,10 +294,7 @@ export function CodeOfEthics() {
                   transition={{ duration: 0.8, delay: 0.6 }}
                >
                   {['Formulario web', 'Línea telefónica', 'Seguimiento de caso'].map((item, i) => (
-                     <div key={i} className="flex items-center gap-2 px-4 py-2 rounded-full border border-black/20">
-                        <div className="w-2 h-2 bg-[#59c1e6] rounded-full" />
-                        <span className="text-sm md:text-base text-black">{item}</span>
-                     </div>
+                     <span key={i} className="text-sm md:text-base text-black">{item}</span>
                   ))}
                </motion.div>
 
@@ -319,7 +307,7 @@ export function CodeOfEthics() {
                >
                   <Link to="/linea-etica">
                      <Button className="bg-black text-white px-10 py-5 rounded-full text-lg hover:bg-black/80 transition-colors">
-                        Abrir Canal de Ética
+                        Ir a línea de Ética
                      </Button>
                   </Link>
                </motion.div>
@@ -333,6 +321,95 @@ export function CodeOfEthics() {
         subtitle="Nuestro negocio se sostiene en la integridad. Aquí puedes consultar nuestras políticas vigentes."
         useCases={policies}
       />
+
+      {/* Sustainability Section */}
+      <Section className="bg-white py-20">
+        <Container>
+          <div className="flex flex-col gap-8 items-center text-center max-w-4xl mx-auto">
+            <h2 className="text-4xl md:text-5xl lg:text-[45px] leading-tight font-normal font-augenblick text-black">
+              Nos movemos juntos a la sostenibilidad
+            </h2>
+            <p className="text-xl md:text-2xl text-gray-600 leading-relaxed">
+              En Yobel trabajamos cada día para reducir huella, impulsar economía circular y generar impacto positivo en las comunidades. La sostenibilidad es parte de nuestra operación, desde las plantas hasta las rutas.
+            </p>
+            <div className="mt-4">
+              <Link to="/etica/rse-sostenibilidad">
+                <Button className="bg-transparent border-[1.5px] border-black text-black px-8 py-4 rounded-full text-lg hover:bg-black hover:text-white transition-all duration-300">
+                  Conoce nuestras iniciativas
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </Container>
+      </Section>
+
+      {/* Data Protection Phrase Section */}
+      <Section className="bg-white py-16">
+        <Container>
+          <div className="flex flex-col gap-6 items-center text-center max-w-3xl mx-auto">
+            <p className="text-2xl md:text-3xl lg:text-[36px] text-black leading-relaxed font-augenblick">
+              Tus datos, siempre protegidos.
+            </p>
+            <p className="text-xl md:text-2xl text-gray-600 leading-relaxed">
+              Resguardamos la confidencialidad e integridad de tus datos según la normativa en toda la región.
+            </p>
+          </div>
+        </Container>
+      </Section>
+      
+      {/* Metrics and Progress Section */}
+      <Section className="bg-gray-50 py-20">
+        <Container>
+          <div className="flex flex-col lg:flex-row gap-12 items-center">
+            {/* Left Column - Text */}
+            <div className="flex-1 flex flex-col gap-6 text-center lg:text-left">
+              <span className="text-xl text-gray-400 font-medium">Métricas y Progreso</span>
+              <h2 className="text-4xl md:text-5xl lg:text-[45px] leading-tight font-normal font-augenblick text-black">
+                Nuestro progreso en Ética
+              </h2>
+              <p className="text-lg text-gray-500">
+                Periodo de referencia: últimos 12 meses
+              </p>
+              <div className="mt-4">
+                <Link to="/etica/rse-sostenibilidad">
+                  <Button className="bg-transparent border-[1.5px] border-black text-black px-8 py-4 rounded-full text-lg hover:bg-black hover:text-white transition-all duration-300">
+                    Conoce nuestras iniciativas
+                  </Button>
+                </Link>
+              </div>
+            </div>
+
+            {/* Right Column - Data Blocks */}
+            <div className="flex-1 flex flex-col gap-6">
+              <motion.div 
+                className="bg-white p-8 rounded-xl border border-gray-200 flex flex-col gap-4"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+              >
+                <span className="text-6xl md:text-7xl font-light text-black font-augenblick">100%</span>
+                <p className="text-xl text-gray-600">
+                  colaboradores capacitados en BPA y BPM
+                </p>
+              </motion.div>
+
+              <motion.div 
+                className="bg-white p-8 rounded-xl border border-gray-200 flex flex-col gap-4"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                <span className="text-6xl md:text-7xl font-light text-black font-augenblick">24/7</span>
+                <p className="text-xl text-gray-600">
+                  disponibilidad del canal de ética
+                </p>
+              </motion.div>
+            </div>
+          </div>
+        </Container>
+      </Section>
       
       {/* FAQ Section */}
       <FAQ items={faqs} />

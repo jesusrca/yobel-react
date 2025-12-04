@@ -4,13 +4,14 @@ interface HeroGradientTallProps {
   category: string;
   title: string;
   description: string;
-  variant?: "yellow" | "gray" | "blue";
+  variant?: "yellow" | "gray" | "blue" | "cyan";
 }
 
 const gradients = {
   yellow: "linear-gradient(to bottom, #F0DE32 0%, #F7EE93 50%, #FEFBF0 85%, #FFFFFF 100%)",
   gray: "linear-gradient(to bottom, #E5E5E5 0%, #F5F5F5 50%, #FAFAFA 85%, #FFFFFF 100%)",
-  blue: "linear-gradient(to bottom, #3DD0E3 0%, #8DE5F0 50%, #E5F9FC 85%, #FFFFFF 100%)"
+  blue: "linear-gradient(to bottom, #3DD0E3 0%, #8DE5F0 50%, #E5F9FC 85%, #FFFFFF 100%)",
+  cyan: "linear-gradient(to bottom, #59c1e6 0%, #A0DCEF 50%, #E5F4F9 85%, #FFFFFF 100%)"
 };
 
 export function HeroGradientTall({ 
@@ -20,7 +21,9 @@ export function HeroGradientTall({
   variant = "yellow" 
 }: HeroGradientTallProps) {
   return (
-    <div className="relative h-[80vh] min-h-[600px] max-h-[920px] w-full overflow-hidden font-augenblick">
+    <div 
+      className="relative h-[80vh] min-h-[600px] max-h-[920px] w-full overflow-hidden font-augenblick"
+    >
       <div className="relative h-full flex flex-col justify-end px-[5%] md:px-[50px] z-10 pt-[96px] pb-20">
         <div className="max-w-[1400px] mx-auto flex flex-col gap-[30px] w-full">
           <p className="text-lg md:text-[18px] text-black font-[Neue_Augenblick]">

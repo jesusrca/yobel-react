@@ -1442,7 +1442,7 @@ function Contenido() {
 function Copyright() {
   return (
     <div className="content-stretch flex flex-col gap-[24px] items-end relative shrink-0 w-full" data-name="Copyright">
-      <p className="font-['Neue_Augenblick:Regular',sans-serif] leading-[22px] not-italic relative shrink-0 text-[18px] text-white w-full">© Yobel SCM Perú</p>
+      <p className="font-['Neue_Augenblick:Regular',sans-serif] leading-[22px] not-italic relative shrink-0 text-[18px] text-white w-full">© Yobel Perú</p>
     </div>
   );
 }

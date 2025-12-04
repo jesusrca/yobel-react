@@ -19,20 +19,20 @@ const svgPaths = {
 const solutions = [
   {
     id: "01",
-    title: "Manufactura del Hogar",
+    title: "Manufactura y acondicionamiento de productos del hogar",
     description: "Producción, envasado y reacondicionado de artículos de limpieza, ambientadores y utensilios, cumpliendo estándares BPM y de seguridad.",
     image: "https://images.unsplash.com/photo-1585421514738-01798e348b17?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxob21lJTIwY2FyZSUyMHByb2R1Y3RzJTIwd2FyZWhvdXNlJTIwY2xlYW5pbmd8ZW58MXx8fHwxNzY0NDE1NjIxfDA&ixlib=rb-4.1.0&q=80&w=1080"
   },
   {
     id: "02",
-    title: "Almacenamiento Flexible",
+    title: "Almacenamiento flexible y seguro",
     description: "Gestión de inventarios por cada línea de producto o canal de venta, con WMS y control por lote o fecha de vencimiento.",
     image: "https://images.unsplash.com/photo-1585421514738-01798e348b17?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxob21lJTIwY2FyZSUyMHByb2R1Y3RzJTIwd2FyZWhvdXNlJTIwY2xlYW5pbmd8ZW58MXx8fHwxNzY0NDE1NjIxfDA&ixlib=rb-4.1.0&q=80&w=1080"
   },
   {
     id: "03",
-    title: "Distribución Omnicanal",
-    description: "Entregas B2B, retail y e-commerce con trazabilidad total y cumplimiento OTIF 99.6%.",
+    title: "Distribución nacional e internacional",
+    description: "Entregas B2B, retail y e-commerce con trazabilidad total y cumplimiento OTIF 99.6%",
     image: "https://images.unsplash.com/photo-1585421514738-01798e348b17?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxob21lJTIwY2FyZSUyMHByb2R1Y3RzJTIwd2FyZWhvdXNlJTIwY2xlYW5pbmd8ZW58MXx8fHwxNzY0NDE1NjIxfDA&ixlib=rb-4.1.0&q=80&w=1080"
   },
   {
@@ -43,7 +43,7 @@ const solutions = [
   },
   {
     id: "05",
-    title: "Comercio Exterior",
+    title: "Comercio exterior (COMEX)",
     description: "Coordinación de importaciones y exportaciones de materias primas y productos terminados para abastecer mercados regionales.",
     image: "https://images.unsplash.com/photo-1585421514738-01798e348b17?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxob21lJTIwY2FyZSUyMHByb2R1Y3RzJTIwd2FyZWhvdXNlJTIwY2xlYW5pbmd8ZW58MXx8fHwxNzY0NDE1NjIxfDA&ixlib=rb-4.1.0&q=80&w=1080"
   }
@@ -53,15 +53,15 @@ const useCases = [
   { id: "01", title: "Campañas promocionales", fullDesc: "Armado y distribución de packs especiales o combos por temporada." },
   { id: "02", title: "Reposición retail", fullDesc: "Abastecimiento continuo a supermercados, tiendas por departamento y marketplaces." },
   { id: "03", title: "Lanzamientos de línea", fullDesc: "Distribución nacional de nuevos productos o versiones mejoradas." },
-  { id: "04", title: "Gestión e-commerce", fullDesc: "Preparación y despacho directo al consumidor final." },
-  { id: "05", title: "Reacondicionado", fullDesc: "Ajustes de empaque, rotulado o formato según canal de venta." }
+  { id: "04", title: "Gestión e-commerce", fullDesc: "Preparación y despacho directo al consumidor." },
+  { id: "05", title: "Reacondicionado", fullDesc: "Ajustes de empaque, rotulado o formato según canal." }
 ];
 
 const results = [
   { highlight: "Cumplimiento OTIF 99.6%", normal: "en entregas B2B y B2C." },
   { highlight: "Lead time reducido", normal: "en abastecimientos estacionales." },
   { highlight: "Visibilidad total del inventario", normal: "en tiempo real." },
-  { highlight: "Disminución de mermas", normal: "mediante control WMS." }
+  { highlight: "Disminución de mermas y sobrestock", normal: "mediante control WMS." }
 ];
 
 const benefits = [
@@ -82,8 +82,8 @@ export function HomeCare() {
         {/* Hero Section */}
         <HeroGradientTall 
           category="Industrias"
-          title="Soluciones logísticas para Cuidado del Hogar"
-          description="Llevamos tus productos de limpieza y cuidado con eficiencia y trazabilidad total."
+          title="Soluciones logísticas para la industria del Hogar"
+          description="Hacemos que tus productos lleguen a cada hogar con eficiencia, cuidado y puntualidad."
           variant="yellow"
         />
 
@@ -98,11 +98,11 @@ export function HomeCare() {
                </div>
                <div className="flex flex-col gap-12 items-center">
                  <p className="text-2xl md:text-4xl lg:text-[40px] leading-tight font-normal text-black">
-                   En Yobel SCM operamos la cadena completa de artículos para el hogar. Desde la manufactura hasta la entrega omnicanal, garantizamos disponibilidad, calidad y cumplimiento en cada proceso.
+                   En Yobel gestionamos la cadena de suministro de productos para el hogar, decoración, limpieza y cuidado del ambiente doméstico. Integramos manufactura, almacenamiento, transporte y distribución con tecnología avanzada y control total de inventario, optimizando tiempos, costos y la experiencia final del consumidor.
                  </p>
                  <div>
                    <Button className="bg-transparent border-[1.5px] border-black text-black px-8 py-6 rounded-full text-xl relative overflow-hidden transition-all duration-500 before:absolute before:inset-0 before:bg-[linear-gradient(150deg,#FFF700_0%,#FFF700_32%,#FFE300_70%,#5dd3c0_100%)] before:opacity-0 before:transition-opacity before:duration-500 before:rounded-full hover:before:opacity-100 hover:border-0">
-                     <span className="relative z-10">Contactar Asesor</span>
+                     <span className="relative z-10">Contactar asesor</span>
                    </Button>
                  </div>
                </div>
@@ -118,7 +118,7 @@ export function HomeCare() {
       <Section className="bg-white py-20">
         <Container>
           <BenefitsSection 
-            title="Eficiencia, control y flexibilidad"
+            title="Nos enfocamos en agilidad, trazabilidad y optimización"
             image="https://images.unsplash.com/photo-1585421514738-01798e348b17?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxob21lJTIwY2FyZSUyMHByb2R1Y3RzJTIwd2FyZWhvdXNlJTIwY2xlYW5pbmd8ZW58MXx8fHwxNzY0NDE1NjIxfDA&ixlib=rb-4.1.0&q=80&w=1080"
             imageAlt="Benefits"
             benefits={benefits}
@@ -146,7 +146,7 @@ export function HomeCare() {
       />
 
       {/* Certifications Section */}
-      <Certificates description="Operamos con certificaciones internacionales que garantizan calidad, seguridad y sostenibilidad en cada etapa." />
+      <Certificates description="Operamos bajo certificaciones internacionales y políticas internas que garantizan calidad, seguridad y sostenibilidad en cada proceso logístico." />
     </>
   );
 }

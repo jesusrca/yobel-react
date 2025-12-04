@@ -8,9 +8,10 @@ import { Button } from "../../components/ui/button";
 import { Certificates } from "../../components/landing/Certificates";
 import { ParallaxImage } from "../../components/landing/ParallaxImage";
 import { ParallaxCurves } from "../../components/landing/ParallaxCurves";
-import { VideoScrollSection } from "../../components/company/VideoScrollSection";
+import { ScrollRevealVideo } from "../../components/landing/ScrollRevealVideo";
 import { ProcessItem } from "../../components/company/ProcessItem";
 import { SolutionsShowcase } from "../../components/ui/SolutionsShowcase";
+import { SolutionsShowcaseTransparent } from "../../components/ui/SolutionsShowcaseTransparent";
 import { ScrollRevealString } from "../../components/ui/scroll-reveal-text";
 import { ScrollColorTransition } from "../../components/ui/scroll-color-transition";
 import Y from "../../imports/Y";
@@ -401,62 +402,6 @@ export function About() {
                </Container>
             </Section>
 
-            {/* PRINCIPLES */}
-            <div className="bg-transparent">
-              <SolutionsShowcase 
-                label="Cultura"
-                title="Principios que guían nuestras acciones"
-                solutions={principlesFormatted}
-                imageUrl={diversityImage}
-                imageAlt="Equipo diverso Yobel"
-              />
-            </div>
-
-            {/* WAYS OF WORKING */}
-            <Section className="bg-transparent">
-              <Container>
-                <div className="px-[5%] md:px-[50px] py-[60px] md:py-[120px]">
-                   <div className="mb-20 flex flex-col md:flex-row justify-between items-start gap-8">
-                      <motion.h2 
-                        className="text-4xl md:text-5xl font-normal max-w-md text-left leading-tight"
-                        style={{ color: textColor }}
-                      >
-                        Nuestra forma de trabajar
-                      </motion.h2>
-                      <motion.p 
-                        className="text-xl font-light max-w-md text-left md:text-right pt-2 opacity-60"
-                        style={{ color: textColor }}
-                      >
-                        Integramos estándares internacionales con metodologías giles para garantizar resultados.
-                      </motion.p>
-                   </div>
-                   
-                   <div className="flex flex-col w-full">
-                       {[
-                         { title: "Seguridad y calidad", desc: "Cumplimos altos estándares internacionales en gestión, seguridad y control de procesos, garantizando operaciones confiables en toda la cadena de suministro." },
-                         { title: "Datos y visibilidad", desc: "Monitoreo en tiempo real con sistemas WMS y TMS que ofrecen trazabilidad total y análisis para decisiones ágiles y precisas." },
-                         { title: "Mejora continua", desc: "Aplicamos metodologías Lean y Kaizen para optimizar procesos, reducir tiempos y elevar la eficiencia operativa cada día." },
-                         { title: "Colaboración abierta", desc: "Trabajamos junto a nuestros clientes y equipos multidisciplinarios para diseñar soluciones logísticas personalizadas y sostenibles." }
-                       ].map((item, idx) => (
-                          <React.Fragment key={idx}>
-                              <ProcessItem 
-                                  icon={<ProcessIcon type={item.title} index={idx} />}
-                                  title={item.title}
-                                  description={item.desc}
-                              />
-                              {idx < 3 && (
-                                  <motion.div 
-                                    className="w-full h-[1px] opacity-30"
-                                    style={{ backgroundColor: textColor }}
-                                  />
-                              )}
-                          </React.Fragment>
-                       ))}
-                   </div>
-                </div>
-              </Container>
-            </Section>
-
             <Section className="bg-transparent py-32">
                <Container>
                   <div className="flex flex-col items-center justify-center text-center gap-12 max-w-5xl mx-auto">
@@ -494,12 +439,171 @@ export function About() {
                </Container>
             </Section>
 
-            <VideoScrollSection />
-
-            <Certificates />
           </>
         )}
       </ScrollColorTransition>
+
+      {/* WHITE BACKGROUND SECTIONS - Outside gradient */}
+      <div className="bg-white">
+        {/* BENTO BOX - People Stats & Values */}
+        <Section className="bg-white py-24">
+           <Container>
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                 {/* Stats Column - Takes 5 columns */}
+                 <div 
+                    className="lg:col-span-5 rounded-[24px] p-8 md:p-12 flex flex-col justify-between min-h-[400px]"
+                    style={{ 
+                       backgroundColor: "rgba(89, 193, 230, 0.1)",
+                       borderWidth: '1.5px',
+                       borderStyle: 'solid',
+                       borderColor: '#000000'
+                    }}
+                 >
+                    <div>
+                       <p 
+                          className="text-sm md:text-base opacity-50 mb-12"
+                          style={{ color: '#000000' }}
+                       >
+                          Datos destacados
+                       </p>
+                       
+                       <div className="space-y-8">
+                          <div>
+                             <h3 
+                                className="text-4xl md:text-5xl lg:text-6xl mb-2"
+                                style={{ color: '#000000' }}
+                             >
+                                +4,600
+                             </h3>
+                             <p 
+                                className="text-lg md:text-xl opacity-70"
+                                style={{ color: '#000000' }}
+                             >
+                                colaboradores en Latinoamérica
+                             </p>
+                          </div>
+
+                          <div>
+                             <h3 
+                                className="text-4xl md:text-5xl lg:text-6xl mb-2"
+                                style={{ color: '#000000' }}
+                             >
+                                9
+                             </h3>
+                             <p 
+                                className="text-lg md:text-xl opacity-70"
+                                style={{ color: '#000000' }}
+                             >
+                                países conectados
+                             </p>
+                          </div>
+
+                          <div>
+                             <h3 
+                                className="text-4xl md:text-5xl lg:text-6xl mb-2"
+                                style={{ color: '#000000' }}
+                             >
+                                +30%
+                             </h3>
+                             <p 
+                                className="text-lg md:text-xl opacity-70"
+                                style={{ color: '#000000' }}
+                             >
+                                liderazgo femenino en áreas clave
+                             </p>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+
+                 {/* Values Grid - Takes 7 columns */}
+                 <div className="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {/* Diversidad e inclusión */}
+                    <div 
+                       className="rounded-[24px] p-8 md:p-10 flex flex-col justify-between min-h-[280px] md:col-span-2"
+                       style={{ 
+                          backgroundColor: "rgba(255, 247, 0, 0.15)",
+                          borderWidth: '1.5px',
+                          borderStyle: 'solid',
+                          borderColor: '#000000'
+                       }}
+                    >
+                       <div>
+                          <h4 
+                             className="text-2xl md:text-3xl mb-4"
+                             style={{ color: '#000000' }}
+                          >
+                             Diversidad e inclusión
+                          </h4>
+                          <p 
+                             className="text-lg md:text-xl opacity-70"
+                             style={{ color: '#000000' }}
+                          >
+                             Promovemos equipos diversos y oportunidades
+                          </p>
+                       </div>
+                    </div>
+
+                    {/* Bienestar */}
+                    <div 
+                       className="rounded-[24px] p-8 md:p-10 flex flex-col justify-between min-h-[280px]"
+                       style={{ 
+                          backgroundColor: "rgba(93, 211, 192, 0.15)",
+                          borderWidth: '1.5px',
+                          borderStyle: 'solid',
+                          borderColor: '#000000'
+                       }}
+                    >
+                       <div>
+                          <h4 
+                             className="text-2xl md:text-3xl mb-4"
+                             style={{ color: '#000000' }}
+                          >
+                             Bienestar
+                          </h4>
+                          <p 
+                             className="text-lg md:text-xl opacity-70"
+                             style={{ color: '#000000' }}
+                          >
+                             Programas de salud, ergonomía y apoyo emocional
+                          </p>
+                       </div>
+                    </div>
+
+                    {/* Seguridad & Salud ocupacional */}
+                    <div 
+                       className="rounded-[24px] p-8 md:p-10 flex flex-col justify-between min-h-[280px]"
+                       style={{ 
+                          backgroundColor: "rgba(89, 193, 230, 0.15)",
+                          borderWidth: '1.5px',
+                          borderStyle: 'solid',
+                          borderColor: '#000000'
+                       }}
+                    >
+                       <div>
+                          <h4 
+                             className="text-2xl md:text-3xl mb-4"
+                             style={{ color: '#000000' }}
+                          >
+                             Seguridad & Salud ocupacional
+                          </h4>
+                          <p 
+                             className="text-lg md:text-xl opacity-70"
+                             style={{ color: '#000000' }}
+                          >
+                             Capacitación continua y prevención
+                          </p>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </Container>
+        </Section>
+
+        <ScrollRevealVideo />
+
+        <Certificates />
+      </div>
     </>
   );
 }

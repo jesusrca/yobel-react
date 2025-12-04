@@ -71,13 +71,13 @@ export function NoticiaDetalle() {
   return (
     <div className="bg-white min-h-screen font-[Neue_Augenblick]">
       {/* Header Section */}
-      <Section className="pt-24 pb-0 md:pt-28 md:pb-6">
-        <Container>
+      <Section className="pt-16 pb-0 md:pt-28 md:pb-6">
+        <Container className="px-[20px] md:px-[50px]">
           <div className="relative w-full">
             {/* Back Button */}
             <Link 
               to="/noticias"
-              className="absolute box-border content-stretch flex gap-[8px] items-center justify-center left-[51px] p-[10px] rounded-[40px] top-[20px] group hover:bg-gray-50 transition-colors z-10"
+              className="hidden md:flex absolute box-border content-stretch gap-[8px] items-center justify-center left-[51px] p-[10px] rounded-[40px] top-[20px] group hover:bg-gray-50 transition-colors z-10"
             >
               <div aria-hidden="true" className="absolute border-[1.5px] border-black border-solid inset-[-0.75px] pointer-events-none rounded-[40.75px]" />
               {/* Left Arrow Icon */}
@@ -98,11 +98,35 @@ export function NoticiaDetalle() {
               <p className="font-['Neue_Augenblick:Medium',sans-serif] leading-[18px] not-italic relative shrink-0 text-[16px] text-black text-center text-nowrap whitespace-pre">Regresar a Noticias</p>
             </Link>
 
+            {/* Mobile Back Button */}
+            <Link 
+              to="/noticias"
+              className="flex md:hidden mb-6 box-border content-stretch gap-[8px] items-center justify-start p-[10px] rounded-[40px] group hover:bg-gray-50 transition-colors w-fit relative"
+            >
+              <div aria-hidden="true" className="absolute border-[1.5px] border-black border-solid inset-[-0.75px] pointer-events-none rounded-[40.75px]" />
+              {/* Left Arrow Icon */}
+              <div className="overflow-clip relative shrink-0 size-[20px]">
+                <div className="absolute flex inset-[20.81%_16.06%_20.86%_17.27%] items-center justify-center">
+                  <div className="flex-none h-[12px] rotate-[180deg] w-[14px]">
+                    <div className="relative size-full">
+                      <div className="absolute bottom-[-3.79%] left-0 right-[-3.78%] top-[-3.79%]">
+                        <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 17 16">
+                          <path d="M0 7.52417H16" stroke="black" strokeLinejoin="round" strokeWidth="1.5" />
+                          <path d={svgPaths.p3cf45500} stroke="black" strokeLinejoin="round" strokeWidth="1.5" />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <p className="font-['Neue_Augenblick:Medium',sans-serif] leading-[18px] not-italic relative shrink-0 text-[16px] text-black text-center text-nowrap whitespace-pre">Regresar</p>
+            </Link>
+
             {/* Title Section - Centered */}
             <div className="flex flex-col items-center justify-center size-full">
-              <div className="box-border content-stretch flex flex-col gap-[24px] items-center justify-center not-italic pb-[80px] pt-[120px] px-[50px] relative text-center w-full">
-                <p className="font-['Neue_Augenblick:Medium',sans-serif] leading-[18px] relative shrink-0 text-[16px] text-[rgba(73,73,73,0.5)] max-w-[351px]">{newsItem.category}</p>
-                <p className="font-['Neue_Augenblick:Regular',sans-serif] leading-[67px] relative shrink-0 text-[65px] text-black max-w-[773px]">{newsItem.title}</p>
+              <div className="box-border content-stretch flex flex-col gap-[16px] md:gap-[24px] items-center justify-center not-italic pb-[40px] md:pb-[80px] pt-[20px] md:pt-[120px] px-[20px] md:px-[50px] relative text-center w-full">
+                <p className="font-['Neue_Augenblick:Medium',sans-serif] leading-[18px] relative shrink-0 text-[14px] md:text-[16px] text-[rgba(73,73,73,0.5)] max-w-[351px]">{newsItem.category}</p>
+                <p className="font-['Neue_Augenblick:Regular',sans-serif] leading-[1.1] md:leading-[67px] relative shrink-0 text-[32px] md:text-[50px] lg:text-[65px] text-black max-w-[773px]">{newsItem.title}</p>
               </div>
             </div>
           </div>
@@ -111,13 +135,13 @@ export function NoticiaDetalle() {
 
       {/* Content Section */}
       <Section className="pt-12 pb-32">
-        <Container>
+        <Container className="px-[20px] md:px-[50px]">
           <div className="max-w-[1400px] mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-24">
               
-              {/* Sidebar / Meta Column */}
-              <div className="lg:col-span-3 relative">
-                <div className="sticky top-32 content-stretch flex flex-col gap-[60px] items-start w-full max-h-[calc(100vh-10rem)] overflow-visible">
+              {/* Sidebar / Meta Column - Hidden on mobile, shown as sticky sidebar on desktop */}
+              <div className="hidden lg:block lg:col-span-3 relative">
+                <div className="sticky top-32 content-stretch flex flex-col gap-[40px] lg:gap-[60px] items-start w-full max-h-[calc(100vh-10rem)] overflow-visible">
                   {/* Publicado el */}
                   <p className="font-['Neue_Augenblick:Medium',sans-serif] leading-[18px] not-italic relative shrink-0 text-[16px] text-[rgba(73,73,73,0.5)] w-full">
                     Publicado el {newsItem.date}
@@ -208,6 +232,23 @@ export function NoticiaDetalle() {
 
               {/* Main Content Column */}
               <div className="lg:col-span-8 lg:col-start-5 flex flex-col gap-12 w-full" ref={contentRef}>
+                {/* Mobile Meta Info - Only visible on mobile */}
+                <div className="lg:hidden flex flex-col gap-6 pb-6 border-b border-gray-200">
+                  <p className="font-['Neue_Augenblick:Medium',sans-serif] text-[14px] text-[rgba(73,73,73,0.5)]">
+                    Publicado el {newsItem.date}
+                  </p>
+                  
+                  {/* Mobile Reading Time */}
+                  <div className="flex flex-col gap-2">
+                    <p className="font-['Neue_Augenblick:Medium',sans-serif] text-[14px] text-[rgba(73,73,73,0.5)]">
+                      Tiempo de Lectura
+                    </p>
+                    <p className="font-['Neue_Augenblick:Medium',sans-serif] text-[20px] text-black">
+                      6 minutos
+                    </p>
+                  </div>
+                </div>
+
                 {/* Cover Image */}
                 <div className="w-full overflow-hidden rounded-sm">
                    <img 
@@ -249,6 +290,47 @@ export function NoticiaDetalle() {
                      className="w-full h-full object-cover"
                    />
                 </div>
+
+                {/* Mobile Share Section - At the end of article */}
+                <div className="lg:hidden flex flex-col gap-6 pt-6 mt-6 border-t border-gray-200">
+                  <p className="font-['Neue_Augenblick:Medium',sans-serif] text-[14px] text-[rgba(73,73,73,0.5)]">
+                    Compartir este artículo
+                  </p>
+                  
+                  {/* Mobile Share Buttons */}
+                  <div className="flex gap-4 flex-wrap">
+                    <button 
+                      onClick={handleShareFacebook}
+                      className="px-4 py-2 border border-black rounded-full text-sm hover:bg-gray-50 transition-colors"
+                    >
+                      Compartir en Facebook
+                    </button>
+                    <button 
+                      onClick={handleShareLinkedIn}
+                      className="px-4 py-2 border border-black rounded-full text-sm hover:bg-gray-50 transition-colors"
+                    >
+                      Compartir en LinkedIn
+                    </button>
+                    <button 
+                      onClick={handleCopyLink}
+                      className="px-4 py-2 border border-black rounded-full text-sm hover:bg-gray-50 transition-colors"
+                    >
+                      Copiar enlace
+                    </button>
+                  </div>
+                </div>
+
+                {/* Mobile CTA Button - Only visible on mobile when scrolled */}
+                {isNearEnd && (
+                  <div className="lg:hidden fixed bottom-6 left-0 right-0 px-6 z-40 animate-in fade-in slide-in-from-bottom-4">
+                    <Link
+                      to="/contacto"
+                      className="w-full block text-center px-8 py-4 bg-black text-white rounded-full text-lg font-medium hover:bg-gray-800 transition-colors shadow-lg"
+                    >
+                      Contactar un asesor
+                    </Link>
+                  </div>
+                )}
               </div>
 
             </div>

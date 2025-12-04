@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import logoPaths from "../../imports/svg-qgocns5d8m";
+import { ImageWithFallback } from "../figma/ImageWithFallback";
 
 export function ScrollRevealVideo() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -15,15 +16,12 @@ export function ScrollRevealVideo() {
   return (
     <div ref={containerRef} className="relative h-[300vh] w-full bg-white">
       <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
-         {/* Video Container with specific height matching design */}
-         <div className="relative w-full h-[70vh] md:h-[85vh] overflow-hidden">
-             <video 
-                src="https://circular.ws/yobel/camion.mp4"
+         {/* Image Container with increased height */}
+         <div className="relative w-full h-[85vh] md:h-screen overflow-hidden">
+             <ImageWithFallback 
+                src="https://images.unsplash.com/photo-1761396776806-2be01380d8b0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjB3YXJlaG91c2UlMjBkaXN0cmlidXRpb258ZW58MXx8fHwxNzY0ODU2NTI0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                alt="Logística Yobel"
                 className="absolute top-0 left-0 w-full h-full object-cover"
-                autoPlay 
-                loop 
-                muted 
-                playsInline
              />
              
              {/* Mask Layer */}

@@ -65,9 +65,8 @@ export function VideoScrollSection({
   const maskOpacity = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
 
   return (
-    <div ref={containerRef} className={cn("relative h-[400vh] w-full bg-black", className)}>
-      <div className="absolute top-0 left-0 w-full h-32 z-30 bg-gradient-to-b from-white to-transparent pointer-events-none" />
-      <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
+    <div ref={containerRef} className={cn("relative h-[400vh] w-full", className)}>
+      <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center bg-transparent">
          <motion.video
             src={videoSrc}
             className="absolute inset-0 w-full h-full object-cover"
@@ -81,17 +80,17 @@ export function VideoScrollSection({
                 rgba(0,0,0,${maskOpacity}) 0%, 
                 rgba(0,0,0,${maskOpacity}) 100%), 
                 url("${imgImage4}")`,
-              maskSize: '100% 100%, 100% 100%',
+              maskSize: '100% 100%, cover',
               maskRepeat: 'no-repeat, no-repeat',
-              maskPosition: 'center, center',
+              maskPosition: 'center, right center',
               maskComposite: 'intersect',
               WebkitMaskImage: `linear-gradient(to bottom, 
                 rgba(0,0,0,1) 0%, 
                 rgba(0,0,0,1) 100%), 
                 url("${imgImage4}")`,
-              WebkitMaskSize: '100% 100%, 100% 100%',
+              WebkitMaskSize: '100% 100%, cover',
               WebkitMaskRepeat: 'no-repeat, no-repeat',
-              WebkitMaskPosition: 'center, center',
+              WebkitMaskPosition: 'center, right center',
               WebkitMaskComposite: 'source-in'
             }}
          />

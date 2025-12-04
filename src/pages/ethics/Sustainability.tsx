@@ -1,14 +1,33 @@
-import React from "react";
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform } from "motion/react";
+import { HeroGradient } from "../../components/ui/hero-gradient";
 import { Section } from "../../components/ui/custom-section";
 import { Container } from "../../components/ui/custom-container";
 import { Button } from "../../components/ui/button";
 import { FAQ } from "../../components/landing/FAQ";
+import { Leaf, Recycle, Users, TrendingDown } from "lucide-react";
 
 const pillars = [
-  { title: "Clima y energía", desc: "Rutas optimizadas, eficiencia en sedes y pilotos de movilidad eléctrica para bajar emisiones." },
-  { title: "Residuos y economía circular", desc: "Reutilizamos embalajes, valorizamos residuos y reacondicionamos productos para prolongar su vida útil." },
-  { title: "Cadena responsable (ESG)", desc: "Exigimos estándares éticos, ambientales y de DD.HH. a proveedores; evaluamos y acompañamos mejoras." },
-  { title: "Impacto social", desc: "Programas de empleabilidad, seguridad vial y donación logística en emergencias, cerca de nuestras sedes" }
+  { 
+    title: "Clima y energía", 
+    desc: "Rutas optimizadas, eficiencia en sedes y pilotos de movilidad eléctrica para bajar emisiones.",
+    icon: TrendingDown
+  },
+  { 
+    title: "Residuos y economía circular", 
+    desc: "Reutilizamos embalajes, valorizamos residuos y reacondicionamos productos para prolongar su vida útil.",
+    icon: Recycle
+  },
+  { 
+    title: "Cadena responsable (ESG)", 
+    desc: "Exigimos estándares éticos, ambientales y de DD.HH. a proveedores; evaluamos y acompañamos mejoras.",
+    icon: Leaf
+  },
+  { 
+    title: "Impacto social", 
+    desc: "Programas de empleabilidad, seguridad vial y donación logística en emergencias, cerca de nuestras sedes",
+    icon: Users
+  }
 ];
 
 const kpis = [
@@ -33,87 +52,208 @@ const faqs = [
 ];
 
 export function Sustainability() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  });
+
+  // Background gradient effect
+  const bgColor = useTransform(
+    scrollYProgress,
+    [0, 0.3, 0.95],
+    ["#FFF700", "#ffffff", "#ffffff"]
+  );
+
+  // Text color transition
+  const textColor = useTransform(
+    scrollYProgress,
+    [0, 0.3],
+    ["#000000", "#000000"]
+  );
+
   return (
-    <>
-      <div className="relative h-[40vh] min-h-[400px] max-h-[500px] w-full overflow-hidden font-augenblick bg-gradient-to-b from-[#fff066] to-white">
-        <div className="absolute bottom-10 left-0 right-0 px-[5%] md:px-[50px] z-10">
-          <div className="max-w-[1400px] mx-auto flex flex-col gap-[30px]">
-             <p className="text-lg md:text-[18px] text-black font-[Neue_Augenblick]">Responsabilidad Corporativa</p>
-             <div className="flex flex-col lg:flex-row items-end justify-between gap-[40px] w-full">
-                <h1 className="text-5xl md:text-[65px] leading-[1] text-black max-w-[773px] font-[Neue_Augenblick]">
-                  RSE y Sostenibilidad
-                </h1>
-                <p className="text-xl md:text-[22px] leading-[24px] text-black max-w-[350px] lg:mr-32 pb-1 font-[Neue_Augenblick]">
-                  Nos movemos juntos a la sostenibilidad. Reducimos huella, impulsamos economía circular y generamos impacto positivo.
-                </p>
-             </div>
+    <div ref={containerRef} className="relative">
+      {/* Background overlay with gradient */}
+      <motion.div
+        style={{ backgroundColor: bgColor }}
+        className="fixed top-0 left-0 right-0 bottom-0 -z-10"
+      />
+
+      {/* Hero Section */}
+      <HeroGradient
+        subtitle="Responsabilidad Corporativa"
+        title="RSE y Sostenibilidad"
+        description="Nos movemos juntos hacia la sostenibilidad. Reducimos huella, impulsamos economía circular y generamos impacto positivo."
+      />
+
+      {/* Main Content */}
+      <Section className="relative bg-transparent pt-20 pb-32">
+        <Container>
+          {/* Intro */}
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+            className="max-w-4xl mx-auto text-center mb-32"
+          >
+            <motion.h2 
+              className="font-augenblick text-4xl md:text-[56px] leading-[1.1] mb-8"
+              style={{ color: textColor }}
+            >
+              Compromiso con el futuro
+            </motion.h2>
+            <motion.p 
+              className="text-xl md:text-2xl leading-relaxed opacity-70"
+              style={{ color: textColor }}
+            >
+              En Yobel trabajamos cada día para que nuestras operaciones logísticas sean más sostenibles, 
+              eficientes y generen un impacto positivo en las comunidades donde operamos.
+            </motion.p>
+          </motion.div>
+
+          {/* Pillars Grid */}
+          <div className="mb-32">
+            <motion.h3 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              className="font-augenblick text-3xl md:text-[45px] mb-16 text-center"
+              style={{ color: textColor }}
+            >
+              Nuestros pilares
+            </motion.h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+              {pillars.map((pil, idx) => {
+                const Icon = pil.icon;
+                return (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.6, delay: idx * 0.1 }}
+                    whileHover={{ y: -8, transition: { duration: 0.3 } }}
+                    className="group relative bg-white/80 backdrop-blur-sm p-10 md:p-12 rounded-[40px] border border-black/5 hover:border-black/10 transition-all overflow-hidden"
+                  >
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#5dd3c0]/10 to-transparent rounded-bl-full" />
+                    <div className="relative">
+                      <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#FFF700] to-[#5dd3c0] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <Icon className="w-7 h-7 text-black" />
+                      </div>
+                      <h4 className="font-augenblick text-2xl md:text-[28px] mb-4">
+                        {pil.title}
+                      </h4>
+                      <p className="text-lg md:text-xl leading-relaxed opacity-70">
+                        {pil.desc}
+                      </p>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
           </div>
-        </div>
-      </div>
 
-      <Section className="bg-white">
-         <Container>
-            {/* Pillars */}
-            <div className="mb-24">
-               <h3 className="text-3xl md:text-4xl font-normal mb-10">Nuestros pilares</h3>
-               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  {pillars.map((pil, idx) => (
-                     <div key={idx} className="bg-green-50 p-10 rounded-[30px] border border-green-100 hover:shadow-lg transition-all">
-                        <h4 className="text-2xl font-bold mb-4 text-green-800">{pil.title}</h4>
-                        <p className="text-lg text-gray-700 leading-relaxed">{pil.desc}</p>
-                     </div>
-                  ))}
-               </div>
+          {/* KPIs Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            className="relative bg-black text-white rounded-[60px] p-12 md:p-20 lg:p-24 mb-32 overflow-hidden"
+          >
+            {/* Decorative elements */}
+            <div className="absolute top-0 left-0 w-64 h-64 bg-gradient-to-br from-[#FFF700]/20 to-transparent rounded-full blur-3xl" />
+            <div className="absolute bottom-0 right-0 w-80 h-80 bg-gradient-to-tl from-[#5dd3c0]/20 to-transparent rounded-full blur-3xl" />
+            
+            <div className="relative">
+              <h3 className="font-augenblick text-3xl md:text-[45px] mb-6 text-center">
+                Resultados que nos impulsan
+              </h3>
+              <p className="text-lg md:text-xl text-center opacity-80 mb-16 md:mb-20 max-w-4xl mx-auto leading-relaxed">
+                Medimos nuestro impacto para seguir mejorando. Estos son algunos de nuestros logros en sostenibilidad y responsabilidad social.
+              </p>
+              
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
+                {kpis.map((kpi, idx) => (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.6, delay: idx * 0.1 }}
+                    className="text-center"
+                  >
+                    <p className="font-augenblick text-5xl md:text-6xl lg:text-7xl mb-4 bg-gradient-to-br from-[#FFF700] to-[#5dd3c0] bg-clip-text text-transparent">
+                      {kpi.value}
+                    </p>
+                    <p className="text-sm md:text-base lg:text-lg opacity-90 leading-snug">
+                      {kpi.label}
+                    </p>
+                  </motion.div>
+                ))}
+              </div>
             </div>
+          </motion.div>
 
-            {/* KPIs */}
-            <div className="bg-black text-white rounded-[40px] p-12 md:p-20 mb-24">
-                <h3 className="text-3xl md:text-4xl font-normal mb-6 text-center">Personas y diversidad que nos mueven</h3>
-                <p className="text-xl text-center opacity-80 mb-16 max-w-4xl mx-auto font-light leading-relaxed">Impulsamos inclusión, bienestar y seguridad para desarrollar talento con formación continua y oportunidades equitativas.</p>
-                
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
-                    {kpis.map((kpi, idx) => (
-                        <div key={idx} className="text-center">
-                           <p className="text-5xl md:text-6xl font-bold mb-4 text-green-400">{kpi.value}</p>
-                           <p className="text-base md:text-lg font-light opacity-90 leading-snug">{kpi.label}</p>
-                        </div>
-                    ))}
-                </div>
+          {/* Initiatives */}
+          <div className="mb-32">
+            <motion.h3
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              className="font-augenblick text-3xl md:text-[45px] mb-16 text-center"
+              style={{ color: textColor }}
+            >
+              Iniciativas destacadas
+            </motion.h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {initiatives.map((init, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.6, delay: idx * 0.1 }}
+                  whileHover={{ y: -5, transition: { duration: 0.3 } }}
+                  className="bg-white/80 backdrop-blur-sm border border-black/5 p-8 rounded-[30px] hover:border-black/10 hover:shadow-lg transition-all h-full"
+                >
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#FFF700] to-[#5dd3c0] mb-5" />
+                  <h4 className="font-augenblick text-xl md:text-2xl mb-4">
+                    {init.title}
+                  </h4>
+                  <p className="text-base md:text-lg leading-relaxed opacity-70">
+                    {init.desc}
+                  </p>
+                </motion.div>
+              ))}
             </div>
+          </div>
 
-            {/* Initiatives */}
-            <div className="mb-24">
-               <h3 className="text-3xl md:text-4xl font-normal mb-10">Iniciativas destacadas</h3>
-               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                   {initiatives.map((init, idx) => (
-                       <div key={idx} className="bg-white border border-gray-200 p-8 rounded-[30px] hover:shadow-md transition-all h-full">
-                           <h4 className="text-xl font-bold mb-4">{init.title}</h4>
-                           <p className="text-gray-600 text-base leading-relaxed">{init.desc}</p>
-                       </div>
-                   ))}
-               </div>
+          {/* CTA Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            className="relative bg-gradient-to-br from-[#FFF700] via-[#FFE300] to-[#5dd3c0] rounded-[60px] p-12 md:p-20 text-center overflow-hidden"
+          >
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(255,255,255,0.3),transparent)]" />
+            <div className="relative">
+              <h3 className="font-augenblick text-3xl md:text-[45px] mb-6 text-black">
+                Sumemos impacto a tu operación
+              </h3>
+              <p className="text-lg md:text-xl text-black/80 mb-10 max-w-3xl mx-auto leading-relaxed">
+                Te ayudamos a diseñar soluciones logísticas más eficientes y sostenibles.
+              </p>
+              <Button className="bg-black text-white px-12 py-6 rounded-full text-lg hover:bg-black/90 transition-all shadow-xl hover:shadow-2xl hover:scale-105">
+                Contactar un asesor
+              </Button>
             </div>
-
-            {/* Impact Map Teaser */}
-            <div className="bg-gray-50 rounded-[40px] p-16 text-center mb-24">
-                <h3 className="text-3xl md:text-4xl font-normal mb-6">Explora nuestro impacto sostenible en Latinoamérica</h3>
-                <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-12 font-light leading-relaxed">Toca el mapa o elige un país para ver iniciativas y resultados medibles: reducción de emisiones, valorización de residuos y acción social por operación.</p>
-                <div className="h-80 bg-gray-200 rounded-[30px] flex items-center justify-center mb-10">
-                    <span className="text-gray-500 text-xl">Mapa Interactivo (Placeholder)</span>
-                </div>
-                <Button className="bg-black text-white px-10 py-4 rounded-full text-lg hover:bg-gray-800 transition-colors">Descubre nuestros casos de impacto</Button>
-            </div>
-
-            <div className="bg-blue-50 rounded-[40px] p-16 text-center">
-                <h3 className="text-3xl md:text-4xl font-normal mb-8">Sumemos impacto a tu operación</h3>
-                <p className="text-xl text-gray-600 mb-10 max-w-3xl mx-auto">Te ayudamos a diseñar soluciones logísticas más eficientes y sostenibles.</p>
-                <Button className="bg-black text-white px-12 py-5 rounded-full text-xl hover:bg-gray-800 transition-colors">Contactar un asesor</Button>
-            </div>
-
-         </Container>
+          </motion.div>
+        </Container>
       </Section>
 
       <FAQ items={faqs} />
-    </>
+    </div>
   );
 }

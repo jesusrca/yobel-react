@@ -80,9 +80,9 @@ export function Noticias() {
       </div>
 
       <Section className="bg-white py-[60px] md:py-[60px]">
-        <Container className="px-[50px]">
+        <Container className="px-[20px] md:px-[50px]">
           {/* Filtros */}
-          <div className="content-stretch flex gap-[20px] items-start mb-[120px]" data-name="Filtro">
+          <div className="content-stretch flex flex-col md:flex-row gap-[20px] items-start mb-[60px] md:mb-[120px]" data-name="Filtro">
             {/* Categorías Filter */}
             <div className="content-stretch flex flex-col gap-[8px] items-start relative shrink-0 w-full md:w-[547px]">
               <div aria-hidden="true" className="absolute border-[0px_0px_1px] border-black border-solid bottom-[-0.5px] left-0 pointer-events-none right-0 top-0" />

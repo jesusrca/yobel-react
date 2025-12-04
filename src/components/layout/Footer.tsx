@@ -90,7 +90,7 @@ const menuItems = [
     id: "06",
     title: "Contacto",
     items: [
-      { name: "Oficinas", path: "/contacto" },
+      { name: "Oficinas", path: "/contacto#oficinas" },
       { name: "Contactar Asesor", path: "/contacto" },
       { name: "Trabaja con nosotros", path: "/contacto" },
     ]
@@ -284,6 +284,17 @@ export function Footer() {
                             </span>
                         </div>
                     ))}
+                    <Link 
+                        to="#" 
+                        className="group flex items-center gap-4"
+                    >
+                        <span className="text-[22px] text-white transition-colors duration-300">
+                            07 /
+                        </span>
+                        <span className="text-[22px] text-white transition-all duration-300 group-hover:underline">
+                            Portal de Cliente
+                        </span>
+                    </Link>
                 </div>
 
                 {/* Submenu Links (Animated) */}
@@ -319,9 +330,9 @@ export function Footer() {
         <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-8 pt-8 border-t border-white/10">
              <p className="text-[18px] text-white">© Yobel {selectedCountry}</p>
              <div className="flex flex-wrap gap-6 md:gap-8">
-                 <Link to="#" className="text-[16px] text-white/50 hover:text-white hover:underline transition-all">Términos y Condiciones</Link>
+                 <Link to="/terminos-y-condiciones" className="text-[16px] text-white/50 hover:text-white hover:underline transition-all">Términos y Condiciones</Link>
                  <Link to="/libro-reclamaciones" className="text-[16px] text-white/50 hover:text-white hover:underline transition-all">Libro de Reclamaciones</Link>
-                 <Link to="#" className="text-[16px] text-white/50 hover:text-white hover:underline transition-all">Privacidad</Link>
+                 <Link to="/politicas-de-privacidad" className="text-[16px] text-white/50 hover:text-white hover:underline transition-all">Privacidad</Link>
                  <Link to="/politicas-de-cookies" className="text-[16px] text-white/50 hover:text-white hover:underline transition-all">Políticas de Cookies</Link>
              </div>
         </div>

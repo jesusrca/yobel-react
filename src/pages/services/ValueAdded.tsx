@@ -102,7 +102,7 @@ export function ValueAdded() {
             muted
             playsInline
           />
-          <div className="absolute inset-0 bg-black/10" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/40" />
           <div className="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-white via-white/60 to-transparent pointer-events-none" />
         </div>
 
@@ -152,7 +152,7 @@ export function ValueAdded() {
         label="Soluciones"
         title="Damos valor a cada mercancía"
         solutions={solutions}
-        imageUrl="https://images.unsplash.com/photo-1674573070777-690850b7c68a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbmR1c3RyaWFsJTIwcGFja2FnaW5nJTIwbGFiZWxpbmclMjB3b3JrZXJzfGVufDF8fHx8MTc2NDQxMjY0Nnww&ixlib=rb-4.1.0&q=80&w=1080"
+        imageUrl="https://images.unsplash.com/photo-1583737077549-d078beef3046?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwYWNrYWdpbmclMjBhc3NlbWJseSUyMHdhcmVob3VzZSUyMHdvcmtlcnN8ZW58MXx8fHwxNzY0ODQ2MDczfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
         imageAlt="Valor Agregado"
       />
 

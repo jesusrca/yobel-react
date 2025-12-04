@@ -98,7 +98,7 @@ export function Tech() {
                </div>
                <div className="flex flex-col gap-12 items-center">
                  <p className="text-2xl md:text-4xl lg:text-[40px] leading-tight font-normal text-black">
-                   En Yobel SCM diseñamos cadenas logísticas especializadas para productos tecnológicos y electrónicos. Garantizamos seguridad, condiciones controladas y trazabilidad completa desde el fabricante hasta el usuario final.
+                   En Yobel diseñamos cadenas logísticas especializadas para productos tecnológicos y electrónicos. Garantizamos seguridad, condiciones controladas y trazabilidad completa desde el fabricante hasta el usuario final.
                  </p>
                  <div>
                    <Button className="bg-transparent border-[1.5px] border-black text-black px-8 py-6 rounded-full text-xl relative overflow-hidden transition-all duration-500 before:absolute before:inset-0 before:bg-[linear-gradient(150deg,#FFF700_0%,#FFF700_32%,#FFE300_70%,#5dd3c0_100%)] before:opacity-0 before:transition-opacity before:duration-500 before:rounded-full hover:before:opacity-100 hover:border-0">

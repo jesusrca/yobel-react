@@ -49,7 +49,7 @@ export function StatsList({ stats, className = "" }: StatsListProps) {
                          />
                          <button 
                            onClick={stat.onLinkClick}
-                           className="relative pb-2 text-[22px] font-medium border-b border-black hover:opacity-70 transition-opacity font-augenblick"
+                           className={`relative pb-2 text-[22px] font-medium border-b border-black hover:opacity-70 transition-opacity font-augenblick ${stat.onLinkClick ? 'cursor-pointer' : 'cursor-default'}`}
                          >
                             {stat.linkText || "Conoce más"}
                          </button>

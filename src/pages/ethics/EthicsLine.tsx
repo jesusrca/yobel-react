@@ -83,6 +83,24 @@ export function EthicsLine() {
                     <span className="font-bold">Importante:</span> Este canal no sustituye a los servicios de emergencia. Si enfrentas una situación de riesgo inminente para la vida o la seguridad, contacta a los servicios de emergencia locales o al área de HSE de inmediato.
                  </p>
               </div>
+
+              <div className="mt-8 p-6 bg-gray-50 border border-gray-200 rounded-xl">
+                 <h4 className="font-bold text-xl mb-4 text-black">Contacto de Emergencia</h4>
+                 <div className="flex flex-col md:flex-row gap-6">
+                    <div className="flex-1">
+                       <p className="text-sm text-gray-600 mb-1">Teléfono de Emergencia</p>
+                       <a href="tel:+51987654321" className="text-2xl font-medium text-black hover:text-[#59c1e6] transition-colors">
+                          +51 987 654 321
+                       </a>
+                    </div>
+                    <div className="flex-1">
+                       <p className="text-sm text-gray-600 mb-1">Correo Electrónico</p>
+                       <a href="mailto:etica@yobel.com.pe" className="text-2xl font-medium text-black hover:text-[#59c1e6] transition-colors break-all">
+                          etica@yobel.com.pe
+                       </a>
+                    </div>
+                 </div>
+              </div>
             </div>
           </div>
         </Container>

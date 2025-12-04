@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, MotionValue } from "motion/react";
+import { useNavigate } from "react-router-dom";
 import { Section } from "../ui/custom-section";
 import { Container } from "../ui/custom-container";
 import { AnimatedNumber, ScrollRevealText } from "../ui/motion-text";
@@ -19,7 +20,7 @@ const stats = [
   {
     number: "+300K",
     title: "Profesionales",
-    description: "Especializados en logística y unidos para hacer que cada operación funcione con excelencia."
+    description: "Especializados en logística y unidos para que cada operación funcione con excelencia."
   },
   {
     number: "+4",
@@ -137,7 +138,14 @@ const SnakeSegment = ({
 };
 
 export function Statistics() {
+  const navigate = useNavigate();
+  
+  const statsWithLinks = stats.map((stat, idx) => ({
+    ...stat,
+    onLinkClick: idx === 0 ? () => navigate('/empresa/historia') : undefined
+  }));
+
   return (
-    <StatsList stats={stats} />
+    <StatsList stats={statsWithLinks} />
   );
 }

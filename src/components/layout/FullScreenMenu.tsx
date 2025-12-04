@@ -63,7 +63,7 @@ const menuItems = [
   },
   {
     id: "05",
-    title: "Ética",
+    title: "Ética y Sostenibilidad",
     items: [
       { name: "Código de Ética", path: "/etica/codigo-de-etica" },
       { name: "Línea de Ética", path: "/etica/linea-de-etica" },
@@ -74,7 +74,7 @@ const menuItems = [
     id: "06",
     title: "Contacto",
     items: [
-      { name: "Oficinas", path: "/contacto" },
+      { name: "Oficinas", path: "/contacto#oficinas" },
       { name: "Contactar Asesor", path: "/contacto" },
       { name: "Trabaja con nosotros", path: "/contacto" },
     ]
@@ -209,7 +209,7 @@ export function FullScreenMenu({ onClose, onSearchClick }: FullScreenMenuProps) 
               </div>
 
               {/* Right Col: Subitems */}
-              <div className="flex-1 pl-20 pt-10 border-l border-white/10 ml-12">
+              <div className="flex-1 pl-20 pt-10 border-l border-white/10 ml-12 overflow-y-auto max-h-[600px] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                  <AnimatePresence mode="wait">
                     <motion.div
                         key={activeCategory}
@@ -219,16 +219,27 @@ export function FullScreenMenu({ onClose, onSearchClick }: FullScreenMenuProps) 
                         transition={{ duration: 0.2 }}
                         className="flex flex-col gap-6"
                     >
-                        {activeItemsDesktop.map((link, idx) => (
-                            <Link 
-                                key={idx} 
-                                to={link.path}
-                                onClick={onClose}
-                                className="text-[32px] font-light text-white hover:text-[#fff066] transition-colors w-fit"
-                            >
-                                {link.name}
-                            </Link>
-                        ))}
+                        {activeItemsDesktop.map((link, idx) => {
+                            const isServicesCategory = activeCategory === "Servicios";
+                            const isManufacturingOrValueAddedOrVAS = 
+                                link.name === "Manufactura" || 
+                                link.name === "Valor Agregado" ||
+                                link.name === "Servicio Valor Agregado";
+                            const hoverColor = (isServicesCategory && isManufacturingOrValueAddedOrVAS) 
+                                ? "hover:text-[#00BEEB]" 
+                                : "hover:text-[#fff066]";
+                            
+                            return (
+                                <Link 
+                                    key={idx} 
+                                    to={link.path}
+                                    onClick={onClose}
+                                    className={`text-[32px] font-light text-white ${hoverColor} transition-colors w-fit`}
+                                >
+                                    {link.name}
+                                </Link>
+                            );
+                        })}
                     </motion.div>
                  </AnimatePresence>
               </div>

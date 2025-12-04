@@ -72,6 +72,9 @@ export function UseCasesSection({
                       text={step.desc}
                       className="text-xl md:text-[22px] text-black mb-8 max-w-lg leading-relaxed"
                     />
+                    <a href="#" className="text-black text-lg underline hover:text-gray-600 transition-colors duration-300">
+                      Ver Documento
+                    </a>
                   </div>
                 </div>
               </div>

@@ -58,7 +58,7 @@ export function Hero() {
         />
       </div>
       <div className="absolute inset-0 bg-black/10" />
-      <div className="absolute bottom-0 left-0 w-full h-96 bg-gradient-to-t from-white via-gray-200/40 to-transparent pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-full h-96 bg-gradient-to-t from-[#FFF700] via-[#FFF700]/40 to-transparent pointer-events-none" />
       
       <div className="absolute bottom-10 md:bottom-28 left-[5%] right-[5%] z-10 max-w-[1340px] mx-auto">
         <div className="flex flex-col md:flex-row items-start md:items-end gap-8 md:gap-20 text-black">

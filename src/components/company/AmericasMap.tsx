@@ -133,6 +133,15 @@ export function AmericasMap({ className, selected, onSelect }: AmericasMapProps)
               {/* Países interactivos en gris con click y hover (renderizados al final, arriba) */}
               {interactiveCountries.map((country) => {
                 const isSelected = selected === country.id;
+                const countryColor = country.id === 'peru' ? '#FFF700' :
+                                   country.id === 'ecuador' ? '#EAF01E' :
+                                   country.id === 'colombia' ? '#D6EA39' :
+                                   country.id === 'panama' ? '#C1E456' :
+                                   country.id === 'costa_rica' ? '#ADDC74' :
+                                   country.id === 'rep_dominicana' ? '#97D590' :
+                                   country.id === 'el_salvador' ? '#83CEAD' :
+                                   country.id === 'guatemala' ? '#6EC7C9' :
+                                   country.id === 'mexico' ? '#59C1E6' : '#D1D5DB';
                 
                 return country.paths.map((pathKey, idx) => {
                   const pathData = svgPaths[pathKey];
@@ -147,7 +156,7 @@ export function AmericasMap({ className, selected, onSelect }: AmericasMapProps)
                       )}
                       style={
                         isSelected
-                          ? { fill: 'url(#yellowGradient)', opacity: 0.9 }
+                          ? { fill: countryColor, opacity: 0.9 }
                           : { fill: '#D1D5DB', opacity: 0.64 }
                       }
                       stroke="#444444"
@@ -156,7 +165,7 @@ export function AmericasMap({ className, selected, onSelect }: AmericasMapProps)
                       onClick={() => onSelect?.(country.id)}
                       onMouseEnter={(e) => {
                         if (!isSelected) {
-                          e.currentTarget.style.fill = "#BAE6FD";
+                          e.currentTarget.style.fill = countryColor;
                         }
                       }}
                       onMouseLeave={(e) => {
