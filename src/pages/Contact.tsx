@@ -488,16 +488,14 @@ export function Contact() {
 
                   {/* Button to see other countries */}
                   <div className="pt-6">
-                     <button
+                     <Button 
                         onClick={() => {
                           mapSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                         }}
-                        className="w-full"
+                        className="w-full bg-transparent border-[1.5px] border-black text-black px-8 py-6 rounded-full text-lg hover:bg-black hover:text-white transition-colors"
                      >
-                        <Button className="w-full bg-transparent border-[1.5px] border-black text-black px-8 py-6 rounded-full text-lg hover:bg-black hover:text-white transition-colors">
-                           Ver contacto de otros países
-                        </Button>
-                     </button>
+                        Ver contacto de otros países
+                     </Button>
                   </div>
 
                   {/* Jobs CTA */}

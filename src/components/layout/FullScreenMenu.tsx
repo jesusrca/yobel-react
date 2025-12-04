@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Search, ChevronDown } from "lucide-react";
 import svgPaths from "../../imports/svg-1hie16nw8a";
 import { cn } from "../ui/utils";
@@ -82,7 +82,30 @@ const menuItems = [
 ];
 
 export function FullScreenMenu({ onClose, onSearchClick }: FullScreenMenuProps) {
-  const [activeCategory, setActiveCategory] = useState<string>("Empresa");
+  const location = useLocation();
+  
+  // Determine the initial active category based on current path
+  const determineActiveCategory = () => {
+    const path = location.pathname;
+    
+    for (const menuItem of menuItems) {
+      const matchingItem = menuItem.items.find(item => 
+        path === item.path || path.startsWith(item.path + '/')
+      );
+      if (matchingItem) {
+        return menuItem.title;
+      }
+    }
+    
+    return "Empresa"; // Default
+  };
+  
+  const [activeCategory, setActiveCategory] = useState<string>(determineActiveCategory());
+  
+  // Update active category when menu opens with current page
+  useEffect(() => {
+    setActiveCategory(determineActiveCategory());
+  }, [location.pathname]);
   
   // Logic for displaying items on desktop
   const activeItemsDesktop = menuItems.find(item => item.title === activeCategory)?.items || [];

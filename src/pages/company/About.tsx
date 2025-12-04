@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform, AnimatePresence, useMotionValue, MotionValue } from "motion/react";
-import { PageHero } from "../../components/ui/PageHero";
+import { HistoryHero } from "../../components/company/HistoryHero";
 import { Section } from "../../components/ui/custom-section";
 import { Container } from "../../components/ui/custom-container";
 import { Button } from "../../components/ui/button";
@@ -12,6 +12,8 @@ import { VideoScrollSection } from "../../components/company/VideoScrollSection"
 import { ProcessItem } from "../../components/company/ProcessItem";
 import { SolutionsShowcase } from "../../components/ui/SolutionsShowcase";
 import { ScrollRevealString } from "../../components/ui/scroll-reveal-text";
+import { ScrollColorTransition } from "../../components/ui/scroll-color-transition";
+import Y from "../../imports/Y";
 import svgPaths from "../../imports/svg-5srx0k234k";
 import svgPathsProcess from "../../imports/svg-u5y25zzhvz";
 import svgPathsIcon from "../../imports/svg-j9zkv27h5w";
@@ -239,212 +241,265 @@ export function About() {
 
   return (
     <>
-      {/* HERO SECTION WITH VIDEO */}
-      <div className="relative h-[80vh] min-h-[600px] max-h-[920px] w-full overflow-hidden font-augenblick">
-        <div className="absolute inset-0 overflow-hidden">
-          <video 
-            src="https://circular.ws/yobel/gris-desktop.mp4"
-            className="absolute inset-0 h-full w-full object-cover"
-            autoPlay
-            loop
-            muted
-            playsInline
-          />
-          <div className="absolute inset-0 bg-black/10" />
-          <div className="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-white via-white/60 to-transparent pointer-events-none" />
-        </div>
+      <ScrollColorTransition>
+        {(textColor) => (
+          <>
+            {/* HERO SECTION */}
+            <HistoryHero 
+              label="Sobre Nosotros"
+              title="Con más de 50 años de experiencia en Latinoamérica"
+              description="En Yobel impulsamos tu negocio con soluciones de logística y manufactura que integran innovación, eficiencia y cercanía, generando valor real en cada etapa de la cadena de suministro."
+            />
 
-        <div className="absolute bottom-20 left-0 right-0 px-[5%] md:px-[50px] z-10">
-          <div className="max-w-[1400px] mx-auto flex flex-col gap-[30px]">
-             <p className="text-lg md:text-[18px] text-black font-medium">Sobre Nosotros</p>
-             <div className="flex flex-col lg:flex-row items-start gap-[40px]">
-                <h1 className="text-5xl md:text-[65px] leading-[1] text-black max-w-[800px] tracking-tight">
-                  Con más de 50 años de experiencia en Latinoamérica
-                </h1>
-                <p className="text-xl md:text-[22px] leading-[24px] text-black/80 max-w-[400px] pt-2 font-light">
-                   En Yobel impulsamos tu negocio con soluciones de logística y manufactura que integran innovación, eficiencia y cercanía, generando valor real en cada etapa de la cadena de suministro.
-                </p>
-             </div>
-          </div>
-        </div>
-      </div>
+            <ParallaxCurves />
 
-      <ParallaxCurves />
+            {/* INTRO & PURPOSE - DYNAMIC GRADIENT */}
+            <div ref={containerRef} className="relative h-[300vh]">
+              <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden bg-transparent">
+                  {/* Content */}
+                  {purposeItems.map((item, idx) => {
+                    // Calcular posición Y y opacidad para efecto carrusel vertical - transiciones más lentas
+                    const yPosition = useTransform(
+                      scrollYProgress,
+                      [
+                        (idx * 0.33) - 0.15,
+                        (idx * 0.33) + 0.05,
+                        (idx * 0.33) + 0.28,
+                        (idx * 0.33) + 0.38
+                      ],
+                      [100, 0, 0, -100]
+                    );
+                    
+                    const opacity = useTransform(
+                      scrollYProgress,
+                      [
+                        (idx * 0.33) - 0.1,
+                        (idx * 0.33) + 0.05,
+                        (idx * 0.33) + 0.28,
+                        (idx * 0.33) + 0.38
+                      ],
+                      [0, 1, 1, 0]
+                    );
 
-      {/* INTRO & PURPOSE - DYNAMIC GRADIENT */}
-      <div ref={containerRef} className="relative h-[300vh]">
-        <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden bg-white">
-            {/* Content */}
-            {purposeItems.map((item, idx) => {
-              return (
-                <motion.div 
-                  key={idx} 
-                  style={{ opacity: opacities[idx] }}
-                  className="absolute inset-0 flex items-center justify-center px-6 md:px-20 z-10"
-                >
-                   <div className="max-w-[1200px] mx-auto text-center flex flex-col items-center">
-                      <div className="flex flex-col gap-[32px] items-center justify-center w-full">
-                          {/* Yobel Icon */}
-                          <div className="w-[42px] h-[42px] md:w-[56px] md:h-[56px]">
-                             <svg className="block size-full" fill="none" viewBox="0 0 40 40">
-                                <path d={svgPathsIcon.p1f4d9200} fill="black" />
-                             </svg>
-                          </div>
-                          
-                          <p 
-                              className="font-augenblick leading-[48px] not-italic relative shrink-0 text-3xl md:text-[45px] text-center w-full text-gray-500"
-                          >
-                              {item.title}
-                          </p>
-                          <div className="max-w-5xl">
-                              <ScrollRevealString 
-                                text={item.content}
-                                className="font-augenblick leading-[1.4] md:leading-[48px] text-2xl md:text-[45px] text-center text-black justify-center"
-                                as="p"
-                              />
-                          </div>
-                      </div>
-                   </div>
-                </motion.div>
-              );
-            })}
-        </div>
-      </div>
-
-      {/* VALUE PROPOSITION */}
-      <Section className="bg-white py-24">
-         <Container>
-            <div className="relative" onMouseLeave={() => setHoveredIndex(null)}>
-               {/* Header */}
-               <div className="mb-16">
-                  <span className="text-gray-400 text-lg font-medium mb-4 block">Propuesta de Valor</span>
-                  <h2 className="text-4xl md:text-5xl font-normal leading-tight text-black">
-                    Lo que nos hace diferentes en el mercado
-                  </h2>
-               </div>
-
-               {/* Solutions List with Hover Image */}
-               <div className="relative">
-                  {valueProps.map((item, idx) => {
-                     const isHovered = hoveredIndex === idx;
-                     
-                     return (
-                        <div 
-                           key={idx} 
-                           className="relative flex items-center py-6 md:py-0 md:h-[120px] border-b-[1.5px] border-gray-200 cursor-pointer group"
-                           onMouseEnter={() => setHoveredIndex(idx)}
-                        >
-                           <div className="w-full flex justify-between items-center z-10 relative">
-                              <h4 className={`w-full text-[28px] md:text-[32px] font-normal leading-tight transition-colors duration-300 ${isHovered ? 'text-black' : 'text-gray-400'}`}>
-                                 <span className="mr-4">0{idx + 1} /</span> 
-                                 <span className={isHovered ? 'text-black' : 'text-gray-600'}>{item}</span>
-                              </h4>
-                           </div>
-                        </div>
-                     );
+                    return (
+                      <motion.div 
+                        key={idx} 
+                        style={{ 
+                          opacity: opacity,
+                          y: yPosition,
+                          filter: useTransform(opacity, [0, 1], ["blur(10px)", "blur(0px)"])
+                        }}
+                        className="absolute inset-0 flex items-center justify-center px-6 md:px-20 z-10"
+                      >
+                         <div className="max-w-[1200px] mx-auto text-center flex flex-col items-center">
+                            <div className="flex flex-col gap-[32px] items-center justify-center w-full">
+                                {/* Yobel Icon */}
+                                <motion.div 
+                                  className="w-[42px] h-[42px] md:w-[56px] md:h-[56px]"
+                                  style={{ color: textColor }}
+                                >
+                                   <svg className="block size-full" fill="none" viewBox="0 0 40 40">
+                                      <motion.path d={svgPathsIcon.p1f4d9200} style={{ fill: textColor }} />
+                                   </svg>
+                                </motion.div>
+                                
+                                <motion.p 
+                                    className="font-augenblick leading-[48px] not-italic relative shrink-0 text-3xl md:text-[45px] text-center w-full opacity-50"
+                                    style={{ color: textColor }}
+                                >
+                                    {item.title}
+                                </motion.p>
+                                <div className="max-w-5xl">
+                                    <motion.p 
+                                      className="font-augenblick leading-[1.4] md:leading-[48px] text-2xl md:text-[45px] text-center"
+                                      style={{ color: textColor }}
+                                    >
+                                      {item.content}
+                                    </motion.p>
+                                </div>
+                            </div>
+                         </div>
+                      </motion.div>
+                    );
                   })}
+              </div>
+            </div>
 
-                  {/* Floating Image with Animation */}
-                  <div className="absolute inset-0 pointer-events-none z-20 hidden lg:block">
-                     <AnimatePresence>
-                        {hoveredIndex !== null && (
-                           <motion.div 
-                              className="absolute top-0 right-0 w-[450px] h-[280px]"
-                              initial={{ opacity: 0, y: (hoveredIndex * 120) - 60 }}
-                              animate={{ opacity: 1, y: (hoveredIndex * 120) - 60 }}
-                              exit={{ opacity: 0 }}
-                              transition={{ duration: 0.3, ease: "easeOut" }}
-                           >
-                              <motion.div
-                                initial={{ scale: 0.9 }}
-                                animate={{ scale: 1 }}
-                                exit={{ scale: 0.9 }}
-                                className="w-full h-full rounded-[20px] overflow-hidden shadow-2xl"
+            {/* VALUE PROPOSITION */}
+            <Section className="bg-transparent py-24">
+               <Container>
+                  <div className="relative" onMouseLeave={() => setHoveredIndex(null)}>
+                     {/* Header */}
+                     <div className="mb-16">
+                        <motion.span 
+                          className="text-lg font-medium mb-4 block opacity-50"
+                          style={{ color: textColor }}
+                        >
+                          Propuesta de Valor
+                        </motion.span>
+                        <motion.h2 
+                          className="text-4xl md:text-5xl font-normal leading-tight"
+                          style={{ color: textColor }}
+                        >
+                          Lo que nos hace diferentes en el mercado
+                        </motion.h2>
+                     </div>
+
+                     {/* Solutions List with Hover Image */}
+                     <div className="relative">
+                        {valueProps.map((item, idx) => {
+                           const isHovered = hoveredIndex === idx;
+                           
+                           return (
+                              <motion.div 
+                                 key={idx} 
+                                 className="relative flex items-center py-6 md:py-0 md:h-[120px] border-b-[1.5px] cursor-pointer group"
+                                 style={{ borderColor: textColor }}
+                                 onMouseEnter={() => setHoveredIndex(idx)}
                               >
-                                 <img src={valueImage} className="w-full h-full object-cover" alt="Value Proposition" />
+                                 <div className="w-full flex justify-between items-center z-10 relative">
+                                    <motion.h4 
+                                      className={`w-full text-[28px] md:text-[32px] font-normal leading-tight transition-opacity duration-300`}
+                                      style={{ 
+                                        color: textColor,
+                                        opacity: isHovered ? 1 : 0.4
+                                      }}
+                                    >
+                                       <span className="mr-4">0{idx + 1} /</span> 
+                                       <span>{item}</span>
+                                    </motion.h4>
+                                 </div>
                               </motion.div>
-                           </motion.div>
-                        )}
-                     </AnimatePresence>
+                           );
+                        })}
+
+                        {/* Floating Image with Animation */}
+                        <div className="absolute inset-0 pointer-events-none z-20 hidden lg:block">
+                           <AnimatePresence>
+                              {hoveredIndex !== null && (
+                                 <motion.div 
+                                    className="absolute top-0 right-0 w-[450px] h-[280px]"
+                                    initial={{ opacity: 0, y: (hoveredIndex * 120) - 60 }}
+                                    animate={{ opacity: 1, y: (hoveredIndex * 120) - 60 }}
+                                    exit={{ opacity: 0 }}
+                                    transition={{ duration: 0.3, ease: "easeOut" }}
+                                 >
+                                    <motion.div
+                                      initial={{ scale: 0.9 }}
+                                      animate={{ scale: 1 }}
+                                      exit={{ scale: 0.9 }}
+                                      className="w-full h-full rounded-[20px] overflow-hidden shadow-2xl"
+                                    >
+                                       <img src={valueImage} className="w-full h-full object-cover" alt="Value Proposition" />
+                                    </motion.div>
+                                 </motion.div>
+                              )}
+                           </AnimatePresence>
+                        </div>
+                     </div>
                   </div>
-               </div>
+               </Container>
+            </Section>
+
+            {/* PRINCIPLES */}
+            <div className="bg-transparent">
+              <SolutionsShowcase 
+                label="Cultura"
+                title="Principios que guían nuestras acciones"
+                solutions={principlesFormatted}
+                imageUrl={diversityImage}
+                imageAlt="Equipo diverso Yobel"
+              />
             </div>
-         </Container>
-      </Section>
 
-      {/* PRINCIPLES */}
-      <SolutionsShowcase 
-        label="Cultura"
-        title="Principios que guían nuestras acciones"
-        solutions={principlesFormatted}
-        imageUrl={diversityImage}
-        imageAlt="Equipo diverso Yobel"
-      />
+            {/* WAYS OF WORKING */}
+            <Section className="bg-transparent">
+              <Container>
+                <div className="px-[5%] md:px-[50px] py-[60px] md:py-[120px]">
+                   <div className="mb-20 flex flex-col md:flex-row justify-between items-start gap-8">
+                      <motion.h2 
+                        className="text-4xl md:text-5xl font-normal max-w-md text-left leading-tight"
+                        style={{ color: textColor }}
+                      >
+                        Nuestra forma de trabajar
+                      </motion.h2>
+                      <motion.p 
+                        className="text-xl font-light max-w-md text-left md:text-right pt-2 opacity-60"
+                        style={{ color: textColor }}
+                      >
+                        Integramos estándares internacionales con metodologías giles para garantizar resultados.
+                      </motion.p>
+                   </div>
+                   
+                   <div className="flex flex-col w-full">
+                       {[
+                         { title: "Seguridad y calidad", desc: "Cumplimos altos estándares internacionales en gestión, seguridad y control de procesos, garantizando operaciones confiables en toda la cadena de suministro." },
+                         { title: "Datos y visibilidad", desc: "Monitoreo en tiempo real con sistemas WMS y TMS que ofrecen trazabilidad total y análisis para decisiones ágiles y precisas." },
+                         { title: "Mejora continua", desc: "Aplicamos metodologías Lean y Kaizen para optimizar procesos, reducir tiempos y elevar la eficiencia operativa cada día." },
+                         { title: "Colaboración abierta", desc: "Trabajamos junto a nuestros clientes y equipos multidisciplinarios para diseñar soluciones logísticas personalizadas y sostenibles." }
+                       ].map((item, idx) => (
+                          <React.Fragment key={idx}>
+                              <ProcessItem 
+                                  icon={<ProcessIcon type={item.title} index={idx} />}
+                                  title={item.title}
+                                  description={item.desc}
+                              />
+                              {idx < 3 && (
+                                  <motion.div 
+                                    className="w-full h-[1px] opacity-30"
+                                    style={{ backgroundColor: textColor }}
+                                  />
+                              )}
+                          </React.Fragment>
+                       ))}
+                   </div>
+                </div>
+              </Container>
+            </Section>
 
-      {/* WAYS OF WORKING */}
-      <Section className="bg-white">
-        <Container>
-          <div className="px-[5%] md:px-[50px] py-[60px] md:py-[120px]">
-             <div className="mb-20 flex flex-col md:flex-row justify-between items-start gap-8">
-                <h2 className="text-4xl md:text-5xl font-normal max-w-md text-left leading-tight">Nuestra forma de trabajar</h2>
-                <p className="text-xl text-gray-500 font-light max-w-md text-left md:text-right pt-2">
-                  Integramos estándares internacionales con metodologías giles para garantizar resultados.
-                </p>
-             </div>
-             
-             <div className="flex flex-col w-full">
-                 {[
-                   { title: "Seguridad y calidad", desc: "Cumplimos altos estándares internacionales en gestión, seguridad y control de procesos, garantizando operaciones confiables en toda la cadena de suministro." },
-                   { title: "Datos y visibilidad", desc: "Monitoreo en tiempo real con sistemas WMS y TMS que ofrecen trazabilidad total y análisis para decisiones ágiles y precisas." },
-                   { title: "Mejora continua", desc: "Aplicamos metodologías Lean y Kaizen para optimizar procesos, reducir tiempos y elevar la eficiencia operativa cada día." },
-                   { title: "Colaboración abierta", desc: "Trabajamos junto a nuestros clientes y equipos multidisciplinarios para diseñar soluciones logísticas personalizadas y sostenibles." }
-                 ].map((item, idx) => (
-                    <React.Fragment key={idx}>
-                        <ProcessItem 
-                            icon={<ProcessIcon type={item.title} index={idx} />}
-                            title={item.title}
-                            description={item.desc}
-                        />
-                        {idx < 3 && (
-                            <div className="w-full h-[1px] bg-[#494949]/50" />
-                        )}
-                    </React.Fragment>
-                 ))}
-             </div>
-          </div>
-        </Container>
-      </Section>
+            <Section className="bg-transparent py-32">
+               <Container>
+                  <div className="flex flex-col items-center justify-center text-center gap-12 max-w-5xl mx-auto">
+                     <motion.div 
+                       className="relative shrink-0 size-[60px]"
+                       style={{ color: textColor }}
+                     >
+                        <svg className="block size-full" fill="none" viewBox="0 0 60 60">
+                           <motion.path 
+                             d="M10 49.9985V36.676C10 36.676 40.2009 23.2447 40.2009 17.5775C40.2009 14.0347 10 23.0872 10 23.0872V9.99902H39.2309C51.0219 9.99902 49.9763 16.4831 49.9763 22.979V49.999H30.3629C30.3629 49.999 43.4793 28.1628 40.2009 28.1628C35.4049 28.1628 10 49.9985 10 49.9985Z" 
+                             style={{ fill: textColor }}
+                           />
+                        </svg>
+                     </motion.div>
+                     
+                     <div className="flex flex-col gap-8">
+                        <motion.h2 
+                          className="text-3xl md:text-[45px] leading-tight font-normal max-w-4xl mx-auto opacity-50"
+                          style={{ color: textColor }}
+                        >
+                           Personas y diversidad que nos mueven
+                        </motion.h2>
+                        <motion.p 
+                          className="text-3xl md:text-[45px] leading-tight font-normal max-w-5xl mx-auto"
+                          style={{ color: textColor }}
+                        >
+                           En Yobel promovemos inclusión, crecimiento y bienestar. Apostamos por el desarrollo continuo y las oportunidades equitativas, porque cuando nuestra gente crece, las cadenas de suministro funcionan mejor.
+                        </motion.p>
+                     </div>
 
-      <Section className="bg-white py-32">
-         <Container>
-            <div className="flex flex-col items-center justify-center text-center gap-12 max-w-5xl mx-auto">
-               <div className="relative shrink-0 size-[60px]">
-                  <svg className="block size-full" fill="none" viewBox="0 0 60 60">
-                     <path d="M10 49.9985V36.676C10 36.676 40.2009 23.2447 40.2009 17.5775C40.2009 14.0347 10 23.0872 10 23.0872V9.99902H39.2309C51.0219 9.99902 49.9763 16.4831 49.9763 22.979V49.999H30.3629C30.3629 49.999 43.4793 28.1628 40.2009 28.1628C35.4049 28.1628 10 49.9985 10 49.9985Z" fill="black" />
-                  </svg>
-               </div>
-               
-               <div className="flex flex-col gap-8">
-                  <h2 className="text-3xl md:text-[45px] leading-tight text-gray-400 font-normal max-w-4xl mx-auto">
-                     Personas y diversidad que nos mueven
-                  </h2>
-                  <p className="text-3xl md:text-[45px] leading-tight text-black font-normal max-w-5xl mx-auto">
-                     En Yobel promovemos inclusión, crecimiento y bienestar. Apostamos por el desarrollo continuo y las oportunidades equitativas, porque cuando nuestra gente crece, las cadenas de suministro funcionan mejor.
-                  </p>
-               </div>
+                     <Button variant="default" size="lg" className="mt-4 rounded-full px-8 h-12 text-base">
+                        Nuestro código de ética
+                     </Button>
+                  </div>
+               </Container>
+            </Section>
 
-               <Button variant="default" size="lg" className="mt-4 rounded-full px-8 h-12 text-base">
-                  Nuestro código de ética
-               </Button>
-            </div>
-         </Container>
-      </Section>
+            <VideoScrollSection />
 
-      <VideoScrollSection />
-
-
-
-      <Certificates />
+            <Certificates />
+          </>
+        )}
+      </ScrollColorTransition>
     </>
   );
 }

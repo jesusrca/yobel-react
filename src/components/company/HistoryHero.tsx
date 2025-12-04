@@ -1,69 +1,63 @@
 import React from "react";
-import svgPaths from "../../imports/svg-vr8jsk0xw0";
+import svgPaths from "../../imports/svg-hyd0y3kqgz";
 import { motion } from "framer-motion";
 
 function YobelLogo() {
   return (
     <div className="w-full max-w-[600px] lg:max-w-[800px] xl:max-w-[1146px] h-auto aspect-[1146/429]">
       <svg className="block size-full" fill="none" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1146 429">
-        <g id="Logo">
+        <g clipPath="url(#clip0_297_1993)" id="Logo">
+          {/* Y */}
           <motion.path 
-            d={svgPaths.p1f03c100} 
+            d={svgPaths.p2158fc00} 
             fill="var(--fill-0, black)" 
-            id="Vector"
+            id="Y"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0, ease: "easeOut" }}
           />
+          {/* O */}
           <motion.path 
-            d={svgPaths.p3a953300} 
+            d={svgPaths.p1c513400} 
             fill="var(--fill-0, black)" 
-            id="Vector_2"
+            id="o"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
           />
+          {/* B */}
           <motion.path 
-            d={svgPaths.p80eae80} 
+            d={svgPaths.p3e08dd80} 
             fill="var(--fill-0, black)" 
-            id="Vector_3"
+            id="b"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
           />
+          {/* E */}
           <motion.path 
-            d={svgPaths.p15cbed00} 
+            d={svgPaths.p28f50b00} 
             fill="var(--fill-0, black)" 
-            id="Vector_4"
+            id="e"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.45, ease: "easeOut" }}
           />
+          {/* L */}
           <motion.path 
-            d={svgPaths.p19fc3880} 
+            d={svgPaths.pf09d400} 
             fill="var(--fill-0, black)" 
-            id="Vector_5"
+            id="l"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
           />
-          <motion.path 
-            d={svgPaths.pf09d400} 
-            fill="var(--fill-0, black)" 
-            id="Vector_6"
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.75, ease: "easeOut" }}
-          />
-          <motion.path 
-            d={svgPaths.p2c34d100} 
-            fill="var(--fill-0, black)" 
-            id="Vector_7"
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.9, ease: "easeOut" }}
-          />
         </g>
+        <defs>
+          <clipPath id="clip0_297_1993">
+            <rect fill="white" height="428.172" width="1146" />
+          </clipPath>
+        </defs>
       </svg>
     </div>
   );
