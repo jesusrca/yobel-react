@@ -82,7 +82,13 @@ export function Courier() {
          <Container>
             {/* Processes */}
             <div>
-               <div className="flex flex-col items-center text-center my-20">
+               <motion.div 
+                  className="flex flex-col items-center text-center my-20"
+                  initial={{ opacity: 0, filter: "blur(10px)", y: 50 }}
+                  whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, ease: "easeOut" }}
+               >
                   <div className="mb-8">
                      <svg width="48" height="46" viewBox="0 0 48 46" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d={svgPaths.pff39b00} fill="black" />
@@ -92,7 +98,7 @@ export function Courier() {
                   <p className="text-3xl md:text-[42px] text-black leading-[1.1] max-w-5xl mx-auto">
                     Gestionamos cada etapa del proceso de entrega, desde el recojo hasta la confirmación final, con seguimiento en tiempo real.
                   </p>
-               </div>
+               </motion.div>
                
                <div className="flex flex-col w-full">
                   <span className="text-xl text-gray-400 font-medium block mb-12 text-center lg:text-left">Ciclo de Entrega</span>
@@ -117,14 +123,20 @@ export function Courier() {
                                  {(idx + 1).toString().padStart(2, '0')}
                               </motion.span>
                            </div>
-                           <div className="w-full lg:w-1/2 flex flex-col gap-6">
+                           <motion.div 
+                              className="w-full lg:w-1/2 flex flex-col gap-6"
+                              initial={{ opacity: 0, filter: "blur(10px)", y: 30 }}
+                              whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+                              viewport={{ once: true }}
+                              transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+                           >
                               <h3 className="text-2xl md:text-[26px] text-black font-augenblick text-center lg:text-left">{proc.title}</h3>
                               <div className="pl-0 md:pl-12 lg:pl-20">
                                  <p className="text-xl md:text-[22px] text-black mb-8 max-w-lg leading-relaxed text-center lg:text-left">
                                     {proc.desc}
                                  </p>
                               </div>
-                           </div>
+                           </motion.div>
                         </div>
                      </div>
                   ))}

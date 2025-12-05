@@ -12,7 +12,6 @@ import { motion, useScroll, useTransform } from "motion/react";
 import { GradientCTA } from "../../components/ui/GradientCTA";
 import { UseCasesSection } from "../../components/sections/UseCasesSection";
 import svgPathsIso from "../../imports/svg-rbwz0su45n";
-import { HeroGradientTall } from "../../components/ui/hero-gradient-tall";
 import { ScrollRevealText } from "../../components/ui/motion-text";
 
 // SVG Paths
@@ -172,12 +171,36 @@ export function CodeOfEthics() {
   return (
     <>
       {/* Hero Section */}
-      <HeroGradientTall 
-        category="Código de Ética"
-        title="Actuamos con integridad en cada eslabón"
-        description="Nuestros principios guían cada decisión en toda la cadena de suministro."
-        variant="cyan"
-      />
+      <motion.div 
+        className="relative w-full min-h-screen overflow-hidden"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
+        <div className="absolute inset-0">
+          {/* Video Background Placeholder */}
+          <div className="absolute inset-0 bg-[#59c1e6]" />
+          
+          {/* Bottom Gradient */}
+          <div className="absolute bottom-0 left-0 w-full h-96 bg-gradient-to-t from-white via-gray-200/40 to-transparent pointer-events-none" />
+        </div>
+
+        <motion.div 
+          className="absolute bottom-20 left-0 right-0 px-[5%] md:px-[50px] z-10"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
+        >
+          <div className="max-w-[1400px] mx-auto flex flex-col gap-[30px]">
+             <p className="text-lg md:text-[18px] text-black font-medium">Código de Ética</p>
+             <div className="flex flex-col lg:flex-row items-start gap-[40px]">
+                <h1 className="text-5xl md:text-[65px] leading-[1] text-black max-w-[800px] tracking-tight font-[Neue_Augenblick]">
+                  Actuamos con integridad en cada eslabón
+                </h1>
+             </div>
+          </div>
+        </motion.div>
+      </motion.div>
 
       {/* Intro Section */}
       <Section className="bg-white py-24">

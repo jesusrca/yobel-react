@@ -39,7 +39,7 @@ export const Char = ({ children, range, progress }: { children: string; range: [
   const colorEnd = range[1] + (step * 5);
   const color = useTransform(progress, 
     [range[0], range[1], colorEnd], 
-    ["#31CDFF", "#31CDFF", "#000000"]
+    ["#000000", "#000000", "#000000"]
   );
   
   return (

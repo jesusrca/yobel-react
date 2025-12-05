@@ -2371,6 +2371,10 @@
     background-color: #1a1a1a;
   }
 
+  .bg-\[\#59c1e6\] {
+    background-color: #59c1e6;
+  }
+
   .bg-\[\#494949\]\/50 {
     background-color: oklab(40.5398% 1.49012e-8 2.98023e-8 / .5);
   }
@@ -5421,6 +5425,12 @@
   @media (width >= 64rem) {
     .lg\:w-\[40\%\] {
       width: 40%;
+    }
+  }
+
+  @media (width >= 64rem) {
+    .lg\:w-\[60\%\] {
+      width: 60%;
     }
   }
 

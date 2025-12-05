@@ -131,7 +131,7 @@ export function Manufacturing() {
             muted
             playsInline
           />
-          <div className="absolute inset-0 bg-black/10" />
+          <div className="absolute inset-0" />
           <div className="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-white via-white/60 to-transparent pointer-events-none" />
         </div>
 
