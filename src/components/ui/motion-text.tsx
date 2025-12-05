@@ -85,10 +85,10 @@ export const AnimatedNumber = ({ value, className }: { value: string, className?
     <span ref={inViewRef} className={className}>
       <motion.span 
         ref={ref}
-        className="bg-clip-text text-transparent bg-gradient-to-b from-[#090909] via-[#59c1e6] to-[#090909]"
-        style={{ backgroundSize: "100% 200%" }}
-        animate={{ backgroundPosition: ["0% 0%", "0% 100%"] }}
-        transition={{ duration: 3, repeat: Infinity, ease: "linear", repeatType: "reverse" }}
+        className="bg-clip-text text-transparent bg-[radial-gradient(circle_at_50%_50%,#59c1e6_0%,#090909_40%,#090909_100%)]"
+        style={{ backgroundSize: "200% 200%" }}
+        animate={{ backgroundPosition: ["50% 0%", "50% 100%", "50% 0%"] }}
+        transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
       >
         {value}
       </motion.span>

@@ -453,7 +453,6 @@ export function About() {
                  <div 
                     className="lg:col-span-5 rounded-[24px] p-8 md:p-12 flex flex-col justify-between min-h-[400px]"
                     style={{ 
-                       backgroundColor: "rgba(89, 193, 230, 0.1)",
                        borderWidth: '1.5px',
                        borderStyle: 'solid',
                        borderColor: '#000000'
@@ -522,7 +521,6 @@ export function About() {
                     <div 
                        className="rounded-[24px] p-8 md:p-10 flex flex-col justify-between min-h-[280px] md:col-span-2"
                        style={{ 
-                          backgroundColor: "rgba(255, 247, 0, 0.15)",
                           borderWidth: '1.5px',
                           borderStyle: 'solid',
                           borderColor: '#000000'
@@ -548,7 +546,6 @@ export function About() {
                     <div 
                        className="rounded-[24px] p-8 md:p-10 flex flex-col justify-between min-h-[280px]"
                        style={{ 
-                          backgroundColor: "rgba(93, 211, 192, 0.15)",
                           borderWidth: '1.5px',
                           borderStyle: 'solid',
                           borderColor: '#000000'
@@ -574,7 +571,6 @@ export function About() {
                     <div 
                        className="rounded-[24px] p-8 md:p-10 flex flex-col justify-between min-h-[280px]"
                        style={{ 
-                          backgroundColor: "rgba(89, 193, 230, 0.15)",
                           borderWidth: '1.5px',
                           borderStyle: 'solid',
                           borderColor: '#000000'

@@ -23,7 +23,7 @@ export function FloatingMenu() {
 
       <button 
         onClick={() => setIsOpen(!isOpen)}
-        className="w-[68px] h-[68px] rounded-full bg-white/40 backdrop-blur border border-white flex items-center justify-center shadow-lg hover:scale-105 transition-transform"
+        className="w-[68px] h-[68px] rounded-full bg-white/40 backdrop-blur border border-white flex items-center justify-center shadow-lg hover:scale-105 transition-transform lg:hidden"
       >
          <div className="flex flex-col gap-[6px] items-center justify-center relative">
             <motion.div 

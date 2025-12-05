@@ -39,7 +39,7 @@ export function ParallaxImage({ src, alt, className, yValues = [-100, 0] }: Para
       className={`mt-auto w-full aspect-[4/3] rounded-[30px] overflow-hidden relative shadow-sm ${className || ''}`}
     >
       <img 
-        src={src} 
+        src="https://circular.ws/yobel/assets/11_tech-electronica.jpeg" 
         alt={alt} 
         className="w-full h-full object-cover" 
       />

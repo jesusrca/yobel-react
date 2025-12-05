@@ -1,6 +1,7 @@
 import React from "react";
 import { motion, AnimatePresence, MotionValue } from "motion/react";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
+import { ChevronDown } from "lucide-react";
 
 interface LifeCategory {
   title: string;
@@ -28,6 +29,14 @@ const categories: LifeCategory[] = [
 
 export function LifeAtYobel({ textColor }: { textColor: MotionValue<string> }) {
   const [activeId, setActiveId] = React.useState("");
+  const [mousePosition, setMousePosition] = React.useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    setMousePosition({
+      x: e.clientX,
+      y: e.clientY
+    });
+  };
 
   return (
     <section className="relative py-16 md:py-24 lg:py-32 px-6">
@@ -51,82 +60,118 @@ export function LifeAtYobel({ textColor }: { textColor: MotionValue<string> }) {
           whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.9, ease: "easeOut", delay: 0.2 }}
+          onMouseMove={handleMouseMove}
+          onMouseLeave={() => setActiveId("")}
         >
-          <div className="flex flex-col w-full" onMouseLeave={() => setActiveId("")}>
+          <div className="flex flex-col w-full">
             {categories.map((category, index) => (
               <motion.div 
                 key={category.title}
                 className="relative group last:border-0 min-h-[100px] md:min-h-0 md:h-[120px]"
                 style={{ borderBottom: `1px solid`, borderColor: textColor }}
                 onMouseEnter={() => setActiveId(category.title)}
-                onClick={() => setActiveId(category.title)}
+                onClick={() => {
+                  // Toggle en mobile, set directo en desktop
+                  const isMobile = window.innerWidth < 768;
+                  if (isMobile) {
+                    setActiveId(activeId === category.title ? "" : category.title);
+                  } else {
+                    setActiveId(category.title);
+                  }
+                }}
               >
-                <div className="h-full cursor-pointer flex flex-col md:flex-row md:items-center justify-center md:justify-between gap-2 md:gap-4 px-4 md:px-0 py-6 md:py-0">
+                <div className="h-full cursor-pointer flex flex-row items-center justify-between gap-4 px-4 md:px-0 py-6 md:py-0">
                   <motion.div 
                     className={`flex items-baseline gap-4 font-['Neue_Augenblick:Regular',sans-serif] text-2xl md:text-4xl leading-[32px] transition-colors duration-500 w-full md:w-5/12`}
                     style={{ 
                       color: activeId === category.title 
                         ? textColor 
-                        : "rgba(0, 0, 0, 0.3)" // Gris oscuro para fondo blanco
+                        : "rgba(0, 0, 0, 0.3)"
                     }}
                   >
                     <span className="text-nowrap whitespace-pre">{String(index + 1).padStart(2, '0')} /</span>
-                    <span className="font-[Neue_Augenblick]">{category.title}</span>
+                    <span 
+                      className="font-[Neue_Augenblick] transition-transform duration-500 block origin-left"
+                      style={{ 
+                        transform: activeId === category.title ? 'scale(1.1)' : 'scale(1)'
+                      }}
+                    >
+                      {category.title}
+                    </span>
                   </motion.div>
                   
-                  {/* Mobile View Content */}
-                  <div className="md:hidden w-full">
-                    <AnimatePresence>
-                      {activeId === category.title && (
-                        <motion.div 
-                          initial={{ height: 0, opacity: 0, marginTop: 0 }}
-                          animate={{ height: "auto", opacity: 1, marginTop: 16 }}
-                          exit={{ height: 0, opacity: 0, marginTop: 0 }}
-                          transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
-                          className="overflow-hidden"
-                        >
-                          <div className="w-full aspect-video rounded-[30px] overflow-hidden shadow-sm">
-                            <ImageWithFallback src={category.image} className="w-full h-full object-cover" alt={category.title} />
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
+                  {/* Arrow icon for mobile */}
+                  <motion.div 
+                    className="md:hidden flex-shrink-0"
+                    animate={{ 
+                      rotate: activeId === category.title ? 180 : 0 
+                    }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
+                  >
+                    <ChevronDown 
+                      size={24} 
+                      style={{ 
+                        color: activeId === category.title 
+                          ? "black" 
+                          : "rgba(0, 0, 0, 0.3)"
+                      }}
+                    />
+                  </motion.div>
+                </div>
+                
+                {/* Mobile View Content */}
+                <div className="md:hidden w-full px-4">
+                  <AnimatePresence>
+                    {activeId === category.title && (
+                      <motion.div 
+                        initial={{ height: 0, opacity: 0, marginTop: 0 }}
+                        animate={{ height: "auto", opacity: 1, marginTop: 16 }}
+                        exit={{ height: 0, opacity: 0, marginTop: 0 }}
+                        transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+                        className="overflow-hidden"
+                      >
+                        <div className="w-full aspect-video rounded-[30px] overflow-hidden shadow-sm mb-4">
+                          <ImageWithFallback src={category.image} className="w-full h-full object-cover" alt={category.title} />
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               </motion.div>
             ))}
           </div>
 
-          {/* Floating Image for Desktop */}
+          {/* Floating Image for Desktop - Follows Cursor */}
           <AnimatePresence>
             {activeId && (
-              <motion.div 
-                className="hidden lg:block absolute top-0 left-[70%] -translate-x-1/2 w-[400px] h-[240px] pointer-events-none transition-transform duration-700 ease-out z-10"
-                style={{ 
-                  transform: `translateX(-50%) translateY(${((categories.findIndex(c => c.title === activeId)) * 120) - 60}px)` 
-                }}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ opacity: { duration: 0.3 } }}
-              >
-                <AnimatePresence mode="wait">
-                  <motion.div 
-                    key={activeId}
-                    initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.95, y: -20 }}
-                    transition={{ duration: 0.4, ease: "easeOut" }}
-                    className="w-full h-full rounded-[30px] overflow-hidden shadow-2xl"
-                  >
-                    <ImageWithFallback 
-                      src={categories.find(c => c.title === activeId)?.image || categories[0].image} 
-                      className="w-full h-full object-cover" 
-                      alt={activeId} 
-                    />
-                  </motion.div>
-                </AnimatePresence>
-              </motion.div>
+                <motion.div 
+                    className="hidden lg:block fixed w-[400px] h-[240px] pointer-events-none z-10"
+                    style={{ 
+                      left: `${mousePosition.x - 200}px`,
+                      top: `${mousePosition.y - 120}px`
+                    }}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.8 }}
+                    transition={{ opacity: { duration: 0.2 }, scale: { duration: 0.3 } }}
+                >
+                    <AnimatePresence mode="wait">
+                        <motion.div 
+                        key={activeId}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="w-full h-full rounded-[30px] overflow-hidden shadow-2xl"
+                        >
+                        <ImageWithFallback 
+                          src={categories.find(c => c.title === activeId)?.image || categories[0].image} 
+                          className="w-full h-full object-cover" 
+                          alt={activeId} 
+                        />
+                        </motion.div>
+                    </AnimatePresence>
+                </motion.div>
             )}
           </AnimatePresence>
         </motion.div>

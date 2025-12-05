@@ -104,7 +104,7 @@ export function Navbar() {
                 <button className="hidden md:block px-4 py-2 text-[23px] text-black hover:opacity-70">Tracking</button>
                 <button  
                   onClick={() => setIsMenuOpen(true)}
-                  className="px-[14px] py-[8px] rounded-[19px] border-[1.5px] border-black text-[22px] leading-[24px] font-augenblick font-medium text-black hover:bg-black hover:text-white transition-colors"
+                  className="px-[14px] py-[8px] rounded-[19px] border-[1.5px] border-black text-[22px] leading-[24px] font-augenblick font-medium text-black hover:bg-black hover:text-white transition-colors duration-500"
                 >
                   Menú
                 </button>

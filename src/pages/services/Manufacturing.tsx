@@ -283,7 +283,7 @@ export function Manufacturing() {
                   <span className="text-xl text-black font-medium">Certificados</span>
                </div>
                <div className="flex flex-col gap-8 max-w-3xl">
-                  <h2 className="text-4xl md:text-[45px] leading-tight font-normal">
+                  <h2 className="text-4xl md:text-[45px] leading-tight font-normal font-[Neue_Augenblick]">
                      Nuestros certificados<br/>nos respaldan
                   </h2>
                   <p className="text-xl md:text-[25px] font-light leading-relaxed text-gray-800">

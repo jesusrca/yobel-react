@@ -291,7 +291,7 @@ export function CountryPopup({ isOpen, onClose }: CountryPopupProps) {
             </div>
             <div className="content-stretch flex flex-col gap-[32px] items-start relative shrink-0 w-full">
               <div className="content-stretch flex flex-col gap-[20px] items-start justify-center relative shrink-0 w-full">
-                <p className="font-['Neue_Augenblick:Medium',sans-serif] leading-[24px] min-w-full not-italic relative shrink-0 text-[24px] text-black w-[min-content]">Estas en {selectedCountry.toUpperCase()}</p>
+                <p className="font-['Neue_Augenblick:Medium',sans-serif] leading-[24px] min-w-full not-italic relative shrink-0 text-[24px] text-black w-[min-content]">Estás en {selectedCountry.toUpperCase()}</p>
                 <p className="font-['Neue_Augenblick:Regular',sans-serif] leading-[22px] min-w-full not-italic relative shrink-0 text-[18px] text-black w-[min-content]">Mostramos la información de servicios y contacto de Yobel en tu país.</p>
               </div>
               <Form 

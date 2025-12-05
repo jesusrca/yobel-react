@@ -20,7 +20,7 @@ const industries = [
   {
     title: "Belleza y Cuidado Personal",
     description: "Cadena de suministro integral para cosméticos, fragancias y productos de cuidado personal, con trazabilidad completa y control sanitario.",
-    image: imgBeauty,
+    image: "https://circular.ws/yobel/assets/2_bellesa_cui-personal.jpeg",
     path: "/industrias/belleza-y-cuidado-personal",
   },
   {
@@ -62,7 +62,7 @@ const industries = [
   {
     title: "Calzado y moda",
     description: "Gestión de prendas, calzado y accesorios con control por temporada, trazabilidad por colección y preparación según canal de venta.",
-    image: imgCalzado,
+    image: "https://circular.ws/yobel/assets/3_calzado-moda.jpeg",
     path: "/industrias/calzado-y-moda",
   },
   {
@@ -74,18 +74,18 @@ const industries = [
   {
     title: "Retail",
     description: "Abastecimiento integral de tiendas, centros de distribución y plataformas digitales con visibilidad total y entregas confiables.",
-    image: imgRetail,
+    image: "https://circular.ws/yobel/assets/10_reatil.jpeg",
     path: "/industrias/retail",
   },
   {
     title: "Tecnología y Electrónica",
     description: "Flujo logístico de equipos, componentes y dispositivos tecnológicos con trazabilidad por serie y seguridad en cada etapa.",
-    image: imgScanning,
+    image: "https://circular.ws/yobel/assets/11_tech-electronica.jpeg",
     path: "/industrias/tecnologia-y-electronica",
   }
 ];
 
-export function Industries({ className }: { className?: string }) {
+export function Industries({ className, useOrangeGradient = false }: { className?: string; useOrangeGradient?: boolean }) {
   const sliderRef = useRef<Slider>(null);
   const lastScrollTime = useRef(0);
   
@@ -170,7 +170,7 @@ export function Industries({ className }: { className?: string }) {
   };
 
   return (
-    <Section className={cn("relative bg-gradient-to-b from-[#fff066] to-white overflow-hidden", className)} onMouseMove={handleMouseMove}>
+    <Section className={cn("relative overflow-hidden", useOrangeGradient ? "bg-gradient-to-b from-[#FF9F1C] via-[#FFB966] to-white" : "bg-gradient-to-b from-[#fff066] to-white", className)} onMouseMove={handleMouseMove}>
       <div 
          ref={cursorRef}
          className={cn(

@@ -13,6 +13,9 @@ import { GradientCTA } from "../../components/ui/GradientCTA";
 import { UseCasesSection } from "../../components/sections/UseCasesSection";
 import svgPathsIso from "../../imports/svg-rbwz0su45n";
 import { ScrollRevealText } from "../../components/ui/motion-text";
+import svgPathsShield from "../../imports/svg-6rr7pio5e8";
+import svgPathsScale from "../../imports/svg-2ul80cp4mw";
+import svgPathsTeam from "../../imports/svg-dm6cfe47p9";
 
 // SVG Paths
 const svgPaths = {
@@ -43,45 +46,73 @@ const ProcessIcon = ({ type, index = 0 }: { type: string; index?: number }) => {
   switch (type) {
     case "Seguridad y calidad":
       return (
-        <div className="relative w-[127px] h-[127px] flex items-center justify-center">
-            <svg className="w-[75%] h-[87%]" viewBox="0 0 100 111" fill="none">
-                <MetallicGradient id={gradientId} delay={delay} />
-                <path d={svgPathsProcess.p1471ab00} stroke={strokeUrl} strokeWidth={width} strokeLinecap="round" strokeLinejoin="round" />
-                <path d={svgPathsProcess.p3dea9000} stroke={strokeBlack} strokeWidth={width} strokeLinecap="round" strokeLinejoin="round" />
+        <div className="relative w-[153px] h-[153px] flex items-center justify-center">
+            <svg className="w-full h-full" viewBox="0 0 127 127" fill="none">
+                <defs>
+                  <linearGradient id={`shield-gradient-${index}`} x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stopColor="#F2E465" />
+                    <stop offset="100%" stopColor="#59C2E7" />
+                    <animate attributeName="y1" values="-50%;150%;-50%" dur="6s" begin={`${index * 1.5}s`} repeatCount="indefinite" />
+                    <animate attributeName="y2" values="50%;250%;50%" dur="6s" begin={`${index * 1.5}s`} repeatCount="indefinite" />
+                  </linearGradient>
+                </defs>
+                <path d={svgPathsShield.p1efc0480} fill={`url(#shield-gradient-${index})`} />
             </svg>
         </div>
       );
     case "Datos y visibilidad":
       return (
-        <div className="relative w-[127px] h-[127px]">
-             <svg className="w-full h-full" viewBox="0 0 127 127" fill="none">
-                <MetallicGradient id={gradientId} delay={delay} />
-                <g opacity="0.7">
-                    <path d={svgPathsProcess.p1876f440} stroke={strokeUrl} strokeWidth={width} strokeLinecap="round" strokeLinejoin="round" />
-                    <path d="M89.9583 31.75H121.708V63.5" stroke={strokeBlack} strokeWidth={width} strokeLinecap="round" strokeLinejoin="round" />
-                </g>
+        <div className="relative w-[153px] h-[153px] flex items-center justify-center">
+             <svg className="w-full h-full" viewBox="0 0 77 84" fill="none">
+                <defs>
+                  <linearGradient id={`team-gradient-data-${index}`} x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stopColor="#F2E465" />
+                    <stop offset="100%" stopColor="#59C2E7" />
+                    <animate attributeName="y1" values="-50%;150%;-50%" dur="6s" begin={`${index * 1.5}s`} repeatCount="indefinite" />
+                    <animate attributeName="y2" values="50%;250%;50%" dur="6s" begin={`${index * 1.5}s`} repeatCount="indefinite" />
+                  </linearGradient>
+                </defs>
+                <path d={svgPathsTeam.p28f6e200} fill={`url(#team-gradient-data-${index})`} />
+                <path d={svgPathsTeam.p30948300} fill={`url(#team-gradient-data-${index})`} />
+                <path d={svgPathsTeam.p78a6800} fill={`url(#team-gradient-data-${index})`} />
+                <path d={svgPathsTeam.pa56a80} fill={`url(#team-gradient-data-${index})`} />
+                <path d={svgPathsTeam.pb68b200} fill={`url(#team-gradient-data-${index})`} />
              </svg>
         </div>
       );
     case "Mejora continua":
       return (
-        <div className="relative w-[127px] h-[127px]">
-             <svg className="w-full h-full" viewBox="0 0 127 127" fill="none">
-                <MetallicGradient id={gradientId} delay={delay} />
-                <path d={svgPathsProcess.p32899600} stroke={strokeUrl} strokeWidth={width} strokeLinecap="round" strokeLinejoin="round" />
-                <path d={svgPathsProcess.p2fb71e11} stroke={strokeUrl} strokeWidth={width} strokeLinecap="round" strokeLinejoin="round" />
-             </svg>
+        <div className="relative w-[153px] h-[153px] flex items-center justify-center">
+            <svg className="w-full h-full" viewBox="0 0 83 84" fill="none">
+                <defs>
+                  <linearGradient id={`scale-gradient-${index}`} x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stopColor="#F2E465" />
+                    <stop offset="100%" stopColor="#59C2E7" />
+                    <animate attributeName="y1" values="-50%;150%;-50%" dur="6s" begin={`${index * 1.5}s`} repeatCount="indefinite" />
+                    <animate attributeName="y2" values="50%;250%;50%" dur="6s" begin={`${index * 1.5}s`} repeatCount="indefinite" />
+                  </linearGradient>
+                </defs>
+                <path d={svgPathsScale.p386e0200} fill={`url(#scale-gradient-${index})`} />
+            </svg>
         </div>
       );
     case "Colaboración abierta":
       return (
-         <div className="relative w-[127px] h-[127px]">
-             <svg className="w-full h-full" viewBox="0 0 127 127" fill="none">
-                <MetallicGradient id={gradientId} delay={delay} />
-                <path d={svgPathsProcess.p6c78880} stroke={strokeUrl} strokeWidth={width} strokeLinecap="round" strokeLinejoin="round" />
-                <path d={svgPathsProcess.p14d48600} stroke={strokeBlack} strokeWidth={width} strokeLinecap="round" strokeLinejoin="round" />
-                <path d={svgPathsProcess.p24192100} stroke={strokeUrl} strokeWidth={width} strokeLinecap="round" strokeLinejoin="round" />
-                <path d={svgPathsProcess.p204f1f00} stroke={strokeBlack} strokeWidth={width} strokeLinecap="round" strokeLinejoin="round" />
+         <div className="relative w-[153px] h-[153px] flex items-center justify-center">
+             <svg className="w-full h-full" viewBox="0 0 77 84" fill="none">
+                <defs>
+                  <linearGradient id={`team-gradient-${index}`} x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stopColor="#F2E465" />
+                    <stop offset="100%" stopColor="#59C2E7" />
+                    <animate attributeName="y1" values="-50%;150%;-50%" dur="6s" begin={`${index * 1.5}s`} repeatCount="indefinite" />
+                    <animate attributeName="y2" values="50%;250%;50%" dur="6s" begin={`${index * 1.5}s`} repeatCount="indefinite" />
+                  </linearGradient>
+                </defs>
+                <path d={svgPathsTeam.p28f6e200} fill={`url(#team-gradient-${index})`} />
+                <path d={svgPathsTeam.p30948300} fill={`url(#team-gradient-${index})`} />
+                <path d={svgPathsTeam.p78a6800} fill={`url(#team-gradient-${index})`} />
+                <path d={svgPathsTeam.pa56a80} fill={`url(#team-gradient-${index})`} />
+                <path d={svgPathsTeam.pb68b200} fill={`url(#team-gradient-${index})`} />
              </svg>
          </div>
       );
@@ -153,7 +184,7 @@ const ParallaxImageSection = () => {
         className="absolute inset-0 w-full h-[120%] -top-[10%]"
       >
         <img 
-          src="https://circular.ws/yobel/etica-yobel.jpg"
+          src="https://circular.ws/yobel/assets/etica-yobel-1.jpg"
           alt="Ethics"
           className="w-full h-full object-cover"
         />
@@ -243,8 +274,8 @@ export function CodeOfEthics() {
         <Container>
            <div className="flex flex-col gap-12">
              <div className="flex flex-col gap-2 items-start">
-               <span className="text-xl text-gray-400 font-medium">Valores</span>
-               <h3 className="text-3xl md:text-4xl font-normal mb-6">Principios que nos guían</h3>
+               <span className="text-xl text-gray-400 font-medium font-[Neue_Augenblick]">Valores</span>
+               <h3 className="text-3xl md:text-4xl font-normal mb-6 font-[Neue_Augenblick]">Principios que nos guían</h3>
              </div>
              
              <div className="flex flex-col w-full">

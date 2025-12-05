@@ -416,7 +416,7 @@ export function Contact() {
 
   return (
     <>
-      <div className="relative h-[40vh] min-h-[400px] max-h-[500px] w-full overflow-hidden font-augenblick bg-gradient-to-b from-[#fff066] to-white">
+      <div className="relative h-[70vh] md:h-[40vh] min-h-[500px] md:min-h-[400px] max-h-[700px] md:max-h-[500px] w-full overflow-hidden font-augenblick bg-gradient-to-b from-[#fff066] to-white">
         <div className="absolute bottom-10 left-0 right-0 px-[5%] md:px-[50px] z-10">
           <div className="max-w-[1400px] mx-auto flex flex-col gap-[30px]">
              <p className="text-lg md:text-[18px] text-black font-[Neue_Augenblick]">Contacto</p>
@@ -436,7 +436,7 @@ export function Contact() {
          <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
                {/* Left Column - Contact Info */}
-               <div className="space-y-8">
+               <div className="space-y-8 order-2 lg:order-1">
                   {/* Contact Details */}
                   <div className="space-y-6">
                      <div>
@@ -531,19 +531,10 @@ export function Contact() {
                         Ver contacto de otros países
                      </Button>
                   </div>
-
-                  {/* Jobs CTA */}
-                  <div className="bg-gradient-to-r from-[#fff066] to-[#fff59d] rounded-[30px] p-8 border border-yellow-300/50">
-                     <h3 className="text-2xl font-normal mb-4 text-black font-[Neue_Augenblick]">¿Te gustaría trabajar como aliado?</h3>
-                     <p className="text-lg text-black/70 mb-6 font-light leading-relaxed">Impulsa tu carrera en logística integral. Filtra por país, área y modalidad.</p>
-                     <Button className="bg-black text-white px-8 py-4 rounded-full text-lg hover:bg-gray-800 transition-colors">
-                        Ver ofertas laborales
-                     </Button>
-                  </div>
                </div>
 
                {/* Right Column - Contact Form */}
-               <div>
+               <div className="order-1 lg:order-2">
                   {!isSubmitted ? (
                      <div className="bg-white p-8 md:p-10 rounded-[40px] border border-gray-200">
                         <h3 className="text-3xl md:text-4xl font-normal mb-8 font-[Neue_Augenblick]">Contacta a un asesor</h3>
@@ -569,7 +560,7 @@ export function Contact() {
                                     onBlur={() => handleBlur('fullName')}
                                     required
                                     placeholder="Ingresa tu nombre completo"
-                                    className="basis-0 flex flex-col font-['Neue_Augenblick:Medium',sans-serif] grow justify-center leading-[24px] min-h-px min-w-px not-italic relative shrink-0 text-[24px] text-black bg-transparent border-none outline-none w-full placeholder:text-[rgba(0,0,0,0.3)]"
+                                    className="basis-0 flex flex-col font-['Neue_Augenblick:Medium',sans-serif] grow justify-center leading-[24px] min-h-px min-w-px not-italic relative shrink-0 text-[18px] text-black bg-transparent border-none outline-none w-full placeholder:text-[rgba(0,0,0,0.3)]"
                                  />
                               </div>
                            </div>
@@ -595,7 +586,7 @@ export function Contact() {
                                     onBlur={() => handleBlur('company')}
                                     required
                                     placeholder="Nombre de tu empresa"
-                                    className="basis-0 flex flex-col font-['Neue_Augenblick:Medium',sans-serif] grow justify-center leading-[24px] min-h-px min-w-px not-italic relative shrink-0 text-[24px] text-black bg-transparent border-none outline-none w-full placeholder:text-[rgba(0,0,0,0.3)]"
+                                    className="basis-0 flex flex-col font-['Neue_Augenblick:Medium',sans-serif] grow justify-center leading-[24px] min-h-px min-w-px not-italic relative shrink-0 text-[18px] text-black bg-transparent border-none outline-none w-full placeholder:text-[rgba(0,0,0,0.3)]"
                                  />
                               </div>
                            </div>
@@ -621,7 +612,7 @@ export function Contact() {
                                     onBlur={() => handleBlur('email')}
                                     required
                                     placeholder="nombre@empresa.com"
-                                    className="basis-0 flex flex-col font-['Neue_Augenblick:Medium',sans-serif] grow justify-center leading-[24px] min-h-px min-w-px not-italic relative shrink-0 text-[24px] text-black bg-transparent border-none outline-none w-full placeholder:text-[rgba(0,0,0,0.3)]"
+                                    className="basis-0 flex flex-col font-['Neue_Augenblick:Medium',sans-serif] grow justify-center leading-[24px] min-h-px min-w-px not-italic relative shrink-0 text-[18px] text-black bg-transparent border-none outline-none w-full placeholder:text-[rgba(0,0,0,0.3)]"
                                  />
                               </div>
                            </div>
@@ -643,7 +634,7 @@ export function Contact() {
                                     onChange={(e) => handleInputChange('country', e.target.value)}
                                     onFocus={() => handleFocus('country')}
                                     onBlur={() => handleBlur('country')}
-                                    className="basis-0 flex flex-col font-['Neue_Augenblick:Medium',sans-serif] grow justify-center leading-[24px] min-h-px min-w-px not-italic relative shrink-0 text-[24px] text-black bg-transparent border-none outline-none w-full appearance-none cursor-pointer pr-8"
+                                    className="basis-0 flex flex-col font-['Neue_Augenblick:Medium',sans-serif] grow justify-center leading-[24px] min-h-px min-w-px not-italic relative shrink-0 text-[18px] text-black bg-transparent border-none outline-none w-full appearance-none cursor-pointer pr-8"
                                  >
                                     <option value="">Selecciona un país</option>
                                     {countries.map((country) => (
@@ -677,7 +668,7 @@ export function Contact() {
                                     onFocus={() => handleFocus('phone')}
                                     onBlur={() => handleBlur('phone')}
                                     placeholder="+51 999 999 999"
-                                    className="basis-0 flex flex-col font-['Neue_Augenblick:Medium',sans-serif] grow justify-center leading-[24px] min-h-px min-w-px not-italic relative shrink-0 text-[24px] text-black bg-transparent border-none outline-none w-full placeholder:text-[rgba(0,0,0,0.3)]"
+                                    className="basis-0 flex flex-col font-['Neue_Augenblick:Medium',sans-serif] grow justify-center leading-[24px] min-h-px min-w-px not-italic relative shrink-0 text-[18px] text-black bg-transparent border-none outline-none w-full placeholder:text-[rgba(0,0,0,0.3)]"
                                  />
                               </div>
                            </div>
@@ -699,7 +690,7 @@ export function Contact() {
                                     onChange={(e) => handleInputChange('service', e.target.value)}
                                     onFocus={() => handleFocus('service')}
                                     onBlur={() => handleBlur('service')}
-                                    className="basis-0 flex flex-col font-['Neue_Augenblick:Medium',sans-serif] grow justify-center leading-[24px] min-h-px min-w-px not-italic relative shrink-0 text-[24px] text-black bg-transparent border-none outline-none w-full appearance-none cursor-pointer pr-8"
+                                    className="basis-0 flex flex-col font-['Neue_Augenblick:Medium',sans-serif] grow justify-center leading-[24px] min-h-px min-w-px not-italic relative shrink-0 text-[18px] text-black bg-transparent border-none outline-none w-full appearance-none cursor-pointer pr-8"
                                  >
                                     <option value="">Selecciona un servicio</option>
                                     {services.map((service) => (
@@ -735,7 +726,7 @@ export function Contact() {
                                     required
                                     rows={4}
                                     placeholder="¿Cómo podemos ayudarte?"
-                                    className="basis-0 flex flex-col font-['Neue_Augenblick:Medium',sans-serif] grow justify-center leading-[24px] min-h-px min-w-px not-italic relative shrink-0 text-[24px] text-black bg-transparent border-none outline-none w-full resize-none placeholder:text-[rgba(0,0,0,0.3)]"
+                                    className="basis-0 flex flex-col font-['Neue_Augenblick:Medium',sans-serif] grow justify-center leading-[24px] min-h-px min-w-px not-italic relative shrink-0 text-[18px] text-black bg-transparent border-none outline-none w-full resize-none placeholder:text-[rgba(0,0,0,0.3)]"
                                  />
                               </div>
                            </div>
@@ -812,9 +803,9 @@ export function Contact() {
 
                            <Button 
                               type="submit"
-                              className="w-full bg-[#fff066] text-black py-5 rounded-full text-xl font-bold hover:bg-yellow-400 transition-colors"
+                              className="w-full bg-transparent border-[1.5px] border-black text-black px-8 py-6 rounded-full text-xl relative overflow-hidden transition-all duration-500 before:absolute before:inset-0 before:bg-[linear-gradient(150deg,#FFF700_0%,#FFF700_32%,#FFE300_70%,#5dd3c0_100%)] before:opacity-0 before:transition-opacity before:duration-500 before:rounded-full hover:before:opacity-100 hover:border-0 font-[Neue_Augenblick]"
                            >
-                              Enviar mensaje
+                              <span className="relative z-10">Enviar mensaje</span>
                            </Button>
                         </form>
                      </div>
@@ -917,6 +908,19 @@ export function Contact() {
                  </div>
               </div>
            </div>
+        </Container>
+      </Section>
+
+      {/* Jobs CTA Section */}
+      <Section className="bg-white py-16 md:py-20">
+        <Container>
+          <div className="bg-white rounded-[30px] p-8 md:p-12 border-2 border-gray-200 max-w-4xl mx-auto">
+            <h3 className="text-3xl md:text-4xl font-normal mb-4 text-black font-[Neue_Augenblick]">¿Te gustaría trabajar como aliado?</h3>
+            <p className="text-lg md:text-xl text-gray-700 mb-8 font-light leading-relaxed">Impulsa tu carrera en logística integral. Filtra por país, área y modalidad.</p>
+            <Button className="bg-black text-white px-8 py-4 rounded-full text-lg hover:bg-gray-800 transition-colors">
+              Ver ofertas laborales
+            </Button>
+          </div>
         </Container>
       </Section>
 

@@ -5,36 +5,37 @@ import { Section } from "../../components/ui/custom-section";
 import { Container } from "../../components/ui/custom-container";
 import { Button } from "../../components/ui/button";
 import { FAQ } from "../../components/landing/FAQ";
-import { Leaf, Recycle, Users, TrendingDown } from "lucide-react";
+import { Leaf, Recycle, Users, Droplet, Zap } from "lucide-react";
 
 const pillars = [
   { 
-    title: "Clima y energía", 
-    desc: "Rutas optimizadas, eficiencia en sedes y pilotos de movilidad eléctrica para bajar emisiones.",
-    icon: TrendingDown
-  },
-  { 
-    title: "Residuos y economía circular", 
-    desc: "Reutilizamos embalajes, valorizamos residuos y reacondicionamos productos para prolongar su vida útil.",
+    title: "Gestión de residuos y economía circular", 
+    desc: "Valorizamos residuos para impulsar la economía circular y reducir el impacto ambiental.",
     icon: Recycle
   },
   { 
-    title: "Cadena responsable (ESG)", 
-    desc: "Exigimos estándares éticos, ambientales y de DD.HH. a proveedores; evaluamos y acompañamos mejoras.",
-    icon: Leaf
+    title: "Agua y tratamiento de efluentes", 
+    desc: "Tratamos aguas residuales para proteger el alcantarillado y los cuerpos de agua del entorno.",
+    icon: Droplet
   },
   { 
-    title: "Impacto social", 
-    desc: "Programas de empleabilidad, seguridad vial y donación logística en emergencias, cerca de nuestras sedes",
-    icon: Users
+    title: "Energía y eficiencia operativa", 
+    desc: "Reducimos consumo energético para disminuir nuestra huella de carbono.",
+    icon: Zap
+  },
+  { 
+    title: "Cultura ambiental interna", 
+    desc: "Fortalecemos la conciencia ambiental de nuestros equipos en los 9 países.",
+    icon: Leaf
   }
 ];
 
 const kpis = [
-  { value: "-18%", label: "tCO2e por pedido vs. 2022" },
-  { value: "72%", label: "residuos valorizados en sedes principales" },
-  { value: "95%", label: "proveedores críticos con evaluación ESG" },
-  { value: "4,600h", label: "de voluntariado en LATAM (12 meses)" }
+  { value: "1 ton", label: "mensual de residuos orgánicos valorizados" },
+  { value: "1,077.5 kg", label: "de RAEE valorizados durante 2025" },
+  { value: "15%", label: "de reducción en consumo energético gracias a iluminación inteligente" },
+  { value: "20%", label: "de ahorro de agua con sistemas temporizados" },
+  { value: "80 m³", label: "diarios de aguas residuales tratadas por procesos sostenibles" }
 ];
 
 const initiatives = [
@@ -108,8 +109,7 @@ export function Sustainability() {
               className="text-xl md:text-2xl leading-relaxed opacity-70"
               style={{ color: textColor }}
             >
-              En Yobel trabajamos cada día para que nuestras operaciones logísticas sean más sostenibles, 
-              eficientes y generen un impacto positivo en las comunidades donde operamos.
+             En Yobel impulsamos prácticas de gestión ambiental, valorización de residuos, eficiencia energética y trabajo colaborativo con gobiernos locales y aliados estratégicos. Cada acción busca reducir nuestra huella y fortalecer la sostenibilidad de las comunidades donde operamos. 
             </motion.p>
           </motion.div>
 
@@ -137,7 +137,6 @@ export function Sustainability() {
                     whileHover={{ y: -8, transition: { duration: 0.3 } }}
                     className="group relative bg-white/80 backdrop-blur-sm p-10 md:p-12 rounded-[40px] border border-black/5 hover:border-black/10 transition-all overflow-hidden"
                   >
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#5dd3c0]/10 to-transparent rounded-bl-full" />
                     <div className="relative">
                       <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#FFF700] to-[#5dd3c0] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                         <Icon className="w-7 h-7 text-black" />
@@ -174,7 +173,7 @@ export function Sustainability() {
                 Medimos nuestro impacto para seguir mejorando. Estos son algunos de nuestros logros en sostenibilidad y responsabilidad social.
               </p>
               
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 md:gap-10">
                 {kpis.map((kpi, idx) => (
                   <motion.div
                     key={idx}
@@ -184,10 +183,10 @@ export function Sustainability() {
                     transition={{ duration: 0.6, delay: idx * 0.1 }}
                     className="text-center"
                   >
-                    <p className="font-augenblick text-5xl md:text-6xl lg:text-7xl mb-4 bg-gradient-to-br from-[#FFF700] to-[#5dd3c0] bg-clip-text text-transparent">
+                    <p className="font-augenblick text-4xl md:text-5xl lg:text-6xl mb-4 bg-gradient-to-br from-[#FFF700] to-[#5dd3c0] bg-clip-text text-transparent">
                       {kpi.value}
                     </p>
-                    <p className="text-sm md:text-base lg:text-lg opacity-90 leading-snug">
+                    <p className="text-xs md:text-sm lg:text-base opacity-90 leading-snug">
                       {kpi.label}
                     </p>
                   </motion.div>

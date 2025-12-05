@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { Section } from "../components/ui/custom-section";
 import { Container } from "../components/ui/custom-container";
 import { newsData } from "../data/news";
@@ -8,14 +8,26 @@ import { cn } from "../components/ui/utils";
 import svgPaths from "../imports/svg-sn6mhxoxth";
 
 export function Noticias() {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [isHovering, setIsHovering] = useState(false);
   const cursorRef = useRef<HTMLDivElement>(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedCategory, setSelectedCategory] = useState("Todas las categorías");
+  
+  // Leer el parámetro de categoría de la URL o usar valor por defecto
+  const categoryFromUrl = searchParams.get("categoria");
+  const [selectedCategory, setSelectedCategory] = useState(categoryFromUrl || "Todas las categorías");
   const [selectedCountry, setSelectedCountry] = useState("Todos los países");
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
   const [isCountryOpen, setIsCountryOpen] = useState(false);
   const itemsPerPage = 9;
+
+  // Actualizar el estado cuando cambia el parámetro de la URL
+  React.useEffect(() => {
+    const categoryFromUrl = searchParams.get("categoria");
+    if (categoryFromUrl) {
+      setSelectedCategory(categoryFromUrl);
+    }
+  }, [searchParams]);
 
   // Extract unique categories and countries
   const categories = ["Todas las categorías", ...Array.from(new Set(newsData.map(news => news.category)))];
@@ -118,6 +130,7 @@ export function Noticias() {
                       onClick={() => {
                         setSelectedCategory(category);
                         setIsCategoryOpen(false);
+                        setSearchParams({ categoria: category });
                       }}
                     >
                       {category}

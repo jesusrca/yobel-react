@@ -67,15 +67,17 @@ interface HistoryHeroProps {
   label?: string;
   title: string;
   description: string;
+  useOrangeGradient?: boolean;
 }
 
 export function HistoryHero({ 
   label = "Historia", 
   title, 
-  description 
+  description,
+  useOrangeGradient = false
 }: HistoryHeroProps) {
   return (
-    <div className="relative w-full overflow-hidden">
+    <div className={`relative w-full overflow-hidden ${useOrangeGradient ? 'bg-gradient-to-b from-[#FF9F1C] via-[#FFB966] to-white' : ''}`}>
       {/* Container */}
       <div className="max-w-[1440px] mx-auto px-6 md:px-12 pt-40 md:pt-40 lg:pt-48 pb-20 md:pb-32 lg:pb-40">
         

@@ -6,6 +6,7 @@ import svgPaths from "../../imports/svg-1hie16nw8a";
 import { cn } from "../ui/utils";
 import { useCountry } from "../../contexts/CountryContext";
 import { getCountryCode } from "../../utils/countryUtils";
+import { CountryPopup } from "./CountryPopup";
 
 interface FullScreenMenuProps {
   onClose: () => void;
@@ -101,6 +102,7 @@ export function FullScreenMenu({ onClose, onSearchClick }: FullScreenMenuProps) 
   };
   
   const [activeCategory, setActiveCategory] = useState<string>(determineActiveCategory());
+  const [isCountryPopupOpen, setIsCountryPopupOpen] = useState(false);
   
   // Update active category when menu opens with current page
   useEffect(() => {
@@ -140,10 +142,13 @@ export function FullScreenMenu({ onClose, onSearchClick }: FullScreenMenuProps) 
             {/* Actions */}
             <div className="flex items-center gap-2 md:gap-6">
                 {/* Portal de Clientes Button - Desktop */}
-                <button className="hidden md:block px-4 py-2 text-[23px] text-white hover:opacity-70">Portal de Clientes</button>
+                <button className="hidden md:block px-4 py-2 text-[23px] text-white hover:opacity-70">Clientes</button>
 
                 {/* Country (Hidden on small mobile if crowded, but let's keep it) */}
-                <div className="hidden sm:flex items-center gap-2 cursor-pointer">
+                <div 
+                  onClick={() => setIsCountryPopupOpen(true)}
+                  className="hidden sm:flex items-center gap-2 cursor-pointer hover:opacity-70 transition-opacity"
+                >
                   <span className="text-lg text-white">{getCountryCode(selectedCountry)}</span>
                   <div className="w-3 h-2">
                       <svg className="w-full h-full" viewBox="0 0 12 7" fill="none">
@@ -187,7 +192,7 @@ export function FullScreenMenu({ onClose, onSearchClick }: FullScreenMenuProps) 
                   {menuItems.map((item) => (
                       <div 
                           key={item.id} 
-                          className="group flex items-center gap-2 cursor-pointer"
+                          className="group flex items-center gap-2 cursor-pointer font-[Neue_Augenblick]"
                           onClick={() => setActiveCategory(item.title)}
                       >
                           <span className="text-[24px] font-medium text-white transition-colors duration-300">
@@ -224,12 +229,16 @@ export function FullScreenMenu({ onClose, onSearchClick }: FullScreenMenuProps) 
                                   ? "hover:text-[#00BEEB]" 
                                   : "hover:text-[#fff066]";
                               
+                              // Determinar si necesita parámetro de categoría
+                              const isNewsCategory = activeCategory === "Noticias" && link.name !== "Todas las noticias";
+                              const linkPath = isNewsCategory ? `${link.path}?categoria=${encodeURIComponent(link.name)}` : link.path;
+                              
                               return (
                                   <Link 
                                       key={idx} 
-                                      to={link.path}
+                                      to={linkPath}
                                       onClick={onClose}
-                                      className={`text-[22px] font-light text-white ${hoverColor} transition-colors w-fit`}
+                                      className={`text-[22px] font-medium text-white ${hoverColor} transition-colors w-fit`}
                                   >
                                       {link.name}
                                   </Link>
@@ -249,7 +258,7 @@ export function FullScreenMenu({ onClose, onSearchClick }: FullScreenMenuProps) 
                           <button className="box-border px-0 py-1 border-b-[0.5px] border-solid border-white text-[16px] text-white hover:opacity-70 transition-opacity">
                               Español
                           </button>
-                          <button className="px-0 py-1 text-[16px] text-white/50 hover:text-white transition-colors">
+                          <button className="px-0 py-1 text-[16px] text-white/50 hover:text-white transition-colors font-[Neue_Augenblick]">
                               Inglés
                           </button>
                       </div>
@@ -340,6 +349,15 @@ export function FullScreenMenu({ onClose, onSearchClick }: FullScreenMenuProps) 
 
         </div>
       </div>
+
+      <AnimatePresence>
+        {isCountryPopupOpen && (
+          <CountryPopup 
+            isOpen={isCountryPopupOpen} 
+            onClose={() => setIsCountryPopupOpen(false)} 
+          />
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }

@@ -159,7 +159,7 @@ export function Distribution() {
                title="Canales de Distribución"
             />
 
-            {/* Transport Types Grid */}
+            {/* Transport Types - List + Image */}
             <motion.div 
                className="mb-20"
                initial={{ opacity: 0, filter: "blur(10px)", y: 50 }}
@@ -167,31 +167,67 @@ export function Distribution() {
                viewport={{ once: true }}
                transition={{ duration: 0.8, ease: "easeOut" }}
             >
-              <h3 className="text-[32px] md:text-[42px] leading-[1.1] font-normal mb-12 text-black tracking-tight">
-                 Tipos de transporte
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {transportTypes.map((type, idx) => (
-                  <motion.div 
-                     key={idx} 
-                     className="bg-gray-50 p-8 rounded-[20px] hover:bg-gray-100 transition-colors"
-                     initial={{ opacity: 0, filter: "blur(10px)", y: 30 }}
-                     whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
-                     viewport={{ once: true }}
-                     transition={{ duration: 0.8, ease: "easeOut", delay: idx * 0.1 }}
-                  >
-                     <div className="w-10 h-10 bg-black rounded-full mb-6 flex items-center justify-center text-white font-bold">
-                       {idx + 1}
-                     </div>
-                     <h4 className="text-xl font-medium mb-3 text-black">{type.title}</h4>
-                     <p className="text-gray-600 leading-relaxed">{type.desc}</p>
-                  </motion.div>
-                ))}
+              {/* Marcador */}
+              <div className="mb-12">
+                <p className="font-augenblick text-2xl text-[rgba(73,73,73,0.5)]">Tipos de transporte</p>
+              </div>
+
+              {/* List + Image Layout */}
+              <div className="flex flex-col lg:flex-row gap-12 lg:gap-[133px] items-start lg:items-center w-full">
+                {/* List */}
+                <div className="flex flex-col w-full lg:w-auto lg:max-w-[660px]">
+                  {transportTypes.map((type, idx) => (
+                    <motion.div 
+                      key={idx}
+                      className="box-border flex flex-col gap-10 py-10 relative w-full"
+                      initial={{ opacity: 0, filter: "blur(10px)", y: 30 }}
+                      whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.8, ease: "easeOut", delay: idx * 0.1 }}
+                    >
+                      {/* Border */}
+                      <div aria-hidden="true" className="absolute border-[0px_0px_1px] border-[rgba(73,73,73,0.2)] border-solid bottom-[-0.5px] left-0 pointer-events-none right-0 top-0" />
+                      
+                      {/* Content */}
+                      <div className="flex flex-col gap-5 w-full">
+                        {/* Title */}
+                        <div className="flex font-augenblick gap-3 text-2xl text-black">
+                          <p className="shrink-0">{(idx + 1).toString().padStart(2, '0')} /</p>
+                          <p className="shrink-0">{type.title}</p>
+                        </div>
+                        
+                        {/* Text */}
+                        <div className="w-full">
+                          <div className="flex items-center justify-center w-full">
+                            <div className="flex gap-2.5 items-center justify-center px-0 lg:px-12 w-full">
+                              <p className="font-augenblick text-lg text-black leading-snug grow">{type.desc}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+
+                {/* Image */}
+                <motion.div 
+                  className="h-[400px] lg:h-[606px] w-full lg:w-[527px] shrink-0 rounded-[30px] overflow-hidden"
+                  initial={{ opacity: 0, filter: "blur(10px)", scale: 0.95 }}
+                  whileInView={{ opacity: 1, filter: "blur(0px)", scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
+                >
+                  <img 
+                    src="https://images.unsplash.com/photo-1740914994657-f1cdffdc418e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkaXN0cmlidXRpb24lMjB3YXJlaG91c2UlMjBsb2dpc3RpY3N8ZW58MXx8fHwxNzY0OTI0NDU1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                    alt="Transporte y Distribución" 
+                    className="w-full h-full object-cover"
+                  />
+                </motion.div>
               </div>
             </motion.div>
 
             {/* Benefits */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 mb-20">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 mb-20 mt-20">
                <motion.div 
                   className="flex flex-col"
                   initial={{ opacity: 0, filter: "blur(10px)", y: 50 }}
@@ -200,11 +236,13 @@ export function Distribution() {
                   transition={{ duration: 0.8, ease: "easeOut" }}
                >
                   <span className="text-gray-400 text-lg mb-12 block">Beneficios</span>
-                  <ParallaxImage 
-                     src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3YXJlaG91c2UlMjBzaGVsdmVzfGVufDF8fHx8MTc2NDM3Mjg0OXww&ixlib=rb-4.1.0&q=80&w=1080" 
-                     alt="Beneficios Distribución" 
-                     yValues={[-200, 0]}
-                  />
+                  <div className="mt-8 rounded-[30px] overflow-hidden">
+                    <img 
+                       src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3YXJlaG91c2UlMjBzaGVsdmVzfGVufDF8fHx8MTc2NDM3Mjg0OXww&ixlib=rb-4.1.0&q=80&w=1080" 
+                       alt="Beneficios Distribución"
+                       className="w-full h-full object-cover"
+                    />
+                  </div>
                </motion.div>
 
                <motion.div 

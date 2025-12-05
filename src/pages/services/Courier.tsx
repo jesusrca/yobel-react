@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "motion/react";
 import { useCountry } from "../../contexts/CountryContext";
-import { PageHero } from "../../components/ui/PageHero";
+import { HistoryHero } from "../../components/company/HistoryHero";
 import { Section } from "../../components/ui/custom-section";
 import { Container } from "../../components/ui/custom-container";
 import { Phrase } from "../../components/landing/Phrase";
@@ -65,17 +65,11 @@ export function Courier() {
 
   return (
     <>
-      <PageHero
-        title="Courier y última milla"
-        subtitle="Servicios de courier con trazabilidad 24/7."
-        videoSrc="https://circular.ws/yobel/amarillo-desktop.mp4"
-        videoColor="bg-black/10"
-        videoGradient="bg-gradient-to-t from-[#fff066] via-[#fff066]/60 to-transparent pointer-events-none"
-        heroImage={heroImage}
-        heroText="En Yobel ofrecemos servicios de courier rápido, confiable y con cobertura nacional, diseñados para garantizar la seguridad y puntualidad de cada entrega."
-        buttonText="Contactar asesor"
-        buttonLink="/contacto"
-        buttonClass="font-augenblick bg-transparent border-[1.5px] border-black text-black px-8 py-6 rounded-full text-xl hover:bg-black hover:text-white transition-colors duration-500 ease-in-out w-fit"
+      <HistoryHero
+        label="Courier y última milla"
+        title="Servicios de courier con trazabilidad 24/7"
+        description="En Yobel ofrecemos servicios de courier rápido, confiable y con cobertura nacional, diseñados para garantizar la seguridad y puntualidad de cada entrega."
+        useOrangeGradient={true}
       />
 
       <Section className="bg-white">
@@ -153,7 +147,7 @@ export function Courier() {
          height="h-[50vh] md:h-[70vh]"
       />
 
-      <Industries />
+      <Industries useOrangeGradient={true} />
 
       <FAQ items={faqs} />
     </>
