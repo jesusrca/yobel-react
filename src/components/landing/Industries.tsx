@@ -67,7 +67,7 @@ export function Industries({ className, useOrangeGradient = false }: { className
     slidesToScroll: 1,
     swipeToSlide: true,
     centerMode: true,
-    centerPadding: "60px",
+    centerPadding: "40px",
     responsive: [
       {
         breakpoint: 1280,
@@ -79,22 +79,22 @@ export function Industries({ className, useOrangeGradient = false }: { className
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 2.2,
-          centerPadding: "40px",
+          slidesToShow: 2,
+          centerPadding: "32px",
         }
       },
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 1.3,
-          centerPadding: "48px",
+          slidesToShow: 1.15,
+          centerPadding: "24px",
         }
       },
       {
         breakpoint: 640,
         settings: {
-          slidesToShow: 1.05,
-          centerPadding: "32px",
+          slidesToShow: 1,
+          centerPadding: "12px",
         }
       }
     ]
@@ -132,6 +132,7 @@ export function Industries({ className, useOrangeGradient = false }: { className
         .slick-slide.slick-loading img{display:none}
         .slick-slide.slick-dragging img{pointer-events:none}
         .slick-initialized .slick-slide{display:block}
+        .slick-slide > div {height: 100%;}
         .slick-loading .slick-slide{visibility:hidden}
         .slick-vertical .slick-slide{display:block;height:auto;border:1px solid transparent}
         .slick-arrow.slick-hidden{display:none}
@@ -150,6 +151,7 @@ export function Industries({ className, useOrangeGradient = false }: { className
           .slick-track {
             display: flex;
             gap: 18px;
+            align-items: stretch;
           }
         }
       `}</style>
@@ -195,7 +197,7 @@ export function Industries({ className, useOrangeGradient = false }: { className
                 {industries.map((ind, idx) => (
                     <div key={idx} className="px-3 md:px-4 h-full">
                         <div 
-                           className="group relative flex flex-col h-full"
+                           className="group relative flex flex-col h-full bg-white/85 rounded-[28px] md:rounded-[24px] p-4 md:p-5 shadow-lg backdrop-blur-sm"
                            onMouseEnter={() => setIsHovering(true)}
                            onMouseLeave={() => setIsHovering(false)}
                            onMouseDown={handleMouseDown}
@@ -204,19 +206,19 @@ export function Industries({ className, useOrangeGradient = false }: { className
                         >
                             <Link 
                               to={ind.path} 
-                              className="flex flex-col gap-4 md:gap-5 w-full cursor-pointer block min-w-0"
+                              className="flex flex-col gap-5 w-full cursor-pointer block"
                               onClick={(e) => {
                                 if (isDragging) {
                                   e.preventDefault();
                                 }
                               }}
                             >
-                                <div className="aspect-square w-full rounded-[28px] md:rounded-[20px] overflow-hidden relative shrink-0 shadow-md">
+                                <div className="aspect-square w-full rounded-[20px] md:rounded-[20px] overflow-hidden relative shrink-0 shadow-md">
                                     <img src={ind.image} alt={ind.title} className="w-full h-full object-cover" />
                                 </div>
                                 <div className="flex flex-col gap-2 md:gap-3 text-black px-2 md:px-2.5">
                                     <h3 className="text-[22px] md:text-2xl font-medium font-[Neue_Augenblick] leading-snug md:leading-normal break-words">{ind.title}</h3>
-                                    <p className="text-[17px] md:text-lg font-light leading-snug opacity-80 font-augenblick line-clamp-3 md:line-clamp-none">
+                                    <p className="text-[17px] md:text-lg font-light leading-snug opacity-80 font-augenblick line-clamp-4 md:line-clamp-none">
                                       {ind.description}
                                     </p>
                                 </div>
