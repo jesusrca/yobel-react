@@ -37,6 +37,8 @@ import imgLogoIsoYobelScmPeruLogistica from "figma:asset/67340db8be0f901aac12f62
 import imgLogoBpaYobelScmPeruLogistica from "figma:asset/9c117b6f027ea4bc446b349b644c8c2e87a56c17.png";
 import imgLogoOliverYobelScmPeruLogistica from "figma:asset/e8cbc1b372f893a7c041916680e9c782e39fed62.png";
 
+const fondoCelesteVideo = '/videos/fondo-celeste.mp4';
+
 // SVG Paths
 const svgPaths = {
   pff39b00: "M0 45.9994V30.6785C0 30.6785 36.2411 15.2325 36.2411 8.71527C36.2411 4.64101 0 15.0514 0 15.0514V0H35.0771C49.2263 0 47.9715 7.45669 47.9715 14.9269V46H24.4355C24.4355 46 40.1752 20.8884 36.2411 20.8884C30.4859 20.8884 0 45.9994 0 45.9994Z",
@@ -124,7 +126,7 @@ export function Manufacturing() {
       <div className="relative h-[80vh] min-h-[600px] max-h-[920px] w-full overflow-hidden font-augenblick">
         <div className="absolute inset-0 overflow-hidden">
           <video 
-            src="https://circular.ws/yobel/fondo-celeste.mp4"
+            src={fondoCelesteVideo}
             className="absolute inset-0 h-full w-full object-cover"
             autoPlay
             loop

@@ -22,6 +22,7 @@ import truckImage from "figma:asset/581b279261d7ceb7941417797fbd59c23f768b5e.png
 import yellowTruck from "figma:asset/b94e87eb574754035d4788fe21930672651cb6ac.png";
 import warehouseImage from "figma:asset/cb9b48b25b6989c920d64371cd04e872c5cfcd05.png";
 
+const amarilloDesktopVideo = '/videos/amarillo-desktop.mp4';
 const heroImage = "https://images.unsplash.com/photo-1663103746090-2e4274c6c7ac?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzaGlwcGluZyUyMGNvbnRhaW5lciUyMHNoaXAlMjBwb3J0fGVufDF8fHx8MTc2NDE5MzYxOXww&ixlib=rb-4.1.0&q=80&w=1080";
 
 const solutions = [
@@ -71,8 +72,8 @@ export function Comex() {
     <>
       <div className="relative h-[80vh] min-h-[600px] max-h-[920px] w-full overflow-hidden font-augenblick">
         <div className="absolute inset-0 overflow-hidden">
-          <video 
-            src="https://circular.ws/yobel/amarillo-desktop.mp4"
+          <video
+            src="/videos/amarillo-desktop.mp4"
             className="absolute inset-0 h-full w-full object-cover"
             autoPlay
             loop

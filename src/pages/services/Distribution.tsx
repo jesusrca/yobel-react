@@ -13,6 +13,7 @@ import { Phrase } from "../../components/landing/Phrase";
 import { Industries } from "../../components/landing/Industries";
 import { ScrollRevealVideo } from "../../components/landing/ScrollRevealVideo";
 
+const amarilloDesktopVideo = '/videos/amarillo-desktop.mp4';
 const heroImage = "https://images.unsplash.com/photo-1641290451977-a427586acf49?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkZWxpdmVyeSUyMHRydWNrcyUyMGxvZ2lzdGljcyUyMGRpc3RyaWJ1dGlvbiUyMGNlbnRlciUyMGZsZWV0fGVufDF8fHx8MTc2NDE5NTIwNHww&ixlib=rb-4.1.0&q=80&w=1080";
 
 // SVG Paths
@@ -86,8 +87,8 @@ export function Distribution() {
     <>
       <div className="relative h-[80vh] min-h-[600px] max-h-[920px] w-full overflow-hidden font-augenblick">
         <div className="absolute inset-0 overflow-hidden">
-          <video 
-            src="https://circular.ws/yobel/amarillo-desktop.mp4"
+          <video
+            src="/videos/amarillo-desktop.mp4"
             className="absolute inset-0 h-full w-full object-cover"
             autoPlay
             loop

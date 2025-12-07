@@ -13,6 +13,7 @@ import { SolutionsList } from "../../components/landing/SolutionsList";
 import { ScrollRevealVideo } from "../../components/landing/ScrollRevealVideo";
 import { BenefitsSection } from "../../components/landing/BenefitsSection";
 
+const amarilloDesktopVideo = '/videos/amarillo-desktop.mp4';
 const heroImage = "https://images.unsplash.com/photo-1556743769-8d7477994b25?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjB3YXJlaG91c2UlMjBsb2dpc3RpY3MlMjBzdG9yYWdlJTIwc2hlbHZlc3xlbnwxfHx8fDE3NjQxOTUyMDR8MA&ixlib=rb-4.1.0&q=80&w=1080";
 const hoverImage = "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3YXJlaG91c2UlMjBzaGVsdmVzfGVufDF8fHx8MTc2NDM3Mjg0OXww&ixlib=rb-4.1.0&q=80&w=1080";
 const benefitsImage = "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3YXJlaG91c2UlMjBpbnRlcmlvcnxlbnwxfHx8fDE3NjQzNzM1NDR8MA&ixlib=rb-4.1.0&q=80&w=1080";
@@ -67,8 +68,8 @@ export function Warehousing() {
     <>
       <div className="relative h-[80vh] min-h-[600px] max-h-[920px] w-full overflow-hidden font-augenblick">
         <div className="absolute inset-0 overflow-hidden">
-          <video 
-            src="https://circular.ws/yobel/amarillo-desktop.mp4"
+          <video
+            src="/videos/amarillo-desktop.mp4"
             className="absolute inset-0 h-full w-full object-cover"
             autoPlay
             loop

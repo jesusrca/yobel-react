@@ -3,6 +3,8 @@ import { motion } from "motion/react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 
+const grisDesktopVideo = '/videos/gris-desktop.mp4';
+
 export function NotFound() {
   const titleText = "404";
   const subtitleText = "Lo sentimos, la página que buscas no existe o ha sido movida.";
@@ -49,8 +51,8 @@ export function NotFound() {
   return (
     <div className="relative h-screen w-full overflow-hidden bg-gray-900">
       <div className="absolute inset-0 overflow-hidden">
-        <video 
-          src="https://circular.ws/yobel/gris-desktop.mp4"
+        <video
+          src="/videos/gris-desktop.mp4"
           className="absolute inset-0 h-full w-full object-cover"
           autoPlay
           loop

@@ -15,6 +15,8 @@ import { CountryTimeHeader } from "../../components/company/CountryTimeHeader";
 import { MapPin, ChevronDown } from "lucide-react";
 import { motion } from "motion/react";
 
+const grisDesktopVideo = '/videos/gris-desktop.mp4';
+
 interface Location {
   city: string;
   country: string;
@@ -328,8 +330,8 @@ export function GlobalPresence() {
         transition={{ duration: 1, ease: "easeOut" }}
       >
         <div className="absolute inset-0 overflow-hidden">
-          <video 
-            src="https://circular.ws/yobel/gris-desktop.mp4"
+          <video
+            src="/videos/gris-desktop.mp4"
             className="absolute inset-0 h-full w-full object-cover"
             autoPlay
             loop
