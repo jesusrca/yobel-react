@@ -117,7 +117,7 @@ function Form() {
 function AccordionTitle() {
   return (
     <div className="content-stretch flex gap-[8px] items-center relative shrink-0" data-name="Accordion Title">
-      <p className="[text-decoration-skip-ink:none] [text-underline-position:from-font] decoration-solid font-['Neue_Montreal:Regular',sans-serif] leading-[24px] not-italic relative shrink-0 text-[16px] text-black text-nowrap underline whitespace-pre">Español</p>
+      <p className="[text-decoration-skip-ink:none] [text-underline-position:from-font] decoration-solid font-augenblick leading-[24px] not-italic relative shrink-0 text-[16px] text-black text-nowrap underline whitespace-pre">Español</p>
     </div>
   );
 }
@@ -133,7 +133,7 @@ function AccordionItem() {
 function AccordionTitle1() {
   return (
     <div className="content-stretch flex gap-[8px] items-center relative shrink-0" data-name="Accordion Title">
-      <p className="font-['Neue_Montreal:Regular',sans-serif] leading-[24px] not-italic relative shrink-0 text-[16px] text-black text-nowrap whitespace-pre">Inglés</p>
+      <p className="font-augenblick leading-[24px] not-italic relative shrink-0 text-[16px] text-black text-nowrap whitespace-pre">Inglés</p>
     </div>
   );
 }
@@ -169,7 +169,7 @@ function Contenido() {
     <div className="content-stretch flex flex-col gap-[32px] items-start relative shrink-0 w-full" data-name="Contenido">
       <Up />
       <Primary />
-      <p className="font-['Neue_Montreal:Regular',sans-serif] leading-[16px] not-italic relative shrink-0 text-[14px] text-black text-center w-full">O</p>
+      <p className="font-augenblick leading-[16px] not-italic relative shrink-0 text-[14px] text-black text-center w-full">O</p>
       <Form />
       <Idioma />
     </div>

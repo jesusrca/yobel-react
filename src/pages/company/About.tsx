@@ -327,15 +327,15 @@ export function About() {
                                  onMouseEnter={() => setHoveredIndex(idx)}
                               >
                                  <div className="w-full flex justify-between items-center z-10 relative">
-                                    <motion.h4 
+                                    <motion.h4
                                       className={`w-full text-[28px] md:text-[32px] font-normal leading-tight transition-opacity duration-300`}
-                                      style={{ 
+                                      style={{
                                         color: textColor,
                                         opacity: isHovered ? 1 : 0.4
                                       }}
                                     >
-                                       <span className="mr-4">0{idx + 1} /</span> 
-                                       <span>{item}</span>
+                                       <span className="mr-4">0{idx + 1} /</span>
+                                       <span>{item.text}</span>
                                     </motion.h4>
                                  </div>
                               </motion.div>

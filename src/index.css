@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap");
 /*! tailwindcss v4.1.3 | MIT License | https://tailwindcss.com */
 @layer properties {
   @supports (((-webkit-hyphens: none)) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color: rgb(from red r g b)))) {
@@ -75,7 +73,7 @@
 
 @layer theme {
   :root, :host {
-    --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-sans: "NeueAugenblick", sans-serif;
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     --color-red-500: oklch(.637 .237 25.331);
     --color-red-600: oklch(.577 .245 27.325);
@@ -156,9 +154,9 @@
     --aspect-video: 16 / 9;
     --default-transition-duration: .15s;
     --default-transition-timing-function: cubic-bezier(.4, 0, .2, 1);
-    --default-font-family: var(--font-sans);
-    --default-font-feature-settings: var(--font-sans--font-feature-settings);
-    --default-font-variation-settings: var(--font-sans--font-variation-settings);
+    --default-font-family: "NeueAugenblick", sans-serif;
+    --default-font-feature-settings: normal;
+    --default-font-variation-settings: normal;
     --default-mono-font-family: var(--font-mono);
     --default-mono-font-feature-settings: var(--font-mono--font-feature-settings);
     --default-mono-font-variation-settings: var(--font-mono--font-variation-settings);
@@ -435,33 +433,33 @@
   body {
     background-color: var(--background);
     color: var(--foreground);
-    font-family: NeueAugenblick, Space Grotesk, sans-serif;
+    font-family: NeueAugenblick, sans-serif;
     font-weight: 400;
   }
 
   :where(:not(:has([class*=" text-"]), :not(:has([class^="text-"])))) h1 {
-    font-family: NeueAugenblick, Space Grotesk, sans-serif;
+    font-family: NeueAugenblick, sans-serif;
     font-size: var(--text-2xl);
     font-weight: var(--font-weight-medium);
     line-height: 1.5;
   }
 
   :where(:not(:has([class*=" text-"]), :not(:has([class^="text-"])))) h2 {
-    font-family: NeueAugenblick, Space Grotesk, sans-serif;
+    font-family: NeueAugenblick, sans-serif;
     font-size: var(--text-xl);
     font-weight: var(--font-weight-medium);
     line-height: 1.5;
   }
 
   :where(:not(:has([class*=" text-"]), :not(:has([class^="text-"])))) h3 {
-    font-family: NeueAugenblick, Space Grotesk, sans-serif;
+    font-family: NeueAugenblick, sans-serif;
     font-size: var(--text-lg);
     font-weight: var(--font-weight-medium);
     line-height: 1.5;
   }
 
   :where(:not(:has([class*=" text-"]), :not(:has([class^="text-"])))) h4 {
-    font-family: NeueAugenblick, Space Grotesk, sans-serif;
+    font-family: NeueAugenblick, sans-serif;
     font-size: var(--text-base);
     font-weight: var(--font-weight-medium);
     line-height: 1.5;
@@ -3107,31 +3105,31 @@
   }
 
   .font-\[\'Neue_Augenblick\'\,sans-serif\] {
-    font-family: Neue Augenblick, sans-serif;
+    font-family: NeueAugenblick, sans-serif;
   }
 
   .font-\[\'Neue_Augenblick\'\] {
-    font-family: Neue Augenblick;
+    font-family: NeueAugenblick, sans-serif;
   }
 
   .font-\[\'Neue_Augenblick\:Medium\'\,sans-serif\] {
-    font-family: Neue Augenblick\:Medium, sans-serif;
+    font-family: NeueAugenblick, sans-serif;
   }
 
   .font-\[\'Neue_Augenblick\:Medium_Italic\'\,sans-serif\] {
-    font-family: Neue Augenblick\:Medium Italic, sans-serif;
+    font-family: NeueAugenblick, sans-serif;
   }
 
   .font-\[\'Neue_Augenblick\:Regular\'\,sans-serif\] {
-    font-family: Neue Augenblick\:Regular, sans-serif;
+    font-family: NeueAugenblick, sans-serif;
   }
 
   .font-\[\'Neue_Montreal\:Regular\'\,sans-serif\] {
-    font-family: Neue Montreal\:Regular, sans-serif;
+    font-family: NeueAugenblick, sans-serif;
   }
 
   .font-\[Neue_Augenblick\] {
-    font-family: Neue Augenblick;
+    font-family: NeueAugenblick, sans-serif;
   }
 
   .font-mono {
@@ -5894,7 +5892,7 @@
 }
 
 .font-augenblick, body {
-  font-family: NeueAugenblick, Space Grotesk, sans-serif;
+  font-family: NeueAugenblick, sans-serif;
 }
 
 :root {
