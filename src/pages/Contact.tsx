@@ -9,6 +9,7 @@ import { LocationCard } from "../components/company/LocationCard";
 import { CountryTimeHeader } from "../components/company/CountryTimeHeader";
 import { ScrollRevealString } from "../components/ui/scroll-reveal-text";
 import { ChevronDown, Mail, Phone, Linkedin, Instagram, Facebook, CheckCircle } from "lucide-react";
+import { contact } from "../constants/root";
 
 interface Location {
   city: string;
@@ -419,13 +420,13 @@ export function Contact() {
       <div className="relative h-[70vh] md:h-[40vh] min-h-[500px] md:min-h-[400px] max-h-[700px] md:max-h-[500px] w-full overflow-hidden font-augenblick bg-gradient-to-b from-[#fff066] to-white">
         <div className="absolute bottom-10 left-0 right-0 px-[5%] md:px-[50px] z-10">
           <div className="max-w-[1400px] mx-auto flex flex-col gap-[30px]">
-             <p className="text-lg md:text-[18px] text-black font-[Neue_Augenblick]">Contacto</p>
+             <p className="text-lg md:text-[18px] text-black font-[Neue_Augenblick]">{contact.hero.breadcrumb}</p>
              <div className="flex flex-col lg:flex-row items-end justify-between gap-[40px] w-full">
                 <h1 className="text-5xl md:text-[65px] leading-[1] text-black max-w-[773px] font-[Neue_Augenblick]">
-                  Conversemos sobre tu negocio
+                  {contact.hero.title}
                 </h1>
                 <p className="text-xl md:text-[22px] leading-[24px] text-black max-w-[450px] lg:mr-32 pb-1 font-[Neue_Augenblick]">
-                  Un especialista evaluará tu caso y te presentará un flujo integrado con acciones rápidas y un roadmap claro.
+                  {contact.hero.description}
                 </p>
              </div>
           </div>
@@ -440,13 +441,13 @@ export function Contact() {
                   {/* Contact Details */}
                   <div className="space-y-6">
                      <div>
-                        <h3 className="text-2xl font-normal mb-6 font-[Neue_Augenblick]">Contacto {countryName}</h3>
-                        
+                        <h3 className="text-2xl font-normal mb-6 font-[Neue_Augenblick]">{contact.contactSection.title} {countryName}</h3>
+
                         {/* Email */}
                         <div className="flex items-start gap-3 mb-4">
                            <Mail className="w-5 h-5 text-black mt-1 shrink-0" />
                            <div>
-                              <p className="text-sm text-gray-500 mb-1">Correo electrónico</p>
+                              <p className="text-sm text-gray-500 mb-1">{contact.contactSection.emailLabel}</p>
                               <a href={`mailto:${currentEmail}`} className="text-lg text-black hover:text-[#59c1e6] transition-colors">
                                  {currentEmail}
                               </a>
@@ -457,7 +458,7 @@ export function Contact() {
                         <div className="flex items-start gap-3">
                            <Phone className="w-5 h-5 text-black mt-1 shrink-0" />
                            <div>
-                              <p className="text-sm text-gray-500 mb-1">Teléfono</p>
+                              <p className="text-sm text-gray-500 mb-1">{contact.contactSection.phoneLabel}</p>
                               <a href={`tel:${currentPhone.replace(/\s/g, '')}`} className="text-lg text-black hover:text-[#59c1e6] transition-colors">
                                  {currentPhone}
                               </a>
@@ -467,11 +468,11 @@ export function Contact() {
 
                      {/* International Contact */}
                      <div className="pt-6 border-t border-gray-200">
-                        <h4 className="text-lg font-normal mb-4 font-[Neue_Augenblick]">Contacto Internacional</h4>
+                        <h4 className="text-lg font-normal mb-4 font-[Neue_Augenblick]">{contact.contactSection.internationalTitle}</h4>
                         <div className="flex items-start gap-3 mb-4">
                            <Mail className="w-5 h-5 text-black mt-1 shrink-0" />
                            <div>
-                              <p className="text-sm text-gray-500 mb-1">Correo electrónico</p>
+                              <p className="text-sm text-gray-500 mb-1">{contact.contactSection.emailLabel}</p>
                               <a href="mailto:comercial@yobel.biz" className="text-lg text-black hover:text-[#59c1e6] transition-colors">
                                  comercial@yobel.biz
                               </a>
@@ -480,7 +481,7 @@ export function Contact() {
                         <div className="flex items-start gap-3">
                            <Phone className="w-5 h-5 text-black mt-1 shrink-0" />
                            <div>
-                              <p className="text-sm text-gray-500 mb-1">Teléfono</p>
+                              <p className="text-sm text-gray-500 mb-1">{contact.contactSection.phoneLabel}</p>
                               <a href="tel:+5116185400" className="text-lg text-black hover:text-[#59c1e6] transition-colors">
                                  +51 1 618 5400
                               </a>
@@ -491,27 +492,27 @@ export function Contact() {
 
                   {/* Social Media */}
                   <div className="pt-6 border-t border-gray-200">
-                     <h4 className="text-lg font-normal mb-4 font-[Neue_Augenblick]">Síguenos</h4>
+                     <h4 className="text-lg font-normal mb-4 font-[Neue_Augenblick]">{contact.contactSection.followUs}</h4>
                      <div className="flex gap-4">
-                        <a 
-                           href="https://www.linkedin.com/company/yobel-scm" 
-                           target="_blank" 
+                        <a
+                           href="https://www.linkedin.com/company/yobel-scm"
+                           target="_blank"
                            rel="noopener noreferrer"
                            className="w-12 h-12 rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors"
                         >
                            <Linkedin className="w-5 h-5" />
                         </a>
-                        <a 
-                           href="https://www.instagram.com/yobelscm" 
-                           target="_blank" 
+                        <a
+                           href="https://www.instagram.com/yobelscm"
+                           target="_blank"
                            rel="noopener noreferrer"
                            className="w-12 h-12 rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors"
                         >
                            <Instagram className="w-5 h-5" />
                         </a>
-                        <a 
-                           href="https://www.facebook.com/YobelSCM" 
-                           target="_blank" 
+                        <a
+                           href="https://www.facebook.com/YobelSCM"
+                           target="_blank"
                            rel="noopener noreferrer"
                            className="w-12 h-12 rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors"
                         >
@@ -522,13 +523,13 @@ export function Contact() {
 
                   {/* Button to see other countries */}
                   <div className="pt-6">
-                     <Button 
+                     <Button
                         onClick={() => {
                           mapSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                         }}
                         className="w-full bg-transparent border-[1.5px] border-black text-black px-8 py-6 rounded-full text-lg hover:bg-black hover:text-white transition-colors"
                      >
-                        Ver contacto de otros países
+                        {contact.contactSection.viewOtherCountries}
                      </Button>
                   </div>
                </div>
@@ -537,20 +538,20 @@ export function Contact() {
                <div className="order-1 lg:order-2">
                   {!isSubmitted ? (
                      <div className="bg-white p-8 md:p-10 rounded-[40px] border border-gray-200">
-                        <h3 className="text-3xl md:text-4xl font-normal mb-8 font-[Neue_Augenblick]">Contacta a un asesor</h3>
+                        <h3 className="text-3xl md:text-4xl font-normal mb-8 font-[Neue_Augenblick]">{contact.form.title}</h3>
                         <form onSubmit={handleSubmit} className="space-y-6">
                            {/* Nombre y Apellidos */}
                            <div className="content-stretch flex flex-col gap-[8px] items-start relative shrink-0 w-full">
                               <p className="font-['Neue_Augenblick:Medium',sans-serif] leading-[18px] not-italic relative shrink-0 text-[16px] text-[rgba(73,73,73,0.5)] whitespace-pre-wrap">
-                                 <span>Nombre y Apellidos </span>
+                                 <span>{contact.form.fullNameLabel} </span>
                                  <span className="text-[#59c1e6]">*</span>
                               </p>
                               <div className="box-border content-stretch flex gap-[20px] items-start px-0 py-[8px] relative w-full">
-                                 <div 
-                                    aria-hidden="true" 
+                                 <div
+                                    aria-hidden="true"
                                     className={`absolute border-[0px_0px_1.5px] border-solid bottom-[-0.75px] left-0 pointer-events-none right-0 top-0 transition-colors duration-300 ${
                                        isFocused.fullName ? 'border-[#59c1e6]' : 'border-black'
-                                    }`} 
+                                    }`}
                                  />
                                  <input
                                     type="text"
@@ -559,7 +560,7 @@ export function Contact() {
                                     onFocus={() => handleFocus('fullName')}
                                     onBlur={() => handleBlur('fullName')}
                                     required
-                                    placeholder="Ingresa tu nombre completo"
+                                    placeholder={contact.form.fullNamePlaceholder}
                                     className="basis-0 flex flex-col font-['Neue_Augenblick:Medium',sans-serif] grow justify-center leading-[24px] min-h-px min-w-px not-italic relative shrink-0 text-[18px] text-black bg-transparent border-none outline-none w-full placeholder:text-[rgba(0,0,0,0.3)]"
                                  />
                               </div>
@@ -568,15 +569,15 @@ export function Contact() {
                            {/* Empresa */}
                            <div className="content-stretch flex flex-col gap-[8px] items-start relative shrink-0 w-full">
                               <p className="font-['Neue_Augenblick:Medium',sans-serif] leading-[18px] not-italic relative shrink-0 text-[16px] text-[rgba(73,73,73,0.5)] whitespace-pre-wrap">
-                                 <span>Empresa </span>
+                                 <span>{contact.form.companyLabel} </span>
                                  <span className="text-[#59c1e6]">*</span>
                               </p>
                               <div className="box-border content-stretch flex gap-[20px] items-start px-0 py-[8px] relative w-full">
-                                 <div 
-                                    aria-hidden="true" 
+                                 <div
+                                    aria-hidden="true"
                                     className={`absolute border-[0px_0px_1.5px] border-solid bottom-[-0.75px] left-0 pointer-events-none right-0 top-0 transition-colors duration-300 ${
                                        isFocused.company ? 'border-[#59c1e6]' : 'border-black'
-                                    }`} 
+                                    }`}
                                  />
                                  <input
                                     type="text"
@@ -585,7 +586,7 @@ export function Contact() {
                                     onFocus={() => handleFocus('company')}
                                     onBlur={() => handleBlur('company')}
                                     required
-                                    placeholder="Nombre de tu empresa"
+                                    placeholder={contact.form.companyPlaceholder}
                                     className="basis-0 flex flex-col font-['Neue_Augenblick:Medium',sans-serif] grow justify-center leading-[24px] min-h-px min-w-px not-italic relative shrink-0 text-[18px] text-black bg-transparent border-none outline-none w-full placeholder:text-[rgba(0,0,0,0.3)]"
                                  />
                               </div>
@@ -594,15 +595,15 @@ export function Contact() {
                            {/* Correo electrónico */}
                            <div className="content-stretch flex flex-col gap-[8px] items-start relative shrink-0 w-full">
                               <p className="font-['Neue_Augenblick:Medium',sans-serif] leading-[18px] not-italic relative shrink-0 text-[16px] text-[rgba(73,73,73,0.5)] whitespace-pre-wrap">
-                                 <span>Correo electrónico corporativo </span>
+                                 <span>{contact.form.emailLabel} </span>
                                  <span className="text-[#59c1e6]">*</span>
                               </p>
                               <div className="box-border content-stretch flex gap-[20px] items-start px-0 py-[8px] relative w-full">
-                                 <div 
-                                    aria-hidden="true" 
+                                 <div
+                                    aria-hidden="true"
                                     className={`absolute border-[0px_0px_1.5px] border-solid bottom-[-0.75px] left-0 pointer-events-none right-0 top-0 transition-colors duration-300 ${
                                        isFocused.email ? 'border-[#59c1e6]' : 'border-black'
-                                    }`} 
+                                    }`}
                                  />
                                  <input
                                     type="email"
@@ -611,7 +612,7 @@ export function Contact() {
                                     onFocus={() => handleFocus('email')}
                                     onBlur={() => handleBlur('email')}
                                     required
-                                    placeholder="nombre@empresa.com"
+                                    placeholder={contact.form.emailPlaceholder}
                                     className="basis-0 flex flex-col font-['Neue_Augenblick:Medium',sans-serif] grow justify-center leading-[24px] min-h-px min-w-px not-italic relative shrink-0 text-[18px] text-black bg-transparent border-none outline-none w-full placeholder:text-[rgba(0,0,0,0.3)]"
                                  />
                               </div>
@@ -620,14 +621,14 @@ export function Contact() {
                            {/* País */}
                            <div className="content-stretch flex flex-col gap-[8px] items-start relative shrink-0 w-full">
                               <p className="font-['Neue_Augenblick:Medium',sans-serif] leading-[18px] not-italic relative shrink-0 text-[16px] text-[rgba(73,73,73,0.5)] whitespace-pre-wrap">
-                                 País
+                                 {contact.form.countryLabel}
                               </p>
                               <div className="box-border content-stretch flex gap-[20px] items-start px-0 py-[8px] relative w-full">
-                                 <div 
-                                    aria-hidden="true" 
+                                 <div
+                                    aria-hidden="true"
                                     className={`absolute border-[0px_0px_1.5px] border-solid bottom-[-0.75px] left-0 pointer-events-none right-0 top-0 transition-colors duration-300 ${
                                        isFocused.country ? 'border-[#59c1e6]' : 'border-black'
-                                    }`} 
+                                    }`}
                                  />
                                  <select
                                     value={formData.country}
@@ -636,7 +637,7 @@ export function Contact() {
                                     onBlur={() => handleBlur('country')}
                                     className="basis-0 flex flex-col font-['Neue_Augenblick:Medium',sans-serif] grow justify-center leading-[24px] min-h-px min-w-px not-italic relative shrink-0 text-[18px] text-black bg-transparent border-none outline-none w-full appearance-none cursor-pointer pr-8"
                                  >
-                                    <option value="">Selecciona un país</option>
+                                    <option value="">{contact.form.countryPlaceholder}</option>
                                     {countries.map((country) => (
                                        <option key={country} value={country}>{country}</option>
                                     ))}
@@ -652,14 +653,14 @@ export function Contact() {
                            {/* Número de teléfono */}
                            <div className="content-stretch flex flex-col gap-[8px] items-start relative shrink-0 w-full">
                               <p className="font-['Neue_Augenblick:Medium',sans-serif] leading-[18px] not-italic relative shrink-0 text-[16px] text-[rgba(73,73,73,0.5)] whitespace-pre-wrap">
-                                 Número de teléfono
+                                 {contact.form.phoneLabel}
                               </p>
                               <div className="box-border content-stretch flex gap-[20px] items-start px-0 py-[8px] relative w-full">
-                                 <div 
-                                    aria-hidden="true" 
+                                 <div
+                                    aria-hidden="true"
                                     className={`absolute border-[0px_0px_1.5px] border-solid bottom-[-0.75px] left-0 pointer-events-none right-0 top-0 transition-colors duration-300 ${
                                        isFocused.phone ? 'border-[#59c1e6]' : 'border-black'
-                                    }`} 
+                                    }`}
                                  />
                                  <input
                                     type="tel"
@@ -667,7 +668,7 @@ export function Contact() {
                                     onChange={(e) => handleInputChange('phone', e.target.value)}
                                     onFocus={() => handleFocus('phone')}
                                     onBlur={() => handleBlur('phone')}
-                                    placeholder="+51 999 999 999"
+                                    placeholder={contact.form.phonePlaceholder}
                                     className="basis-0 flex flex-col font-['Neue_Augenblick:Medium',sans-serif] grow justify-center leading-[24px] min-h-px min-w-px not-italic relative shrink-0 text-[18px] text-black bg-transparent border-none outline-none w-full placeholder:text-[rgba(0,0,0,0.3)]"
                                  />
                               </div>
@@ -676,14 +677,14 @@ export function Contact() {
                            {/* Servicio de interés */}
                            <div className="content-stretch flex flex-col gap-[8px] items-start relative shrink-0 w-full">
                               <p className="font-['Neue_Augenblick:Medium',sans-serif] leading-[18px] not-italic relative shrink-0 text-[16px] text-[rgba(73,73,73,0.5)] whitespace-pre-wrap">
-                                 Servicio de interés
+                                 {contact.form.serviceLabel}
                               </p>
                               <div className="box-border content-stretch flex gap-[20px] items-start px-0 py-[8px] relative w-full">
-                                 <div 
-                                    aria-hidden="true" 
+                                 <div
+                                    aria-hidden="true"
                                     className={`absolute border-[0px_0px_1.5px] border-solid bottom-[-0.75px] left-0 pointer-events-none right-0 top-0 transition-colors duration-300 ${
                                        isFocused.service ? 'border-[#59c1e6]' : 'border-black'
-                                    }`} 
+                                    }`}
                                  />
                                  <select
                                     value={formData.service}
@@ -692,7 +693,7 @@ export function Contact() {
                                     onBlur={() => handleBlur('service')}
                                     className="basis-0 flex flex-col font-['Neue_Augenblick:Medium',sans-serif] grow justify-center leading-[24px] min-h-px min-w-px not-italic relative shrink-0 text-[18px] text-black bg-transparent border-none outline-none w-full appearance-none cursor-pointer pr-8"
                                  >
-                                    <option value="">Selecciona un servicio</option>
+                                    <option value="">{contact.form.servicePlaceholder}</option>
                                     {services.map((service) => (
                                        <option key={service} value={service}>{service}</option>
                                     ))}
@@ -708,15 +709,15 @@ export function Contact() {
                            {/* Mensaje */}
                            <div className="content-stretch flex flex-col gap-[8px] items-start relative shrink-0 w-full">
                               <p className="font-['Neue_Augenblick:Medium',sans-serif] leading-[18px] not-italic relative shrink-0 text-[16px] text-[rgba(73,73,73,0.5)] whitespace-pre-wrap">
-                                 <span>Mensaje / Consulta </span>
+                                 <span>{contact.form.messageLabel} </span>
                                  <span className="text-[#59c1e6]">*</span>
                               </p>
                               <div className="box-border content-stretch flex gap-[20px] items-start px-0 py-[8px] relative w-full">
-                                 <div 
-                                    aria-hidden="true" 
+                                 <div
+                                    aria-hidden="true"
                                     className={`absolute border-[0px_0px_1.5px] border-solid bottom-[-0.75px] left-0 pointer-events-none right-0 top-0 transition-colors duration-300 ${
                                        isFocused.message ? 'border-[#59c1e6]' : 'border-black'
-                                    }`} 
+                                    }`}
                                  />
                                  <textarea
                                     value={formData.message}
@@ -725,7 +726,7 @@ export function Contact() {
                                     onBlur={() => handleBlur('message')}
                                     required
                                     rows={4}
-                                    placeholder="¿Cómo podemos ayudarte?"
+                                    placeholder={contact.form.messagePlaceholder}
                                     className="basis-0 flex flex-col font-['Neue_Augenblick:Medium',sans-serif] grow justify-center leading-[24px] min-h-px min-w-px not-italic relative shrink-0 text-[18px] text-black bg-transparent border-none outline-none w-full resize-none placeholder:text-[rgba(0,0,0,0.3)]"
                                  />
                               </div>
@@ -758,7 +759,7 @@ export function Contact() {
                                           </div>
                                        </div>
                                        <p className="basis-0 font-['Neue_Augenblick:Medium',sans-serif] grow leading-[24px] min-h-px min-w-px not-italic relative shrink-0 text-[18px] text-black">
-                                          Acepto recibir otras comunicaciones de Yobel.
+                                          {contact.form.acceptCommunications}
                                        </p>
                                     </div>
                                  </div>
@@ -790,7 +791,7 @@ export function Contact() {
                                           </div>
                                        </div>
                                        <p className="basis-0 font-['Neue_Augenblick:Medium',sans-serif] grow leading-[24px] min-h-px min-w-px not-italic relative shrink-0 text-[18px] text-black">
-                                          Acepto que Yobel almacene y trate mis datos personales. <span className="text-[#59c1e6]">*</span>
+                                          {contact.form.acceptDataStorage} <span className="text-[#59c1e6]">*</span>
                                        </p>
                                     </div>
                                  </div>
@@ -801,11 +802,11 @@ export function Contact() {
                               </p>
                            </div>
 
-                           <Button 
+                           <Button
                               type="submit"
                               className="w-full bg-transparent border-[1.5px] border-black text-black px-8 py-6 rounded-full text-xl relative overflow-hidden transition-all duration-500 before:absolute before:inset-0 before:bg-[linear-gradient(150deg,#FFF700_0%,#FFF700_32%,#FFE300_70%,#5dd3c0_100%)] before:opacity-0 before:transition-opacity before:duration-500 before:rounded-full hover:before:opacity-100 hover:border-0 font-[Neue_Augenblick]"
                            >
-                              <span className="relative z-10">Enviar mensaje</span>
+                              <span className="relative z-10">{contact.form.submitButton}</span>
                            </Button>
                         </form>
                      </div>
@@ -817,9 +818,9 @@ export function Contact() {
                               <CheckCircle className="w-12 h-12 text-green-600" />
                            </div>
                         </div>
-                        <h3 className="text-3xl font-normal mb-4 font-[Neue_Augenblick]">¡Mensaje enviado!</h3>
+                        <h3 className="text-3xl font-normal mb-4 font-[Neue_Augenblick]">{contact.success.title}</h3>
                         <p className="text-lg text-gray-600 leading-relaxed">
-                           Gracias por contactarte con Yobel. Hemos recibido tu mensaje y uno de nuestros especialistas se comunicará contigo a la brevedad.
+                           {contact.success.message}
                         </p>
                      </div>
                   )}
@@ -832,13 +833,13 @@ export function Contact() {
       <Section id="oficinas" ref={mapSectionRef} className="bg-white pt-12 pb-24" data-section="locations">
         <Container>
            <div className="mb-8 lg:mb-16">
-             <ScrollRevealString 
-               text="Encuentra nuestros centros logísticos y oficinas"
+             <ScrollRevealString
+               text={contact.offices.title}
                as="h2"
                className="text-4xl md:text-5xl font-augenblick font-normal mb-6 leading-tight text-black max-w-2xl"
              />
              <p className="text-lg text-gray-500 font-light max-w-md mb-6">
-               Selecciona un país en el mapa para ver nuestras sedes locales.
+               {contact.offices.description}
              </p>
              
              <div className="lg:hidden max-w-md">
@@ -915,10 +916,10 @@ export function Contact() {
       <Section className="bg-white py-16 md:py-20">
         <Container>
           <div className="bg-white rounded-[30px] p-8 md:p-12 border-2 border-gray-200 max-w-4xl mx-auto">
-            <h3 className="text-3xl md:text-4xl font-normal mb-4 text-black font-[Neue_Augenblick]">¿Te gustaría trabajar como aliado?</h3>
-            <p className="text-lg md:text-xl text-gray-700 mb-8 font-light leading-relaxed">Impulsa tu carrera en logística integral. Filtra por país, área y modalidad.</p>
+            <h3 className="text-3xl md:text-4xl font-normal mb-4 text-black font-[Neue_Augenblick]">{contact.jobs.title}</h3>
+            <p className="text-lg md:text-xl text-gray-700 mb-8 font-light leading-relaxed">{contact.jobs.description}</p>
             <Button className="bg-black text-white px-8 py-4 rounded-full text-lg hover:bg-gray-800 transition-colors">
-              Ver ofertas laborales
+              {contact.jobs.button}
             </Button>
           </div>
         </Container>

@@ -21,52 +21,17 @@ import hoverImage from "figma:asset/4288be58a4ef94beb9d8a69085417550e080ee9b.png
 import truckImage from "figma:asset/581b279261d7ceb7941417797fbd59c23f768b5e.png";
 import yellowTruck from "figma:asset/b94e87eb574754035d4788fe21930672651cb6ac.png";
 import warehouseImage from "figma:asset/cb9b48b25b6989c920d64371cd04e872c5cfcd05.png";
+import { comexTexts } from "../../constants/services";
 
 const amarilloDesktopVideo = '/videos/amarillo-desktop.mp4';
 const heroImage = "https://images.unsplash.com/photo-1663103746090-2e4274c6c7ac?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzaGlwcGluZyUyMGNvbnRhaW5lciUyMHNoaXAlMjBwb3J0fGVufDF8fHx8MTc2NDE5MzYxOXww&ixlib=rb-4.1.0&q=80&w=1080";
 
-const solutions = [
-  {
-    title: "Gestión de Aduanas",
-    desc: "Nos encargamos de todos los trámites aduaneros para que tu mercancía cumpla con la normativa sin retrasos ni complicaciones."
-  },
-  {
-    title: "Transporte desde el Puerto",
-    desc: "Coordinamos el traslado ágil y seguro de tus mercancías desde puertos o aeropuertos hasta el destino que necesites."
-  },
-  {
-    title: "Transporte Internacional",
-    desc: "Aseguramos el movimiento de tus bienes a nivel global con aliados estratégicos que garantizan seguridad y cumplimiento."
-  },
-  {
-    title: "Nacionalización",
-    desc: "Facilitamos la legalización de tus productos importados, evitando demoras y optimizando tus operaciones internacionales."
-  }
-];
 
-const benefits = [
-  "Seguimiento en tiempo real de tus importaciones y exportaciones con trazabilidad 24/7.",
-  "Menores costos operativos gracias a una logística internacional integrada y eficiente.",
-  "Atención personalizada de un equipo experto en comercio exterior.",
-  "Trámites y documentación simplificados, sin demoras ni complicaciones."
-];
 
-const processes = [
-  { title: "Análisis y Planificación", desc: "Diseñamos la estrategia de operación según el tipo de carga y tus necesidades específicas." },
-  { title: "Gestión Documental", desc: "Nos ocupamos de la documentación y los requisitos aduaneros para evitar retrasos." },
-  { title: "Transporte", desc: "Coordinamos el movimiento de tu carga a nivel global y nacional con aliados estratégicos." },
-  { title: "Entrega Final", desc: "Garantizamos la llegada de tus productos con trazabilidad completa y cumplimiento de tiempos." }
-];
 
 export function Comex() {
   const { selectedCountry } = useCountry();
   
-  const faqs = [
-    { question: "¿Yobel gestiona todo el proceso de importación?", answer: "Sí, nos encargamos desde la llegada de la mercancía al puerto hasta su entrega final, incluyendo trámites aduaneros, transporte y nacionalización." },
-    { question: "¿Yobel puede gestionar cargas con requisitos sanitarios o peligrosos?", answer: "Sí, contamos con experiencia en la manipulación de mercancías reguladas y coordinación con autoridades sanitarias y aduaneras." },
-    { question: "¿Ofrecen asesoría en normativa de exportación e importación?", answer: "Sí, brindamos soporte técnico y documental para cumplir con los requisitos legales y optimizar los tiempos de despacho." },
-    { question: "¿Puedo tener visibilidad del estado de mi carga en tránsito?", answer: "Sí, ofrecemos trazabilidad total con reportes en línea y actualizaciones automáticas durante cada fase del proceso." }
-  ];
   
   return (
     <>
@@ -86,13 +51,13 @@ export function Comex() {
 
         <div className="absolute bottom-20 left-0 right-0 px-[5%] md:px-[50px] z-10">
           <div className="max-w-[1400px] mx-auto flex flex-col gap-[30px]">
-             <p className="text-lg md:text-[18px] text-black">Comercio Exterior</p>
+             <p className="text-lg md:text-[18px] text-black">{comexTexts.hero.subtitle}</p>
              <div className="flex flex-col lg:flex-row items-start gap-[40px]">
                 <h1 className="text-5xl md:text-[65px] leading-[1] text-black max-w-[773px]">
-                  Importación, exportación y gestión aduanera
+                  {comexTexts.hero.title}
                 </h1>
                 <p className="text-xl md:text-[22px] leading-[24px] text-black max-w-[316px] pt-2">
-                  Soluciones de importación y exportación rápidas, seguras y a tu medida.
+                  {comexTexts.hero.description}
                 </p>
              </div>
           </div>
@@ -115,12 +80,12 @@ export function Comex() {
               </div>
 
                <h2 className="text-[32px] md:text-[48px] leading-[1.2] font-normal mb-16 max-w-[1000px] mx-auto tracking-tight text-black">
-                 En YOBEL convertimos la complejidad del comercio exterior en procesos simples y eficientes. Gestionamos de principio a fin tus importaciones y exportaciones, asegurando rapidez, seguridad y ahorro en cada operación.
+                 {comexTexts.intro.title}
                </h2>
 
                <div className="flex justify-center">
                    <Button className="font-augenblick bg-transparent border-[1.5px] border-black text-black px-8 py-6 rounded-full text-xl hover:bg-black hover:text-white transition-colors duration-500 ease-in-out w-fit">
-                     Optimiza tu Comercio Exterior
+                     {comexTexts.intro.buttons[0]}
                    </Button>
                </div>
             </motion.div>
@@ -132,10 +97,10 @@ export function Comex() {
       <Section className="bg-white">
          <Container>
             {/* Solutions with Scroll Animation */}
-            <SolutionsList 
-               solutions={solutions} 
-               hoverImage={hoverImage} 
-               title="Soluciones"
+            <SolutionsList
+               solutions={comexTexts.solutions.items}
+               hoverImage={hoverImage}
+               title={comexTexts.solutions.title}
             >
                <div className="mt-12">
                  <Link to="/tarifas">
@@ -147,10 +112,10 @@ export function Comex() {
             </SolutionsList>
 
             {/* Benefits */}
-            <BenefitsSection 
-               benefits={benefits} 
-               image={yellowTruck} 
-               title="Nos enfocamos en optimizar tiempos y costos en cada operación de comercio exterior."
+            <BenefitsSection
+               benefits={comexTexts.benefits.items}
+               image={yellowTruck}
+               title={comexTexts.benefits.title}
             />
          </Container>
       </Section>
@@ -183,13 +148,13 @@ export function Comex() {
                         <path d={svgPaths.pff39b00} fill="black" />
                      </svg>
                   </div>
-                  <h3 className="text-2xl md:text-3xl text-gray-400 font-normal mb-8">Llevamos tu operación al siguiente nivel</h3>
-                  <p className="text-3xl md:text-[42px] text-black leading-[1.1] max-w-5xl mx-auto">Nuestros servicios de comercio exterior cubren todo el ciclo logístico, asegurando eficiencia, cumplimiento y trazabilidad en cada etapa.</p>
+                  <h3 className="text-2xl md:text-3xl text-gray-400 font-normal mb-8">{comexTexts.processes.subtitle}</h3>
+                  <p className="text-3xl md:text-[42px] text-black leading-[1.1] max-w-5xl mx-auto">{comexTexts.processes.title}</p>
                </motion.div>
                
                <div className="flex flex-col w-full">
                   <span className="text-xl text-gray-400 font-medium block mb-12 text-center lg:text-left">Procesos</span>
-                  {processes.map((proc, idx) => (
+                  {comexTexts.processes.items.map((proc, idx) => (
                      <div key={idx} className="py-20 border-b border-gray-200 last:border-none">
                         <div className="flex flex-col lg:flex-row items-start lg:items-center gap-8 lg:gap-20">
                            <div className="w-full lg:w-1/2 text-left flex justify-center lg:justify-start">
@@ -238,7 +203,7 @@ export function Comex() {
 
       <Industries />
 
-      <FAQ items={faqs} />
+      <FAQ items={comexTexts.faqs} />
     </>
   );
 }

@@ -12,6 +12,7 @@ import { ParallaxImage } from "../../components/landing/ParallaxImage";
 import { Phrase } from "../../components/landing/Phrase";
 import { Industries } from "../../components/landing/Industries";
 import { ScrollRevealVideo } from "../../components/landing/ScrollRevealVideo";
+import { distributionTexts } from "../../constants/services";
 
 const amarilloDesktopVideo = '/videos/amarillo-desktop.mp4';
 const heroImage = "https://images.unsplash.com/photo-1641290451977-a427586acf49?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkZWxpdmVyeSUyMHRydWNrcyUyMGxvZ2lzdGljcyUyMGRpc3RyaWJ1dGlvbiUyMGNlbnRlciUyMGZsZWV0fGVufDF8fHx8MTc2NDE5NTIwNHww&ixlib=rb-4.1.0&q=80&w=1080";
@@ -21,67 +22,23 @@ const svgPaths = {
   pff39b00: "M0 45.9994V30.6785C0 30.6785 36.2411 15.2325 36.2411 8.71527C36.2411 4.64101 0 15.0514 0 15.0514V0H35.0771C49.2263 0 47.9715 7.45669 47.9715 14.9269V46H24.4355C24.4355 46 40.1752 20.8884 36.2411 20.8884C30.4859 20.8884 0 45.9994 0 45.9994Z",
 };
 
-const solutions = [
-  {
-    title: "B2B Moderno",
-    desc: "Distribución directa a autoservicios, centros de distribución y cadenas de farmacias."
-  },
-  {
-    title: "B2B Mayoristas / Tradicional",
-    desc: "Abastecimiento a mayoristas y canales tradicionales."
-  },
-  {
-    title: "B2C Última Milla",
-    desc: "Entregas directas al consumidor final."
-  }
-];
-
-const transportTypes = [
-  { title: "Fletes exclusivos", desc: "Traslado dedicado de mercancía de un único cliente, punto a punto." },
-  { title: "Fletes consolidados", desc: "Transporte combinado (cargas del mismo cliente o hasta dos clientes) hacia uno o dos destinos." },
-  { title: "Repartos express", desc: "Movimientos ágiles desde un origen hacia hasta tres puntos de destino." },
-  { title: "Reparto exclusivo", desc: "Envíos de un solo cliente hacia múltiples destinos." },
-  { title: "Reparto consolidado", desc: "Distribución consolidada desde uno o varios orígenes hacia múltiples destinos (3+)." }
-];
-
-const benefits = [
-  "Cobertura en Lima y provincias con transporte especializado.",
-  "Alta fiabilidad demostrada con entregas completas y a tiempo.",
-  "Visibilidad y control gracias a la trazabilidad y seguimiento en tiempo real de cada pedido."
-];
-
-const processes = [
-  { title: "Planificación de rutas", desc: "Diseñamos rutas y asignamos recursos según la demanda para una distribución eficiente en todo el Perú." },
-  { title: "Picking", desc: "Preparación y verificación de pedidos, garantizando exactitud en cada entrega." },
-  { title: "Transporte", desc: "Movilizamos tu mercancía según la modalidad logística elegida (fletes exclusivos, consolidados o express)." },
-  { title: "Entrega confirmada", desc: "Confirmación de recepción con trazabilidad en tiempo real para mayor control." },
-  { title: "Seguimiento y reporte", desc: "Monitoreo constante del estado de distribución con reportes digitales actualizados." }
-];
-
-const faqs = [
-  { question: "¿Puedo coordinar envíos a cualquier región del Perú?", answer: "Sí, contamos con una red de transporte y centros estratégicos que nos permiten cubrir todo el país con eficiencia y puntualidad." },
-  { question: "¿Puedo programar entregas según mi calendario comercial?", answer: "Sí, planificamos rutas y ventanas horarias adaptadas a la demanda de tu negocio." },
-  { question: "¿Realizan entregas en zonas rurales o de difícil acceso?", answer: "Sí, contamos con cobertura nacional y aliados estratégicos que garantizan llegada a cualquier destino." },
-  { question: "¿Ofrecen seguimiento de entregas?", answer: "Sí, disponemos de trazabilidad 24/7 y confirmación digital de cada despacho, accesible vía web o app móvil." }
-];
 
 export function Distribution() {
   const { selectedCountry } = useCountry();
-  
-  const processes = [
-    { title: "Planificación de rutas", desc: `Diseñamos rutas y asignamos recursos según la demanda para una distribución eficiente en todo ${selectedCountry}.` },
-    { title: "Picking", desc: "Preparación y verificación de pedidos, garantizando exactitud en cada entrega." },
-    { title: "Transporte", desc: "Movilizamos tu mercancía según la modalidad logística elegida (fletes exclusivos, consolidados o express)." },
-    { title: "Entrega confirmada", desc: "Confirmación de recepción con trazabilidad en tiempo real para mayor control." },
-    { title: "Seguimiento y reporte", desc: "Monitoreo constante del estado de distribución con reportes digitales actualizados." }
-  ];
-  
-  const faqs = [
-    { question: `¿Puedo coordinar envíos a cualquier región de ${selectedCountry}?`, answer: "Sí, contamos con una red de transporte y centros estratégicos que nos permiten cubrir todo el país con eficiencia y puntualidad." },
-    { question: "¿Puedo programar entregas según mi calendario comercial?", answer: "Sí, planificamos rutas y ventanas horarias adaptadas a la demanda de tu negocio." },
-    { question: "¿Realizan entregas en zonas rurales o de difícil acceso?", answer: "Sí, contamos con cobertura nacional y aliados estratégicos que garantizan llegada a cualquier destino." },
-    { question: "¿Ofrecen seguimiento de entregas?", answer: "Sí, disponemos de trazabilidad 24/7 y confirmación digital de cada despacho, accesible vía web o app móvil." }
-  ];
+
+  const processes = distributionTexts.processes.items.map((item, index) => {
+    if (index === 0) {
+      return { ...item, desc: `Diseñamos rutas y asignamos recursos según la demanda para una distribución eficiente en todo ${selectedCountry}.` };
+    }
+    return item;
+  });
+
+  const faqs = distributionTexts.faqs.map((faq, index) => {
+    if (index === 0) {
+      return { ...faq, question: `¿Puedo coordinar envíos a cualquier región de ${selectedCountry}?` };
+    }
+    return faq;
+  });
 
   return (
     <>
@@ -101,13 +58,13 @@ export function Distribution() {
 
         <div className="absolute bottom-20 left-0 right-0 px-[5%] md:px-[50px] z-10">
           <div className="max-w-[1400px] mx-auto flex flex-col gap-[30px]">
-             <p className="text-lg md:text-[18px] text-black">Distribución Logística</p>
+             <p className="text-lg md:text-[18px] text-black">{distributionTexts.hero.subtitle}</p>
              <div className="flex flex-col lg:flex-row items-start gap-[40px]">
                 <h1 className="text-5xl md:text-[65px] leading-[1] text-black max-w-[773px]">
-                  Distribución logística nacional con cobertura total
+                  {distributionTexts.hero.title}
                 </h1>
                 <p className="text-xl md:text-[22px] leading-[24px] text-black max-w-[316px] pt-2">
-                  Coordinamos entregas con cobertura nacional y trazabilidad total para que tu cadena de suministro funcione sin interrupciones.
+                  {distributionTexts.hero.description}
                 </p>
              </div>
           </div>
@@ -130,20 +87,17 @@ export function Distribution() {
               </div>
 
                <h2 className="text-[32px] md:text-[48px] leading-[1.2] font-normal mb-16 max-w-[1000px] mx-auto tracking-tight text-black">
-                 En Yobel diseñamos e implementamos soluciones de distribución eficientes para que tu cadena de suministro funcione sin interrupciones, optimizando tiempos y costos en cada operación.
+                 {distributionTexts.intro.title}
                </h2>
 
                <div className="flex justify-center gap-4 flex-wrap">
-                   <Link to="/contacto">
-                     <Button className="font-augenblick bg-transparent border-[1.5px] border-black text-black px-8 py-6 rounded-full text-xl hover:bg-black hover:text-white transition-colors duration-500 ease-in-out w-fit">
-                       Contactar asesor
-                     </Button>
-                   </Link>
-                   <Link to="/tarifas">
-                     <Button className="font-augenblick bg-transparent border-[1.5px] border-black text-black px-8 py-6 rounded-full text-xl hover:bg-black hover:text-white transition-colors duration-500 ease-in-out w-fit">
-                       Ver tarifas
-                     </Button>
-                   </Link>
+                   {distributionTexts.intro.buttons.map((buttonText, index) => (
+                     <Link key={index} to={index === 0 ? "/contacto" : "/tarifas"}>
+                       <Button className="font-augenblick bg-transparent border-[1.5px] border-black text-black px-8 py-6 rounded-full text-xl hover:bg-black hover:text-white transition-colors duration-500 ease-in-out w-fit">
+                         {buttonText}
+                       </Button>
+                     </Link>
+                   ))}
                </div>
             </motion.div>
          </Container>
@@ -154,10 +108,10 @@ export function Distribution() {
       <Section className="bg-white">
          <Container>
             {/* Solutions with Scroll Animation */}
-            <SolutionsList 
-               solutions={solutions} 
-               hoverImage={heroImage} 
-               title="Canales de Distribución"
+            <SolutionsList
+               solutions={distributionTexts.solutions.items}
+               hoverImage={heroImage}
+               title={distributionTexts.solutions.title}
             />
 
             {/* Transport Types - List + Image */}
@@ -170,14 +124,14 @@ export function Distribution() {
             >
               {/* Marcador */}
               <div className="mb-12">
-                <p className="font-augenblick text-2xl text-[rgba(73,73,73,0.5)]">Tipos de transporte</p>
+                <p className="font-augenblick text-2xl text-[rgba(73,73,73,0.5)]">{distributionTexts.transportTypes.label}</p>
               </div>
 
               {/* List + Image Layout */}
               <div className="flex flex-col lg:flex-row gap-12 lg:gap-[133px] items-start lg:items-center w-full">
                 {/* List */}
                 <div className="flex flex-col w-full lg:w-auto lg:max-w-[660px]">
-                  {transportTypes.map((type, idx) => (
+                  {distributionTexts.transportTypes.items.map((type, idx) => (
                     <motion.div 
                       key={idx}
                       className="box-border flex flex-col gap-10 py-10 relative w-full"
@@ -236,7 +190,7 @@ export function Distribution() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.8, ease: "easeOut" }}
                >
-                  <span className="text-gray-400 text-lg mb-12 block">Beneficios</span>
+                  <span className="text-gray-400 text-lg mb-12 block">{distributionTexts.benefits.label}</span>
                   <div className="mt-8 rounded-[30px] overflow-hidden">
                     <img 
                        src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3YXJlaG91c2UlMjBzaGVsdmVzfGVufDF8fHx8MTc2NDM3Mjg0OXww&ixlib=rb-4.1.0&q=80&w=1080" 
@@ -254,11 +208,11 @@ export function Distribution() {
                   transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
                >
                   <h3 className="text-[32px] md:text-[42px] leading-[1.1] font-normal mb-12 text-black tracking-tight max-w-xl">
-                     Optimizamos los tiempos y costos de tu distribución
+                     {distributionTexts.benefits.title}
                   </h3>
-                  
+
                   <ul className="flex flex-col w-full">
-                     {benefits.map((item, idx) => (
+                     {distributionTexts.benefits.items.map((item, idx) => (
                         <li key={idx} className="flex items-start gap-6 py-6 border-b border-gray-100 last:border-0">
                            <div className="mt-1.5 shrink-0">
                               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -304,14 +258,14 @@ export function Distribution() {
                         <path d={svgPaths.pff39b00} fill="black" />
                      </svg>
                   </div>
-                  <h3 className="text-2xl md:text-3xl text-gray-400 font-normal mb-8">Gestión de Entregas</h3>
+                  <h3 className="text-2xl md:text-3xl text-gray-400 font-normal mb-8">{distributionTexts.processes.title}</h3>
                   <p className="text-3xl md:text-[42px] text-black leading-[1.1] max-w-5xl mx-auto">
-                    Gestionamos cada etapa, desde la planificación de rutas hasta el reporte final, asegurando entregas confiables y trazabilidad completa.
+                    {distributionTexts.processes.description}
                   </p>
                </motion.div>
                
                <div className="flex flex-col w-full">
-                  <span className="text-xl text-gray-400 font-medium block mb-12 text-center lg:text-left">Ciclo de Distribución</span>
+                  <span className="text-xl text-gray-400 font-medium block mb-12 text-center lg:text-left">{distributionTexts.processes.subtitle}</span>
                   {processes.map((proc, idx) => (
                      <div key={idx} className="py-20 border-b border-gray-200 last:border-none">
                         <div className="flex flex-col lg:flex-row items-start lg:items-center gap-8 lg:gap-20">

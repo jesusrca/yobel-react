@@ -2,12 +2,13 @@ import React from "react";
 import { motion } from "motion/react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import { notFound } from "../constants/root";
 
 const grisDesktopVideo = '/videos/gris-desktop.mp4';
 
 export function NotFound() {
-  const titleText = "404";
-  const subtitleText = "Lo sentimos, la página que buscas no existe o ha sido movida.";
+   const titleText = "404";
+   const subtitleText = notFound.subtitle;
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -92,11 +93,11 @@ export function NotFound() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.5, duration: 0.5 }}
           >
-            <Link 
-              to="/" 
+            <Link
+              to="/"
               className="inline-flex items-center gap-2 px-8 py-3 rounded-full border border-black text-black font-medium hover:bg-black hover:text-white transition-all duration-300"
             >
-              Volver al inicio <ArrowRight size={20} />
+              {notFound.backButton} <ArrowRight size={20} />
             </Link>
           </motion.div>
         </div>

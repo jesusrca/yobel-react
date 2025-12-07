@@ -6,51 +6,18 @@ import { Container } from "../../components/ui/custom-container";
 import { Button } from "../../components/ui/button";
 import { FAQ } from "../../components/landing/FAQ";
 import { Leaf, Recycle, Users, Droplet, Zap } from "lucide-react";
+import { ethicsTexts } from "../../constants/ethics";
 
-const pillars = [
-  { 
-    title: "Gestión de residuos y economía circular", 
-    desc: "Valorizamos residuos para impulsar la economía circular y reducir el impacto ambiental.",
-    icon: Recycle
-  },
-  { 
-    title: "Agua y tratamiento de efluentes", 
-    desc: "Tratamos aguas residuales para proteger el alcantarillado y los cuerpos de agua del entorno.",
-    icon: Droplet
-  },
-  { 
-    title: "Energía y eficiencia operativa", 
-    desc: "Reducimos consumo energético para disminuir nuestra huella de carbono.",
-    icon: Zap
-  },
-  { 
-    title: "Cultura ambiental interna", 
-    desc: "Fortalecemos la conciencia ambiental de nuestros equipos en los 9 países.",
-    icon: Leaf
-  }
-];
+const pillars = ethicsTexts.pillars.items.map((item, index) => {
+  const icons = [Recycle, Droplet, Zap, Leaf];
+  return { ...item, icon: icons[index] };
+});
 
-const kpis = [
-  { value: "1 ton", label: "mensual de residuos orgánicos valorizados" },
-  { value: "1,077.5 kg", label: "de RAEE valorizados durante 2025" },
-  { value: "15%", label: "de reducción en consumo energético gracias a iluminación inteligente" },
-  { value: "20%", label: "de ahorro de agua con sistemas temporizados" },
-  { value: "80 m³", label: "diarios de aguas residuales tratadas por procesos sostenibles" }
-];
+const kpis = ethicsTexts.kpis.items;
 
-const initiatives = [
-  { title: "Ruteo inteligente en Lima/Callao", desc: "Menos kilómetros en vacío y menor consumo energético por entrega" },
-  { title: "Embalajes retornables", desc: "Ciclo de uso prolongado y menor desperdicio en VAS y distribución." },
-  { title: "Valorización en CD", desc: "Segregación en origen y convenios de reciclaje por categoría." },
-  { title: "Voluntariado logístico", desc: "Donaciones y reparto coordinado en campañas y emergencias." }
-];
+const initiatives = ethicsTexts.initiatives.items;
 
-const faqs = [
-  { question: "¿Qué mide nuestro reporte de sostenibilidad?", answer: "Emisiones, eficiencia energética, residuos valorizados, impacto social, diversidad y desempeño ESG en toda nuestra cadena de suministro." },
-  { question: "¿Cómo trabajamos con proveedores?", answer: "Evaluamos y acompañamos a nuestros proveedores bajo criterios éticos, ambientales y sociales, promoviendo una cadena de valor responsable y sostenible." },
-  { question: "¿Puedo proponer una iniciativa?", answer: "Sí. Recibimos ideas y proyectos sostenibles de colaboradores, aliados y comunidades. Todas las propuestas se evalúan según su impacto ambiental y social." },
-  { question: "¿Qué acciones concretas realizamos por el medio ambiente?", answer: "Optimizamos rutas de transporte, impulsamos movilidad eléctrica, reutilizamos embalajes y valorizamos residuos en todas nuestras operaciones." }
-];
+const faqs = ethicsTexts.faqs;
 
 export function Sustainability() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -83,9 +50,9 @@ export function Sustainability() {
 
       {/* Hero Section */}
       <HeroGradient
-        subtitle="Responsabilidad Corporativa"
-        title="RSE y Sostenibilidad"
-        description="Nos movemos juntos hacia la sostenibilidad. Reducimos huella, impulsamos economía circular y generamos impacto positivo."
+        subtitle={ethicsTexts.hero.subtitle}
+        title={ethicsTexts.hero.title}
+        description={ethicsTexts.hero.description}
       />
 
       {/* Main Content */}
@@ -99,30 +66,30 @@ export function Sustainability() {
             transition={{ duration: 0.8 }}
             className="max-w-4xl mx-auto text-center mb-32"
           >
-            <motion.h2 
+            <motion.h2
               className="font-augenblick text-4xl md:text-[56px] leading-[1.1] mb-8"
               style={{ color: textColor }}
             >
-              Compromiso con el futuro
+              {ethicsTexts.commitment.title}
             </motion.h2>
-            <motion.p 
+            <motion.p
               className="text-xl md:text-2xl leading-relaxed opacity-70"
               style={{ color: textColor }}
             >
-             En Yobel impulsamos prácticas de gestión ambiental, valorización de residuos, eficiencia energética y trabajo colaborativo con gobiernos locales y aliados estratégicos. Cada acción busca reducir nuestra huella y fortalecer la sostenibilidad de las comunidades donde operamos. 
+             {ethicsTexts.commitment.description}
             </motion.p>
           </motion.div>
 
           {/* Pillars Grid */}
           <div className="mb-32">
-            <motion.h3 
+            <motion.h3
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               className="font-augenblick text-3xl md:text-[45px] mb-16 text-center"
               style={{ color: textColor }}
             >
-              Nuestros pilares
+              {ethicsTexts.pillars.title}
             </motion.h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
               {pillars.map((pil, idx) => {
@@ -167,10 +134,10 @@ export function Sustainability() {
             
             <div className="relative">
               <h3 className="font-augenblick text-3xl md:text-[45px] mb-6 text-center">
-                Resultados que nos impulsan
+                {ethicsTexts.kpis.title}
               </h3>
               <p className="text-lg md:text-xl text-center opacity-80 mb-16 md:mb-20 max-w-4xl mx-auto leading-relaxed">
-                Medimos nuestro impacto para seguir mejorando. Estos son algunos de nuestros logros en sostenibilidad y responsabilidad social.
+                {ethicsTexts.kpis.description}
               </p>
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 md:gap-10">
@@ -204,7 +171,7 @@ export function Sustainability() {
               className="font-augenblick text-3xl md:text-[45px] mb-16 text-center"
               style={{ color: textColor }}
             >
-              Iniciativas destacadas
+              {ethicsTexts.initiatives.title}
             </motion.h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {initiatives.map((init, idx) => (
@@ -239,20 +206,20 @@ export function Sustainability() {
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(255,255,255,0.3),transparent)]" />
             <div className="relative">
               <h3 className="font-augenblick text-3xl md:text-[45px] mb-6 text-black">
-                Sumemos impacto a tu operación
+                {ethicsTexts.cta.title}
               </h3>
               <p className="text-lg md:text-xl text-black/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Te ayudamos a diseñar soluciones logísticas más eficientes y sostenibles.
+                {ethicsTexts.cta.description}
               </p>
               <Button className="bg-black text-white px-12 py-6 rounded-full text-lg hover:bg-black/90 transition-all shadow-xl hover:shadow-2xl hover:scale-105">
-                Contactar un asesor
+                {ethicsTexts.cta.buttonText}
               </Button>
             </div>
           </motion.div>
         </Container>
       </Section>
 
-      <FAQ items={faqs} />
+      <FAQ items={ethicsTexts.faqs} />
     </div>
   );
 }

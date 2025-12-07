@@ -1,0 +1,74 @@
+export const historyTexts = {
+  hero: {
+    label: "Historia",
+    title: "Desde 1972, conectando Latinoamérica",
+    description: "Más de 50 años de experiencia en logística y manufactura, evolucionando con la región para ofrecer soluciones innovadoras y eficientes."
+  },
+  timeline: [
+    {
+      year: "1972",
+      title: "Fundación de Yobel",
+      desc: "Iniciamos operaciones en Perú con un enfoque en distribución local y regional."
+    },
+    {
+      year: "1990",
+      title: "Expansión regional",
+      desc: "Ampliamos nuestra presencia a múltiples países de Latinoamérica."
+    },
+    {
+      year: "2000",
+      title: "Innovación tecnológica",
+      desc: "Incorporamos sistemas avanzados de trazabilidad y gestión logística."
+    },
+    {
+      year: "2010",
+      title: "Manufactura integrada",
+      desc: "Desarrollamos capacidades de manufactura para ofrecer soluciones completas."
+    },
+    {
+      year: "2020",
+      title: "Sostenibilidad y digitalización",
+      desc: "Lideramos la transformación digital y adoptamos prácticas sostenibles en toda la operación."
+    }
+  ]
+};
+
+export const aboutTexts = {
+  valueProposition: {
+    label: "Propuesta de Valor",
+    title: "Lo que nos hace diferentes en el mercado"
+  },
+  ethicsButton: "Nuestro código de ética",
+  stats: {
+    label: "Datos destacados",
+    items: [
+      { label: "colaboradores en Latinoamérica" },
+      { label: "países conectados" },
+      { label: "liderazgo femenino en áreas clave" }
+    ]
+  }
+};
+
+export const globalPresenceTexts = {
+  hero: {
+    label: "Presencia Global",
+    title: "Conectamos tu cadena de suministro desde {globalSelectedCountry} hacia 9 países de Latinoamérica"
+  },
+  phrase: "Operamos con conexión directa a puertos, aeropuertos y redes logísticas nacionales, integrando manufactura, almacenamiento, distribución y comercio exterior con estándares de calidad y seguridad.",
+  locations: {
+    title: "Encuentra nuestros centros logísticos y oficinas cerca de ti",
+    description: "Selecciona un país en el mapa para ver nuestras sedes locales."
+  },
+  cta: {
+    title: "¿Necesitas más información?",
+    description: "Ponte en contacto con nuestro equipo comercial para diseñar una solución a tu medida.",
+    button: "Contactar ahora"
+  },
+  stats: [
+    { value: "+250,000 m2", label: "de capacidad logística", sub: "1-5" },
+    { value: "+800", label: "vehículos", sub: "2-5" },
+    { value: "+70M", label: "de productos terminados", sub: "3-5" },
+    { value: "+980,000", label: "pedidos gestionados al año", sub: "4-5" },
+    { value: "+440,000", label: "destinos atendidos", sub: "5-5" }
+  ]
+};

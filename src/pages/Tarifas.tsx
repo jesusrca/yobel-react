@@ -6,6 +6,7 @@ import { Button } from "../components/ui/button";
 import svgPaths from "../imports/svg-biijegtt4v";
 import { Download } from "lucide-react";
 import { motion, useScroll, useTransform } from "motion/react";
+import { tarifas } from "../constants/root";
 
 export function Tarifas() {
   const pdfUrl = "https://circular.ws/yobel/Tarifas-Yobel.pdf";
@@ -22,13 +23,13 @@ export function Tarifas() {
         />
         <div className="absolute bottom-10 left-0 right-0 px-[5%] md:px-[50px] z-10">
           <div className="max-w-[1400px] mx-auto flex flex-col gap-[30px]">
-             <p className="text-lg md:text-[18px] text-black font-[Neue_Augenblick]">Comercio Exterior</p>
+             <p className="text-lg md:text-[18px] text-black font-[Neue_Augenblick]">{tarifas.hero.breadcrumb}</p>
              <div className="flex flex-col lg:flex-row items-end justify-between gap-[40px] w-full">
                 <h1 className="text-5xl md:text-[65px] leading-[1] text-black max-w-[773px] font-[Neue_Augenblick]">
-                  Tarifas
+                  {tarifas.hero.title}
                 </h1>
                 <p className="text-xl md:text-[22px] leading-[24px] text-black max-w-[350px] lg:mr-32 pb-1 font-[Neue_Augenblick]">
-                  Consulta nuestras tarifas actualizadas para todos nuestros servicios logísticos y de cadena de suministro.
+                  {tarifas.hero.description}
                 </p>
              </div>
           </div>
@@ -44,7 +45,7 @@ export function Tarifas() {
               <a href={pdfUrl} download target="_blank" rel="noopener noreferrer">
                 <Button className="font-augenblick bg-transparent border-[1.5px] border-black text-black px-8 py-6 rounded-full text-xl hover:bg-black hover:text-white transition-colors duration-500 ease-in-out gap-3 font-[Neue_Augenblick]">
                   <Download className="w-5 h-5" />
-                  Descargar PDF
+                  {tarifas.downloadButton}
                 </Button>
               </a>
             </div>

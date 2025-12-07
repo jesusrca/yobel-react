@@ -14,6 +14,7 @@ import { LocationCard } from "../../components/company/LocationCard";
 import { CountryTimeHeader } from "../../components/company/CountryTimeHeader";
 import { MapPin, ChevronDown } from "lucide-react";
 import { motion } from "motion/react";
+import { globalPresenceTexts } from "../../constants/company";
 
 const grisDesktopVideo = '/videos/gris-desktop.mp4';
 
@@ -237,13 +238,7 @@ const locationsData: Record<string, Location[]> = {
   ]
 };
 
-const stats = [
-  { value: "+250,000 m2", label: "de capacidad logística", sub: "1-5" },
-  { value: "+800", label: "vehículos", sub: "2-5" },
-  { value: "+70M", label: "de productos terminados", sub: "3-5" },
-  { value: "+980,000", label: "pedidos gestionados al año", sub: "4-5" },
-  { value: "+440,000", label: "destinos atendidos", sub: "5-5" }
-];
+const stats = globalPresenceTexts.stats;
 
 const countryOptions = [
   { value: "peru", label: "Perú" },
@@ -350,17 +345,17 @@ export function GlobalPresence() {
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
         >
           <div className="max-w-[1400px] mx-auto flex flex-col gap-[30px]">
-             <p className="text-lg md:text-[18px] text-black font-medium">Presencia Global</p>
+             <p className="text-lg md:text-[18px] text-black font-medium">{globalPresenceTexts.hero.label}</p>
              <div className="flex flex-col lg:flex-row items-start gap-[40px]">
                 <h1 className="text-5xl md:text-[65px] leading-[1] text-black max-w-[800px] tracking-tight font-[Neue_Augenblick]">
-                  Conectamos tu cadena de suministro desde {globalSelectedCountry} hacia 9 países de Latinoamérica
+                  {globalPresenceTexts.hero.title.replace('{globalSelectedCountry}', globalSelectedCountry)}
                 </h1>
              </div>
           </div>
         </motion.div>
       </motion.div>
 
-      <Phrase text="Operamos con conexión directa a puertos, aeropuertos y redes logísticas nacionales, integrando manufactura, almacenamiento, distribución y comercio exterior con estándares de calidad y seguridad." />
+      <Phrase text={globalPresenceTexts.phrase} />
 
       <VideoScrollSection data={stats} />
 
@@ -371,27 +366,27 @@ export function GlobalPresence() {
              {/* Two column layout - Desktop */}
              <div className="hidden lg:flex gap-[20px] items-start mb-6">
                <div className="w-[60%] shrink-0">
-                 <ScrollRevealString 
-                   text="Encuentra nuestros centros logísticos y oficinas cerca de ti"
+                 <ScrollRevealString
+                   text={globalPresenceTexts.locations.title}
                    as="h2"
                    className="text-[45px] leading-[48px] font-augenblick font-normal text-black w-[70%]"
                  />
                </div>
                <div className="w-[40%] flex flex-col gap-[20px] items-start min-w-0">
                  <p className="text-[18px] leading-[22px] font-augenblick text-black w-full">
-Selecciona un país en el mapa para ver nuestras sedes locales.                 </p>
+{globalPresenceTexts.locations.description}                 </p>
                </div>
              </div>
 
              {/* Mobile layout */}
              <div className="lg:hidden">
-               <ScrollRevealString 
-                 text="Encuentra nuestros centros logísticos y oficinas cerca de ti"
+               <ScrollRevealString
+                 text={globalPresenceTexts.locations.title}
                  as="h2"
                  className="text-4xl md:text-5xl font-augenblick font-normal mb-6 leading-tight text-black"
                />
                <p className="text-lg text-gray-500 font-light max-w-md mb-6">
-                 Selecciona un país en el mapa para ver nuestras sedes locales.
+                 {globalPresenceTexts.locations.description}
                </p>
              </div>
              
@@ -493,16 +488,16 @@ Selecciona un país en el mapa para ver nuestras sedes locales.                 
              transition={{ duration: 0.8, ease: "easeOut" }}
            >
               <div className="max-w-2xl">
-                <h3 className="text-3xl md:text-4xl font-augenblick mb-4 text-black">¿Necesitas más información?</h3>
+                <h3 className="text-3xl md:text-4xl font-augenblick mb-4 text-black">{globalPresenceTexts.cta.title}</h3>
                 <p className="text-black/60 leading-relaxed text-lg md:text-xl">
-                  Ponte en contacto con nuestro equipo comercial para diseñar una solución a tu medida.
+                  {globalPresenceTexts.cta.description}
                 </p>
               </div>
-              
+
               <div className="w-full md:w-auto shrink-0">
                 <Link to="/contacto">
                   <BlackGradientButton className="w-full md:w-auto hover:!border-transparent">
-                    Contactar ahora
+                    {globalPresenceTexts.cta.button}
                   </BlackGradientButton>
                 </Link>
               </div>

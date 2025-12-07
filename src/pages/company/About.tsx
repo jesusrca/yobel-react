@@ -15,6 +15,7 @@ import { SolutionsShowcaseTransparent } from "../../components/ui/SolutionsShowc
 import { ScrollRevealString } from "../../components/ui/scroll-reveal-text";
 import { ScrollColorTransition } from "../../components/ui/scroll-color-transition";
 import { companyContent } from "../../data/companyContent";
+import { aboutTexts } from "../../constants/company";
 import Y from "../../imports/Y";
 import svgPaths from "../../imports/svg-5srx0k234k";
 import svgPathsProcess from "../../imports/svg-u5y25zzhvz";
@@ -300,17 +301,17 @@ export function About() {
                   <div className="relative" onMouseLeave={() => setHoveredIndex(null)}>
                      {/* Header */}
                      <div className="mb-16">
-                        <motion.span 
+                        <motion.span
                           className="text-lg font-medium mb-4 block opacity-50"
                           style={{ color: textColor }}
                         >
-                          Propuesta de Valor
+                          {aboutTexts.valueProposition.label}
                         </motion.span>
-                        <motion.h2 
+                        <motion.h2
                           className="text-4xl md:text-5xl font-normal leading-tight"
                           style={{ color: textColor }}
                         >
-                          Lo que nos hace diferentes en el mercado
+                          {aboutTexts.valueProposition.title}
                         </motion.h2>
                      </div>
 
@@ -401,7 +402,7 @@ export function About() {
                      </div>
 
                      <Button variant="default" size="lg" className="mt-4 rounded-full px-8 h-12 text-base">
-                        Nuestro código de ética
+                        {aboutTexts.ethicsButton}
                      </Button>
                   </div>
                </Container>
@@ -427,11 +428,11 @@ export function About() {
                     }}
                  >
                     <div>
-                       <p 
+                       <p
                           className="text-sm md:text-base opacity-50 mb-12"
                           style={{ color: '#000000' }}
                        >
-                          Datos destacados
+                          {aboutTexts.stats.label}
                        </p>
                        
                        <div className="space-y-8">
@@ -446,7 +447,7 @@ export function About() {
                                 className="text-lg md:text-xl opacity-70"
                                 style={{ color: '#000000' }}
                              >
-                                colaboradores en Latinoamérica
+                                {aboutTexts.stats.items[0].label}
                              </p>
                           </div>
 
@@ -461,7 +462,7 @@ export function About() {
                                 className="text-lg md:text-xl opacity-70"
                                 style={{ color: '#000000' }}
                              >
-                                países conectados
+                                {aboutTexts.stats.items[1].label}
                              </p>
                           </div>
 
@@ -476,7 +477,7 @@ export function About() {
                                 className="text-lg md:text-xl opacity-70"
                                 style={{ color: '#000000' }}
                              >
-                                liderazgo femenino en áreas clave
+                                {aboutTexts.stats.items[2].label}
                              </p>
                           </div>
                        </div>

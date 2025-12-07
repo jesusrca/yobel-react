@@ -6,6 +6,7 @@ import { newsData } from "../../data/news";
 import svgPaths from "../../imports/svg-lteuacjx2u";
 import coverImage from "figma:asset/9c0d9760c07ea0839629b15d82a01182a11d78ea.png";
 import ArticulosRelacionados from "../../imports/ArticulosRelacionados";
+import { noticiaDetalleTexts } from "../../constants/noticias";
 
 export function NoticiaDetalle() {
   const { slug } = useParams<{ slug: string }>();
@@ -53,7 +54,7 @@ export function NoticiaDetalle() {
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(window.location.href);
-    alert("Enlace copiado al portapapeles");
+    alert(noticiaDetalleTexts.alerts.linkCopied);
   };
 
   const handleShareFacebook = () => {
@@ -95,7 +96,7 @@ export function NoticiaDetalle() {
                   </div>
                 </div>
               </div>
-              <p className="font-['Neue_Augenblick:Medium',sans-serif] leading-[18px] not-italic relative shrink-0 text-[16px] text-black text-center text-nowrap whitespace-pre">Regresar a Noticias</p>
+              <p className="font-['Neue_Augenblick:Medium',sans-serif] leading-[18px] not-italic relative shrink-0 text-[16px] text-black text-center text-nowrap whitespace-pre">{noticiaDetalleTexts.navigation.backToNews}</p>
             </Link>
 
             {/* Mobile Back Button */}
@@ -119,7 +120,7 @@ export function NoticiaDetalle() {
                   </div>
                 </div>
               </div>
-              <p className="font-['Neue_Augenblick:Medium',sans-serif] leading-[18px] not-italic relative shrink-0 text-[16px] text-black text-center text-nowrap whitespace-pre">Regresar</p>
+              <p className="font-['Neue_Augenblick:Medium',sans-serif] leading-[18px] not-italic relative shrink-0 text-[16px] text-black text-center text-nowrap whitespace-pre">{noticiaDetalleTexts.navigation.back}</p>
             </Link>
 
             {/* Title Section - Centered */}
@@ -144,13 +145,13 @@ export function NoticiaDetalle() {
                 <div className="sticky top-32 content-stretch flex flex-col gap-[40px] lg:gap-[60px] items-start w-full max-h-[calc(100vh-10rem)] overflow-visible">
                   {/* Publicado el */}
                   <p className="font-['Neue_Augenblick:Medium',sans-serif] leading-[18px] not-italic relative shrink-0 text-[16px] text-[rgba(73,73,73,0.5)] w-full">
-                    Publicado el {newsItem.date}
+                    {noticiaDetalleTexts.meta.publishedOn} {newsItem.date}
                   </p>
 
                   {/* Tiempo de Lectura - Progress Bar */}
                   <div className="content-stretch flex flex-col gap-[8px] items-start justify-center relative shrink-0 w-full">
                     <p className="font-['Neue_Augenblick:Medium',sans-serif] leading-[18px] min-w-full not-italic relative shrink-0 text-[16px] text-[rgba(73,73,73,0.5)] w-[min-content]">
-                      Tiempo de Lectura
+                      {noticiaDetalleTexts.meta.readingTime}
                     </p>
                     <div className="content-stretch flex flex-col gap-[14px] items-start relative shrink-0 w-full">
                       {/* Progress bar container */}
@@ -164,7 +165,7 @@ export function NoticiaDetalle() {
                               WebkitTextFillColor: 'transparent',
                               backgroundClip: 'text'
                             }}>
-                              6 minutos
+                              {noticiaDetalleTexts.meta.minutes}
                             </p>
                           </div>
                         </div>
@@ -175,7 +176,7 @@ export function NoticiaDetalle() {
                   {/* Compartir */}
                   <div className="content-stretch flex flex-col gap-[8px] items-start justify-center relative shrink-0 w-full">
                     <p className="font-['Neue_Augenblick:Medium',sans-serif] leading-[18px] min-w-full not-italic relative shrink-0 text-[16px] text-[rgba(73,73,73,0.5)] w-[min-content]">
-                      Compartir
+                      {noticiaDetalleTexts.sharing.share}
                     </p>
                     <div className="content-stretch flex flex-col gap-[14px] items-start relative shrink-0">
                       {/* Facebook */}
@@ -184,7 +185,7 @@ export function NoticiaDetalle() {
                         className="box-border content-stretch flex gap-[12px] items-start px-0 py-[8px] relative shrink-0 cursor-pointer hover:opacity-60 transition-opacity"
                       >
                         <div className="flex flex-col font-['Neue_Augenblick:Medium',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[22px] text-black text-nowrap">
-                          <p className="leading-[24px] whitespace-pre">Facebook</p>
+                          <p className="leading-[24px] whitespace-pre">{noticiaDetalleTexts.sharing.facebook}</p>
                         </div>
                       </button>
 
@@ -194,7 +195,7 @@ export function NoticiaDetalle() {
                         className="box-border content-stretch flex gap-[12px] items-start px-0 py-[8px] relative shrink-0 cursor-pointer hover:opacity-60 transition-opacity"
                       >
                         <div className="flex flex-col font-['Neue_Augenblick:Medium',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[22px] text-black text-nowrap">
-                          <p className="leading-[24px] whitespace-pre">LinkedIn</p>
+                          <p className="leading-[24px] whitespace-pre">{noticiaDetalleTexts.sharing.linkedin}</p>
                         </div>
                       </button>
 
@@ -204,7 +205,7 @@ export function NoticiaDetalle() {
                         className="box-border content-stretch flex gap-[12px] items-start px-0 py-[8px] relative shrink-0 cursor-pointer hover:opacity-60 transition-opacity"
                       >
                         <div className="flex flex-col font-['Neue_Augenblick:Medium',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[22px] text-black text-nowrap">
-                          <p className="leading-[24px] whitespace-pre">Copiar enlace</p>
+                          <p className="leading-[24px] whitespace-pre">{noticiaDetalleTexts.sharing.copyLink}</p>
                         </div>
                       </button>
                     </div>
@@ -214,7 +215,7 @@ export function NoticiaDetalle() {
                   {isNearEnd && (
                     <div className="content-stretch flex flex-col gap-[20px] items-start justify-center relative shrink-0 w-full transition-all duration-700 ease-in-out animate-in fade-in slide-in-from-bottom-4">
                       <p className="font-['Neue_Augenblick:Medium',sans-serif] leading-[18px] not-italic relative shrink-0 text-[16px] text-[rgba(73,73,73,0.5)] text-nowrap whitespace-pre">
-                        Conversemos sobre tu operación
+                        {noticiaDetalleTexts.cta.letsTalk}
                       </p>
                       <Link
                         to="/contacto"
@@ -222,7 +223,7 @@ export function NoticiaDetalle() {
                       >
                         <div aria-hidden="true" className="absolute border-[1.5px] border-black border-solid inset-[-0.75px] pointer-events-none rounded-[30.75px]" />
                         <p className="font-['Neue_Augenblick:Medium',sans-serif] leading-[24px] not-italic relative shrink-0 text-[24px] text-black text-center text-nowrap whitespace-pre">
-                          Contactar un asesor
+                          {noticiaDetalleTexts.cta.contactAdvisor}
                         </p>
                       </Link>
                     </div>
@@ -235,16 +236,16 @@ export function NoticiaDetalle() {
                 {/* Mobile Meta Info - Only visible on mobile */}
                 <div className="lg:hidden flex flex-col gap-6 pb-6 border-b border-gray-200">
                   <p className="font-['Neue_Augenblick:Medium',sans-serif] text-[14px] text-[rgba(73,73,73,0.5)]">
-                    Publicado el {newsItem.date}
+                    {noticiaDetalleTexts.meta.publishedOn} {newsItem.date}
                   </p>
                   
                   {/* Mobile Reading Time */}
                   <div className="flex flex-col gap-2">
                     <p className="font-['Neue_Augenblick:Medium',sans-serif] text-[14px] text-[rgba(73,73,73,0.5)]">
-                      Tiempo de Lectura
+                      {noticiaDetalleTexts.meta.readingTime}
                     </p>
                     <p className="font-['Neue_Augenblick:Medium',sans-serif] text-[20px] text-black">
-                      6 minutos
+                      {noticiaDetalleTexts.meta.minutes}
                     </p>
                   </div>
                 </div>
@@ -253,7 +254,7 @@ export function NoticiaDetalle() {
                 <div className="w-full overflow-hidden rounded-sm">
                    <img 
                      src={coverImage} 
-                     alt="Imagen de portada" 
+                     alt={noticiaDetalleTexts.images.coverAlt}
                      className="w-full h-auto lg:h-[500px] object-cover"
                    />
                 </div>
@@ -273,12 +274,12 @@ export function NoticiaDetalle() {
                     {/* Pull Quote - Standardized */}
                     <div className="my-12 pl-6 border-l-4 border-[#59c1e6]"> 
                        <h3 className="text-3xl md:text-4xl lg:text-5xl leading-tight font-normal text-black tracking-tight">
-                         "La innovación no es solo tecnología, es la capacidad de adaptarse y evolucionar constantemente para servir mejor al mundo."
+                         {noticiaDetalleTexts.content.pullQuote}
                        </h3>
                     </div>
                     
                     <p>
-                      Continuamos nuestro viaje hacia la excelencia operativa, siempre poniendo a nuestros clientes y al planeta en primer lugar. En Yobel, creemos que el futuro se construye hoy.
+                      {noticiaDetalleTexts.content.paragraph}
                     </p>
                 </div>
 
@@ -286,7 +287,7 @@ export function NoticiaDetalle() {
                 <div className="w-full h-[400px] overflow-hidden rounded-sm mt-8">
                    <img 
                      src={coverImage} 
-                     alt="Details" 
+                     alt={noticiaDetalleTexts.images.detailsAlt}
                      className="w-full h-full object-cover"
                    />
                 </div>
@@ -294,7 +295,7 @@ export function NoticiaDetalle() {
                 {/* Mobile Share Section - At the end of article */}
                 <div className="lg:hidden flex flex-col gap-6 pt-6 mt-6 border-t border-gray-200">
                   <p className="font-['Neue_Augenblick:Medium',sans-serif] text-[14px] text-[rgba(73,73,73,0.5)]">
-                    Compartir este artículo
+                    {noticiaDetalleTexts.mobileSharing.shareArticle}
                   </p>
                   
                   {/* Mobile Share Buttons */}
@@ -303,19 +304,19 @@ export function NoticiaDetalle() {
                       onClick={handleShareFacebook}
                       className="px-4 py-2 border border-black rounded-full text-sm hover:bg-gray-50 transition-colors"
                     >
-                      Compartir en Facebook
+                      {noticiaDetalleTexts.mobileSharing.shareOnFacebook}
                     </button>
                     <button 
                       onClick={handleShareLinkedIn}
                       className="px-4 py-2 border border-black rounded-full text-sm hover:bg-gray-50 transition-colors"
                     >
-                      Compartir en LinkedIn
+                      {noticiaDetalleTexts.mobileSharing.shareOnLinkedIn}
                     </button>
                     <button 
                       onClick={handleCopyLink}
                       className="px-4 py-2 border border-black rounded-full text-sm hover:bg-gray-50 transition-colors"
                     >
-                      Copiar enlace
+                      {noticiaDetalleTexts.mobileSharing.copyLink}
                     </button>
                   </div>
                 </div>
@@ -327,7 +328,7 @@ export function NoticiaDetalle() {
                       to="/contacto"
                       className="w-full block text-center px-8 py-4 bg-black text-white rounded-full text-lg font-medium hover:bg-gray-800 transition-colors shadow-lg"
                     >
-                      Contactar un asesor
+                      {noticiaDetalleTexts.cta.contactAdvisor}
                     </Link>
                   </div>
                 )}

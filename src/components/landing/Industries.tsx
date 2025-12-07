@@ -8,6 +8,7 @@ import { Container } from "../ui/custom-container";
 import { SectionHeading } from "../ui/typography";
 import { ThreeColumnLayout } from "../ui/ThreeColumnLayout";
 import { cn } from "../ui/utils";
+import { landingTexts } from "../../constants/landing";
 
 export function Industries({ className, useOrangeGradient = false }: { className?: string; useOrangeGradient?: boolean }) {
   const sliderRef = useRef<Slider>(null);

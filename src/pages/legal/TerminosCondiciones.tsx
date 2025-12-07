@@ -1,6 +1,7 @@
 import React from "react";
 import { Section } from "../../components/ui/custom-section";
 import { Container } from "../../components/ui/custom-container";
+import { legal } from "../../constants/legal";
 
 export function TerminosCondiciones() {
   return (
@@ -8,15 +9,15 @@ export function TerminosCondiciones() {
       <div className="relative h-[40vh] min-h-[400px] max-h-[500px] w-full overflow-hidden font-augenblick bg-gradient-to-b from-[#fff066] to-white">
         <div className="absolute bottom-10 left-0 right-0 px-[5%] md:px-[50px] z-10">
           <div className="max-w-[1400px] mx-auto flex flex-col gap-[30px]">
-             <p className="text-lg md:text-[18px] text-black font-[Neue_Augenblick]">Legal</p>
-             <div className="flex flex-col lg:flex-row items-end justify-between gap-[40px] w-full">
-                <h1 className="text-5xl md:text-[65px] leading-[1] text-black max-w-[773px] font-[Neue_Augenblick]">
-                  Términos y Condiciones
-                </h1>
-                <p className="text-xl md:text-[22px] leading-[24px] text-black max-w-[350px] lg:mr-32 pb-1 font-[Neue_Augenblick]">
-                  Conoce los términos y condiciones que rigen el uso de nuestros servicios y plataformas digitales.
-                </p>
-             </div>
+             <p className="text-lg md:text-[18px] text-black font-[Neue_Augenblick]">{legal.terms.hero.category}</p>
+              <div className="flex flex-col lg:flex-row items-end justify-between gap-[40px] w-full">
+                 <h1 className="text-5xl md:text-[65px] leading-[1] text-black max-w-[773px] font-[Neue_Augenblick]">
+                   {legal.terms.hero.title}
+                 </h1>
+                 <p className="text-xl md:text-[22px] leading-[24px] text-black max-w-[350px] lg:mr-32 pb-1 font-[Neue_Augenblick]">
+                   {legal.terms.hero.subtitle}
+                 </p>
+              </div>
           </div>
         </div>
       </div>
@@ -25,8 +26,7 @@ export function TerminosCondiciones() {
         <Container>
           <div className="max-w-[900px] mx-auto flex flex-col gap-8 text-lg leading-relaxed text-gray-700 font-[Neue_Augenblick]">
             <p>
-              Bienvenido a Yobel. Al acceder y utilizar nuestro sitio web y servicios, usted acepta cumplir con los siguientes términos y condiciones. 
-              Le recomendamos leer detenidamente este documento para entender sus derechos y obligaciones.
+              {legal.terms.content.intro}
             </p>
             
             <h2 className="text-2xl font-bold text-black mt-4">1. Uso del Sitio Web</h2>
