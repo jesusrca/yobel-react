@@ -2,91 +2,12 @@ import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "motion/react";
 import Slider from "react-slick";
-import imgAlimentos from '@/assets/industrias/1_alimentos_bebidas.jpeg';
-import imgBelleza from '@/assets/industrias/2_bellesa_cui-personal.jpeg';
-import imgCalzado from '@/assets/industrias/3_calzado-moda.jpeg';
-import imgConstruccion from '@/assets/industrias/4_contruccion.jpeg';
-import imgHogar from '@/assets/industrias/5_cuidado-hogar.jpeg';
-import imgEditorial from '@/assets/industrias/6_editorial.jpeg';
-import imgFarmaceutica from '@/assets/industrias/7_farmaceutica.jpeg';
-import imgIndustrial from '@/assets/industrias/8_manu-industrial.jpeg';
-import imgQuimicos from '@/assets/industrias/9_quimicos.jpeg';
-import imgRetail from '@/assets/industrias/10_reatil.jpeg';
-import imgTech from '@/assets/industrias/11_tech-electronica.jpeg';
+import { industries } from "../../data/industries";
 import { Section } from "../ui/custom-section";
 import { Container } from "../ui/custom-container";
 import { SectionHeading } from "../ui/typography";
 import { ThreeColumnLayout } from "../ui/ThreeColumnLayout";
 import { cn } from "../ui/utils";
-
-const industries = [
-  {
-    title: "Belleza y Cuidado Personal",
-    description: "Cadena de suministro integral para cosméticos, fragancias y productos de cuidado personal, con trazabilidad completa y control sanitario.",
-    image: imgBelleza,
-    path: "/industrias/belleza-y-cuidado-personal",
-  },
-  {
-    title: "Alimentos y Bebidas",
-    description: "Logística de productos alimentarios y bebidas con almacenamiento controlado, cadena de frío y trazabilidad completa.",
-    image: imgAlimentos,
-    path: "/industrias/alimentos-y-bebidas",
-  },
-  {
-    title: "Construcción",
-    description: "Abastecimiento y transporte de materiales, repuestos y maquinaria con planificación operativa y manipulación segura.",
-    image: imgConstruccion,
-    path: "/industrias/construccion",
-  },
-  {
-    title: "Editorial",
-    description: "Soluciones logísticas integrales para gestionar y distribuir libros, revistas y publicaciones con cobertura regional, disponibilidad oportuna y eficiencia.",
-    image: imgEditorial,
-    path: "/industrias/editorial",
-  },
-  {
-    title: "Farmacéutica",
-    description: "Flujo logístico de medicamentos, dispositivos y productos de salud con trazabilidad total y conservación controlada.",
-    image: imgFarmaceutica,
-    path: "/industrias/farmaceutica",
-  },
-  {
-    title: "Hogar",
-    description: "Cadena de suministro para productos de limpieza, utensilios y artículos domésticos con eficiencia operativa y control de stock.",
-    image: imgHogar,
-    path: "/industrias/cuidado-del-hogar",
-  },
-  {
-    title: "Manufactura Industrial",
-    description: "Logística de insumos, componentes y productos terminados con trazabilidad, continuidad productiva y optimización del flujo operativo.",
-    image: imgIndustrial,
-    path: "/industrias/manufactura-industrial",
-  },
-  {
-    title: "Calzado y moda",
-    description: "Gestión de prendas, calzado y accesorios con control por temporada, trazabilidad por colección y preparación según canal de venta.",
-    image: imgCalzado,
-    path: "/industrias/calzado-y-moda",
-  },
-  {
-    title: "Químicos",
-    description: "Operaciones logísticas seguras para sustancias y productos químicos con manipulación especializada y control ambiental para insumos y productos terminados.",
-    image: imgQuimicos,
-    path: "/industrias/quimica",
-  },
-  {
-    title: "Retail",
-    description: "Abastecimiento integral de tiendas, centros de distribución y plataformas digitales con visibilidad total y entregas confiables.",
-    image: imgRetail,
-    path: "/industrias/retail",
-  },
-  {
-    title: "Tecnología y Electrónica",
-    description: "Flujo logístico de equipos, componentes y dispositivos tecnológicos con trazabilidad por serie y seguridad en cada etapa.",
-    image: imgTech,
-    path: "/industrias/tecnologia-y-electronica",
-  }
-];
 
 export function Industries({ className, useOrangeGradient = false }: { className?: string; useOrangeGradient?: boolean }) {
   const sliderRef = useRef<Slider>(null);

@@ -14,6 +14,7 @@ import { SolutionsShowcase } from "../../components/ui/SolutionsShowcase";
 import { SolutionsShowcaseTransparent } from "../../components/ui/SolutionsShowcaseTransparent";
 import { ScrollRevealString } from "../../components/ui/scroll-reveal-text";
 import { ScrollColorTransition } from "../../components/ui/scroll-color-transition";
+import { companyContent } from "../../data/companyContent";
 import Y from "../../imports/Y";
 import svgPaths from "../../imports/svg-5srx0k234k";
 import svgPathsProcess from "../../imports/svg-u5y25zzhvz";
@@ -171,41 +172,8 @@ const TypewriterText = ({
 export function About() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
-  const purposeItems = [
-    {
-      title: "Propósito",
-      content: "Nos movemos para crear y entregar soluciones que impulsen el crecimiento de nuestros aliados, convencidos de que pensar con visión, transformar con acción y lograr con excelencia es la manera de construir confianza."
-    },
-    {
-      title: "Misión",
-      content: "Crear y entregar soluciones integrales de logística y manufactura que respondan a necesidades reales, combinando innovación, eficiencia y personalización para generar experiencias memorables."
-    },
-    {
-      title: "Visión",
-      content: "Ser la empresa más confiable e innovadora de la región en soluciones de logística y manufactura, ampliando nuestra cobertura, integrando nuevas tecnologías y liderando la sostenibilidad."
-    }
-  ];
-
-  const valueProps = [
-    "Gestión integral logística",
-    "Cobertura regional eficiente",
-    "Flexibilidad operativa total",
-    "Tecnología y trazabilidad avanzada",
-    "Optimización de costos",
-    "Mejora de experiencia cliente"
-  ];
-
-  const principles = [
-    { title: "Simplicidad operativa", desc: "Procesos claros y eficientes que reducen tiempos y costos." },
-    { title: "Seguridad primero", desc: "Protegemos a las personas y cuidamos tu operación." },
-    { title: "Integridad y ética", desc: "Hacemos lo correcto, incluso cuando nadie nos ve." },
-    { title: "Orientación al cliente", desc: "Escuchamos, medimos y mejoramos para cumplir siempre con OTIF." },
-    { title: "Trabajo en equipo", desc: "Sumamos el talento de 9 países para lograr resultados excepcionales." },
-    { title: "Aprendizaje continuo", desc: "Formamos a nuestros colaboradores para superar los estándares." }
-  ];
-
   // Format principles for SolutionsShowcase component
-  const principlesFormatted = principles.map((item, idx) => ({
+  const principlesFormatted = companyContent.principles.map((item, idx) => ({
     id: `0${idx + 1}`,
     title: item.title,
     fullDesc: item.desc
@@ -246,10 +214,10 @@ export function About() {
         {(textColor) => (
           <>
             {/* HERO SECTION */}
-            <HistoryHero 
-              label="Sobre Nosotros"
-              title="Con más de 50 años de experiencia en Latinoamérica"
-              description="En Yobel impulsamos tu negocio con soluciones de logística y manufactura que integran innovación, eficiencia y cercanía, generando valor real en cada etapa de la cadena de suministro."
+            <HistoryHero
+              label={companyContent.hero.label}
+              title={companyContent.hero.title}
+              description={companyContent.hero.description}
             />
 
             <ParallaxCurves />
@@ -258,7 +226,7 @@ export function About() {
             <div ref={containerRef} className="relative h-[300vh]">
               <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden bg-transparent">
                   {/* Content */}
-                  {purposeItems.map((item, idx) => {
+                  {companyContent.purposeItems.map((item, idx) => {
                     // Calcular posición Y y opacidad para efecto carrusel vertical - transiciones más lentas
                     const yPosition = useTransform(
                       scrollYProgress,
@@ -348,7 +316,7 @@ export function About() {
 
                      {/* Solutions List with Hover Image */}
                      <div className="relative">
-                        {valueProps.map((item, idx) => {
+                        {companyContent.valueProps.map((item, idx) => {
                            const isHovered = hoveredIndex === idx;
                            
                            return (
@@ -418,18 +386,18 @@ export function About() {
                      </motion.div>
                      
                      <div className="flex flex-col gap-8">
-                        <motion.h2 
-                          className="text-3xl md:text-[45px] leading-tight font-normal max-w-4xl mx-auto opacity-50"
-                          style={{ color: textColor }}
+                        <motion.h2
+                           className="text-3xl md:text-[45px] leading-tight font-normal max-w-4xl mx-auto opacity-50"
+                           style={{ color: textColor }}
                         >
-                           Personas y diversidad que nos mueven
-                        </motion.h2>
-                        <motion.p 
-                          className="text-3xl md:text-[45px] leading-tight font-normal max-w-5xl mx-auto"
-                          style={{ color: textColor }}
-                        >
-                           En Yobel promovemos inclusión, crecimiento y bienestar. Apostamos por el desarrollo continuo y las oportunidades equitativas, porque cuando nuestra gente crece, las cadenas de suministro funcionan mejor.
-                        </motion.p>
+                            {companyContent.peopleText}
+                         </motion.h2>
+                         <motion.p
+                           className="text-3xl md:text-[45px] leading-tight font-normal max-w-5xl mx-auto"
+                           style={{ color: textColor }}
+                         >
+                            {companyContent.peopleSubtitle}
+                         </motion.p>
                      </div>
 
                      <Button variant="default" size="lg" className="mt-4 rounded-full px-8 h-12 text-base">
@@ -468,13 +436,13 @@ export function About() {
                        
                        <div className="space-y-8">
                           <div>
-                             <h3 
+                             <h3
                                 className="text-4xl md:text-5xl lg:text-6xl mb-2"
                                 style={{ color: '#000000' }}
                              >
-                                +4,600
+                                {companyContent.stats.collaborators}
                              </h3>
-                             <p 
+                             <p
                                 className="text-lg md:text-xl opacity-70"
                                 style={{ color: '#000000' }}
                              >
@@ -483,13 +451,13 @@ export function About() {
                           </div>
 
                           <div>
-                             <h3 
+                             <h3
                                 className="text-4xl md:text-5xl lg:text-6xl mb-2"
                                 style={{ color: '#000000' }}
                              >
-                                9
+                                {companyContent.stats.countries}
                              </h3>
-                             <p 
+                             <p
                                 className="text-lg md:text-xl opacity-70"
                                 style={{ color: '#000000' }}
                              >
@@ -498,13 +466,13 @@ export function About() {
                           </div>
 
                           <div>
-                             <h3 
+                             <h3
                                 className="text-4xl md:text-5xl lg:text-6xl mb-2"
                                 style={{ color: '#000000' }}
                              >
-                                +30%
+                                {companyContent.stats.leadership}
                              </h3>
-                             <p 
+                             <p
                                 className="text-lg md:text-xl opacity-70"
                                 style={{ color: '#000000' }}
                              >
@@ -527,17 +495,17 @@ export function About() {
                        }}
                     >
                        <div>
-                          <h4 
+                          <h4
                              className="text-2xl md:text-3xl mb-4"
                              style={{ color: '#000000' }}
                           >
-                             Diversidad e inclusión
+                             {companyContent.diversity.title}
                           </h4>
-                          <p 
+                          <p
                              className="text-lg md:text-xl opacity-70"
                              style={{ color: '#000000' }}
                           >
-                             Promovemos equipos diversos y oportunidades
+                             {companyContent.diversity.description}
                           </p>
                        </div>
                     </div>
@@ -552,17 +520,17 @@ export function About() {
                        }}
                     >
                        <div>
-                          <h4 
+                          <h4
                              className="text-2xl md:text-3xl mb-4"
                              style={{ color: '#000000' }}
                           >
-                             Bienestar
+                             {companyContent.wellbeing.title}
                           </h4>
-                          <p 
+                          <p
                              className="text-lg md:text-xl opacity-70"
                              style={{ color: '#000000' }}
                           >
-                             Programas de salud, ergonomía y apoyo emocional
+                             {companyContent.wellbeing.description}
                           </p>
                        </div>
                     </div>
@@ -577,17 +545,17 @@ export function About() {
                        }}
                     >
                        <div>
-                          <h4 
+                          <h4
                              className="text-2xl md:text-3xl mb-4"
                              style={{ color: '#000000' }}
                           >
-                             Seguridad & Salud ocupacional
+                             {companyContent.safety.title}
                           </h4>
-                          <p 
+                          <p
                              className="text-lg md:text-xl opacity-70"
                              style={{ color: '#000000' }}
                           >
-                             Capacitación continua y prevención
+                             {companyContent.safety.description}
                           </p>
                        </div>
                     </div>
