@@ -62,7 +62,7 @@ export function InteractiveList({ items, className = "", defaultImage, title, la
   };
 
   return (
-    <Section className={`bg-white ${className}`}>
+    <Section className={`${className}`}>
       <Container className="relative min-h-[600px]">
         {(title || label) && (
           <motion.div 

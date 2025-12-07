@@ -2,8 +2,14 @@ import React, { useState } from "react";
 import { InteractiveList } from "../ui/InteractiveList";
 import { services } from "../../data/services";
 
-export function Services() {
+interface ServicesProps {
+  items?: typeof services;
+  title?: string;
+  label?: string;
+}
+
+export function Services({ items = services, title, label }: ServicesProps) {
   return (
-    <InteractiveList items={services} defaultImage={services[0].image} />
+    <InteractiveList items={items} defaultImage={items[0].image} title={title} label={label} />
   );
 }

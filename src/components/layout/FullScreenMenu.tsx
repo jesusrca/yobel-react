@@ -275,75 +275,83 @@ export function FullScreenMenu({ onClose, onSearchClick }: FullScreenMenuProps) 
            </div>
            
            {/* --- Mobile Layout (lg:hidden) --- */}
-           <div className="flex lg:hidden flex-col gap-6 pt-4">
+           <div className="flex lg:hidden flex-col h-full pt-4">
               {/* Mobile Search */}
-              <button 
-                onClick={onSearchClick} 
-                className="flex items-center gap-4 text-xl text-white/80 border-b border-white/20 pb-4 mb-4 hover:text-white transition-colors"
+              <button
+                onClick={onSearchClick}
+                className="flex items-center gap-4 text-xl text-white/80 border-b border-white/20 pb-4 mb-4 hover:text-white transition-colors flex-shrink-0"
               >
                   <Search className="w-6 h-6 text-white" strokeWidth={1.5} />
                   <span>Buscar en el sitio...</span>
               </button>
 
-              {menuItems.map(item => {
-                 const isOpen = activeCategory === item.title;
-                 return (
-                 <div key={item.id} className="flex flex-col border-b border-white/10 pb-2">
-                    <button 
-                       onClick={() => setActiveCategory(isOpen ? "" : item.title)}
-                       className="flex items-center justify-between text-xl md:text-2xl font-medium py-3"
-                    >
-                       <div className="flex gap-3">
-                          <span className="text-white/40 text-lg">{item.id}</span>
-                          <span className={isOpen ? "text-[#fff066]" : "text-white"}>{item.title}</span>
-                       </div>
-                       <div className={cn("transition-transform duration-300", isOpen ? "rotate-180" : "")}>
-                          <ChevronDown className="w-6 h-6 text-white" strokeWidth={1.5} />
-                       </div>
-                    </button>
-                    
-                    <AnimatePresence>
-                       {isOpen && (
-                          <motion.div 
-                             initial={{ height: 0, opacity: 0 }}
-                             animate={{ height: "auto", opacity: 1 }}
-                             exit={{ height: 0, opacity: 0 }}
-                             className="overflow-hidden"
+              {/* Scrollable Menu Items */}
+              <div className="flex-1 overflow-y-auto">
+                 <div className="flex flex-col gap-6">
+                    {menuItems.map(item => {
+                       const isOpen = activeCategory === item.title;
+                       return (
+                       <div key={item.id} className="flex flex-col border-b border-white/10 pb-2">
+                          <button
+                             onClick={() => setActiveCategory(isOpen ? "" : item.title)}
+                             className="flex items-center justify-between text-xl md:text-2xl font-medium py-3"
                           >
-                             <div className="flex flex-col gap-4 pl-10 py-4">
-                                {item.items.map((sub, idx) => (
-                                   <Link 
-                                      key={idx} 
-                                      to={sub.path} 
-                                      onClick={onClose}
-                                      className="text-lg text-gray-300 hover:text-white py-1 block"
-                                   >
-                                      {sub.name}
-                                   </Link>
-                                ))}
+                             <div className="flex gap-3">
+                                <span className="text-white/40 text-lg">{item.id}</span>
+                                <span className={isOpen ? "text-[#fff066]" : "text-white"}>{item.title}</span>
                              </div>
-                          </motion.div>
-                       )}
-                    </AnimatePresence>
+                             <div className={cn("transition-transform duration-300", isOpen ? "rotate-180" : "")}>
+                                <ChevronDown className="w-6 h-6 text-white" strokeWidth={1.5} />
+                             </div>
+                          </button>
+
+                          <AnimatePresence>
+                             {isOpen && (
+                                <motion.div
+                                   initial={{ height: 0, opacity: 0 }}
+                                   animate={{ height: "auto", opacity: 1 }}
+                                   exit={{ height: 0, opacity: 0 }}
+                                   className="overflow-hidden"
+                                >
+                                   <div className="flex flex-col gap-4 pl-10 py-4">
+                                      {item.items.map((sub, idx) => (
+                                         <Link
+                                            key={idx}
+                                            to={sub.path}
+                                            onClick={onClose}
+                                            className="text-lg text-gray-300 hover:text-white py-1 block"
+                                         >
+                                            {sub.name}
+                                         </Link>
+                                      ))}
+                                   </div>
+                                </motion.div>
+                             )}
+                          </AnimatePresence>
+                       </div>
+                    )})}
                  </div>
-              )})}
+              </div>
 
-              {/* Mobile Tracking Button */}
-              <button className="mt-8 w-full py-4 border border-white rounded-full text-xl font-medium hover:bg-white hover:text-black transition-colors">
-                  Tracking de Envíos
-              </button>
+              {/* Mobile Buttons - Fixed at bottom */}
+              <div className="flex-shrink-0 mt-8">
+                 {/* Mobile Tracking Button */}
+                 <button className="w-full py-4 border border-white rounded-full text-xl font-medium hover:bg-white hover:text-black transition-colors mb-4">
+                     Tracking de Envíos
+                 </button>
 
-              {/* Mobile Portal de Clientes Button */}
-              <button className="w-full py-4 border border-white rounded-full text-xl font-medium hover:bg-white hover:text-black transition-colors">
-                  Portal de Clientes
-              </button>
-              
-              {/* Legal Links Mobile */}
-              <div className="flex flex-col gap-4 mt-12 text-sm text-white/40 px-2">
-                  <Link to="/terminos-y-condiciones" onClick={onClose}>Términos y Condiciones</Link>
-                  <Link to="/libro-reclamaciones" onClick={onClose}>Libro de Reclamaciones</Link>
-                  <Link to="/politicas-de-privacidad" onClick={onClose}>Privacidad</Link>
-                  <Link to="/politicas-de-cookies" onClick={onClose}>Políticas de Cookies</Link>
+                 {/* Mobile Portal de Clientes Button */}
+                 <button className="w-full py-4 border border-white rounded-full text-xl font-medium hover:bg-white hover:text-black transition-colors mb-8">
+                     Portal de Clientes
+                 </button>
+
+                 {/* Legal Links Mobile */}
+                 <div className="flex flex-col gap-4 text-sm text-white/40 px-2">
+                     <Link to="/terminos-y-condiciones" onClick={onClose}>Términos y Condiciones</Link>
+                     <Link to="/libro-reclamaciones" onClick={onClose}>Libro de Reclamaciones</Link>
+                     <Link to="/politicas-de-privacidad" onClick={onClose}>Privacidad</Link>
+                     <Link to="/politicas-de-cookies" onClick={onClose}>Políticas de Cookies</Link>
+                 </div>
               </div>
            </div>
 

@@ -20,10 +20,10 @@ export function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      
+
       // Detectar si hay scroll para aplicar blur
       setHasScrolled(currentScrollY > 50);
-      
+
       if (currentScrollY < 10) {
         // Siempre mostrar en la parte superior
         setIsVisible(true);
@@ -34,13 +34,26 @@ export function Navbar() {
         // Scroll hacia arriba - mostrar
         setIsVisible(true);
       }
-      
+
       setLastScrollY(currentScrollY);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMenuOpen]);
 
   return (
     <>

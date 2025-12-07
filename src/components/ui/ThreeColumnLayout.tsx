@@ -15,9 +15,9 @@ export function ThreeColumnLayout({
   label, 
   title, 
   description,
-  labelClassName = "shrink-0 w-32 text-lg mt-2",
-  titleClassName = "text-4xl md:text-[45px] leading-tight max-w-sm font-[Neue_Augenblick]",
-  descriptionClassName = "text-lg leading-relaxed max-w-md opacity-80",
+  labelClassName = "text-sm sm:text-base mt-1 sm:mt-2 w-full md:w-32 opacity-70",
+  titleClassName = "text-3xl sm:text-4xl md:text-[45px] leading-tight max-w-sm font-[Neue_Augenblick]",
+  descriptionClassName = "text-base sm:text-lg leading-relaxed max-w-md opacity-80",
   className = ""
 }: ThreeColumnLayoutProps) {
   // Blur fade up animation

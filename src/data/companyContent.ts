@@ -5,6 +5,8 @@ export interface PurposeItem {
 
 export interface ValueProp {
   text: string;
+  description: string;
+  image: string;
 }
 
 export interface Principle {
@@ -17,6 +19,8 @@ export interface CompanyStats {
   countries: number;
   leadership: string;
 }
+
+const valueImage = "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.1.0&q=80&w=1080&auto=format&fit=crop";
 
 export interface CompanyContent {
   hero: {
@@ -65,12 +69,36 @@ export const companyContent: CompanyContent = {
     }
   ],
   valueProps: [
-    { text: "Gestión integral logística" },
-    { text: "Cobertura regional eficiente" },
-    { text: "Flexibilidad operativa total" },
-    { text: "Tecnología y trazabilidad avanzada" },
-    { text: "Optimización de costos" },
-    { text: "Mejora de experiencia cliente" }
+    {
+      text: "Gestión integral logística",
+      description: "Soluciones completas de logística que cubren desde el almacenamiento hasta la distribución final.",
+      image: valueImage
+    },
+    {
+      text: "Cobertura regional eficiente",
+      description: "Red de cobertura amplia en Latinoamérica para entregas rápidas y confiables.",
+      image: valueImage
+    },
+    {
+      text: "Flexibilidad operativa total",
+      description: "Adaptamos nuestros procesos a tus necesidades específicas para máxima eficiencia.",
+      image: valueImage
+    },
+    {
+      text: "Tecnología y trazabilidad avanzada",
+      description: "Sistemas tecnológicos modernos con trazabilidad completa en tiempo real.",
+      image: valueImage
+    },
+    {
+      text: "Optimización de costos",
+      description: "Estrategias para reducir costos sin comprometer la calidad del servicio.",
+      image: valueImage
+    },
+    {
+      text: "Mejora de experiencia cliente",
+      description: "Enfoque centrado en el cliente para experiencias excepcionales y lealtad.",
+      image: valueImage
+    }
   ],
   principles: [
     { title: "Simplicidad operativa", desc: "Procesos claros y eficientes que reducen tiempos y costos." },

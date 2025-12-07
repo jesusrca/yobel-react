@@ -110,5 +110,6 @@
     server: {
        port: 3001,
        open: true,
+       historyApiFallback: true,
      },
   });

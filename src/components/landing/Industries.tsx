@@ -1,7 +1,9 @@
 import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "motion/react";
-import Slider from "react-slick";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay } from 'swiper/modules';
+import 'swiper/css';
 import { industries } from "../../data/industries";
 import { Section } from "../ui/custom-section";
 import { Container } from "../ui/custom-container";
@@ -11,7 +13,7 @@ import { cn } from "../ui/utils";
 import { landingTexts } from "../../constants/landing";
 
 export function Industries({ className, useOrangeGradient = false }: { className?: string; useOrangeGradient?: boolean }) {
-  const sliderRef = useRef<Slider>(null);
+  const sliderRef = useRef<any>(null);
   const lastScrollTime = useRef(0);
   
   const [isHovering, setIsHovering] = React.useState(false);
@@ -51,53 +53,42 @@ export function Industries({ className, useOrangeGradient = false }: { className
     // Check if horizontal scroll dominates and has enough magnitude
     if (Math.abs(e.deltaX) > Math.abs(e.deltaY) && Math.abs(e.deltaX) > 20) {
       if (e.deltaX > 0) {
-        sliderRef.current?.slickNext();
+        sliderRef.current?.slideNext();
       } else {
-        sliderRef.current?.slickPrev();
+        sliderRef.current?.slidePrev();
       }
       lastScrollTime.current = now;
     }
   };
 
   const settings = {
-    dots: true,
-    infinite: true,
+    modules: [Autoplay],
+    spaceBetween: 8,
+    slidesPerView: 3.2,
     speed: 500,
-    slidesToShow: 3.5,
-    slidesToScroll: 1,
-    swipeToSlide: true,
-    centerMode: true,
-    centerPadding: "40px",
-    responsive: [
-      {
-        breakpoint: 1280,
-        settings: {
-          slidesToShow: 3,
-          centerPadding: "48px",
-        }
+    loop: true,
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+    },
+    breakpoints: {
+      1280: {
+        slidesPerView: 3,
+        spaceBetween: 12,
       },
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-          centerPadding: "32px",
-        }
+      1024: {
+        slidesPerView: 2,
+        spaceBetween: 10,
       },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 1.15,
-          centerPadding: "24px",
-        }
+      768: {
+        slidesPerView: 1.15,
+        spaceBetween: 8,
       },
-      {
-        breakpoint: 640,
-        settings: {
-          slidesToShow: 1,
-          centerPadding: "12px",
-        }
-      }
-    ]
+      640: {
+        slidesPerView: 1,
+        spaceBetween: 8,
+      },
+    },
   };
 
   return (
@@ -115,46 +106,6 @@ export function Industries({ className, useOrangeGradient = false }: { className
          Leer más
       </div>
 
-      {/* Inline Styles for Slick Carousel to avoid build errors with font files */}
-      <style>{`
-        .slick-slider{box-sizing:border-box;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-touch-callout:none;-khtml-user-select:none;-ms-touch-action:pan-y;touch-action:pan-y;-webkit-tap-highlight-color:transparent}
-        .slick-list{position:relative;display:block;overflow:hidden;margin:0;padding:0}
-        .slick-list:focus{outline:0}
-        .slick-list.dragging{cursor:pointer;cursor:hand}
-        .slick-slider .slick-track,.slick-slider .slick-list{-webkit-transform:translate3d(0,0,0);-moz-transform:translate3d(0,0,0);-ms-transform:translate3d(0,0,0);-o-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}
-        .slick-track{position:relative;top:0;left:0;display:block;margin-left:auto;margin-right:auto}
-        .slick-track:before,.slick-track:after{display:table;content:''}
-        .slick-track:after{clear:both}
-        .slick-loading .slick-track{visibility:hidden}
-        .slick-slide{display:none;float:left;height:100%;min-height:1px}
-        [dir='rtl'] .slick-slide{float:right}
-        .slick-slide img{display:block}
-        .slick-slide.slick-loading img{display:none}
-        .slick-slide.slick-dragging img{pointer-events:none}
-        .slick-initialized .slick-slide{display:block}
-        .slick-slide > div {height: 100%;}
-        .slick-loading .slick-slide{visibility:hidden}
-        .slick-vertical .slick-slide{display:block;height:auto;border:1px solid transparent}
-        .slick-arrow.slick-hidden{display:none}
-        
-        /* Dots - Removed as per request */
-        .slick-list {
-            padding-bottom: 10px !important;
-            overflow: visible !important;
-        }
-
-        @media (max-width: 768px) {
-          .slick-list {
-            overflow: hidden !important;
-            padding: 0 18px 16px !important;
-          }
-          .slick-track {
-            display: flex;
-            gap: 18px;
-            align-items: stretch;
-          }
-        }
-      `}</style>
 
        <Container className="max-w-[1440px] flex flex-col gap-20">
          <motion.div
@@ -185,48 +136,45 @@ export function Industries({ className, useOrangeGradient = false }: { className
             {/* Right Blur Overlay - Targeted to Image Height */}
             <div className="absolute right-0 top-0 h-[60vw] md:h-[25vw] max-h-[450px] w-16 md:w-32 z-10 pointer-events-none backdrop-blur-[1px]" style={{ maskImage: 'linear-gradient(to left, black, transparent)', WebkitMaskImage: 'linear-gradient(to left, black, transparent)' }} />
 
-            <Slider 
-              ref={sliderRef} 
-              {...settings} 
-              arrows={false}
-              dots={false}
-              autoplay={true} 
-              autoplaySpeed={3000} 
-              pauseOnHover={true}
+            <Swiper
+              ref={sliderRef}
+              {...settings}
             >
                 {industries.map((ind, idx) => (
-                    <div key={idx} className="px-3 md:px-4 h-full">
-                        <div 
-                           className="group relative flex flex-col h-full bg-white/85 rounded-[28px] md:rounded-[24px] p-4 md:p-5 shadow-lg backdrop-blur-sm"
-                           onMouseEnter={() => setIsHovering(true)}
-                           onMouseLeave={() => setIsHovering(false)}
-                           onMouseDown={handleMouseDown}
-                           onMouseMove={handleMouseMoveOnSlide}
-                           onMouseUp={handleMouseUp}
-                        >
-                            <Link 
-                              to={ind.path} 
-                              className="flex flex-col gap-5 w-full cursor-pointer block"
-                              onClick={(e) => {
-                                if (isDragging) {
-                                  e.preventDefault();
-                                }
-                              }}
+                    <SwiperSlide key={idx} className="h-full">
+                        <div className="px-2 md:px-3 h-full">
+                            <div
+                               className="group relative flex flex-col h-full rounded-[28px] md:rounded-[24px] p-4 md:p-5 justify-end items-start gap-4"
+                               onMouseEnter={() => setIsHovering(true)}
+                               onMouseLeave={() => setIsHovering(false)}
+                               onMouseDown={handleMouseDown}
+                               onMouseMove={handleMouseMoveOnSlide}
+                               onMouseUp={handleMouseUp}
                             >
-                                <div className="aspect-square w-full rounded-[20px] md:rounded-[20px] overflow-hidden relative shrink-0 shadow-md">
-                                    <img src={ind.image} alt={ind.title} className="w-full h-full object-cover" />
-                                </div>
-                                <div className="flex flex-col gap-2 md:gap-3 text-black px-2 md:px-2.5">
-                                    <h3 className="text-[22px] md:text-2xl font-medium font-[Neue_Augenblick] leading-snug md:leading-normal break-words">{ind.title}</h3>
-                                    <p className="text-[17px] md:text-lg font-light leading-snug opacity-80 font-augenblick line-clamp-4 md:line-clamp-none">
-                                      {ind.description}
-                                    </p>
-                                </div>
-                            </Link>
+                                <Link
+                                  to={ind.path}
+                                  className="flex flex-col gap-5 w-full cursor-pointer block"
+                                  onClick={(e) => {
+                                    if (isDragging) {
+                                      e.preventDefault();
+                                    }
+                                  }}
+                                >
+                                    <div className="aspect-square w-full rounded-[20px] md:rounded-[20px] overflow-hidden relative shrink-0">
+                                        <img src={ind.image} alt={ind.title} className="w-full h-full object-cover" />
+                                    </div>
+                                    <div className="flex flex-col gap-2 md:gap-3 text-black px-2 md:px-2.5">
+                                        <h3 className="text-[22px] md:text-2xl font-medium font-[Neue_Augenblick] leading-snug md:leading-normal break-words">{ind.title}</h3>
+                                        <p className="text-[17px] md:text-lg font-light leading-snug opacity-80 font-augenblick line-clamp-4 md:line-clamp-none">
+                                          {ind.description}
+                                        </p>
+                                    </div>
+                                </Link>
+                            </div>
                         </div>
-                    </div>
+                    </SwiperSlide>
                 ))}
-            </Slider>
+            </Swiper>
          </motion.div>
        </Container>
     </Section>

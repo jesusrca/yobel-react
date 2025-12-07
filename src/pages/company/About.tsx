@@ -14,6 +14,7 @@ import { SolutionsShowcase } from "../../components/ui/SolutionsShowcase";
 import { SolutionsShowcaseTransparent } from "../../components/ui/SolutionsShowcaseTransparent";
 import { ScrollRevealString } from "../../components/ui/scroll-reveal-text";
 import { ScrollColorTransition } from "../../components/ui/scroll-color-transition";
+import { ValueProposition } from "../../components/company/ValueProposition";
 import { companyContent } from "../../data/companyContent";
 import { aboutTexts } from "../../constants/company";
 import Y from "../../imports/Y";
@@ -296,80 +297,7 @@ export function About() {
             </div>
 
             {/* VALUE PROPOSITION */}
-            <Section className="bg-transparent py-24">
-               <Container>
-                  <div className="relative" onMouseLeave={() => setHoveredIndex(null)}>
-                     {/* Header */}
-                     <div className="mb-16">
-                        <motion.span
-                          className="text-lg font-medium mb-4 block opacity-50"
-                          style={{ color: textColor }}
-                        >
-                          {aboutTexts.valueProposition.label}
-                        </motion.span>
-                        <motion.h2
-                          className="text-4xl md:text-5xl font-normal leading-tight"
-                          style={{ color: textColor }}
-                        >
-                          {aboutTexts.valueProposition.title}
-                        </motion.h2>
-                     </div>
-
-                     {/* Solutions List with Hover Image */}
-                     <div className="relative">
-                        {companyContent.valueProps.map((item, idx) => {
-                           const isHovered = hoveredIndex === idx;
-                           
-                           return (
-                              <motion.div 
-                                 key={idx} 
-                                 className="relative flex items-center py-6 md:py-0 md:h-[120px] border-b-[1.5px] cursor-pointer group"
-                                 style={{ borderColor: textColor }}
-                                 onMouseEnter={() => setHoveredIndex(idx)}
-                              >
-                                 <div className="w-full flex justify-between items-center z-10 relative">
-                                    <motion.h4
-                                      className={`w-full text-[28px] md:text-[32px] font-normal leading-tight transition-opacity duration-300`}
-                                      style={{
-                                        color: textColor,
-                                        opacity: isHovered ? 1 : 0.4
-                                      }}
-                                    >
-                                       <span className="mr-4">0{idx + 1} /</span>
-                                       <span>{item.text}</span>
-                                    </motion.h4>
-                                 </div>
-                              </motion.div>
-                           );
-                        })}
-
-                        {/* Floating Image with Animation */}
-                        <div className="absolute inset-0 pointer-events-none z-20 hidden lg:block">
-                           <AnimatePresence>
-                              {hoveredIndex !== null && (
-                                 <motion.div 
-                                    className="absolute top-0 right-0 w-[450px] h-[280px]"
-                                    initial={{ opacity: 0, y: (hoveredIndex * 120) - 60 }}
-                                    animate={{ opacity: 1, y: (hoveredIndex * 120) - 60 }}
-                                    exit={{ opacity: 0 }}
-                                    transition={{ duration: 0.3, ease: "easeOut" }}
-                                 >
-                                    <motion.div
-                                      initial={{ scale: 0.9 }}
-                                      animate={{ scale: 1 }}
-                                      exit={{ scale: 0.9 }}
-                                      className="w-full h-full rounded-[20px] overflow-hidden shadow-2xl"
-                                    >
-                                       <img src={valueImage} className="w-full h-full object-cover" alt="Value Proposition" />
-                                    </motion.div>
-                                 </motion.div>
-                              )}
-                           </AnimatePresence>
-                        </div>
-                     </div>
-                  </div>
-               </Container>
-            </Section>
+            <ValueProposition />
 
             <Section className="bg-transparent py-32">
                <Container>
