@@ -25,12 +25,12 @@ export function EthicsLine() {
               {/* Text Section */}
               <div className="content-stretch flex flex-col lg:flex-row gap-[40px] lg:gap-[60px] items-start relative shrink-0 w-full max-w-[1340px] mx-auto">
                 <div className="content-stretch flex flex-col gap-[9px] items-start relative w-full lg:w-1/2">
-                  <p className="font-['Neue_Augenblick:Medium',sans-serif] leading-[24px] not-italic relative shrink-0 text-[24px] text-[rgba(73,73,73,0.5)] w-full">
+                  <p className="leading-[24px] not-italic relative shrink-0 text-[24px] text-[rgba(73,73,73,0.5)] w-full font-['Neue_Augenblick:Regular',sans-serif]">
                     Nuestro Compromiso con la Integridad
                   </p>
                 </div>
                 <div className="content-stretch flex gap-[20px] items-start relative w-full lg:w-1/2">
-                  <p className="basis-0 font-['Neue_Augenblick:Regular',sans-serif] grow leading-[38px] lg:leading-[48px] min-h-px min-w-px not-italic relative shrink-0 text-[28px] md:text-[35px] lg:text-[45px] text-black">
+                  <p className="basis-0 grow leading-[38px] lg:leading-[48px] min-h-px min-w-px not-italic relative shrink-0 text-[28px] md:text-[35px] lg:text-[45px] text-black font-['Neue_Augenblick:Regular',sans-serif]">
                     En Yobel, la ética y la transparencia son pilares fundamentales de nuestra cultura.
                   </p>
                 </div>
@@ -49,7 +49,7 @@ export function EthicsLine() {
                     
                     {/* First Item - Description */}
                     <div className="box-border content-stretch flex flex-col gap-[20px] items-start px-0 py-[30px] lg:py-[40px] relative shrink-0 w-full border-b border-[rgba(73,73,73,0.2)]">
-                      <p className="font-['Neue_Augenblick:Regular',sans-serif] leading-[24px] not-italic relative shrink-0 text-[18px] lg:text-[22px] text-[rgba(73,73,73,0.5)] w-full">
+                      <p className="leading-[24px] not-italic relative shrink-0 text-[18px] lg:text-[22px] text-[rgba(73,73,73,0.5)] w-full font-['Neue_Augenblick:Regular',sans-serif]">
                         En tal sentido, ponemos a disposición de nuestros colaboradores, clientes, proveedores y público en general, nuestro canal de denuncias para reportar en buena fe y de forma segura y confidencial, cualquier conducta que consideren nos ayude a prevenir y combatir:
                       </p>
                     </div>
@@ -61,7 +61,7 @@ export function EthicsLine() {
                           <path d={svgPaths.p148cd180} stroke="black" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" />
                         </svg>
                       </div>
-                      <p className="basis-0 font-['Neue_Augenblick:Regular',sans-serif] grow leading-[24px] min-h-px min-w-px not-italic relative shrink-0 text-[18px] lg:text-[22px] text-black">
+                      <p className="basis-0 grow leading-[24px] min-h-px min-w-px not-italic relative shrink-0 text-[18px] lg:text-[22px] text-black font-['Neue_Augenblick:Regular',sans-serif]">
                         La corrupción de funcionarios
                       </p>
                     </div>
@@ -72,7 +72,7 @@ export function EthicsLine() {
                           <path d={svgPaths.p148cd180} stroke="black" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" />
                         </svg>
                       </div>
-                      <p className="basis-0 font-['Neue_Augenblick:Regular',sans-serif] grow leading-[24px] min-h-px min-w-px not-italic relative shrink-0 text-[18px] lg:text-[22px] text-black">
+                      <p className="basis-0 grow leading-[24px] min-h-px min-w-px not-italic relative shrink-0 text-[18px] lg:text-[22px] text-black font-['Neue_Augenblick:Regular',sans-serif]">
                         El lavado de activos
                       </p>
                     </div>
@@ -83,7 +83,7 @@ export function EthicsLine() {
                           <path d={svgPaths.p148cd180} stroke="black" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" />
                         </svg>
                       </div>
-                      <p className="basis-0 font-['Neue_Augenblick:Regular',sans-serif] grow leading-[24px] min-h-px min-w-px not-italic relative shrink-0 text-[18px] lg:text-[22px] text-black">
+                      <p className="basis-0 grow leading-[24px] min-h-px min-w-px not-italic relative shrink-0 text-[18px] lg:text-[22px] text-black font-['Neue_Augenblick:Regular',sans-serif]">
                         El financiamiento del terrorismo
                       </p>
                     </div>
@@ -94,7 +94,7 @@ export function EthicsLine() {
                           <path d={svgPaths.p148cd180} stroke="black" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" />
                         </svg>
                       </div>
-                      <p className="basis-0 font-['Neue_Augenblick:Regular',sans-serif] grow leading-[24px] min-h-px min-w-px not-italic relative shrink-0 text-[18px] lg:text-[22px] text-black">
+                      <p className="basis-0 grow leading-[24px] min-h-px min-w-px not-italic relative shrink-0 text-[18px] lg:text-[22px] text-black font-['Neue_Augenblick:Regular',sans-serif]">
                         El tráfico de influencias
                       </p>
                     </div>
@@ -105,7 +105,7 @@ export function EthicsLine() {
                           <path d={svgPaths.p148cd180} stroke="black" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" />
                         </svg>
                       </div>
-                      <p className="basis-0 font-['Neue_Augenblick:Regular',sans-serif] grow leading-[24px] min-h-px min-w-px not-italic relative shrink-0 text-[18px] lg:text-[22px] text-black">
+                      <p className="basis-0 grow leading-[24px] min-h-px min-w-px not-italic relative shrink-0 text-[18px] lg:text-[22px] text-black font-['Neue_Augenblick:Regular',sans-serif]">
                         Las prácticas que atenten contra la libre competencia
                       </p>
                     </div>
@@ -116,7 +116,7 @@ export function EthicsLine() {
                           <path d={svgPaths.p148cd180} stroke="black" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" />
                         </svg>
                       </div>
-                      <p className="basis-0 font-['Neue_Augenblick:Regular',sans-serif] grow leading-[24px] min-h-px min-w-px not-italic relative shrink-0 text-[18px] lg:text-[22px] text-black">
+                      <p className="basis-0 grow leading-[24px] min-h-px min-w-px not-italic relative shrink-0 text-[18px] lg:text-[22px] text-black font-['Neue_Augenblick:Regular',sans-serif]">
                         Cualquier otra conducta que vulnere nuestro código de ética o políticas de prevención
                       </p>
                     </div>
@@ -125,7 +125,7 @@ export function EthicsLine() {
                   {/* Button */}
                   <a href="/ethics/report" className="w-full flex justify-center lg:justify-start">
                     <div className="box-border content-stretch flex gap-[12px] items-center justify-center px-[24px] py-[14px] lg:p-[16px] relative rounded-[30px] shrink-0 border-[1.5px] border-black hover:bg-black hover:text-white transition-colors duration-300 cursor-pointer">
-                      <p className="font-['Neue_Augenblick:Medium',sans-serif] leading-[24px] not-italic relative shrink-0 text-[20px] lg:text-[24px] text-center text-nowrap whitespace-pre">
+                      <p className="leading-[24px] not-italic relative shrink-0 text-[20px] lg:text-[24px] text-center text-nowrap whitespace-pre font-['Neue_Augenblick:Regular',sans-serif]">
                         Crear Reporte
                       </p>
                     </div>
