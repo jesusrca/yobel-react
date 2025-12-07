@@ -275,66 +275,64 @@ export function FullScreenMenu({ onClose, onSearchClick }: FullScreenMenuProps) 
            </div>
            
            {/* --- Mobile Layout (lg:hidden) --- */}
-           <div className="flex lg:hidden flex-col h-full pt-4">
+           <div className="flex lg:hidden flex-col h-full pt-4 overflow-y-auto">
               {/* Mobile Search */}
               <button
                 onClick={onSearchClick}
-                className="flex items-center gap-4 text-xl text-white/80 border-b border-white/20 pb-4 mb-4 hover:text-white transition-colors flex-shrink-0"
+                className="flex items-center gap-4 text-xl text-white/80 border-b border-white/20 pb-4 mb-4 hover:text-white transition-colors"
               >
                   <Search className="w-6 h-6 text-white" strokeWidth={1.5} />
                   <span>Buscar en el sitio...</span>
               </button>
 
-              {/* Scrollable Menu Items */}
-              <div className="flex-1 overflow-y-auto">
-                 <div className="flex flex-col gap-6">
-                    {menuItems.map(item => {
-                       const isOpen = activeCategory === item.title;
-                       return (
-                       <div key={item.id} className="flex flex-col border-b border-white/10 pb-2">
-                          <button
-                             onClick={() => setActiveCategory(isOpen ? "" : item.title)}
-                             className="flex items-center justify-between text-xl md:text-2xl font-medium py-3"
-                          >
-                             <div className="flex gap-3">
-                                <span className="text-white/40 text-lg">{item.id}</span>
-                                <span className={isOpen ? "text-[#fff066]" : "text-white"}>{item.title}</span>
-                             </div>
-                             <div className={cn("transition-transform duration-300", isOpen ? "rotate-180" : "")}>
-                                <ChevronDown className="w-6 h-6 text-white" strokeWidth={1.5} />
-                             </div>
-                          </button>
+              {/* Menu Items */}
+              <div className="flex flex-col gap-6">
+                 {menuItems.map(item => {
+                    const isOpen = activeCategory === item.title;
+                    return (
+                    <div key={item.id} className="flex flex-col border-b border-white/10 pb-2">
+                       <button
+                          onClick={() => setActiveCategory(isOpen ? "" : item.title)}
+                          className="flex items-center justify-between text-xl md:text-2xl font-medium py-3"
+                       >
+                          <div className="flex gap-3">
+                             <span className="text-white/40 text-lg">{item.id}</span>
+                             <span className={isOpen ? "text-[#fff066]" : "text-white"}>{item.title}</span>
+                          </div>
+                          <div className={cn("transition-transform duration-300", isOpen ? "rotate-180" : "")}>
+                             <ChevronDown className="w-6 h-6 text-white" strokeWidth={1.5} />
+                          </div>
+                       </button>
 
-                          <AnimatePresence>
-                             {isOpen && (
-                                <motion.div
-                                   initial={{ height: 0, opacity: 0 }}
-                                   animate={{ height: "auto", opacity: 1 }}
-                                   exit={{ height: 0, opacity: 0 }}
-                                   className="overflow-hidden"
-                                >
-                                   <div className="flex flex-col gap-4 pl-10 py-4">
-                                      {item.items.map((sub, idx) => (
-                                         <Link
-                                            key={idx}
-                                            to={sub.path}
-                                            onClick={onClose}
-                                            className="text-lg text-gray-300 hover:text-white py-1 block"
-                                         >
-                                            {sub.name}
-                                         </Link>
-                                      ))}
-                                   </div>
-                                </motion.div>
-                             )}
-                          </AnimatePresence>
-                       </div>
-                    )})}
-                 </div>
+                       <AnimatePresence>
+                          {isOpen && (
+                             <motion.div
+                                initial={{ height: 0, opacity: 0 }}
+                                animate={{ height: "auto", opacity: 1 }}
+                                exit={{ height: 0, opacity: 0 }}
+                                className="overflow-hidden"
+                             >
+                                <div className="flex flex-col gap-4 pl-10 py-4">
+                                   {item.items.map((sub, idx) => (
+                                      <Link
+                                         key={idx}
+                                         to={sub.path}
+                                         onClick={onClose}
+                                         className="text-lg text-gray-300 hover:text-white py-1 block"
+                                      >
+                                         {sub.name}
+                                      </Link>
+                                   ))}
+                                </div>
+                             </motion.div>
+                          )}
+                       </AnimatePresence>
+                    </div>
+                 )})}
               </div>
 
-              {/* Mobile Buttons - Fixed at bottom */}
-              <div className="flex-shrink-0 mt-8">
+              {/* Mobile Buttons */}
+              <div className="mt-8">
                  {/* Mobile Tracking Button */}
                  <button className="w-full py-4 border border-white rounded-full text-xl font-medium hover:bg-white hover:text-black transition-colors mb-4">
                      Tracking de Envíos
