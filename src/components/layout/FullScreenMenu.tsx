@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 import { Search, ChevronDown } from "lucide-react";
 import svgPaths from "../../imports/svg-1hie16nw8a";
 import { cn } from "../ui/utils";
-import { useCountry } from "/contexts/CountryContext";
+import { useCountry } from "../../contexts/CountryContext";
 import { getCountryCode } from "../../utils/countryUtils";
 import { CountryPopup } from "./CountryPopup";
 

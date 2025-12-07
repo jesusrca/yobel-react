@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "motion/react";
 import svgPaths from "../../imports/svg-djl5v4gr4k";
 import { cn } from "../ui/utils";
 import { Copy, Check, ChevronDown } from "lucide-react";
-import { useCountry } from "/contexts/CountryContext";
+import { useCountry } from "../../contexts/CountryContext";
 
 function Logo() {
   return (

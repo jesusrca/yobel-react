@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { motion } from "motion/react";
 import svgPaths from "../../imports/svg-mb78q7u1ko";
 import { CountryFlag } from "./CountryFlags";
-import { useCountry } from "/contexts/CountryContext";
+import { useCountry } from "../../contexts/CountryContext";
 
 interface CountryPopupProps {
   isOpen: boolean;
