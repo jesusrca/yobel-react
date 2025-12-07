@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
-import imgImagen from "figma:asset/ef749d8cdc32d6b2e190c007c039bf534bdfe8e7.png";
+import imgImagen from "../../assets/home-yoble-image2.webp";
 import svgPaths from "../../imports/svg-1euews6kv9";
 
 export function BigImage() {

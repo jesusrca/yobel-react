@@ -21,31 +21,31 @@ const solutions = [
     id: "01",
     title: "Almacenamiento Seguro",
     description: "Infraestructura con sistemas de acceso restringido, monitoreo 24/7 y control estricto de humedad y temperatura para componentes sensibles.",
-    image: "https://images.unsplash.com/photo-1553406830-ef2513450d76?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZWNobm9sb2d5JTIwd2FyZWhvdXNlJTIwZGlzdHJpYnV0aW9uJTIwZWxlY3Ryb25pY3N8ZW58MXx8fHwxNzY0NDE1NTQyfDA&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "assets/industrias/11_tech-electronica.jpeg"
   },
   {
     id: "02",
     title: "Distribución Tecnológica",
     description: "Abastecimiento a retail, canales corporativos y clientes finales con trazabilidad total y medidas de seguridad reforzadas.",
-    image: "https://images.unsplash.com/photo-1553406830-ef2513450d76?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZWNobm9sb2d5JTIwd2FyZWhvdXNlJTIwZGlzdHJpYnV0aW9uJTIwZWxlY3Ryb25pY3N8ZW58MXx8fHwxNzY0NDE1NTQyfDA&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "assets/industrias/11_tech-electronica.jpeg"
   },
   {
     id: "03",
     title: "Valor Agregado (VAS)",
     description: "Etiquetado, armado de kits tecnológicos, carga de software, reacondicionado y empaques promocionales personalizados.",
-    image: "https://images.unsplash.com/photo-1553406830-ef2513450d76?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZWNobm9sb2d5JTIwd2FyZWhvdXNlJTIwZGlzdHJpYnV0aW9uJTIwZWxlY3Ryb25pY3N8ZW58MXx8fHwxNzY0NDE1NTQyfDA&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "assets/industrias/11_tech-electronica.jpeg"
   },
   {
     id: "04",
     title: "Transporte Especializado",
     description: "Unidades equipadas con suspensión neumática y GPS dedicadas al traslado seguro de equipos delicados o de alto valor.",
-    image: "https://images.unsplash.com/photo-1553406830-ef2513450d76?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZWNobm9sb2d5JTIwd2FyZWhvdXNlJTIwZGlzdHJpYnV0aW9uJTIwZWxlY3Ryb25pY3N8ZW58MXx8fHwxNzY0NDE1NTQyfDA&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "assets/industrias/11_tech-electronica.jpeg"
   },
   {
     id: "05",
     title: "Comercio Exterior",
     description: "Coordinación integral de importaciones, exportaciones y nacionalización de dispositivos electrónicos para lanzamientos sincronizados.",
-    image: "https://images.unsplash.com/photo-1553406830-ef2513450d76?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZWNobm9sb2d5JTIwd2FyZWhvdXNlJTIwZGlzdHJpYnV0aW9uJTIwZWxlY3Ryb25pY3N8ZW58MXx8fHwxNzY0NDE1NTQyfDA&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "assets/industrias/11_tech-electronica.jpeg"
   }
 ];
 
@@ -119,7 +119,7 @@ export function Tech() {
         <Container>
           <BenefitsSection 
             title="Seguridad, trazabilidad y eficiencia"
-            image="https://images.unsplash.com/photo-1553406830-ef2513450d76?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZWNobm9sb2d5JTIwd2FyZWhvdXNlJTIwZGlzdHJpYnV0aW9uJTIwZWxlY3Ryb25pY3N8ZW58MXx8fHwxNzY0NDE1NTQyfDA&ixlib=rb-4.1.0&q=80&w=1080"
+            image="assets/industrias/11_tech-electronica.jpeg"
             imageAlt="Benefits"
             benefits={benefits}
           />
@@ -131,7 +131,7 @@ export function Tech() {
         label="Aplicaciones"
         title="Casos de uso típicos"
         solutions={useCases}
-        imageUrl="https://images.unsplash.com/photo-1553406830-ef2513450d76?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZWNobm9sb2d5JTIwd2FyZWhvdXNlJTIwZGlzdHJpYnV0aW9uJTIwZWxlY3Ryb25pY3N8ZW58MXx8fHwxNzY0NDE1NTQyfDA&ixlib=rb-4.1.0&q=80&w=1080"
+        imageUrl="assets/industrias/11_tech-electronica.jpeg"
         imageAlt="Tecnología y Electrónica"
       />
 

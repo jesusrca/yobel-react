@@ -24,31 +24,31 @@ const solutions = [
     id: "01",
     title: "Manufactura",
     description: "Procesamos, envasamos y reacondicionamos productos alimenticios y bebidas bajo control sanitario, cumpliendo normas de inocuidad y trazabilidad por lote.",
-    image: "https://images.unsplash.com/photo-1698474922963-a091a8fb4e95?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmb29kJTIwYmV2ZXJhZ2UlMjBwcm9kdWN0aW9uJTIwbGluZSUyMHdhcmVob3VzZXxlbnwxfHx8fDE3NjQ0MTI3MTB8MA&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "assets/industrias/1_alimentos_bebidas.jpeg"
   },
   {
     id: "02",
     title: "Almacenamiento Frío",
     description: "Contamos con zonas de refrigeración, cuarentena sanitaria y WMS avanzado para monitoreo en tiempo real de la cadena de frío.",
-    image: "https://images.unsplash.com/photo-1698474922963-a091a8fb4e95?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmb29kJTIwYmV2ZXJhZ2UlMjBwcm9kdWN0aW9uJTIwbGluZSUyMHdhcmVob3VzZXxlbnwxfHx8fDE3NjQ0MTI3MTB8MA&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "assets/industrias/1_alimentos_bebidas.jpeg"
   },
   {
     id: "03",
     title: "Valor Agregado (VAS)",
     description: "Servicios de reempaque, etiquetado nutricional, armado de packs y promociones con control por lote y auditoría.",
-    image: "https://images.unsplash.com/photo-1698474922963-a091a8fb4e95?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmb29kJTIwYmV2ZXJhZ2UlMjBwcm9kdWN0aW9uJTIwbGluZSUyMHdhcmVob3VzZXxlbnwxfHx8fDE3NjQ0MTI3MTB8MA&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "assets/industrias/1_alimentos_bebidas.jpeg"
   },
   {
     id: "04",
     title: "Distribución",
     description: "Rutas optimizadas para productos perecibles, con entregas programadas B2B y B2C en todo el país, asegurando la integridad del producto.",
-    image: "https://images.unsplash.com/photo-1698474922963-a091a8fb4e95?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmb29kJTIwYmV2ZXJhZ2UlMjBwcm9kdWN0aW9uJTIwbGluZSUyMHdhcmVob3VzZXxlbnwxfHx8fDE3NjQ0MTI3MTB8MA&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "assets/industrias/1_alimentos_bebidas.jpeg"
   },
   {
     id: "05",
     title: "Comercio Exterior",
     description: "Gestión integral de importación/exportación, trámites aduaneros y nacionalización de materias primas y productos terminados.",
-    image: "https://images.unsplash.com/photo-1698474922963-a091a8fb4e95?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmb29kJTIwYmV2ZXJhZ2UlMjBwcm9kdWN0aW9uJTIwbGluZSUyMHdhcmVob3VzZXxlbnwxfHx8fDE3NjQ0MTI3MTB8MA&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "assets/industrias/1_alimentos_bebidas.jpeg"
   }
 ];
 
@@ -128,7 +128,7 @@ export function FoodAndBeverage() {
         <Container>
           <BenefitsSection 
             title="Nos enfocamos en optimizar tiempos y trazabilidad"
-            image="https://images.unsplash.com/photo-1578351709091-33ee78a1565d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb2xkJTIwc3RvcmFnZSUyMHdhcmVob3VzZSUyMGZvb2QlMjBzYWZldHl8ZW58MXx8fHwxNzY0NDEyNzE0fDA&ixlib=rb-4.1.0&q=80&w=1080"
+            image="assets/industrias/1_alimentos_bebidas.jpeg"
             imageAlt="Benefits"
             benefits={benefits}
           />
@@ -140,7 +140,7 @@ export function FoodAndBeverage() {
         label="Aplicaciones"
         title="Casos de uso típicos"
         solutions={useCases}
-        imageUrl="https://images.unsplash.com/photo-1739204618173-3e89def7140f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmb29kJTIwYmV2ZXJhZ2UlMjB3YXJlaG91c2UlMjBkaXN0cmlidXRpb258ZW58MXx8fHwxNzY0Nzc2NTMxfDA&ixlib=rb-4.1.0&q=80&w=1080"
+        imageUrl="assets/industrias/1_alimentos_bebidas.jpeg"
         imageAlt="Distribución de alimentos y bebidas"
       />
 

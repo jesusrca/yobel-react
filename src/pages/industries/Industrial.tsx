@@ -21,31 +21,31 @@ const solutions = [
     id: "01",
     title: "Abastecimiento In-House",
     description: "Operamos directamente dentro de tus plantas o centros productivos para garantizar un flujo continuo de materiales y componentes.",
-    image: "https://images.unsplash.com/photo-1764114908655-9a26d32750a0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbmR1c3RyaWFsJTIwbWFudWZhY3R1cmluZyUyMGZhY3RvcnklMjBtYWNoaW5lcnl8ZW58MXx8fHwxNzY0MTk1MjA1fDA&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "@/assets/industrias/8_manu-industrial.jpeg"
   },
   {
     id: "02",
     title: "Almacenamiento Industrial",
     description: "Gestión avanzada de inventarios con WMS, control por lote, peso, dimensiones o tipo de material.",
-    image: "https://images.unsplash.com/photo-1764114908655-9a26d32750a0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbmR1c3RyaWFsJTIwbWFudWZhY3R1cmluZyUyMGZhY3RvcnklMjBtYWNoaW5lcnl8ZW58MXx8fHwxNzY0MTk1MjA1fDA&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "@/assets/industrias/8_manu-industrial.jpeg"
   },
   {
     id: "03",
     title: "Transporte Especializado",
     description: "Rutas planificadas para abastecimiento B2B, distribución nacional o exportación de productos terminados.",
-    image: "https://images.unsplash.com/photo-1764114908655-9a26d32750a0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbmR1c3RyaWFsJTIwbWFudWZhY3R1cmluZyUyMGZhY3RvcnklMjBtYWNoaW5lcnl8ZW58MXx8fHwxNzY0MTk1MjA1fDA&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "@/assets/industrias/8_manu-industrial.jpeg"
   },
   {
     id: "04",
     title: "Valor Agregado (VAS)",
     description: "Kitting, armado de sets industriales, empaques técnicos y reacondicionado de piezas o repuestos.",
-    image: "https://images.unsplash.com/photo-1764114908655-9a26d32750a0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbmR1c3RyaWFsJTIwbWFudWZhY3R1cmluZyUyMGZhY3RvcnklMjBtYWNoaW5lcnl8ZW58MXx8fHwxNzY0MTk1MjA1fDA&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "@/assets/industrias/8_manu-industrial.jpeg"
   },
   {
     id: "05",
     title: "Comercio Exterior",
     description: "Coordinación integral de importaciones y exportaciones de maquinaria, materias primas y productos industriales.",
-    image: "https://images.unsplash.com/photo-1764114908655-9a26d32750a0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbmR1c3RyaWFsJTIwbWFudWZhY3R1cmluZyUyMGZhY3RvcnklMjBtYWNoaW5lcnl8ZW58MXx8fHwxNzY0MTk1MjA1fDA&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "@/assets/industrias/8_manu-industrial.jpeg"
   }
 ];
 
@@ -117,9 +117,9 @@ export function Industrial() {
       {/* Benefits Section */}
       <Section className="bg-white py-20">
         <Container>
-          <BenefitsSection 
+          <BenefitsSection
             title="Eficiencia, control y seguridad operativa"
-            image="https://images.unsplash.com/photo-1764114908655-9a26d32750a0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbmR1c3RyaWFsJTIwbWFudWZhY3R1cmluZyUyMGZhY3RvcnklMjBtYWNoaW5lcnl8ZW58MXx8fHwxNzY0MTk1MjA1fDA&ixlib=rb-4.1.0&q=80&w=1080"
+            image="@/assets/industrias/8_manu-industrial.jpeg"
             imageAlt="Benefits"
             benefits={benefits}
           />
@@ -127,11 +127,11 @@ export function Industrial() {
       </Section>
 
       {/* Process / Use Cases Section */}
-      <SolutionsShowcase 
+      <SolutionsShowcase
         label="Aplicaciones"
         title="Casos de uso típicos"
         solutions={useCases}
-        imageUrl="https://images.unsplash.com/photo-1764114908655-9a26d32750a0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbmR1c3RyaWFsJTIwbWFudWZhY3R1cmluZyUyMGZhY3RvcnklMjBtYWNoaW5lcnl8ZW58MXx8fHwxNzY0MTk1MjA1fDA&ixlib=rb-4.1.0&q=80&w=1080"
+        imageUrl="@/assets/industrias/8_manu-industrial.jpeg"
         imageAlt="Industria Manufacturera"
       />
 

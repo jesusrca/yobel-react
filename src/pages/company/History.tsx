@@ -1,5 +1,5 @@
 import React from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform } from "motion/react";
 import { HistoryHero } from "../../components/company/HistoryHero";
 import { HistoryTimeline } from "../../components/company/HistoryTimeline";
 import { Section } from "../../components/ui/custom-section";

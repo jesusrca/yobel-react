@@ -1,6 +1,6 @@
 import React from "react";
 import svgPaths from "../../imports/svg-hyd0y3kqgz";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 function YobelLogo() {
   return (

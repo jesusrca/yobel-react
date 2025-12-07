@@ -436,6 +436,7 @@
     background-color: var(--background);
     color: var(--foreground);
     font-family: NeueAugenblick, Space Grotesk, sans-serif;
+    font-weight: 400;
   }
 
   :where(:not(:has([class*=" text-"]), :not(:has([class^="text-"])))) h1 {
@@ -5854,7 +5855,7 @@
 
 @font-face {
   font-family: NeueAugenblick;
-  src: url("https://circular.ws/fonts/NeueAugenblick-Regular.woff") format("woff2");
+  src: url("./assets/fonts/NeueAugenblick-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -5862,7 +5863,7 @@
 
 @font-face {
   font-family: NeueAugenblick;
-  src: url("https://circular.ws/fonts/NeueAugenblick-Regular.woff") format("woff2");
+  src: url("./assets/fonts/NeueAugenblick-Bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -5870,8 +5871,24 @@
 
 @font-face {
   font-family: NeueAugenblick;
-  src: url("https://raw.githubusercontent.com/jesusrca/Yobelfinal/main/src/fonts/NeueAugenblick-LightItalic.woff2") format("woff2");
+  src: url("./assets/fonts/NeueAugenblick-Light.ttf") format("truetype");
   font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: NeueAugenblick;
+  src: url("./assets/fonts/NeueAugenblick-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: NeueAugenblick;
+  src: url("./assets/fonts/NeueAugenblick-RegularItalic.ttf") format("truetype");
+  font-weight: 400;
   font-style: italic;
   font-display: swap;
 }

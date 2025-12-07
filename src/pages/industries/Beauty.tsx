@@ -21,31 +21,31 @@ const solutions = [
     id: "01",
     title: "Manufactura Cosmética",
     description: "Producción, envasado y reacondicionado de cosméticos, fragancias y artículos de higiene bajo estándares BPM y normativas sanitarias internacionales.",
-    image: "https://images.unsplash.com/photo-1622866027662-14e3c5ee67e7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3NtZXRpY3MlMjBsYWJvcmF0b3J5JTIwcHJvZHVjdGlvbiUyMGJlYXV0eSUyMHByb2R1Y3RzfGVufDF8fHx8MTc2NDQxMjc2OHww&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "assets/industrias/2_bellesa_cui-personal.jpeg"
   },
   {
     id: "02",
     title: "Almacenamiento Regulado",
     description: "Conservación de productos sensibles en entornos con temperatura y humedad controlada, garantizando trazabilidad por lote y fecha de vencimiento.",
-    image: "https://images.unsplash.com/photo-1622866027662-14e3c5ee67e7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3NtZXRpY3MlMjBsYWJvcmF0b3J5JTIwcHJvZHVjdGlvbiUyMGJlYXV0eSUyMHByb2R1Y3RzfGVufDF8fHx8MTc2NDQxMjc2OHww&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "assets/industrias/2_bellesa_cui-personal.jpeg"
   },
   {
     id: "03",
     title: "Distribución Omnicanal",
     description: "Entregas B2B, retail y e-commerce con visibilidad total, seguridad y cumplimiento OTIF 99.6%.",
-    image: "https://images.unsplash.com/photo-1622866027662-14e3c5ee67e7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3NtZXRpY3MlMjBsYWJvcmF0b3J5JTIwcHJvZHVjdGlvbiUyMGJlYXV0eSUyMHByb2R1Y3RzfGVufDF8fHx8MTc2NDQxMjc2OHww&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "assets/industrias/2_bellesa_cui-personal.jpeg"
   },
   {
     id: "04",
     title: "Valor Agregado (VAS)",
     description: "Armado de kits promocionales, etiquetado, codificado y empaques personalizados para lanzamientos o temporadas.",
-    image: "https://images.unsplash.com/photo-1622866027662-14e3c5ee67e7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3NtZXRpY3MlMjBsYWJvcmF0b3J5JTIwcHJvZHVjdGlvbiUyMGJlYXV0eSUyMHByb2R1Y3RzfGVufDF8fHx8MTc2NDQxMjc2OHww&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "assets/industrias/2_bellesa_cui-personal.jpeg"
   },
   {
     id: "05",
     title: "Comercio Exterior",
     description: "Coordinación de importaciones de materias primas y exportaciones de productos terminados, asegurando cumplimiento sanitario y aduanero.",
-    image: "https://images.unsplash.com/photo-1622866027662-14e3c5ee67e7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3NtZXRpY3MlMjBsYWJvcmF0b3J5JTIwcHJvZHVjdGlvbiUyMGJlYXV0eSUyMHByb2R1Y3RzfGVufDF8fHx8MTc2NDQxMjc2OHww&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "assets/industrias/2_bellesa_cui-personal.jpeg"
   }
 ];
 
@@ -119,7 +119,7 @@ export function Beauty() {
         <Container>
           <BenefitsSection 
             title="Calidad, trazabilidad y eficiencia operativa"
-            image="https://images.unsplash.com/photo-1739204618173-3e89def7140f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3NtZXRpY3MlMjBwYWNrYWdpbmclMjB3YXJlaG91c2V8ZW58MXx8fHwxNzY0NDEyNjUyfDA&ixlib=rb-4.1.0&q=80&w=1080"
+            image="assets/industrias/2_bellesa_cui-personal.jpeg"
             imageAlt="Benefits"
             benefits={benefits}
           />
@@ -131,7 +131,7 @@ export function Beauty() {
         label="Aplicaciones"
         title="Casos de uso típicos"
         solutions={useCases}
-        imageUrl="https://images.unsplash.com/photo-1622866027662-14e3c5ee67e7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3NtZXRpY3MlMjBsYWJvcmF0b3J5JTIwcHJvZHVjdGlvbiUyMGJlYXV0eSUyMHByb2R1Y3RzfGVufDF8fHx8MTc2NDQxMjc2OHww&ixlib=rb-4.1.0&q=80&w=1080"
+        imageUrl="assets/industrias/2_bellesa_cui-personal.jpeg"
         imageAlt="Cosmética y Cuidado Personal"
       />
 

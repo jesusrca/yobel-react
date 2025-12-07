@@ -21,31 +21,31 @@ const solutions = [
     id: "01",
     title: "Almacenamiento en Obra",
     description: "Administramos inventarios directamente en obra o en nuestras instalaciones, con tecnología WMS y control de materiales por lote o proyecto.",
-    image: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb25zdHJ1Y3Rpb24lMjBtYXRlcmlhbHMlMjB3YXJlaG91c2UlMjBzdG9yYWdlfGVufDF8fHx8MTc2NDQxNTczMnww&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "assets/industrias/4_contruccion.jpeg"
   },
   {
     id: "02",
     title: "Distribución Programada",
     description: "Planificamos rutas y entregas según cronograma de obra, evitando demoras y sobrecostos logísticos innecesarios.",
-    image: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb25zdHJ1Y3Rpb24lMjBtYXRlcmlhbHMlMjB3YXJlaG91c2UlMjBzdG9yYWdlfGVufDF8fHx8MTc2NDQxNTczMnww&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "assets/industrias/4_contruccion.jpeg"
   },
   {
     id: "03",
     title: "Courier Técnico",
     description: "Entregas urgentes de muestras, planos o piezas críticas con trazabilidad en tiempo real para no detener la operación.",
-    image: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb25zdHJ1Y3Rpb24lMjBtYXRlcmlhbHMlMjB3YXJlaG91c2UlMjBzdG9yYWdlfGVufDF8fHx8MTc2NDQxNTczMnww&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "assets/industrias/4_contruccion.jpeg"
   },
   {
     id: "04",
     title: "Valor Agregado (VAS)",
     description: "Kitting y armado de kits de instalación o mantenimiento listos para uso inmediato en el punto de montaje.",
-    image: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb25zdHJ1Y3Rpb24lMjBtYXRlcmlhbHMlMjB3YXJlaG91c2UlMjBzdG9yYWdlfGVufDF8fHx8MTc2NDQxNTczMnww&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "assets/industrias/4_contruccion.jpeg"
   },
   {
     id: "05",
     title: "Comercio Exterior",
     description: "Coordinamos importación y despacho de maquinaria, insumos y materiales especializados desde cualquier parte del mundo.",
-    image: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb25zdHJ1Y3Rpb24lMjBtYXRlcmlhbHMlMjB3YXJlaG91c2UlMjBzdG9yYWdlfGVufDF8fHx8MTc2NDQxNTczMnww&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "assets/industrias/4_contruccion.jpeg"
   }
 ];
 
@@ -119,7 +119,7 @@ export function Construction() {
         <Container>
           <BenefitsSection 
             title="Disponibilidad, control y eficiencia"
-            image="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb25zdHJ1Y3Rpb24lMjBtYXRlcmlhbHMlMjB3YXJlaG91c2UlMjBzdG9yYWdlfGVufDF8fHx8MTc2NDQxNTczMnww&ixlib=rb-4.1.0&q=80&w=1080"
+            image="assets/industrias/4_contruccion.jpeg"
             imageAlt="Benefits"
             benefits={benefits}
           />
@@ -131,7 +131,7 @@ export function Construction() {
         label="Aplicaciones"
         title="Casos de uso típicos"
         solutions={useCases}
-        imageUrl="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb25zdHJ1Y3Rpb24lMjBtYXRlcmlhbHMlMjB3YXJlaG91c2UlMjBzdG9yYWdlfGVufDF8fHx8MTc2NDQxNTczMnww&ixlib=rb-4.1.0&q=80&w=1080"
+        imageUrl="assets/industrias/4_contruccion.jpeg"
         imageAlt="Construcción e Infraestructura"
       />
 

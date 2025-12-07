@@ -21,31 +21,31 @@ const solutions = [
     id: "01",
     title: "Almacenamiento Omnicanal",
     description: "Gestión centralizada de inventario por tienda, canal o marketplace con tecnología WMS para asegurar disponibilidad en tiempo real.",
-    image: "https://images.unsplash.com/photo-1671427478482-2968e71a6311?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXRhaWwlMjBzdG9yZSUyMHxvZ2lzdGljcyUyMHdhcmVob3VzZSUyMHNob3BwaW5nfGVufDF8fHx8MTc2NDQxNTM4NXww&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "assets/industrias/10_reatil.jpeg"
   },
   {
     id: "02",
     title: "Distribución Nacional",
     description: "Abastecimiento de tiendas, supermercados y entregas directas al cliente final con trazabilidad 24/7 y cumplimiento estricto de ventanas horarias.",
-    image: "https://images.unsplash.com/photo-1671427478482-2968e71a6311?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXRhaWwlMjBzdG9yZSUyMHxvZ2lzdGljcyUyMHdhcmVob3VzZSUyMHNob3BwaW5nfGVufDF8fHx8MTc2NDQxNTM4NXww&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "assets/industrias/10_reatil.jpeg"
   },
   {
     id: "03",
     title: "Valor Agregado (VAS)",
     description: "Etiquetado, armado de combos, empaques promocionales y preparación personalizada según los requerimientos de cada canal de venta.",
-    image: "https://images.unsplash.com/photo-1671427478482-2968e71a6311?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXRhaWwlMjBzdG9yZSUyMHxvZ2lzdGljcyUyMHdhcmVob3VzZSUyMHNob3BwaW5nfGVufDF8fHx8MTc2NDQxNTM4NXww&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "assets/industrias/10_reatil.jpeg"
   },
   {
     id: "04",
     title: "Fulfillment E-commerce",
     description: "Preparación, empaque y despacho ágil de pedidos online con integración directa a tu plataforma digital (Shopify, VTEX, Magento, etc.).",
-    image: "https://images.unsplash.com/photo-1671427478482-2968e71a6311?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXRhaWwlMjBzdG9yZSUyMHxvZ2lzdGljcyUyMHdhcmVob3VzZSUyMHNob3BwaW5nfGVufDF8fHx8MTc2NDQxNTM4NXww&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "assets/industrias/10_reatil.jpeg"
   },
   {
     id: "05",
     title: "Comercio Exterior",
     description: "Gestión de importaciones, despacho aduanero y transporte internacional de mercancías retail para asegurar el stock de temporada.",
-    image: "https://images.unsplash.com/photo-1671427478482-2968e71a6311?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXRhaWwlMjBzdG9yZSUyMHxvZ2lzdGljcyUyMHdhcmVob3VzZSUyMHNob3BwaW5nfGVufDF8fHx8MTc2NDQxNTM4NXww&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "assets/industrias/10_reatil.jpeg"
   }
 ];
 
@@ -119,7 +119,7 @@ export function Retail() {
         <Container>
           <BenefitsSection 
             title="Disponibilidad, eficiencia y experiencia"
-            image="https://images.unsplash.com/photo-1664455340023-214c33a9d0bd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlY29tbWVyY2UlMjBkZWxpdmVyeSUyMHBhY2thZ2VzJTIwb25saW5lJTIwc2hvcHBpbmd8ZW58MXx8fHwxNzY0NDE1Mzg4fDA&ixlib=rb-4.1.0&q=80&w=1080"
+            image="assets/industrias/10_reatil.jpeg"
             imageAlt="Benefits"
             benefits={benefits}
           />
@@ -131,7 +131,7 @@ export function Retail() {
         label="Aplicaciones"
         title="Casos de uso típicos"
         solutions={useCases}
-        imageUrl="https://images.unsplash.com/photo-1671427478482-2968e71a6311?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXRhaWwlMjBzdG9yZSUyMHxvZ2lzdGljcyUyMHdhcmVob3VzZSUyMHNob3BwaW5nfGVufDF8fHx8MTc2NDQxNTM4NXww&ixlib=rb-4.1.0&q=80&w=1080"
+        imageUrl="assets/industrias/10_reatil.jpeg"
         imageAlt="Retail"
       />
 

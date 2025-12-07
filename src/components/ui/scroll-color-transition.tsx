@@ -1,5 +1,5 @@
 import React from "react";
-import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
+import { motion, useScroll, useTransform, MotionValue } from "motion/react";
 
 interface ScrollColorTransitionProps {
   children: (textColor: MotionValue<string>) => React.ReactNode;

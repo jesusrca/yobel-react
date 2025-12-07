@@ -5,7 +5,7 @@ import { Container } from "../components/ui/custom-container";
 import { Button } from "../components/ui/button";
 import svgPaths from "../imports/svg-biijegtt4v";
 import { Download } from "lucide-react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform } from "motion/react";
 
 export function Tarifas() {
   const pdfUrl = "https://circular.ws/yobel/Tarifas-Yobel.pdf";

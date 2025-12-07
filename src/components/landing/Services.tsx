@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { InteractiveList } from "../ui/InteractiveList";
-import imgComex from "figma:asset/b94e87eb574754035d4788fe21930672651cb6ac.png";
-import imgManufactura from "figma:asset/ecce90734732751a4bc28b6dbd70ffe655c57b16.png";
-import imgValorAgregado from "figma:asset/95ebfea3e27fbddd6fe8803e814394cf22a368a9.png";
-import imgDistribucion from "figma:asset/4288be58a4ef94beb9d8a69085417550e080ee9b.png";
-import imgAlmacenamiento from "figma:asset/bc92ff65ed742074ad9e86d0d196130c5b3c4401.png";
-import imgCourier from "figma:asset/80542a74be9bc879ecf905bddf6ee80ddd8d25a7.png";
+import imgComex from "@/assets/servicios/comercio_exterior.jpeg";
+import imgManufactura from "@/assets/servicios/manufactura.jpeg";
+import imgValorAgregado from "@/assets/servicios/valor_agregado.jpeg";
+import imgDistribucion from "@/assets/servicios/distribucion.jpeg";
+import imgAlmacenamiento from "@/assets/servicios/almacenamiento.jpeg";
+import imgCourier from "@/assets/servicios/courier_express.jpeg";
 
 const services = [
   {

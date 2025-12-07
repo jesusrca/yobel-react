@@ -21,31 +21,31 @@ const solutions = [
     id: "01",
     title: "Manufactura y acondicionamiento de productos del hogar",
     description: "Producción, envasado y reacondicionado de artículos de limpieza, ambientadores y utensilios, cumpliendo estándares BPM y de seguridad.",
-    image: "https://images.unsplash.com/photo-1585421514738-01798e348b17?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxob21lJTIwY2FyZSUyMHByb2R1Y3RzJTIwd2FyZWhvdXNlJTIwY2xlYW5pbmd8ZW58MXx8fHwxNzY0NDE1NjIxfDA&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "assets/industrias/5_cuidado-hogar.jpeg"
   },
   {
     id: "02",
     title: "Almacenamiento flexible y seguro",
     description: "Gestión de inventarios por cada línea de producto o canal de venta, con WMS y control por lote o fecha de vencimiento.",
-    image: "https://images.unsplash.com/photo-1585421514738-01798e348b17?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxob21lJTIwY2FyZSUyMHByb2R1Y3RzJTIwd2FyZWhvdXNlJTIwY2xlYW5pbmd8ZW58MXx8fHwxNzY0NDE1NjIxfDA&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "assets/industrias/5_cuidado-hogar.jpeg"
   },
   {
     id: "03",
     title: "Distribución nacional e internacional",
     description: "Entregas B2B, retail y e-commerce con trazabilidad total y cumplimiento OTIF 99.6%",
-    image: "https://images.unsplash.com/photo-1585421514738-01798e348b17?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxob21lJTIwY2FyZSUyMHByb2R1Y3RzJTIwd2FyZWhvdXNlJTIwY2xlYW5pbmd8ZW58MXx8fHwxNzY0NDE1NjIxfDA&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "assets/industrias/5_cuidado-hogar.jpeg"
   },
   {
     id: "04",
     title: "Valor Agregado (VAS)",
     description: "Kitting, armado de packs promocionales, etiquetado y personalización para temporadas o lanzamientos.",
-    image: "https://images.unsplash.com/photo-1585421514738-01798e348b17?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxob21lJTIwY2FyZSUyMHByb2R1Y3RzJTIwd2FyZWhvdXNlJTIwY2xlYW5pbmd8ZW58MXx8fHwxNzY0NDE1NjIxfDA&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "assets/industrias/5_cuidado-hogar.jpeg"
   },
   {
     id: "05",
     title: "Comercio exterior (COMEX)",
     description: "Coordinación de importaciones y exportaciones de materias primas y productos terminados para abastecer mercados regionales.",
-    image: "https://images.unsplash.com/photo-1585421514738-01798e348b17?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxob21lJTIwY2FyZSUyMHByb2R1Y3RzJTIwd2FyZWhvdXNlJTIwY2xlYW5pbmd8ZW58MXx8fHwxNzY0NDE1NjIxfDA&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "assets/industrias/5_cuidado-hogar.jpeg"
   }
 ];
 
@@ -119,7 +119,7 @@ export function HomeCare() {
         <Container>
           <BenefitsSection 
             title="Nos enfocamos en agilidad, trazabilidad y optimización"
-            image="https://images.unsplash.com/photo-1585421514738-01798e348b17?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxob21lJTIwY2FyZSUyMHByb2R1Y3RzJTIwd2FyZWhvdXNlJTIwY2xlYW5pbmd8ZW58MXx8fHwxNzY0NDE1NjIxfDA&ixlib=rb-4.1.0&q=80&w=1080"
+            image="assets/industrias/5_cuidado-hogar.jpeg"
             imageAlt="Benefits"
             benefits={benefits}
           />
@@ -131,7 +131,7 @@ export function HomeCare() {
         label="Aplicaciones"
         title="Casos de uso típicos"
         solutions={useCases}
-        imageUrl="https://images.unsplash.com/photo-1585421514738-01798e348b17?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxob21lJTIwY2FyZSUyMHByb2R1Y3RzJTIwd2FyZWhvdXNlJTIwY2xlYW5pbmd8ZW58MXx8fHwxNzY0NDE1NjIxfDA&ixlib=rb-4.1.0&q=80&w=1080"
+        imageUrl="assets/industrias/5_cuidado-hogar.jpeg"
         imageAlt="Cuidado del Hogar"
       />
 

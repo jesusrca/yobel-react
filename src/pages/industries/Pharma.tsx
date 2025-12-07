@@ -21,31 +21,31 @@ const solutions = [
     id: "01",
     title: "Manufactura Farmacéutica",
     description: "Producimos, envasamos y reacondicionamos medicamentos y productos sanitarios cumpliendo estrictos estándares regulatorios nacionales e internacionales.",
-    image: "https://images.unsplash.com/photo-1576669801838-1b1c52121e6a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwaGFybWFjZXV0aWNhbCUyMG1hbnVmYWN0dXJpbmclMjBsYWJvcmF0b3J5JTIwbWVkaWNpbmV8ZW58MXx8fHwxNzY0NDE1MjUyfDA&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "assets/industrias/7_farmaceutica.jpeg"
   },
   {
     id: "02",
     title: "Almacenamiento Regulado",
     description: "Operamos con temperatura controlada, áreas segregadas y cuarentena sanitaria para garantizar la inocuidad y el cumplimiento normativo.",
-    image: "https://images.unsplash.com/photo-1576669801838-1b1c52121e6a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwaGFybWFjZXV0aWNhbCUyMG1hbnVmYWN0dXJpbmclMjBsYWJvcmF0b3J5JTIwbWVkaWNpbmV8ZW58MXx8fHwxNzY0NDE1MjUyfDA&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "assets/industrias/7_farmaceutica.jpeg"
   },
   {
     id: "03",
     title: "Distribución Sanitaria",
     description: "Entregas a droguerías, hospitales, clínicas y puntos de venta con visibilidad en tiempo real y control estricto por lote.",
-    image: "https://images.unsplash.com/photo-1576669801838-1b1c52121e6a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwaGFybWFjZXV0aWNhbCUyMG1hbnVmYWN0dXJpbmclMjBsYWJvcmF0b3J5JTIwbWVkaWNpbmV8ZW58MXx8fHwxNzY0NDE1MjUyfDA&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "assets/industrias/7_farmaceutica.jpeg"
   },
   {
     id: "04",
     title: "Valor Agregado (VAS)",
     description: "Etiquetado sanitario, codificación, armado de kits hospitalarios y empaques promocionales con validación regulatoria.",
-    image: "https://images.unsplash.com/photo-1576669801838-1b1c52121e6a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwaGFybWFjZXV0aWNhbCUyMG1hbnVmYWN0dXJpbmclMjBsYWJvcmF0b3J5JTIwbWVkaWNpbmV8ZW58MXx8fHwxNzY0NDE1MjUyfDA&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "assets/industrias/7_farmaceutica.jpeg"
   },
   {
     id: "05",
     title: "Comercio Exterior",
     description: "Gestión aduanera y transporte internacional de materias primas, insumos activos y productos terminados bajo normativa sanitaria.",
-    image: "https://images.unsplash.com/photo-1576669801838-1b1c52121e6a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwaGFybWFjZXV0aWNhbCUyMG1hbnVmYWN0dXJpbmclMjBsYWJvcmF0b3J5JTIwbWVkaWNpbmV8ZW58MXx8fHwxNzY0NDE1MjUyfDA&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "assets/industrias/7_farmaceutica.jpeg"
   }
 ];
 
@@ -119,7 +119,7 @@ export function Pharma() {
         <Container>
           <BenefitsSection 
             title="Cumplimiento, trazabilidad y eficiencia"
-            image="https://images.unsplash.com/photo-1608243499710-5ebece89a37d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb2xkJTIwY2hhaW4lMjBsb2dpc3RpY3MlMjB2YWNjaW5lfGVufDF8fHx8MTc2NDQxNTI1NHww&ixlib=rb-4.1.0&q=80&w=1080"
+            image="assets/industrias/7_farmaceutica.jpeg"
             imageAlt="Benefits"
             benefits={benefits}
           />
@@ -131,7 +131,7 @@ export function Pharma() {
         label="Aplicaciones"
         title="Casos de uso típicos"
         solutions={useCases}
-        imageUrl="https://images.unsplash.com/photo-1576669801838-1b1c52121e6a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwaGFybWFjZXV0aWNhbCUyMG1hbnVmYWN0dXJpbmclMjBsYWJvcmF0b3J5JTIwbWVkaWNpbmV8ZW58MXx8fHwxNzY0NDE1MjUyfDA&ixlib=rb-4.1.0&q=80&w=1080"
+        imageUrl="assets/industrias/7_farmaceutica.jpeg"
         imageAlt="Industria Farmacéutica"
       />
 

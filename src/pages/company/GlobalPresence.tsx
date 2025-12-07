@@ -13,7 +13,7 @@ import { ScrollRevealString } from "../../components/ui/scroll-reveal-text";
 import { LocationCard } from "../../components/company/LocationCard";
 import { CountryTimeHeader } from "../../components/company/CountryTimeHeader";
 import { MapPin, ChevronDown } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 interface Location {
   city: string;

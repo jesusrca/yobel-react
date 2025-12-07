@@ -21,31 +21,31 @@ const solutions = [
     id: "01",
     title: "Almacenamiento Especializado",
     description: "Instalaciones con áreas segregadas, ventilación controlada y cumplimiento de normativas nacionales e internacionales para sustancias químicas.",
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaGVtaWNhbCUyMHdhcmVob3VzZSUyMGluZHVzdHJpYWwlMjBzdG9yYWdlfGVufDF8fHx8MTc2NDQxNTY3Nnww&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "assets/industrias/9_quimicos.jpeg"
   },
   {
     id: "02",
     title: "Transporte Seguro",
     description: "Rutas planificadas y vehículos habilitados para transporte de sustancias controladas y materiales peligrosos con monitoreo GPS.",
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaGVtaWNhbCUyMHdhcmVob3VzZSUyMGluZHVzdHJpYWwlMjBzdG9yYWdlfGVufDF8fHx8MTc2NDQxNTY3Nnww&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "assets/industrias/9_quimicos.jpeg"
   },
   {
     id: "03",
     title: "Valor Agregado (VAS)",
     description: "Reenvasado, etiquetado regulatorio, kitting industrial y reacondicionado de productos con control estricto por lote.",
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaGVtaWNhbCUyMHdhcmVob3VzZSUyMGluZHVzdHJpYWwlMjBzdG9yYWdlfGVufDF8fHx8MTc2NDQxNTY3Nnww&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "assets/industrias/9_quimicos.jpeg"
   },
   {
     id: "04",
     title: "Gestión Documental",
     description: "Control exhaustivo de permisos, fichas de seguridad (MSDS) y documentación de transporte para evitar contingencias.",
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaGVtaWNhbCUyMHdhcmVob3VzZSUyMGluZHVzdHJpYWwlMjBzdG9yYWdlfGVufDF8fHx8MTc2NDQxNTY3Nnww&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "assets/industrias/9_quimicos.jpeg"
   },
   {
     id: "05",
     title: "Comercio Exterior",
     description: "Coordinación integral de importaciones y exportaciones bajo normativas químicas, ambientales y aduaneras específicas.",
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaGVtaWNhbCUyMHdhcmVob3VzZSUyMGluZHVzdHJpYWwlMjBzdG9yYWdlfGVufDF8fHx8MTc2NDQxNTY3Nnww&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "assets/industrias/9_quimicos.jpeg"
   }
 ];
 
@@ -119,7 +119,7 @@ export function Chemicals() {
         <Container>
           <BenefitsSection 
             title="Seguridad, cumplimiento y control"
-            image="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaGVtaWNhbCUyMHdhcmVob3VzZSUyMGluZHVzdHJpYWwlMjBzdG9yYWdlfGVufDF8fHx8MTc2NDQxNTY3Nnww&ixlib=rb-4.1.0&q=80&w=1080"
+            image="assets/industrias/9_quimicos.jpeg"
             imageAlt="Benefits"
             benefits={benefits}
           />
@@ -131,7 +131,7 @@ export function Chemicals() {
         label="Aplicaciones"
         title="Casos de uso típicos"
         solutions={useCases}
-        imageUrl="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaGVtaWNhbCUyMHdhcmVob3VzZSUyMGluZHVzdHJpYWwlMjBzdG9yYWdlfGVufDF8fHx8MTc2NDQxNTY3Nnww&ixlib=rb-4.1.0&q=80&w=1080"
+        imageUrl="assets/industrias/9_quimicos.jpeg"
         imageAlt="Industria Química"
       />
 

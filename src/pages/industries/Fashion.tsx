@@ -21,31 +21,31 @@ const solutions = [
     id: "01",
     title: "Almacenamiento Textil",
     description: "Manejo cuidadoso de prendas, calzado y accesorios con clasificación por talla, color, temporada y canal, asegurando la integridad de cada pieza.",
-    image: "https://images.unsplash.com/photo-1558769132-cb1aea8f2c95?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmYXNoaW9uJTIwd2FyZWhvdXNlJTIwY2xvdGhpbmclMjBzdG9yYWdlfGVufDF8fHx8MTc2NDQxNTQ0N3ww&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "assets/industrias/3_calzado-moda.jpeg"
   },
   {
     id: "02",
     title: "Distribución Omnicanal",
     description: "Entregas a tiendas, marketplaces y consumidores finales con trazabilidad total y cumplimiento OTIF 99.6%.",
-    image: "https://images.unsplash.com/photo-1558769132-cb1aea8f2c95?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmYXNoaW9uJTIwd2FyZWhvdXNlJTIwY2xvdGhpbmclMjBzdG9yYWdlfGVufDF8fHx8MTc2NDQxNTQ0N3ww&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "assets/industrias/3_calzado-moda.jpeg"
   },
   {
     id: "03",
     title: "Valor Agregado (VAS)",
     description: "Planchado, etiquetado, armado de combos, empaques promocionales y personalización por punto de venta.",
-    image: "https://images.unsplash.com/photo-1558769132-cb1aea8f2c95?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmYXNoaW9uJTIwd2FyZWhvdXNlJTIwY2xvdGhpbmclMjBzdG9yYWdlfGVufDF8fHx8MTc2NDQxNTQ0N3ww&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "assets/industrias/3_calzado-moda.jpeg"
   },
   {
     id: "04",
     title: "Logística Inversa",
     description: "Gestión de devoluciones, control de calidad, reacondicionado y reempaque para reventa o liquidación eficiente.",
-    image: "https://images.unsplash.com/photo-1558769132-cb1aea8f2c95?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmYXNoaW9uJTIwd2FyZWhvdXNlJTIwY2xvdGhpbmclMjBzdG9yYWdlfGVufDF8fHx8MTc2NDQxNTQ0N3ww&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "assets/industrias/3_calzado-moda.jpeg"
   },
   {
     id: "05",
     title: "Comercio Exterior",
     description: "Coordinación de importación y exportación de textiles y accesorios, cumpliendo regulaciones y tiempos de temporada.",
-    image: "https://images.unsplash.com/photo-1558769132-cb1aea8f2c95?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmYXNoaW9uJTIwd2FyZWhvdXNlJTIwY2xvdGhpbmclMjBzdG9yYWdlfGVufDF8fHx8MTc2NDQxNTQ0N3ww&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "assets/industrias/3_calzado-moda.jpeg"
   }
 ];
 
@@ -119,7 +119,7 @@ export function Fashion() {
         <Container>
           <BenefitsSection 
             title="Agilidad, trazabilidad y flexibilidad"
-            image="https://images.unsplash.com/photo-1558769132-cb1aea8f2c95?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmYXNoaW9uJTIwd2FyZWhvdXNlJTIwY2xvdGhpbmclMjBzdG9yYWdlfGVufDF8fHx8MTc2NDQxNTQ0N3ww&ixlib=rb-4.1.0&q=80&w=1080"
+            image="assets/industrias/3_calzado-moda.jpeg"
             imageAlt="Benefits"
             benefits={benefits}
           />
@@ -131,7 +131,7 @@ export function Fashion() {
         label="Aplicaciones"
         title="Casos de uso típicos"
         solutions={useCases}
-        imageUrl="https://images.unsplash.com/photo-1558769132-cb1aea8f2c95?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmYXNoaW9uJTIwd2FyZWhvdXNlJTIwY2xvdGhpbmclMjBzdG9yYWdlfGVufDF8fHx8MTc2NDQxNTQ0N3ww&ixlib=rb-4.1.0&q=80&w=1080"
+        imageUrl="assets/industrias/3_calzado-moda.jpeg"
         imageAlt="Moda y Textil"
       />
 
