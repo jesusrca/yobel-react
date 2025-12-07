@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "motion/react";
-import imgImage5 from "figma:asset/9ac8347172b026af959d42786a41d5d5a429a366.png";
+import historiaImage from "../../assets/historia-image.webp";
 import { imgImage4 } from "../../imports/svg-w7fud";
 
 export function HistoryImageBlock() {
@@ -26,10 +26,10 @@ export function HistoryImageBlock() {
             WebkitMaskPosition: "center center"
           }}
         >
-          <img 
-            alt="Yobel laboratorio" 
-            className="w-full h-full object-cover" 
-            src={imgImage5} 
+          <img
+            alt="Yobel laboratorio"
+            className="w-full h-full object-cover"
+            src={historiaImage}
           />
         </div>
       </div>
