@@ -54,7 +54,7 @@ export function ConsumerIdentity() {
         <CleanInput label="Referencia" placeholder="Frente al parque..." />
         
         <div className="md:col-span-3">
-            <CleanInput label="Correo electrónico" placeholder="nombre@ejemplo.com" type="email" required />
+            <CleanInput label="Correo electrónico" placeholder="nombreejemplo.com" type="email" required />
         </div>
       </div>
 

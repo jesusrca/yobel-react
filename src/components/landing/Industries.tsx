@@ -1,5 +1,7 @@
+"use client";
+
 import React, { useRef } from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { motion } from "motion/react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
@@ -112,7 +114,7 @@ export function Industries({ className, useOrangeGradient = false }: { className
            initial={{ opacity: 0, filter: "blur(10px)", y: 50 }}
            whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
            viewport={{ once: true, margin: "-50px" }}
-           transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+           transition={{ duration: 0.8, delay: 0.2 }}
          >
            <ThreeColumnLayout 
              label="Industrias"
@@ -128,7 +130,7 @@ export function Industries({ className, useOrangeGradient = false }: { className
            initial={{ opacity: 0, filter: "blur(10px)", y: 50 }}
            whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
            viewport={{ once: true, margin: "-50px" }}
-           transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
+           transition={{ duration: 0.8, delay: 0.4 }}
          >
             {/* Left Blur Overlay - Targeted to Image Height */}
             <div className="absolute left-0 top-0 h-[60vw] md:h-[25vw] max-h-[450px] w-16 md:w-32 z-10 pointer-events-none backdrop-blur-[1px]" style={{ maskImage: 'linear-gradient(to right, black, transparent)', WebkitMaskImage: 'linear-gradient(to right, black, transparent)' }} />
@@ -152,7 +154,7 @@ export function Industries({ className, useOrangeGradient = false }: { className
                                onMouseUp={handleMouseUp}
                             >
                                 <Link
-                                  to={ind.path}
+                                  href={ind.path}
                                   className="flex flex-col gap-5 w-full cursor-pointer block"
                                   onClick={(e) => {
                                     if (isDragging) {

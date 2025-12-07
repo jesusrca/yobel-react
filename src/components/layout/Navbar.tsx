@@ -5,7 +5,7 @@ import svgPaths from "../../imports/svg-biijegtt4v";
 import { FullScreenMenu } from "./FullScreenMenu";
 import { SearchOverlay } from "./SearchOverlay";
 import { CountryPopup } from "./CountryPopup";
-import { useCountry } from "../../contexts/CountryContext";
+import { useCountry } from "/contexts/CountryContext";
 import { getCountryCode } from "../../utils/countryUtils";
 
 export function Navbar() {

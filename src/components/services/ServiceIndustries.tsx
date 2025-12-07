@@ -1,5 +1,7 @@
+"use client";
+
 import React from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { Section } from "../ui/custom-section";
 import { Container } from "../ui/custom-container";
 
@@ -42,7 +44,7 @@ export function ServiceIndustries({ title, description, industries }: ServiceInd
 
             if (ind.link) {
               return (
-                <Link key={idx} to={ind.link} className={containerClasses}>
+                <Link key={idx} href={ind.link} className={containerClasses}>
                   {CardContent}
                 </Link>
               );

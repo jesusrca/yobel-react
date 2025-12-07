@@ -1,3 +1,4 @@
+"use client";
 import React, { useRef } from "react";
 import { Section } from "../ui/custom-section";
 import { Container } from "../ui/custom-container";
@@ -56,9 +57,9 @@ export function UseCasesSection({
                     viewport={{ once: true, margin: "-100px" }}
                     animate={{ backgroundPosition: ["0% 0%", "0% 100%"] }}
                     transition={{ 
-                      opacity: { duration: 0.8, ease: "easeOut" },
-                      y: { duration: 0.8, ease: "easeOut" },
-                      filter: { duration: 0.8, ease: "easeOut" },
+                      opacity: { duration: 0.8,  },
+                      y: { duration: 0.8,  },
+                      filter: { duration: 0.8,  },
                       backgroundPosition: { duration: 3, repeat: Infinity, ease: "linear", repeatType: "reverse" }
                     }}
                   >

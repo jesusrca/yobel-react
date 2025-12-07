@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { motion } from "motion/react";
 import svgPaths from "../../imports/svg-mb78q7u1ko";
 import { CountryFlag } from "./CountryFlags";
-import { useCountry } from "../../contexts/CountryContext";
+import { useCountry } from "/contexts/CountryContext";
 
 interface CountryPopupProps {
   isOpen: boolean;
@@ -229,7 +229,6 @@ function Contenido({
 }) {
   return (
     <div className="content-stretch flex flex-col gap-[32px] items-start relative shrink-0 w-full" data-name="Contenido">
-      <Up selectedCountry={selectedCountry} />
       <Primary selectedCountry={selectedCountry} onContinue={onContinue} />
       <p className="font-augenblick leading-[16px] not-italic relative shrink-0 text-[14px] text-black text-center w-full">O</p>
       <Form 
@@ -280,7 +279,7 @@ export function CountryPopup({ isOpen, onClose }: CountryPopupProps) {
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.9, opacity: 0 }}
-        transition={{ duration: 0.3, ease: "easeOut" }}
+        transition={{ duration: 0.3,  }}
       >
         <div aria-hidden="true" className="absolute border border-[rgba(255,255,255,0.6)] border-solid inset-0 pointer-events-none rounded-[15px]" />
         <div className="flex flex-col items-end size-full">

@@ -1,3 +1,4 @@
+"use client";
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import { bigImageContent } from "../../data/bigImage";
@@ -21,7 +22,7 @@ export function BigImage() {
       initial={{ opacity: 0, filter: "blur(10px)", y: 100 }}
       whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
       viewport={{ once: true, margin: "-10%" }}
-      transition={{ duration: 1, ease: "easeOut" }}
+      transition={{ duration: 1,  }}
     >
       <div className="w-full h-[600px] md:h-[850px] relative overflow-hidden">
         <img src={bigImageContent.image} alt={bigImageContent.alt} className="absolute inset-0 w-full h-full object-cover" />

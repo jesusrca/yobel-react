@@ -1,6 +1,8 @@
+"use client";
+
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 export function FloatingMenu() {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,7 +18,7 @@ export function FloatingMenu() {
             className="flex flex-col items-end gap-4 mb-2"
           >
             <div className="bg-white shadow-lg rounded-full px-6 py-3 text-xl cursor-pointer hover:bg-gray-50">Tracking</div>
-            <Link to="/contacto" className="bg-white shadow-lg rounded-full px-6 py-3 text-xl cursor-pointer hover:bg-gray-50 block">Contacto</Link>
+            <Link href="/contacto" className="bg-white shadow-lg rounded-full px-6 py-3 text-xl cursor-pointer hover:bg-gray-50 block">Contacto</Link>
           </motion.div>
         )}
       </AnimatePresence>

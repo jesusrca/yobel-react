@@ -1,3 +1,4 @@
+"use client";
 import React, { useRef } from "react";
 import { motion } from "motion/react";
 import svgPaths from "../../imports/svg-biijegtt4v";
@@ -28,7 +29,7 @@ export function ValueProp() {
       filter: "blur(0px)",
       transition: {
         duration: 0.6,
-        ease: "easeOut"
+        
       }
     }
   };
@@ -41,7 +42,7 @@ export function ValueProp() {
           initial={{ opacity: 0, filter: "blur(10px)", y: 50 }}
           whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
         >
           {/* Left Side: Title Section */}
           <div className="flex flex-col gap-8 max-w-4xl">
@@ -119,7 +120,7 @@ export function ValueProp() {
         initial={{ opacity: 0, filter: "blur(10px)", y: 100 }}
         whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
         viewport={{ once: true, margin: "-10%" }}
-        transition={{ duration: 1, ease: "easeOut" }}
+        transition={{ duration: 1,  }}
       >
         <video
           src="https://circular.ws/yobel/camion.mp4"

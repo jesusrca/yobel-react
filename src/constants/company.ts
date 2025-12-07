@@ -54,7 +54,10 @@ export const globalPresenceTexts = {
     label: "Presencia Global",
     title: "Conectamos tu cadena de suministro desde {globalSelectedCountry} hacia 9 países de Latinoamérica"
   },
-  phrase: "Operamos con conexión directa a puertos, aeropuertos y redes logísticas nacionales, integrando manufactura, almacenamiento, distribución y comercio exterior con estándares de calidad y seguridad.",
+  phrase: {
+    text: "Operamos con conexión directa a puertos, aeropuertos y redes logísticas nacionales, integrando manufactura, almacenamiento, distribución y comercio exterior con estándares de calidad y seguridad.",
+    textColor: "text-black"
+  },
   locations: {
     title: "Encuentra nuestros centros logísticos y oficinas cerca de ti",
     description: "Selecciona un país en el mapa para ver nuestras sedes locales."

@@ -1,10 +1,12 @@
+"use client";
+
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { motion, AnimatePresence } from "motion/react";
 import svgPaths from "../../imports/svg-djl5v4gr4k";
 import { cn } from "../ui/utils";
 import { Copy, Check, ChevronDown } from "lucide-react";
-import { useCountry } from "../../contexts/CountryContext";
+import { useCountry } from "/contexts/CountryContext";
 
 function Logo() {
   return (
@@ -106,7 +108,7 @@ export function Footer() {
   const handleCopyEmail = () => {
     // Fallback method for environments where Clipboard API is blocked
     const textArea = document.createElement("textarea");
-    textArea.value = "contacto@yobel.com.pe";
+    textArea.value = "contactoyobel.com.pe";
     textArea.style.position = "fixed";
     textArea.style.left = "-999999px";
     textArea.style.top = "-999999px";
@@ -158,7 +160,7 @@ export function Footer() {
                       onClick={handleCopyEmail}
                     >
                       <p className="text-[22px] md:text-[24px] group-hover:text-[#fff066] transition-colors duration-300">
-                        contacto@yobel.com.pe
+                        contactoyobel.com.pe
                       </p>
                       <div className="absolute -right-10 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         {emailCopied ? (
@@ -235,9 +237,9 @@ export function Footer() {
                                 >
                                     <div className="flex flex-col gap-4 mt-4 ml-12">
                                         {item.items.map((link, idx) => (
-                                            <Link 
-                                                key={idx} 
-                                                to={link.path}
+                                            <Link
+                                                key={idx}
+                                                href={link.path}
                                                 className="text-[20px] text-white/80 hover:text-white hover:underline transition-all w-fit"
                                             >
                                                 {link.name}
@@ -275,8 +277,8 @@ export function Footer() {
                             </span>
                         </div>
                     ))}
-                    <Link 
-                        to="#" 
+                    <Link
+                        href="#"
                         className="group flex items-center gap-4"
                     >
                         <span className="text-[22px] text-white transition-colors duration-300">
@@ -303,9 +305,9 @@ export function Footer() {
                              <p className="text-[16px] text-white/50 font-medium mb-2 opacity-0 select-none">SUBMENU</p> 
                             
                             {activeItems.map((link, idx) => (
-                                <Link 
-                                    key={idx} 
-                                    to={link.path}
+                                <Link
+                                    key={idx}
+                                    href={link.path}
                                     className="text-[22px] text-white hover:underline transition-all w-fit"
                                 >
                                     {link.name}
@@ -321,10 +323,10 @@ export function Footer() {
         <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-8 pt-8 border-t border-white/10">
              <p className="text-[18px] text-white">© Yobel {selectedCountry}</p>
              <div className="flex flex-wrap gap-6 md:gap-8">
-                 <Link to="/terminos-y-condiciones" className="text-[16px] text-white/50 hover:text-white hover:underline transition-all">Términos y Condiciones</Link>
-                 <Link to="/libro-reclamaciones" className="text-[16px] text-white/50 hover:text-white hover:underline transition-all">Libro de Reclamaciones</Link>
-                 <Link to="/politicas-de-privacidad" className="text-[16px] text-white/50 hover:text-white hover:underline transition-all">Privacidad</Link>
-                 <Link to="/politicas-de-cookies" className="text-[16px] text-white/50 hover:text-white hover:underline transition-all">Políticas de Cookies</Link>
+                 <Link href="/terminos-y-condiciones" className="text-[16px] text-white/50 hover:text-white hover:underline transition-all">Términos y Condiciones</Link>
+                 <Link href="/libro-reclamaciones" className="text-[16px] text-white/50 hover:text-white hover:underline transition-all">Libro de Reclamaciones</Link>
+                 <Link href="/politicas-de-privacidad" className="text-[16px] text-white/50 hover:text-white hover:underline transition-all">Privacidad</Link>
+                 <Link href="/politicas-de-cookies" className="text-[16px] text-white/50 hover:text-white hover:underline transition-all">Políticas de Cookies</Link>
              </div>
         </div>
 

@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Section } from "../ui/custom-section";
@@ -41,14 +42,14 @@ export function FAQItem({ question, answer }: FAQItemData) {
 
   return (
     <div className="border-b border-black py-9 relative">
-      <motion.button 
+      <motion.button
         onClick={() => setIsOpen(!isOpen)}
         onHoverStart={() => setIsHovered(true)}
         onHoverEnd={() => setIsHovered(false)}
         className="w-full flex items-center justify-between text-left group"
         initial={{ x: 0 }}
         animate={{ x: isHovered ? 20 : 0 }}
-        transition={{ duration: 0.3, ease: "easeOut" }}
+        transition={{ duration: 0.3 }}
       >
         <h3 className="text-xl md:text-[26px] text-black pr-8 font-[Neue_Augenblick]">{question}</h3>
         <div className="relative w-[30px] h-[30px] shrink-0">
@@ -100,18 +101,17 @@ export function FAQ({ items = defaultFaqs, className }: FAQProps) {
   };
 
   const wordVariants = {
-    hidden: { 
-      opacity: 0, 
-      y: 20, 
-      filter: "blur(8px)" 
+    hidden: {
+      opacity: 0,
+      y: 20,
+      filter: "blur(8px)"
     },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
+    visible: {
+      opacity: 1,
+      y: 0,
       filter: "blur(0px)",
       transition: {
-        duration: 0.6,
-        ease: "easeOut"
+        duration: 0.6
       }
     }
   };

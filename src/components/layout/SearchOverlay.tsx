@@ -1,6 +1,8 @@
+"use client";
+
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import { motion } from "motion/react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { Search, ChevronRight } from "lucide-react";
 import { searchIndex } from "../../data/searchIndex";
 
@@ -112,9 +114,9 @@ export function SearchOverlay({ onClose }: SearchOverlayProps) {
                 <div className="flex flex-col gap-4 w-full">
                     {results.length > 0 ? (
                         results.map((item, index) => (
-                            <Link 
+                            <Link
                                 key={index}
-                                to={item.path}
+                                href={item.path}
                                 onClick={onClose}
                                 className="group flex items-center justify-between py-4 border-b border-white/10 hover:border-white/50 transition-all"
                             >

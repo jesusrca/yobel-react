@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useEffect } from "react";
 import { cn } from "../ui/utils";
 import { motion } from "motion/react";

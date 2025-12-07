@@ -35,7 +35,7 @@ export function ContactModal({ trigger }: ContactModalProps) {
           </div>
           <div className="space-y-2">
             <label htmlFor="email" className="text-sm font-medium ml-1">Correo electrónico</label>
-            <Input id="email" type="email" placeholder="nombre@empresa.com" className="h-12 rounded-xl bg-gray-50 border-gray-200" />
+            <Input id="email" type="email" placeholder="nombreempresa.com" className="h-12 rounded-xl bg-gray-50 border-gray-200" />
           </div>
           <div className="space-y-2">
             <label htmlFor="message" className="text-sm font-medium ml-1">Mensaje</label>

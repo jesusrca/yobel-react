@@ -1,10 +1,13 @@
+"use client";
+
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Link, useLocation } from "react-router-dom";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Search, ChevronDown } from "lucide-react";
 import svgPaths from "../../imports/svg-1hie16nw8a";
 import { cn } from "../ui/utils";
-import { useCountry } from "../../contexts/CountryContext";
+import { useCountry } from "/contexts/CountryContext";
 import { getCountryCode } from "../../utils/countryUtils";
 import { CountryPopup } from "./CountryPopup";
 
@@ -83,11 +86,11 @@ const menuItems = [
 ];
 
 export function FullScreenMenu({ onClose, onSearchClick }: FullScreenMenuProps) {
-  const location = useLocation();
+  const pathname = usePathname();
   
   // Determine the initial active category based on current path
   const determineActiveCategory = () => {
-    const path = location.pathname;
+    const path = pathname;
     
     for (const menuItem of menuItems) {
       const matchingItem = menuItem.items.find(item => 
@@ -107,7 +110,7 @@ export function FullScreenMenu({ onClose, onSearchClick }: FullScreenMenuProps) 
   // Update active category when menu opens with current page
   useEffect(() => {
     setActiveCategory(determineActiveCategory());
-  }, [location.pathname]);
+  }, [pathname]);
   
   // Logic for displaying items on desktop
   const activeItemsDesktop = menuItems.find(item => item.title === activeCategory)?.items || [];
@@ -125,7 +128,7 @@ export function FullScreenMenu({ onClose, onSearchClick }: FullScreenMenuProps) 
       <div className="flex-none h-[80px] md:h-[100px] w-full flex justify-center px-4 pt-5 z-[70] bg-black relative">
         <div className="w-full max-w-[1340px] h-[56px] px-6 flex items-center justify-between">
             {/* Logo */}
-            <Link to="/" onClick={onClose} className="h-[30px] w-[80px] relative block hover:opacity-70 transition-opacity">
+            <Link href="/" onClick={onClose} className="h-[30px] w-[80px] relative block hover:opacity-70 transition-opacity">
               <svg className="w-full h-full" viewBox="0 0 94 36" fill="none">
                   <g>
                     <path d={svgPaths.p39b272b2} fill="white" />
@@ -234,9 +237,9 @@ export function FullScreenMenu({ onClose, onSearchClick }: FullScreenMenuProps) 
                               const linkPath = isNewsCategory ? `${link.path}?categoria=${encodeURIComponent(link.name)}` : link.path;
                               
                               return (
-                                  <Link 
-                                      key={idx} 
-                                      to={linkPath}
+                                  <Link
+                                      key={idx}
+                                      href={linkPath}
                                       onClick={onClose}
                                       className={`text-[22px] font-medium text-white ${hoverColor} transition-colors w-fit`}
                                   >
@@ -266,10 +269,10 @@ export function FullScreenMenu({ onClose, onSearchClick }: FullScreenMenuProps) 
 
                   {/* Legal Links */}
                   <div className="flex gap-4">
-                      <Link to="/terminos-y-condiciones" onClick={onClose} className="px-0 py-2 hover:text-white transition-colors">Términos y Condiciones</Link>
-                      <Link to="/libro-reclamaciones" onClick={onClose} className="px-0 py-2 hover:text-white transition-colors">Libro de Reclamaciones</Link>
-                      <Link to="/politicas-de-privacidad" onClick={onClose} className="px-0 py-2 hover:text-white transition-colors">Privacidad</Link>
-                      <Link to="/politicas-de-cookies" onClick={onClose} className="px-0 py-2 hover:text-white transition-colors">Políticas de Cookies</Link>
+                      <Link href="/terminos-y-condiciones" onClick={onClose} className="px-0 py-2 hover:text-white transition-colors">Términos y Condiciones</Link>
+                      <Link href="/libro-reclamaciones" onClick={onClose} className="px-0 py-2 hover:text-white transition-colors">Libro de Reclamaciones</Link>
+                      <Link href="/politicas-de-privacidad" onClick={onClose} className="px-0 py-2 hover:text-white transition-colors">Privacidad</Link>
+                      <Link href="/politicas-de-cookies" onClick={onClose} className="px-0 py-2 hover:text-white transition-colors">Políticas de Cookies</Link>
                   </div>
               </div>
            </div>
@@ -316,7 +319,7 @@ export function FullScreenMenu({ onClose, onSearchClick }: FullScreenMenuProps) 
                                    {item.items.map((sub, idx) => (
                                       <Link
                                          key={idx}
-                                         to={sub.path}
+                                         href={sub.path}
                                          onClick={onClose}
                                          className="text-lg text-gray-300 hover:text-white py-1 block"
                                       >
@@ -345,10 +348,10 @@ export function FullScreenMenu({ onClose, onSearchClick }: FullScreenMenuProps) 
 
                  {/* Legal Links Mobile */}
                  <div className="flex flex-col gap-4 text-sm text-white/40 px-2">
-                     <Link to="/terminos-y-condiciones" onClick={onClose}>Términos y Condiciones</Link>
-                     <Link to="/libro-reclamaciones" onClick={onClose}>Libro de Reclamaciones</Link>
-                     <Link to="/politicas-de-privacidad" onClick={onClose}>Privacidad</Link>
-                     <Link to="/politicas-de-cookies" onClick={onClose}>Políticas de Cookies</Link>
+                     <Link href="/terminos-y-condiciones" onClick={onClose}>Términos y Condiciones</Link>
+                     <Link href="/libro-reclamaciones" onClick={onClose}>Libro de Reclamaciones</Link>
+                     <Link href="/politicas-de-privacidad" onClick={onClose}>Privacidad</Link>
+                     <Link href="/politicas-de-cookies" onClick={onClose}>Políticas de Cookies</Link>
                  </div>
               </div>
            </div>

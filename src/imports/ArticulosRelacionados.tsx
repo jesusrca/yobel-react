@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom";
+"use client";
+
+import Link from "next/link";
 import { newsData } from "../data/news";
 
 function Marcador() {
@@ -35,7 +37,7 @@ interface CardNoticiaProps {
 
 function CardNoticia({ title, date, image, slug }: CardNoticiaProps) {
   return (
-    <Link to={`/noticias/${slug}`} className="content-stretch flex flex-col gap-[16px] items-start relative shrink-0 w-full max-w-[350px] hover:opacity-80 transition-opacity" data-name="Card Noticia">
+    <Link href={`/noticias/${slug}`} className="content-stretch flex flex-col gap-[16px] items-start relative shrink-0 w-full max-w-[350px] hover:opacity-80 transition-opacity" data-name="Card Noticia">
       <div className="h-[280px] relative rounded-[20px] shrink-0 w-full overflow-hidden" data-name="Image">
         <img alt={title} className="absolute inset-0 object-cover pointer-events-none rounded-[20px] size-full" src={image} />
       </div>

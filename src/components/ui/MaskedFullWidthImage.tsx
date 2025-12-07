@@ -1,6 +1,7 @@
+"use client";
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
-import imgImage5 from "figma:asset/9ac8347172b026af959d42786a41d5d5a429a366.png";
+const imgImage5 = "/src/assets/hero-video.jpg";
 import { imgImage4 } from "../../imports/svg-0odmx";
 
 export function MaskedFullWidthImage() {

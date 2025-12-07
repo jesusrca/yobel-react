@@ -1,3 +1,4 @@
+"use client";
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import logoPaths from "../../imports/svg-qgocns5d8m";

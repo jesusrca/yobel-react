@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 import { InteractiveList } from "../ui/InteractiveList";
 import { services } from "../../data/services";
