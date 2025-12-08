@@ -57,9 +57,9 @@
             "@types/react": "19.2.7",
             "typescript": "5.9.3"
       },
-      "scripts": {
+  "scripts": {
       "dev": "next dev",
-      "build": "next build",
+      "build": "next build --webpack",
       "start": "next start",
       "lint": "next lint"
   }
