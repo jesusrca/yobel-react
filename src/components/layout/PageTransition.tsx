@@ -1,4 +1,3 @@
-"use client";
 import React, { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import Vector from "../../imports/Vector-101-2184";
@@ -41,7 +40,7 @@ export function PageTransition() {
         transition={{
           opacity: { 
             duration: 1.0, 
-             
+            ease: "easeOut" 
           },
           scale: { 
             duration: 4.5,

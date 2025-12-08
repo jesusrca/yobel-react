@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform, useSpring, MotionValue } from "motion/react";
 
@@ -74,7 +75,7 @@ export function HistoryTimeline({ items, textColor }: { items: TimelineItem[]; t
           initial={{ opacity: 0, y: 60, filter: "blur(10px)" }}
           whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.9,  }}
+          transition={{ duration: 0.9, ease: "easeOut" }}
         >
            {items.map((item, i) => (
              <YearItem 
@@ -94,7 +95,7 @@ export function HistoryTimeline({ items, textColor }: { items: TimelineItem[]; t
           initial={{ opacity: 0, y: 50, filter: "blur(10px)" }}
           whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.9, delay: 0.2 }}
+          transition={{ duration: 0.9, ease: "easeOut", delay: 0.2 }}
         >
            {items.map((item, i) => (
              <ContentItem 

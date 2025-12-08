@@ -45,6 +45,7 @@
             "react-dom": "^18.3.1",
             "react-hook-form": "^7.55.0",
             "react-resizable-panels": "^2.1.7",
+            "react-slick": "^0.31.0",
             "recharts": "^2.15.2",
             "sonner": "^2.0.3",
             "swiper": "^12.0.3",
@@ -57,9 +58,9 @@
             "typescript": "5.9.3"
       },
       "scripts": {
-            "dev": "next dev",
-            "build": "next build",
-            "start": "next start",
-            "lint": "next lint"
-      }
+      "dev": "next dev --webpack",
+      "build": "next build --webpack",
+      "start": "next start",
+      "lint": "next lint"
+  }
 }

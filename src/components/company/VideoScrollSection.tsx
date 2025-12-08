@@ -1,4 +1,3 @@
-"use client";
 import React, { useRef, useState } from "react";
 import { motion, useScroll, useMotionValueEvent, AnimatePresence, useTransform } from "motion/react";
 import { cn } from "../ui/utils";
@@ -107,7 +106,7 @@ export function VideoScrollSection({
          initial={{ opacity: 0, filter: "blur(10px)" }}
          whileInView={{ opacity: 1, filter: "blur(0px)" }}
          viewport={{ once: true, margin: "-50px" }}
-         transition={{ duration: 0.8,  }}
+         transition={{ duration: 0.8, ease: "easeOut" }}
       >
          <motion.video
             src="https://circular.ws/yobel/camion.mp4"
@@ -130,7 +129,7 @@ export function VideoScrollSection({
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: -20 }}
-                                transition={{ duration: 0.5,  }}
+                                transition={{ duration: 0.5, ease: "easeOut" }}
                                 className="absolute inset-0 flex flex-col justify-between"
                             >
                                 <div className="text-5xl md:text-[64px] font-light leading-none tracking-tighter font-augenblick mb-4">

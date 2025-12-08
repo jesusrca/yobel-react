@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
@@ -45,7 +46,7 @@ export function InteractiveList({ items, className = "", defaultImage, title, la
     }
   };
 
-  const wordVariants = {
+  const wordVariants: any = {
     hidden: { 
       opacity: 0, 
       y: 20, 
@@ -57,13 +58,13 @@ export function InteractiveList({ items, className = "", defaultImage, title, la
       filter: "blur(0px)",
       transition: {
         duration: 0.6,
-        
+        ease: "easeOut"
       }
     }
   };
 
   return (
-    <Section className={`${className}`}>
+    <Section className={`bg-white ${className}`}>
       <Container className="relative min-h-[600px]">
         {(title || label) && (
           <motion.div 
@@ -71,7 +72,7 @@ export function InteractiveList({ items, className = "", defaultImage, title, la
             initial={{ opacity: 0, filter: "blur(10px)", y: 50 }}
             whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
           >
             {label && (
               <motion.span 
@@ -112,7 +113,7 @@ export function InteractiveList({ items, className = "", defaultImage, title, la
           initial={{ opacity: 0, filter: "blur(10px)", y: 50 }}
           whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
         >
           {items.map((item) => (
             <div 

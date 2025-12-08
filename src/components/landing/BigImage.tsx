@@ -1,7 +1,8 @@
 "use client";
+
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
-import { bigImageContent } from "../../data/bigImage";
+const imgImagen = "/ef749d8cdc32d6b2e190c007c039bf534bdfe8e7.png";
 import svgPaths from "../../imports/svg-1euews6kv9";
 
 export function BigImage() {
@@ -14,18 +15,18 @@ export function BigImage() {
   // Smooth curve formation effect: starts flatter and curves out
   const topCurveScale = useTransform(scrollYProgress, [0, 0.4], [0, 1]);
   const bottomCurveScale = useTransform(scrollYProgress, [0.4, 0.9], [0, 1]);
-
+  
   return (
-    <motion.div
-      ref={containerRef}
+    <motion.div 
+      ref={containerRef} 
       className="w-full relative mt-20"
       initial={{ opacity: 0, filter: "blur(10px)", y: 100 }}
       whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
       viewport={{ once: true, margin: "-10%" }}
-      transition={{ duration: 1,  }}
+      transition={{ duration: 1, ease: "easeOut" }}
     >
       <div className="w-full h-[600px] md:h-[850px] relative overflow-hidden">
-        <img src={bigImageContent.image} alt={bigImageContent.alt} className="absolute inset-0 w-full h-full object-cover" />
+        <img src={imgImagen} alt="Yobel Logistics" className="absolute inset-0 w-full h-full object-cover" />
         
         {/* Top White Curve */}
         <motion.div 

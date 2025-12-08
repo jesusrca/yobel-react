@@ -51,7 +51,7 @@ export function StatsList({ stats, className = "" }: StatsListProps) {
       filter: "blur(0px)",
       transition: {
         duration: 0.6,
-        
+        ease: "easeOut"
       }
     }
   };
@@ -66,7 +66,7 @@ export function StatsList({ stats, className = "" }: StatsListProps) {
                initial={{ opacity: 0, filter: "blur(10px)", y: 50 }}
                whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
                viewport={{ once: true, margin: "-50px" }}
-               transition={{ duration: 0.8, delay: idx * 0.1 }}
+               transition={{ duration: 0.8, ease: "easeOut", delay: idx * 0.1 }}
              >
                <div className="flex flex-col lg:flex-row items-start lg:items-center gap-8 lg:gap-20">
                    <div className="w-full lg:w-1/2 text-left">

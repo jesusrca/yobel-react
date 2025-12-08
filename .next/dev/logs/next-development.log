@@ -1,1 +1,19 @@
-[00:00:03.371] Server  LOG      ✓ Ready in 1074ms
+[00:00:02.894] Server  LOG      ✓ Ready in 2.1s
+[00:00:31.666] Server  LOG      ○ Compiling / ...
+[00:00:49.911] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:49.911] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+[00:01:02.642] Server  LOG      ○ Compiling /[...slug] ...
+[00:01:30.573] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:13.441] Server  LOG      ○ Compiling /servicios/comercio-exterior ...
+[00:04:28.389] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+[00:07:29.617] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:07:29.867] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+[00:07:36.002] Server  LOG      ○ Compiling /servicios/valor-agregado ...
+[00:07:56.148] Server  LOG      ○ Compiling /industrias/alimentos-y-bebidas ...
+[00:08:13.534] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:13.867] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+[00:09:21.030] Server  LOG      ○ Compiling /noticias ...
+[00:10:12.017] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:10:12.209] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+[00:12:57.973] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:12:58.406] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.

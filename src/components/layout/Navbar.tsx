@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Search, User, ChevronDown } from "lucide-react";
@@ -5,7 +7,7 @@ import svgPaths from "../../imports/svg-biijegtt4v";
 import { FullScreenMenu } from "./FullScreenMenu";
 import { SearchOverlay } from "./SearchOverlay";
 import { CountryPopup } from "./CountryPopup";
-import { useCountry } from "../../contexts/CountryContext";
+import { useCountry } from "../../../contexts/CountryContext";
 import { getCountryCode } from "../../utils/countryUtils";
 
 export function Navbar() {
@@ -20,10 +22,10 @@ export function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-
+      
       // Detectar si hay scroll para aplicar blur
       setHasScrolled(currentScrollY > 50);
-
+      
       if (currentScrollY < 10) {
         // Siempre mostrar en la parte superior
         setIsVisible(true);
@@ -34,26 +36,13 @@ export function Navbar() {
         // Scroll hacia arriba - mostrar
         setIsVisible(true);
       }
-
+      
       setLastScrollY(currentScrollY);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
-
-  // Prevent body scroll when mobile menu is open
-  useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [isMenuOpen]);
 
   return (
     <>

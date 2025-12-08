@@ -1,5 +1,5 @@
 import svgPaths from "./svg-8fprg45iht";
-import imgRectangle29 from "figma:asset/0e8ef5b66e816058eb0c8d43e027124cb6461e57.png";
+const imgRectangle29 = "https://images.unsplash.com/photo-1529429617124-aee1f1650a5c?auto=format&fit=crop&w=800&q=80";
 
 function Marcador() {
   return (

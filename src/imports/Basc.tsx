@@ -1,4 +1,4 @@
-import imgImage4 from "figma:asset/81a2f08caa074cf2924564de584377b156f32298.png";
+const imgImage4 = "https://images.unsplash.com/photo-1529429617124-aee1f1650a5c?auto=format&fit=crop&w=800&q=80";
 
 export default function Basc() {
   return (

@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "motion/react";
 import svgPaths from "../../imports/svg-djl5v4gr4k";
 import { cn } from "../ui/utils";
 import { Copy, Check, ChevronDown } from "lucide-react";
-import { useCountry } from "../../contexts/CountryContext";
+import { useCountry } from "../../../contexts/CountryContext";
 
 function Logo() {
   return (
@@ -108,7 +108,7 @@ export function Footer() {
   const handleCopyEmail = () => {
     // Fallback method for environments where Clipboard API is blocked
     const textArea = document.createElement("textarea");
-    textArea.value = "contactoyobel.com.pe";
+    textArea.value = "contacto@yobel.com.pe";
     textArea.style.position = "fixed";
     textArea.style.left = "-999999px";
     textArea.style.top = "-999999px";
@@ -160,7 +160,7 @@ export function Footer() {
                       onClick={handleCopyEmail}
                     >
                       <p className="text-[22px] md:text-[24px] group-hover:text-[#fff066] transition-colors duration-300">
-                        contactoyobel.com.pe
+                        contacto@yobel.com.pe
                       </p>
                       <div className="absolute -right-10 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         {emailCopied ? (

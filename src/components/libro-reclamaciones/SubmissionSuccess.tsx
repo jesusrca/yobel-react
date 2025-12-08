@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import { motion } from "motion/react";
 import { Button } from "../ui/button";
@@ -11,7 +9,7 @@ export function SubmissionSuccess() {
       <motion.div
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 0.5,  }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
         className="mb-8"
       >
         <div className="w-24 h-24 bg-black rounded-full flex items-center justify-center shadow-xl">
@@ -44,7 +42,7 @@ export function SubmissionSuccess() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.4, duration: 0.5 }}
       >
-          <Button
+          <Button 
              asChild
              className="bg-black text-white px-12 py-6 h-auto rounded-full text-lg font-medium hover:bg-gray-800 transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1"
           >

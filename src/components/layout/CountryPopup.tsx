@@ -1,8 +1,10 @@
+"use client";
+
 import React, { useState } from "react";
 import { motion } from "motion/react";
 import svgPaths from "../../imports/svg-mb78q7u1ko";
 import { CountryFlag } from "./CountryFlags";
-import { useCountry } from "../../contexts/CountryContext";
+import { useCountry } from "../../../contexts/CountryContext";
 
 interface CountryPopupProps {
   isOpen: boolean;
@@ -161,7 +163,7 @@ function Form({ selectedCountry, isExpanded, onToggle, onSelectCountry }: {
 function AccordionTitle({ selected, onClick }: { selected: boolean; onClick: () => void }) {
   return (
     <div className="content-stretch flex gap-[8px] items-center relative shrink-0 cursor-pointer" data-name="Accordion Title" onClick={onClick}>
-      <p className={`${selected ? '[text-decoration-skip-ink:none] [text-underline-position:from-font] decoration-solid underline' : ''} font-augenblick leading-[24px] not-italic relative shrink-0 text-[16px] text-black text-nowrap whitespace-pre hover:opacity-70 transition-opacity`}>
+      <p className={`${selected ? '[text-decoration-skip-ink:none] [text-underline-position:from-font] decoration-solid underline' : ''} font-['Neue_Montreal:Regular',sans-serif] leading-[24px] not-italic relative shrink-0 text-[16px] text-black text-nowrap whitespace-pre hover:opacity-70 transition-opacity`}>
         Español
       </p>
     </div>
@@ -171,7 +173,7 @@ function AccordionTitle({ selected, onClick }: { selected: boolean; onClick: () 
 function AccordionTitle1({ selected, onClick }: { selected: boolean; onClick: () => void }) {
   return (
     <div className="content-stretch flex gap-[8px] items-center relative shrink-0 cursor-pointer" data-name="Accordion Title" onClick={onClick}>
-      <p className={`${selected ? '[text-decoration-skip-ink:none] [text-underline-position:from-font] decoration-solid underline' : ''} font-augenblick leading-[24px] not-italic relative shrink-0 text-[16px] text-black text-nowrap whitespace-pre hover:opacity-70 transition-opacity`}>
+      <p className={`${selected ? '[text-decoration-skip-ink:none] [text-underline-position:from-font] decoration-solid underline' : ''} font-['Neue_Montreal:Regular',sans-serif] leading-[24px] not-italic relative shrink-0 text-[16px] text-black text-nowrap whitespace-pre hover:opacity-70 transition-opacity`}>
         Inglés
       </p>
     </div>
@@ -214,6 +216,16 @@ function Idioma() {
   );
 }
 
+function Up({ selectedCountry }: { selectedCountry: string }) {
+  return (
+    <div className="w-full text-center">
+      <p className="font-[Neue_Augenblick] text-[22px] text-black">
+        País seleccionado: {selectedCountry || "—"}
+      </p>
+    </div>
+  );
+}
+
 function Contenido({ 
   selectedCountry, 
   onContinue, 
@@ -229,8 +241,9 @@ function Contenido({
 }) {
   return (
     <div className="content-stretch flex flex-col gap-[32px] items-start relative shrink-0 w-full" data-name="Contenido">
+      <Up selectedCountry={selectedCountry} />
       <Primary selectedCountry={selectedCountry} onContinue={onContinue} />
-      <p className="font-augenblick leading-[16px] not-italic relative shrink-0 text-[14px] text-black text-center w-full">O</p>
+      <p className="font-['Neue_Montreal:Regular',sans-serif] leading-[16px] not-italic relative shrink-0 text-[14px] text-black text-center w-full">O</p>
       <Form 
         selectedCountry={selectedCountry}
         isExpanded={isExpanded}
@@ -279,7 +292,7 @@ export function CountryPopup({ isOpen, onClose }: CountryPopupProps) {
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.9, opacity: 0 }}
-        transition={{ duration: 0.3,  }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
       >
         <div aria-hidden="true" className="absolute border border-[rgba(255,255,255,0.6)] border-solid inset-0 pointer-events-none rounded-[15px]" />
         <div className="flex flex-col items-end size-full">
@@ -299,7 +312,7 @@ export function CountryPopup({ isOpen, onClose }: CountryPopupProps) {
                 onToggle={() => setIsExpanded(!isExpanded)}
                 onSelectCountry={handleSelectCountry}
               />
-              <p className="font-augenblick leading-[16px] not-italic relative shrink-0 text-[14px] text-black text-center w-full">O</p>
+              <p className="font-['Neue_Montreal:Regular',sans-serif] leading-[16px] not-italic relative shrink-0 text-[14px] text-black text-center w-full">O</p>
               <Primary selectedCountry={selectedCountry} onContinue={onClose} />
               <Idioma />
             </div>

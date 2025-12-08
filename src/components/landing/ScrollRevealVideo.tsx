@@ -1,13 +1,18 @@
-"use client";
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import logoPaths from "../../imports/svg-qgocns5d8m";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
 
 export function ScrollRevealVideo() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   const { scrollYProgress } = useScroll({
-    target: containerRef,
+    target: isMounted ? containerRef : undefined,
     offset: ["start start", "end end"]
   });
 

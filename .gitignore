@@ -1,1 +1,5 @@
 node_modules
+.next
+app_backup
+src_backup
+public_backup

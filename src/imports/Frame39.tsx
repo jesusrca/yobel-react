@@ -23,7 +23,7 @@ function Frame3() {
     <div className="bg-white relative shrink-0 w-full">
       <div className="flex flex-row items-center size-full">
         <div className="box-border content-stretch flex items-center justify-between px-[24px] py-[10px] relative w-full">
-          <p className="font-augenblick font-[590] leading-[22px] relative shrink-0 text-[#494949] text-[17px] text-center text-nowrap whitespace-pre" style={{ fontVariationSettings: "'wdth' 100" }}>
+          <p className="font-['SF_Pro:Semibold',sans-serif] font-[590] leading-[22px] relative shrink-0 text-[#494949] text-[17px] text-center text-nowrap whitespace-pre" style={{ fontVariationSettings: "'wdth' 100" }}>
             9:41
           </p>
           <Frame2 />

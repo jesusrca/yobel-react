@@ -145,41 +145,41 @@ export function LatinAmericaMap({ className, selected, onSelect }: LatinAmericaM
 
       {/* Labels */}
       <div className="pointer-events-none absolute inset-0 z-20">
-        <p className="absolute font-augenblick inset-[36.46%_23.11%_59.15%_65.42%] leading-[normal] text-[clamp(10px,2vw,17px)] text-black/80">Brasil</p>
-        <p className="absolute bottom-[74.43%] left-0 right-[86.85%] top-[22.23%] font-augenblick leading-[normal] text-[clamp(8px,1.5vw,13px)] text-black/80">Ecuador</p>
-        <p className="absolute font-augenblick inset-[5.74%_51.18%_90.71%_31.19%] leading-[normal] text-[clamp(8px,1.5vw,14px)] text-black/80">Venezuela</p>
+        <p className="absolute font-['Tahoma',sans-serif] inset-[36.46%_23.11%_59.15%_65.42%] leading-[normal] text-[clamp(10px,2vw,17px)] text-black/80">Brasil</p>
+        <p className="absolute bottom-[74.43%] left-0 right-[86.85%] top-[22.23%] font-['Tahoma',sans-serif] leading-[normal] text-[clamp(8px,1.5vw,13px)] text-black/80">Ecuador</p>
+        <p className="absolute font-['Tahoma',sans-serif] inset-[5.74%_51.18%_90.71%_31.19%] leading-[normal] text-[clamp(8px,1.5vw,14px)] text-black/80">Venezuela</p>
         <div className="absolute flex inset-[67.49%_66.1%_24.99%_27.08%] items-center justify-center">
           <div className="flex-none h-[18px] rotate-[281.818deg] w-[33px]">
-            <p className="font-augenblick leading-[normal] relative text-[clamp(8px,1.6vw,15px)] text-black/80">Chile</p>
+            <p className="font-['Tahoma',sans-serif] leading-[normal] relative text-[clamp(8px,1.6vw,15px)] text-black/80">Chile</p>
           </div>
         </div>
-        <p className="absolute font-augenblick inset-[68.38%_43.52%_28.07%_39.69%] leading-[normal] text-[clamp(8px,1.5vw,14px)] text-black/80">Argentina</p>
-        <p className="absolute font-augenblick inset-[36.15%_66.8%_60.29%_25.36%] leading-[normal] text-[clamp(8px,1.5vw,14px)] text-black/80">Peru</p>
+        <p className="absolute font-['Tahoma',sans-serif] inset-[68.38%_43.52%_28.07%_39.69%] leading-[normal] text-[clamp(8px,1.5vw,14px)] text-black/80">Argentina</p>
+        <p className="absolute font-['Tahoma',sans-serif] inset-[36.15%_66.8%_60.29%_25.36%] leading-[normal] text-[clamp(8px,1.5vw,14px)] text-black/80">Peru</p>
         <div className="absolute flex inset-[68.46%_25.51%_21.65%_62.04%] items-center justify-center">
           <div className="flex-none h-[16px] rotate-[48.47deg] w-[48.999px]">
-            <p className="font-augenblick leading-[normal] relative text-[clamp(8px,1.4vw,13px)] text-black/80">Uruguay</p>
+            <p className="font-['Tahoma',sans-serif] leading-[normal] relative text-[clamp(8px,1.4vw,13px)] text-black/80">Uruguay</p>
           </div>
         </div>
         <div className="absolute flex inset-[47.11%_37.2%_42.46%_49.48%] items-center justify-center">
           <div className="flex-none h-[16px] rotate-[47.492deg] w-[53.001px]">
-            <p className="font-augenblick leading-[normal] relative text-[clamp(8px,1.4vw,13px)] text-black/80">Paraguay</p>
+            <p className="font-['Tahoma',sans-serif] leading-[normal] relative text-[clamp(8px,1.4vw,13px)] text-black/80">Paraguay</p>
           </div>
         </div>
-        <p className="absolute font-augenblick inset-[43.83%_48.67%_52.62%_40.14%] leading-[normal] text-[clamp(8px,1.5vw,14px)] text-black/80">Bolivia</p>
+        <p className="absolute font-['Tahoma',sans-serif] inset-[43.83%_48.67%_52.62%_40.14%] leading-[normal] text-[clamp(8px,1.5vw,14px)] text-black/80">Bolivia</p>
         <div className="absolute flex inset-[1.53%_25.15%_88.05%_61.11%] items-center justify-center">
           <div className="flex-none h-[15.999px] rotate-[314.165deg] w-[53.998px]">
-            <p className="font-augenblick leading-[normal] relative text-[clamp(8px,1.4vw,13px)] text-black/80">Suriname</p>
+            <p className="font-['Tahoma',sans-serif] leading-[normal] relative text-[clamp(8px,1.4vw,13px)] text-black/80">Suriname</p>
           </div>
         </div>
         <div className="absolute bottom-[90.92%] flex items-center justify-center left-[54.76%] right-[33.69%] top-0">
           <div className="flex-none h-[16px] rotate-[311.875deg] w-[44px]">
-            <p className="font-augenblick leading-[normal] relative text-[clamp(8px,1.4vw,13px)] text-black/80">Guyana</p>
+            <p className="font-['Tahoma',sans-serif] leading-[normal] relative text-[clamp(8px,1.4vw,13px)] text-black/80">Guyana</p>
           </div>
         </div>
-        <p className="absolute font-augenblick inset-[14.16%_63.74%_82.29%_20.31%] leading-[normal] text-[clamp(8px,1.5vw,14px)] text-black/80">Colombia</p>
+        <p className="absolute font-['Tahoma',sans-serif] inset-[14.16%_63.74%_82.29%_20.31%] leading-[normal] text-[clamp(8px,1.5vw,14px)] text-black/80">Colombia</p>
         <div className="absolute flex inset-[3.32%_18.62%_86.26%_67.64%] items-center justify-center">
           <div className="flex-none h-[15.999px] rotate-[314.165deg] w-[53.998px]">
-            <p className="font-augenblick leading-[normal] relative text-[clamp(8px,1.4vw,13px)] text-black/80">Fr.Guiana</p>
+            <p className="font-['Tahoma',sans-serif] leading-[normal] relative text-[clamp(8px,1.4vw,13px)] text-black/80">Fr.Guiana</p>
           </div>
         </div>
       </div>

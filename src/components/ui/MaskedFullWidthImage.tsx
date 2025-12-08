@@ -1,7 +1,8 @@
 "use client";
+
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
-const imgImage5 = "/src/assets/hero-video.jpg";
+const imgImage5 = "https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=1200&q=80";
 import { imgImage4 } from "../../imports/svg-0odmx";
 
 export function MaskedFullWidthImage() {

@@ -1,7 +1,6 @@
-"use client";
 import React, { useState, memo, useCallback, useRef } from "react";
 import { ChevronLeft, ChevronRight, Upload, X, ArrowRight, Download } from "lucide-react";
-import { useCountry } from "/contexts/CountryContext";
+import { useCountry } from "../../../contexts/CountryContext";
 import jsPDF from "jspdf";
 
 interface CheckboxItemProps {

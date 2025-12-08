@@ -1,1 +1,8 @@
-{}
+{
+  "/page": "app/page.js",
+  "/servicios/manufactura/page": "app/servicios/manufactura/page.js",
+  "/noticias/page": "app/noticias/page.js",
+  "/noticias/[slug]/page": "app/noticias/[slug]/page.js",
+  "/industrias/calzado-y-moda/page": "app/industrias/calzado-y-moda/page.js",
+  "/industrias/construccion/page": "app/industrias/construccion/page.js"
+}

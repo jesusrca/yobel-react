@@ -1,5 +1,5 @@
-import React from "react";
-import { motion, useScroll, useTransform, MotionValue } from "motion/react";
+import React, { useState, useEffect } from "react";
+import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
 
 interface ScrollColorTransitionProps {
   children: (textColor: MotionValue<string>) => React.ReactNode;
@@ -28,8 +28,14 @@ export function ScrollColorTransition({
   className = ""
 }: ScrollColorTransitionProps) {
   const containerRef = React.useRef<HTMLDivElement>(null);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   const { scrollYProgress } = useScroll({
-    target: containerRef,
+    target: isMounted ? containerRef : undefined,
     offset: ["start start", "end end"]
   });
 

@@ -1,6 +1,8 @@
+'use client';
+
 import React from "react";
 import { motion } from "motion/react";
-// Removed unused figma imports
+const imgIso90012015 = "/8d71814a27d5d2312d834e65823888072e8bac49.png";
 import { Section } from "../ui/custom-section";
 import { Container } from "../ui/custom-container";
 import { LogoGrid } from "../LogoGrid";
@@ -24,7 +26,7 @@ export function Certificates({
            initial={{ opacity: 0, filter: "blur(10px)", y: 50 }}
            whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
            viewport={{ once: true, margin: "-50px" }}
-           transition={{ duration: 0.8, delay: 0.2 }}
+           transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
          >
            <ThreeColumnLayout 
              label={label}
@@ -38,10 +40,10 @@ export function Certificates({
            initial={{ opacity: 0, filter: "blur(10px)", y: 50 }}
            whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
            viewport={{ once: true, margin: "-50px" }}
-           transition={{ duration: 0.8, delay: 0.4 }}
+           transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
          >
            <LogoGrid className="mt-12">
-              <img src="https://circular.ws/yobel/ISO-9001.png" alt="ISO 9001:2015" className="h-16 md:h-24 w-full object-contain opacity-80 hover:opacity-100 transition-all duration-700 ease-in-out grayscale hover:grayscale-0" />
+              <img src={imgIso90012015} alt="ISO 9001:2015" className="h-16 md:h-24 w-full object-contain opacity-80 hover:opacity-100 transition-all duration-700 ease-in-out grayscale hover:grayscale-0" />
               <img src="https://circular.ws/yobel/BPM.png" alt="BPM" className="h-16 md:h-24 w-full object-contain opacity-80 hover:opacity-100 transition-all duration-700 ease-in-out grayscale hover:grayscale-0" />
               <img src="https://circular.ws/yobel/bpa.png" alt="BPA" className="h-16 md:h-24 w-full object-contain opacity-80 hover:opacity-100 transition-all duration-700 ease-in-out grayscale hover:grayscale-0" />
               <img src="https://circular.ws/yobel/basc.png" alt="BASC" className="h-16 md:h-24 w-full object-contain opacity-80 hover:opacity-100 transition-all duration-700 ease-in-out grayscale hover:grayscale-0" />

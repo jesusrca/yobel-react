@@ -47,7 +47,7 @@ export function LifeAtYobel({ textColor }: { textColor: MotionValue<string> }) {
           initial={{ opacity: 0, y: 60, filter: "blur(10px)" }}
           whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8,  }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
           style={{ color: textColor }}
         >
           Vida en Yobel
@@ -59,7 +59,7 @@ export function LifeAtYobel({ textColor }: { textColor: MotionValue<string> }) {
           initial={{ opacity: 0, y: 50, filter: "blur(10px)" }}
           whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.9, delay: 0.2 }}
+          transition={{ duration: 0.9, ease: "easeOut", delay: 0.2 }}
           onMouseMove={handleMouseMove}
           onMouseLeave={() => setActiveId("")}
         >
@@ -106,7 +106,7 @@ export function LifeAtYobel({ textColor }: { textColor: MotionValue<string> }) {
                     animate={{ 
                       rotate: activeId === category.title ? 180 : 0 
                     }}
-                    transition={{ duration: 0.3,  }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
                   >
                     <ChevronDown 
                       size={24} 

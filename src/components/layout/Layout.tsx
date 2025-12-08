@@ -11,7 +11,6 @@ interface LayoutProps {
 }
 
 export function Layout({ children }: LayoutProps) {
-  const pathname = usePathname();
   return (
     <div className="min-h-screen w-full bg-white relative">
       <Navbar />

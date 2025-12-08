@@ -1,6 +1,8 @@
+"use client";
+
 import React from "react";
 import svgPaths from "../../imports/svg-hyd0y3kqgz";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 
 function YobelLogo() {
   return (
@@ -14,7 +16,7 @@ function YobelLogo() {
             id="Y"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0,  }}
+            transition={{ duration: 0.6, delay: 0, ease: "easeOut" }}
           />
           {/* O */}
           <motion.path 
@@ -23,7 +25,7 @@ function YobelLogo() {
             id="o"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.15,  }}
+            transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
           />
           {/* B */}
           <motion.path 
@@ -32,7 +34,7 @@ function YobelLogo() {
             id="b"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.3,  }}
+            transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
           />
           {/* E */}
           <motion.path 
@@ -41,7 +43,7 @@ function YobelLogo() {
             id="e"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.45,  }}
+            transition={{ duration: 0.6, delay: 0.45, ease: "easeOut" }}
           />
           {/* L */}
           <motion.path 
@@ -50,7 +52,7 @@ function YobelLogo() {
             id="l"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.6,  }}
+            transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
           />
         </g>
         <defs>
@@ -86,7 +88,7 @@ export function HistoryHero({
           className="mb-16 md:mb-24 lg:mb-32"
           initial={{ opacity: 0, y: 60, filter: "blur(10px)" }}
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          transition={{ duration: 1, delay: 0.2 }}
+          transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
         >
           <YobelLogo />
         </motion.div>
@@ -96,7 +98,7 @@ export function HistoryHero({
           className="flex flex-col gap-6"
           initial={{ opacity: 0, y: 50, filter: "blur(10px)" }}
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          transition={{ duration: 1, delay: 0.5 }}
+          transition={{ duration: 1, ease: "easeOut", delay: 0.5 }}
         >
           {/* Label */}
           <p className="text-base md:text-lg text-black/50 font-medium font-['Neue_Augenblick']">

@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "motion/react";
-import historiaImage from "../../assets/historia-image.webp";
+const imgImage5 = "https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=1200&q=80";
 import { imgImage4 } from "../../imports/svg-w7fud";
 
 export function HistoryImageBlock() {
@@ -10,7 +10,7 @@ export function HistoryImageBlock() {
       initial={{ opacity: 0, y: 60, filter: "blur(10px)" }}
       whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
       viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.9,  }}
+      transition={{ duration: 0.9, ease: "easeOut" }}
     >
       <div className="relative w-full h-[500px] md:h-[700px] lg:h-[900px] xl:h-[1019px]">
         <div 
@@ -26,10 +26,10 @@ export function HistoryImageBlock() {
             WebkitMaskPosition: "center center"
           }}
         >
-          <img
-            alt="Yobel laboratorio"
-            className="w-full h-full object-cover"
-            src={historiaImage.src}
+          <img 
+            alt="Yobel laboratorio" 
+            className="w-full h-full object-cover" 
+            src={imgImage5} 
           />
         </div>
       </div>

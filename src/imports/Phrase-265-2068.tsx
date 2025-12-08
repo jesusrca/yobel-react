@@ -5,7 +5,7 @@ function Iso() {
     <div className="relative shrink-0 size-[60px]" data-name="Iso">
       <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 60 60">
         <g id="Iso">
-          <path d={svgPaths.p1d326d00} fill="var(--fill-0, black)" id="Vector" />
+          <path d={svgPaths.p1ef94800} fill="var(--fill-0, black)" id="Vector" />
         </g>
       </svg>
     </div>

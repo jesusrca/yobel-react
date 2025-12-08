@@ -3,7 +3,7 @@ import { motion, MotionValue } from "motion/react";
 import svgPaths from "../../imports/svg-j9zkv27h5w";
 import { YellowGradientButton } from "../ui/yellow-gradient-button";
 
-function IsotipoIcon({ color }: { color: MotionValue<string> }) {
+function IsotipoIcon({ color }: { color: MotionValue<string> | string }) {
   return (
     <div className="relative w-[41px] h-10 shrink-0">
       <div className="absolute inset-0">
@@ -19,13 +19,13 @@ function IsotipoIcon({ color }: { color: MotionValue<string> }) {
 
 interface PhraseProps {
   text?: string;
-  textColor: MotionValue<string>;
+  textColor?: MotionValue<string> | string;
   showButton?: boolean;
 }
 
 export function Phrase({ 
   text = "Cada década hemos escrito un nuevo capítulo: de la manufactura de productos de cuidado personal a la gestión integral de cadenas de suministro en Latinoamérica. Nuestra historia refleja que la excelencia y la innovación forman parte de nuestro ADN.",
-  textColor,
+  textColor = "#000000",
   showButton = true
 }: PhraseProps) {
   return (
@@ -36,7 +36,7 @@ export function Phrase({
           initial={{ opacity: 0, y: 60, filter: "blur(10px)" }}
           whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.9,  }}
+          transition={{ duration: 0.9, ease: "easeOut" }}
         >
           {/* Icon */}
           <div className="shrink-0">

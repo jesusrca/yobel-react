@@ -1,1 +1,0 @@
-(globalThis.TURBOPACK||(globalThis.TURBOPACK=[])).push(["object"==typeof document?document.currentScript:void 0,86633,t=>{"use strict";var e=t.i(43476);function c(){return(0,e.jsx)("div",{children:(0,e.jsx)("h1",{children:"Contact Page"})})}t.s(["default",()=>c])}]);

@@ -24,7 +24,7 @@ function Frame() {
   const yOffset3 = useTransform(scrollYProgress, [0, 1], [0, 40]);
 
   // 3. Continuous floating
-  const floatAnim = {
+  const floatAnim: any = {
     y: [0, -15, 0],
     transition: {
       duration: 6,

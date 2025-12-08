@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['NeueAugenblick', 'sans-serif'],
+        sans: ['var(--font-neue-augenblick)', 'sans-serif'],
       },
     },
   },

@@ -11,7 +11,7 @@ export const Section = React.forwardRef<HTMLElement, SectionProps>(
     return (
       <section 
         ref={ref}
-        className={cn("w-full font-sans py-14 sm:py-16 md:py-20 px-4 sm:px-6 md:px-10", className)} 
+        className={cn("w-full font-sans py-20 px-[5%] md:px-[50px]", className)} 
         {...props}
       >
         {children}

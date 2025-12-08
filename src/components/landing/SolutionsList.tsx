@@ -1,4 +1,3 @@
-"use client";
 import React, { useState, useRef } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
 
@@ -74,7 +73,7 @@ export function SolutionsList({ solutions, hoverImage, title, children }: Soluti
                      initial={{ opacity: 0, y: (hoveredIndex * 120) - 60 }}
                      animate={{ opacity: 1, y: (hoveredIndex * 120) - 60 }}
                      exit={{ opacity: 0 }}
-                     transition={{ duration: 0.3,  }}
+                     transition={{ duration: 0.3, ease: "easeOut" }}
                   >
                      <motion.div
                        initial={{ scale: 0.9 }}
