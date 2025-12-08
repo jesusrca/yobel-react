@@ -63,8 +63,8 @@ export function Industries({ className, useOrangeGradient = false }: { className
 
   const settings = {
     modules: [Autoplay],
-    spaceBetween: 8,
-    slidesPerView: 3.2,
+    spaceBetween: 12,
+    slidesPerView: 3,
     speed: 500,
     loop: true,
     autoplay: {
@@ -77,16 +77,16 @@ export function Industries({ className, useOrangeGradient = false }: { className
         spaceBetween: 12,
       },
       1024: {
-        slidesPerView: 2,
-        spaceBetween: 10,
+        slidesPerView: 2.4,
+        spaceBetween: 14,
       },
       768: {
-        slidesPerView: 1.15,
-        spaceBetween: 8,
+        slidesPerView: 1.5,
+        spaceBetween: 12,
       },
       640: {
         slidesPerView: 1,
-        spaceBetween: 8,
+        spaceBetween: 10,
       },
     },
   };
@@ -141,10 +141,10 @@ export function Industries({ className, useOrangeGradient = false }: { className
               {...settings}
             >
                 {industries.map((ind, idx) => (
-                    <SwiperSlide key={idx} className="h-full">
-                        <div className="px-2 md:px-3 h-full">
+                    <SwiperSlide key={idx} className="!w-auto h-full flex items-start">
+                        <div className="h-full">
                             <div
-                               className="group relative flex flex-col h-full rounded-[28px] md:rounded-[24px] p-4 md:p-5 justify-end items-start gap-4"
+                               className="group relative flex flex-col w-[433px] justify-end items-start gap-4 rounded-[28px] md:rounded-[24px] p-4 md:p-5"
                                onMouseEnter={() => setIsHovering(true)}
                                onMouseLeave={() => setIsHovering(false)}
                                onMouseDown={handleMouseDown}
