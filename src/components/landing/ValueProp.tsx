@@ -38,7 +38,7 @@ export function ValueProp() {
     <Section className="bg-gradient-to-b from-[#FFF700] to-white">
       <Container className="mb-20">
         <motion.div
-          className="flex flex-col justify-center items-center gap-[60px] w-[1340px] p-[160px_112px]"
+          className="flex flex-col justify-center items-center gap-[60px] w-[1340px] p-[200px_112px]"
           initial={{ opacity: 0, filter: "blur(10px)", y: 50 }}
           whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
