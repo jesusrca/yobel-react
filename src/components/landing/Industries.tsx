@@ -64,7 +64,7 @@ export function Industries({ className, useOrangeGradient = false }: { className
   const settings = {
     modules: [Autoplay],
     spaceBetween: 12,
-    slidesPerView: 3,
+    slidesPerView: 1.1,
     speed: 500,
     loop: true,
     autoplay: {
@@ -72,6 +72,10 @@ export function Industries({ className, useOrangeGradient = false }: { className
       disableOnInteraction: false,
     },
     breakpoints: {
+      640: {
+        slidesPerView: 1.2,
+        spaceBetween: 12,
+      },
       1280: {
         slidesPerView: 3,
         spaceBetween: 12,
@@ -83,10 +87,6 @@ export function Industries({ className, useOrangeGradient = false }: { className
       768: {
         slidesPerView: 1.5,
         spaceBetween: 12,
-      },
-      640: {
-        slidesPerView: 1,
-        spaceBetween: 10,
       },
     },
   };
@@ -107,23 +107,25 @@ export function Industries({ className, useOrangeGradient = false }: { className
       </div>
 
 
-       <Container className="max-w-[1440px] flex flex-col gap-20">
-         <motion.div
-           initial={{ opacity: 0, filter: "blur(10px)", y: 50 }}
-           whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
-           viewport={{ once: true, margin: "-50px" }}
-           transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-         >
-           <ThreeColumnLayout 
-             label="Industrias"
-             title={<>INDUSTRIAS EN <em>MOVIMIENTO</em></>}
-             description="Conocemos las exigencias de cada sector. Por eso, en Yobel diseñamos soluciones integradas y adaptables, alineadas a los retos y necesidades de tu industria."
-             labelClassName="shrink-0 w-32 text-lg mt-2 opacity-50"
-           />
-         </motion.div>
+       <Container className="max-w-none w-full px-0 flex flex-col gap-20">
+         <div className="max-w-[1440px] w-full mx-auto px-4 sm:px-6 md:px-8">
+           <motion.div
+             initial={{ opacity: 0, filter: "blur(10px)", y: 50 }}
+             whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+             viewport={{ once: true, margin: "-50px" }}
+             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+           >
+             <ThreeColumnLayout 
+               label="Industrias"
+               title={<>INDUSTRIAS EN <em>MOVIMIENTO</em></>}
+               description="Conocemos las exigencias de cada sector. Por eso, en Yobel diseñamos soluciones integradas y adaptables, alineadas a los retos y necesidades de tu industria."
+               labelClassName="shrink-0 w-32 text-lg mt-2 opacity-50"
+             />
+           </motion.div>
+         </div>
 
          <motion.div 
-           className="w-full -mr-20 md:-mr-40 relative" 
+           className="w-full relative" 
            onWheel={handleWheel}
            initial={{ opacity: 0, filter: "blur(10px)", y: 50 }}
            whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
@@ -144,7 +146,7 @@ export function Industries({ className, useOrangeGradient = false }: { className
                     <SwiperSlide key={idx} className="!w-auto h-full flex items-start">
                         <div className="h-full">
                             <div
-                               className="group relative flex flex-col w-[433px] justify-end items-start gap-4 rounded-[28px] md:rounded-[24px] p-4 md:p-5"
+                               className="group relative flex flex-col w-[380px] sm:w-[400px] md:w-[420px] xl:w-[433px] justify-end items-start gap-4 rounded-[28px] md:rounded-[24px] p-4 md:p-5"
                                onMouseEnter={() => setIsHovering(true)}
                                onMouseLeave={() => setIsHovering(false)}
                                onMouseDown={handleMouseDown}
@@ -153,7 +155,7 @@ export function Industries({ className, useOrangeGradient = false }: { className
                             >
                                 <Link
                                   to={ind.path}
-                                  className="flex flex-col gap-5 w-full cursor-pointer block"
+                                  className="flex flex-col gap-4 w-full cursor-pointer block"
                                   onClick={(e) => {
                                     if (isDragging) {
                                       e.preventDefault();
@@ -163,7 +165,7 @@ export function Industries({ className, useOrangeGradient = false }: { className
                                     <div className="aspect-square w-full rounded-[20px] md:rounded-[20px] overflow-hidden relative shrink-0">
                                         <img src={ind.image} alt={ind.title} className="w-full h-full object-cover" />
                                     </div>
-                                    <div className="flex flex-col gap-2 md:gap-3 text-black px-2 md:px-2.5">
+                                    <div className="w-full flex flex-col gap-4 text-black px-5">
                                         <h3 className="text-[22px] md:text-2xl font-medium font-[Neue_Augenblick] leading-snug md:leading-normal break-words">{ind.title}</h3>
                                         <p className="text-[17px] md:text-lg font-light leading-snug opacity-80 font-augenblick line-clamp-4 md:line-clamp-none">
                                           {ind.description}

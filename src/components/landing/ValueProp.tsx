@@ -93,12 +93,15 @@ export function ValueProp() {
 
           {/* Right Side: Search Box */}
           <div className="w-full lg:max-w-[450px] flex flex-col gap-4 shrink-0 pb-2 text-center">
-            <button
+            <a
+              href="https://clientes.yobel.biz/login"
+              target="_blank"
+              rel="noopener noreferrer"
               className="mx-auto inline-flex items-center justify-center gap-2 min-w-[206px] bg-black text-white text-xl md:text-2xl font-light font-[Neue_Augenblick] tracking-tight border-[1.5px] border-black leading-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
               style={{ padding: "16px 28px 20px 28px", borderRadius: "38px" }}
             >
               Ver mi Envío
-            </button>
+            </a>
           </div>
         </motion.div>
       </Container>

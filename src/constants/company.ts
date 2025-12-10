@@ -6,29 +6,29 @@ export const historyTexts = {
   },
   timeline: [
     {
-      year: "1972",
-      title: "Fundación de Yobel",
-      desc: "Iniciamos operaciones en Perú con un enfoque en distribución local y regional."
+      year: "1967",
+      title: "Favel",
+      desc: "Iniciamos operaciones como Favel, con la fabricación de cosméticos y cuidado personal."
     },
     {
-      year: "1990",
-      title: "Expansión regional",
-      desc: "Ampliamos nuestra presencia a múltiples países de Latinoamérica."
+      year: "1989",
+      title: "Larissa",
+      desc: "Empezamos nuestra operación logística, lo que marcó nuestra internacionalización en Chile y EE.UU."
     },
     {
-      year: "2000",
-      title: "Innovación tecnológica",
-      desc: "Incorporamos sistemas avanzados de trazabilidad y gestión logística."
+      year: "1995",
+      title: "Glacesa",
+      desc: "Se abre una nueva línea de operación logística especializada en joyería de fantasía."
     },
     {
-      year: "2010",
-      title: "Manufactura integrada",
-      desc: "Desarrollamos capacidades de manufactura para ofrecer soluciones completas."
+      year: "2003",
+      title: "Grupo Yobel",
+      desc: "Nuestras marcas y operaciones se unifican bajo el nombre de Grupo Yobel."
     },
     {
-      year: "2020",
-      title: "Sostenibilidad y digitalización",
-      desc: "Lideramos la transformación digital y adoptamos prácticas sostenibles en toda la operación."
+      year: "Hoy",
+      title: "Yobel",
+      desc: "Nos constituimos como una corporación experta en toda la gestión de manejo de suministros y operaciones logísticas."
     }
   ]
 };

@@ -35,7 +35,7 @@ export function Comex() {
   
   return (
     <>
-      <div className="relative h-[80vh] min-h-[600px] max-h-[920px] w-full overflow-hidden font-augenblick">
+      <div className="relative h-screen w-full overflow-hidden font-augenblick">
         <div className="absolute inset-0 overflow-hidden">
           <video
             src="/videos/amarillo-desktop.mp4"

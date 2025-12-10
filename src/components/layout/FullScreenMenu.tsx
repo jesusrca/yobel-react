@@ -14,16 +14,15 @@ interface FullScreenMenuProps {
 }
 
 const menuItems = [
-  {
-    id: "01",
-    title: "Empresa",
-    items: [
-      { name: "Sobre Nosotros", path: "/empresa/sobre-nosotros" },
-      { name: "Presencia Global", path: "/empresa/presencia-global" },
-      { name: "Historia", path: "/empresa/historia" },
-      { name: "Tarifas", path: "/tarifas" },
-    ]
-  },
+   {
+     id: "01",
+     title: "Empresa",
+     items: [
+       { name: "Sobre Nosotros", path: "/empresa/sobre-nosotros" },
+       { name: "Presencia Global", path: "/empresa/presencia-global" },
+       { name: "Historia", path: "/empresa/historia" },
+     ]
+   },
   {
     id: "02",
     title: "Servicios",
@@ -142,7 +141,7 @@ export function FullScreenMenu({ onClose, onSearchClick }: FullScreenMenuProps) 
             {/* Actions */}
             <div className="flex items-center gap-2 md:gap-6">
                 {/* Portal de Clientes Button - Desktop */}
-                <button className="hidden md:block px-4 py-2 text-[23px] text-white hover:opacity-70">Clientes</button>
+                <a href="https://clientes.yobel.biz/login" target="_blank" rel="noopener noreferrer" className="hidden md:block px-4 py-2 text-[23px] text-white hover:opacity-70">Clientes</a>
 
                 {/* Country (Hidden on small mobile if crowded, but let's keep it) */}
                 <div 
@@ -334,14 +333,14 @@ export function FullScreenMenu({ onClose, onSearchClick }: FullScreenMenuProps) 
               {/* Mobile Buttons */}
               <div className="mt-8">
                  {/* Mobile Tracking Button */}
-                 <button className="w-full py-4 border border-white rounded-full text-xl font-medium hover:bg-white hover:text-black transition-colors mb-4">
+                 <a href="https://clientes.yobel.biz/login" target="_blank" rel="noopener noreferrer" className="w-full py-4 border border-white rounded-full text-xl font-medium hover:bg-white hover:text-black transition-colors mb-4 block text-center">
                      Tracking de Envíos
-                 </button>
+                 </a>
 
                  {/* Mobile Portal de Clientes Button */}
-                 <button className="w-full py-4 border border-white rounded-full text-xl font-medium hover:bg-white hover:text-black transition-colors mb-8">
+                 <a href="https://clientes.yobel.biz/login" target="_blank" rel="noopener noreferrer" className="w-full py-4 border border-white rounded-full text-xl font-medium hover:bg-white hover:text-black transition-colors mb-8 block text-center">
                      Portal de Clientes
-                 </button>
+                 </a>
 
                  {/* Legal Links Mobile */}
                  <div className="flex flex-col gap-4 text-sm text-white/40 px-2">
